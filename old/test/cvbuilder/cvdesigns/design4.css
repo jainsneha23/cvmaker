@@ -1,0 +1,114 @@
+#cv {
+	width: 90%;
+	margin: 0 auto;
+	line-height: rgba(188, 188, 188, 1);
+	font-size: 14px;
+}
+
+#cv section.header{
+  position: relative;
+  padding: 10px 0;
+  border-bottom: 2px solid #40A7BA;
+}
+
+#cv .imageInfo, #cv .personalInfo, #cv .contactInfo{
+  display: inline-block;
+  vertical-align: bottom;
+}
+
+#cv .personalInfo{
+  width: 450px;
+  text-align: center;
+}
+
+#cv .imageInfo{
+	width: 150px;
+	text-align: right;
+}
+
+.imageInfo img{
+  max-height: 150px;
+}
+
+.personalInfo div:first-child{
+  font-size: 40px;
+  font-weight: 100;
+}
+.personalInfo div:last-child{
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.contactInfo{
+    font-size: 12px;
+    line-height: 2em;
+    position: absolute;
+    bottom: 10px;
+    right: 30px;
+    font-weight: 500;
+}
+
+.contactInfo i{
+  font-size: 14px;
+  padding: 0 5px;
+  vertical-align: baseline;
+}
+.title{
+	display: table-cell;
+	vertical-align: top;
+	width:150px;
+	text-align: right;
+	padding: 5px 10px;
+}
+label{
+  font-weight: 400;
+  font-size: 16px;
+}
+
+#cv .details{
+  padding: 5px 10px;
+  width: calc(100% - 150px);
+  display: table-cell;
+  border-left: 2px solid #40A7BA;
+}
+
+#cv div.header{
+  display: inline-block;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 1.5em;
+}
+
+.subHeading{
+  text-transform: uppercase;
+  text-decoration: underline;
+}
+
+.skillInfo li > span{
+  padding-right: 10px;
+  font-weight: bold;
+}
+
+.skillInfo div[bar-rating]{
+  display: inline-block;
+  vertical-align: middle;
+  width: 200px;
+}
+
+.datefields{
+  float: right;
+  text-transform: capitalize;
+  font-weight: lighter;
+  padding: 0 20px;
+  font-size: 12px;
+  line-height: 60px;
+}
+
+.skillList{
+  line-height: 2em;
+}
+
+.skillList li{
+  /* display: inline; */
+}
+

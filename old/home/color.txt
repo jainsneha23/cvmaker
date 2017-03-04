@@ -1,0 +1,35 @@
+Image
+
+#40a7ba
+#3fa9bd
+#d36d4d
+#efeeed
+
+Kuler
+
+#3EABC0
+#1A6573
+#CA5687
+#8D821F
+#736C28
+
+*** Primary color:
+   shade 0 = #3EACC0
+   shade 1 = #94DAE8
+   shade 2 = #62C2D4
+   shade 3 = #2097AD
+   shade 4 = #037C93
+
+*** Secondary color 
+   shade 0 = #FFE44E
+   shade 1 = #FFF1A1
+   shade 2 = #FFEA73
+   shade 3 = #FFDF2A
+   shade 4 = #EECA00
+
+*** Secondary color 
+   shade 0 = #E34693
+   shade 1 = #F59AC7
+   shade 2 = #EC6AAA
+   shade 3 = #DA247D
+   shade 4 = #C50061

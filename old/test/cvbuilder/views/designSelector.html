@@ -1,0 +1,40 @@
+<div class = "photoGallery" fix-height="{{model.height}}" nice-scroll>
+<p>Select a design and click on <button ng-disabled="!model.selectedDesign" ng-click="model.ok()">{{model.okBtnText}}</button></p>
+	<figure class="list">
+		<div ng-repeat="image in model.images" ng-class="model.selectedDesign == image.id?'selected':''" class="listItem">
+			<div ng-click="select(image)" class="selectIcon">
+				<i class="fa fa-check-circle"></i>
+			</div>
+			<img ng-src="{{image.thumbnail}}" ng-click = "open(image)"/>
+		</div>
+
+	</figure>
+	<div class="preview" ng-class="previewMode?'in':''">
+		<div class="header">
+			<heading>{{previewImage.name}}</heading>
+			<div>
+				<span ng-click="zoom('in')" title="Zoom In"><i class="fa fa-search-plus"></i></span>
+				<span ng-click="zoom('out')" title="Zoom Out"><i class="fa fa-search-minus"></i></span>
+				<span ng-click="zoom()" title="Original size"><i class="fa fa-arrows-alt"></i></span>
+				<span ng-click="close()" title="close"><i class="fa fa-times"></i></span>
+			</div>
+		</div>
+		<figure>
+			<div class="nav left" ng-click = "nav('left')">
+				<i class="fa fa-chevron-circle-left"></i>
+			</div>
+			<div class="nav right" ng-click = "nav('right')">
+				<i class="fa fa-chevron-circle-right"></i>
+			</div>
+			<div ng-repeat="image in model.images" style="{{image.style}};">
+				<div>
+					<img ng-src="{{image.url}}" style="{{image.zoom}}" image-draggable/>
+				</div>
+			</div>			
+		</figure>
+	</div>
+</div>
+<div ng-click="next()" class="footerNext">
+	<button ng-hide="model.hideCancel" ng-click="model.cancel()">Cancel</button>
+	<button ng-disabled="!model.selectedDesign" ng-click="model.ok()">{{model.okBtnText}}</button>
+</div>

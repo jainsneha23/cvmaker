@@ -1,0 +1,36 @@
+<div class="imagechooser">
+	<div class="drag" ng-show="!newImageUrl" app-filereader ng-model="newImageUrl">
+		<span>Drag and drop here or</span>
+		<div class="selectFile">
+			<span>Select a file</span>
+			<input type="file" accept="image/*"/>
+		</div>
+	</div>
+	<div class="edit" ng-show="newImageUrl">
+		<div class="imageEdit">
+			<div class="fillWindow">
+				<img ng-src="{{newImageUrl}}"/>
+			</div>
+			<div class="cropWindow">
+				<div class="fillWindow">
+					<div draggable resizable="size" class="croppable" update-mask="updateMask">
+						<div class="ui-resizable-handle ui-resizable-nw" id="nwgrip"></div>
+						<div class="ui-resizable-handle ui-resizable-ne" id="negrip"></div>
+						<div class="ui-resizable-handle ui-resizable-sw" id="swgrip"></div>
+						<div class="ui-resizable-handle ui-resizable-se" id="segrip"></div>
+					</div>
+				</div>
+				<div class="loading" ng-show="loading">Loading</div>
+				<div class="mask"></div>
+			</div>
+		</div>
+		<div class="imagePreview">
+			<div class="loading" ng-show="loading">Loading</div>
+			<img ng-src="{{model}}"/>
+			<div class="selectFile">
+				<span>Select other Image</span>
+				<input type="file" accept="image/*" app-filereader ng-model="newImageUrl"/>
+			</div>
+		</div>
+	</div>
+</div>
