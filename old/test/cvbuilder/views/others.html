@@ -1,0 +1,24 @@
+<div>
+	<div class="emptyMsg" ng-hide="model.modules.length">
+		<span>You can add here your <br/><span class="bold">certifications/achievements/personal information</span><br/> or anything you want to add about yourself</span>
+		<div class="addBtn" ng-click="openPopup()">Add</div>
+	</div>
+	
+	<div class="topHeader" ng-hide="!model.modules.length">
+		<div droppable class="deletebox" ng-model="model.modules">
+			<i class="fa fa-trash-o"></i>
+		</div>
+	</div>
+	<div class="topHeader"  ng-class="!model.modules.length || showDelete?'hide':''">
+		<div class="addBtnlist" ng-click="openPopup()">
+			<div class="button">Add another information</div>
+		</div>
+	</div>
+
+	<ul ng-model="model.modules" ui-sortable="sortableOptions" ng-show="model.modules.length" class="notesList">
+		<li ng-repeat="module in model.modules" data-index="{{$index}}" ng-click="openPopup($index)">
+			<i class="pin"></i>
+		    <blockquote class="note blue" ng-bind="module.field"></blockquote>
+		</li>
+	</ul>
+</div>

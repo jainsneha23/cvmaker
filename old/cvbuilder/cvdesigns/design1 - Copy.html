@@ -1,0 +1,134 @@
+<div id="cv">
+	<div class="mainDetails" ng-click="openModulePopup(model.personal,'personal')">
+		<div id="headshot" ng-if="model.personal.fields.Image != 'img/profile.png'">
+			<img ng-src="{{model.personal.fields.Image}}">
+		</div>
+		<div class="name" ng-class="model.personal.fields.Image != 'img/profile.png' ? 'goleft' : ''">
+			<span ng-bind="model.personal.fields.Full_Name"></span>
+			<span ng-bind="model.personal.fields.Job_Title"></span>
+			<ul>
+				<li><span ng-bind="model.personal.fields.Email_Address"></span></li>|
+				<li><span ng-bind="model.personal.fields.Contact_Number"></span></li>|
+				<li><span ng-bind="model.personal.fields.Location"></span></li>
+			</ul>
+		</div>
+	</div>
+	
+	<div class="mainArea">
+		<section class="portfolioInfo">
+			<article>
+				<ul ng-model="model.portfolio.modules">
+					<li ng-repeat="module in model.portfolio.modules track by $index" ng-click="openPopup(module,'portfolio')">
+						<div class="sectionTitle">
+							<span ng-bind="module.field"></span>
+						</div>
+						<div class="sectionContent">
+							<div class="default" ng-bind-html="module.value"></div>
+						</div>
+					</li>
+				</ul>
+			</article>
+		</section>
+		
+		<section class="workInfo">
+			<div class="sectionTitle">
+				<span>Work Experience</span>
+			</div>
+			<article class="sectionContent">
+				<ul class="explist">
+					<li ng-repeat="module in model.workexp.modules track by $index" ng-click="openPopup(module,'workexp')">
+						<div>
+							<span ng-bind="module.fields.Job_Title.value"></span>
+							<span>at</span>
+							<span ng-bind="module.fields.Company_Name.value"></span>
+						</div>
+						<div class="subDetails">
+							<span ng-bind="module.fields.Start_Date.value|date"></span>
+							<span>to</span>
+							<span ng-bind="module.fields.End_Date.value|date"></span>
+						</div>
+						<label>Skills Used</label>
+						<ul>
+							<li ng-repeat="field in module.fields.Skills_and_Tools_Used">
+								<span ng-bind="field.name"></span>
+							</li>
+						</ul>
+						<label>Role and Responsibilities</label>
+						<div class="default" ng-bind-html="module.fields.Role_and_Responsibilities.value"></div>
+					</li>
+				</ul>
+			</article>
+		</section>
+		
+		
+		<section class="skillInfo">
+			<div class="sectionTitle">
+				<span>Key Skills</span>
+			</div>
+			<article class="sectionContent">
+				<ul><li ng-click="openModulePopup(model.skill,'skill')">
+				<ul>
+					<li ng-repeat="field in model.skill.fields">
+						<label ng-bind="field.name"></label>
+						<span  ng-show="model.skill.rateMe == 'true'">
+							<div bar-rating ng-model='field.level' ng-disabled="true"></div>
+						</span>
+					</li>
+				</ul>
+				</li></ul>
+			</article>
+		</section>
+		
+		
+		<section class="educationInfo">
+			<div class="sectionTitle">
+				<span>Education</span>
+			</div>
+			
+			<article class=" sectionContent">
+				<ul>
+					<li ng-repeat="module in model.education.modules track by $index" ng-click="openPopup(module,'education')">
+						<div class="header">
+							<div ng-bind="module.fields.Degree_Obtained.value"></div>
+						</div>
+						<div class="subDetails">
+							<span ng-bind="module.fields.From_Date.value|date"></span>
+							<span>to</span>
+							<span ng-bind="module.fields.To_Date.value|date"></span>
+						</div>
+						<div class="details">
+							<label>Score</label>
+							<span ng-bind="module.fields.Marks_Scored.value"></span>
+						</div>
+						<div class="details">
+							<span>From</span>
+							<span ng-bind="module.fields.School_Name.value"></span>
+							<span>at</span>
+							<span ng-bind="module.fields.University.value"></span>
+							<span>,</span>
+							<span ng-bind="module.fields.City.value"></span>
+						</div>
+					</li>
+				</ul>
+			</article>
+		</section>
+
+		<section class="othersInfo">
+			<article>
+				<ul ng-model="model.others.modules">
+					<li ng-repeat="module in model.others.modules track by $index" ng-click="openPopup(module,'others')">
+						<div class="sectionTitle">
+							<span ng-bind="module.field"></span>
+						</div>
+						<div class="sectionContent">
+							<div class="default" ng-bind-html="module.value"></div>
+						</div>
+					</li>
+				</ul>
+			</article>
+		</section>
+
+
+	</div>
+	
+</div>

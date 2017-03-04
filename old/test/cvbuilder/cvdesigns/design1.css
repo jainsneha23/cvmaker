@@ -1,0 +1,143 @@
+.mainDetails {
+	padding: 25px 35px;
+	border: 1px solid transparent;
+	border-bottom-width: 5px;
+	border-bottom-color: #4997AD;
+	position: relative;
+}
+
+#cv article > ul > li{
+	 padding: 5px 10px;
+	 border: 1px solid transparent;
+	 position: relative;
+}
+
+.mainArea {
+	padding: 0 20px;
+	font-size: 13px;
+}
+
+#headshot {
+	width: 100px;
+	height: 100px;
+	float: left;
+	text-align: center;
+}
+
+#headshot img {
+	height: 100%;
+}
+
+.name {
+	text-align: center;
+	font-size: 24px;
+	height: 100px;
+	display: block;
+}
+
+.name > span{
+	display: block;
+}
+
+.name > span:first-child{
+	font-size: 40px;
+}
+
+.name ul {
+	display: block;
+	text-align: center;
+	font-size: 14px;
+}
+
+.name ul li {
+	display: inline-block;
+	text-align: center;
+}
+
+.name ul li a{
+	color: #444; 
+	text-decoration: none;
+}
+
+.name ul li a:hover { 
+	color: #cf8a05;
+}
+
+.name.goleft{
+	margin-left: 100px;
+}
+
+
+.cv section {
+	border-top: 1px solid #dedede;
+	padding: 20px 0 0;
+}
+
+section:first-child {
+	border-top: 0;
+}
+
+.sectionTitle{
+	display: inline-block;
+	width: 25%;
+	vertical-align: top;
+}
+
+.sectionContent{
+	display: inline-block;
+	width: 70%;
+}
+
+.sectionContent .header{
+	font-size:16px;
+}
+
+.sectionTitle span {
+	font-size: 18px;
+	color: #2097AD;
+}
+
+.subDetails {
+	font-size: 12px;
+	text-align: right;
+}
+
+.explist > li, .educationInfo > ul > li{
+	border-bottom: 1px solid #ccc;
+	padding: 10px 0;
+}
+
+.explist label, .educationInfo label{
+	padding: 10px 0;
+	display: inline-block;
+	font-size: 16px;
+}
+.educationInfo label{
+	font-size: 13px;
+}
+
+.explist ul li{
+	display: inline;
+}
+
+.explist .default{
+	font-size: 0.9em;
+}
+
+.skillInfo > ul > li{
+	margin: 10px 0;
+}
+
+.skillInfo label{
+	display: inline-block;
+}
+
+.skillInfo span{
+	display: inline-block;
+	margin-left: 10px;
+	vertical-align: middle;
+}
+
+.educationInfo .details{
+	font-size: 0.9em;
+}

@@ -1,0 +1,28 @@
+<div class="modal-header">
+	<h3 class="modal-title">Select a design!</h3>
+</div>
+<div class="modal-body designModal" fix-height="185">
+	<div class="designGallery">
+		<carousel>
+		<slide ng-repeat="design in designIds" active="design.active" ng-click="selected.designId = design.val">
+		<img ng-src="{{uri}}{{design.val}}.jpg">
+		<div class="carousel-caption">
+			<span ng-show="selected.designId == design.val" class="glyphicon glyphicon-ok"></span>
+			<p>{{design.text}}</p>
+		</div>
+		</slide>
+		</carousel>
+		<div class="thumbnails">
+		<ul>
+			<li ng-repeat="design in designIds" ng-click="design.active = true" ng-class="design.active?'active':''">
+				<img ng-src="{{uri}}{{design.val}}.jpg">
+				<span ng-show="selected.designId == design.val" class="glyphicon glyphicon-ok"></span>
+			</li>
+		</ul>
+		</div>
+	</div>
+</div>
+<div class="modal-footer">
+	<button class="btn btn-primary" ng-click="ok()">OK</button>
+	<button class="btn btn-warning" ng-hide="hideCancel" ng-click="cancel()">Cancel</button>
+</div>

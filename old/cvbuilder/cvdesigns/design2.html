@@ -1,0 +1,104 @@
+<div id="cv" min-height="175">	
+		<div id="header">
+			<div class="row cv-section">
+                <div class="cv-item">
+                    <div class="cv-section-title">
+                        <h1>
+                            <span ng-bind="model.personal.fields.Full_Name"></span>
+                            <small ng-bind="model.personal.fields.Job_Title"></small>
+                        </h1>
+                        <div class="last">
+                            <p><span class="hidden-tablet">Email: </span><span ng-bind="model.personal.fields.Email_Address"></span></p>
+                            <p><span class="hidden-tablet">Phone: </span><span ng-bind="model.personal.fields.Contact_Number"></span></p>
+                            <p><span class="hidden-tablet">Location: </span><span ng-bind="model.personal.fields.Location"></span></p>
+                        </div>
+                    </div>
+
+                    <div id="headshot" ng-if="model.personal.fields.Image != 'img/profile.png'">
+                        <img ng-src="{{model.personal.fields.Image}}"/>
+                    </div>
+                </div>
+            </div>
+		</div>
+
+		<div id="content">
+		
+
+            <div class="row cv-section" ng-repeat="module in model.portfolio.modules track by $index">                    
+                <div class="cv-section-title">                    
+                    <h2 ng-bind="module.field"></h2>                    
+                </div><!-- end .cv-section-title -->                
+                <div class="cv-item">                    
+                    <div class="default" ng-bind-html="module.value"></div>                    
+                </div><!-- end .cv-item -->                
+            </div><!-- end .cv-section -->
+            	
+            <div class="row cv-section workInfo" ng-repeat="module in model.workexp.modules track by $index">
+                <div class="cv-section-title">
+                    <h2>Work Experience</h2>
+                </div>
+                <div class="cv-item">
+                    
+                    <p class="period">
+                        <span ng-bind="module.fields.Start_Date.value|date"></span>
+                        <span>to</span>
+                        <span ng-bind="module.fields.End_Date.value|date"></span>
+                    </p>
+                    
+                    <h3><strong><span ng-bind="module.fields.Job_Title.value"></span></strong></h3>
+                    <h4><span ng-bind="module.fields.Company_Name.value"></span></h4>
+                    
+                    <div class="default" ng-bind-html="module.fields.Role_and_Responsibilities.value"></div>
+
+                    <label>Skills Used</label>
+                    <ul>
+                        <li ng-repeat="field in module.fields.Skills_and_Tools_Used">
+                            <span ng-bind="field.name"></span>
+                            <span ng-show="$index < module.fields.Skills_and_Tools_Used.length - 1">, </span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="row cv-section skillInfo">
+                <div class="cv-section-title">
+                    <h2>Technical Skills</h2>
+                </div>
+                <div class="cv-item" ng-repeat="field in model.skill.fields">
+                    <span class="text-uppercase" ng-bind="field.name"></span>
+                    <div  class="rating" ng-show="model.skill.rateMe == 'true'">
+                        <div bar-rating ng-model='field.level' ng-disabled="true"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row cv-section">
+                <div class="cv-section-title">
+                    <h2>Education</h2>    
+                </div>
+                <div class="cv-item" ng-repeat="module in model.education.modules track by $index">
+                    <div class="period">
+                        <span ng-bind="module.fields.From_Date.value|date"></span>
+                        <span>to</span>
+                        <span ng-bind="module.fields.To_Date.value|date"></span>
+                    </div>
+                    <h3 ng-bind="module.fields.Degree_Obtained.value"></h3> 
+                    <h4><strong ng-bind="module.fields.School_Name.value"></strong>, <span ng-bind="module.fields.University.value"></span>, <span ng-bind="module.fields.City.value"></span></h4>
+                    <div class="last">                        
+                        <div>Score <span ng-bind="module.fields.Marks_Scored.value"></span></div>
+                    </div>
+                </div>
+            </div>
+		
+
+            <div class="row cv-section" ng-repeat="module in model.others.modules track by $index">
+                <div class="cv-section-title">
+                    <h2 ng-bind="module.field"></h2>
+                </div>
+                <div class="cv-item" >
+                    <div class="default" ng-bind-html="module.value"></div>
+                </div>
+            </div>
+        </div>
+		
+	</div>

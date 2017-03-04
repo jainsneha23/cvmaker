@@ -1,0 +1,38 @@
+@import '../../style.less';
+
+.feedback-form {
+  max-width: 435px;
+  margin: auto;
+  text-align: right;
+  height: 300px;
+  label {
+    display: block;
+    margin: 10px 0;
+    height: 30px;
+    font-size: 16px;
+  }
+  input,
+  textarea {
+    float: right;
+    width: 350px;
+    line-height: 25px;
+    outline: none;
+    margin-left: 15px;
+    border: 1px solid #ccc;
+  }
+  textarea {
+    resize: none;
+    height: 150px;
+  }
+  input[type="submit"] {
+    margin: 10px auto;
+    line-height: 35px;
+    border: none;
+    outline: none;
+    font-size: 18px;
+    width: 200px;
+    background-color: @color2;
+    color: @color3;
+    cursor: pointer;
+  }
+}
