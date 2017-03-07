@@ -2,3 +2,44 @@
 @color1: #40a7ba;
 @color2: #d36d4d;
 @color3: #fff;
+
+html,
+body {
+  font-family: 'Open Sans', Arial, sans-serif;
+  font-size: 16px;
+  color: #888;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+  background-color: initial;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul, li {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.maxwidth {
+  max-width: 980px;
+  margin: auto;
+}
+
+.fixed {
+  position: fixed !important;
+  top: 64px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  z-index: 10;
+}
+

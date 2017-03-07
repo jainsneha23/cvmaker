@@ -1,28 +1,4 @@
 @import '../../style.less';
-html,
-body {
-  font-family: 'Open Sans', sans-serif;
-  height: 100%;
-}
-
-* {
-  font-family: 'Open Sans', sans-serif;
-  color: #888;
-  color: #888;
-  font-size: 16px;
-  user-select: none;
-  -webkit-user-select: none;
-}
-
-a {
-  text-decoration: none;
-  color: inherit;
-}
-
-.maxwidth {
-  max-width: 980px;
-  margin: auto;
-}
 
 header.page-heading {
   padding: 0 20px;
@@ -34,6 +10,14 @@ header.page-heading {
   left: 0;
   top: 0;
   transition: all 0.25s ease;
+  .logo {
+    > span {
+      background-position: 0 0;
+    }
+    a span{
+      color: @color2;
+    }
+  }
   nav {
     float: right;
     padding: 10px 0;
@@ -46,11 +30,14 @@ header.page-heading {
         cursor: pointer;
         font-size: 18px;
         line-height: 1;
+        color: @color2;
       }
       &.active,
       &:hover {
-        background-color: @color2;
-        color: @color3;
+        span{
+          background-color: @color2;
+          color: @color3;
+        }
       }
     }
   }
@@ -58,17 +45,25 @@ header.page-heading {
     font-size: 24px;
     line-height: 38px;
     background-color: @color1;
-    .logo span {
-      background-position: -22px 0;
-      color: @color3;
+    .logo {
+      > span {
+        background-position: -23px 0;
+      }
+      a span{
+        color: #fff;
+      }
     }
     nav {
       div {
-        color: @color3;
+        span{
+          color: @color3;
+        }
         &.active,
         &:hover {
-          background-color: @color3;
-          color: @color1;
+          span{
+            background-color: @color3;
+            color: @color1;
+          }
         }
       }
     }
