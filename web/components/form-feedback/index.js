@@ -2,7 +2,7 @@ import React from 'react';
 import fetch from 'isomorphic-fetch';
 import './small.less';
 
-class FeedbackForm extends React.Component{
+class FormFeedback extends React.Component{
   constructor(props) {
     super(props);
     this.submitForm = this.submitForm.bind(this);
@@ -42,4 +42,4 @@ class FeedbackForm extends React.Component{
   }
 }
 
-export default FeedbackForm;
+export default FormFeedback;

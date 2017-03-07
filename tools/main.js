@@ -3,7 +3,6 @@ import {render} from 'react-dom';
 import { Router, Route, browserHistory } from 'react-router';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import {cyan500, deepOrange500, grey100} from 'material-ui/styles/colors';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
 import Home from '../web/pages/home';
@@ -13,9 +12,9 @@ injectTapEventPlugin();
 
 const muiTheme = getMuiTheme({
   palette: {
-    primary1Color: cyan500,
-    primary2Color: deepOrange500,
-    primary3Color: grey100,
+    primary1Color: '#40a7ba',
+    primary2Color: '#d36d4d',
+    primary3Color: '#F5F5F5',
   },
 }, {
   avatar: {

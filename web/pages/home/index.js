@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import ScrollAnim from 'rc-scroll-anim';
 import { Link } from 'react-router';
 import Logo from '../../components/logo';
-import FeedbackForm from '../../components/feedback-form';
+import FormFeedback from '../../components/form-feedback';
 import './small.less';
 
 class Home extends React.Component {
@@ -102,7 +102,7 @@ class Home extends React.Component {
         <ScrollElement className="messageSection" id="contact">
           <h3>We would love to hear from you.</h3>
           <p>Please contact us for customised designs, help on any area, or just drop a feedback. <br/>We will like to serve you better.</p>
-          <FeedbackForm />
+          <FormFeedback />
         </ScrollElement>
       </div>
     );
