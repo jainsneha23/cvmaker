@@ -16,10 +16,11 @@ class FormPersonal extends React.Component {
   }
 
   handleChange(e, property) {
-    const newState = this.state[property] || {};
-    newState.value = e.target.value;
-    newState.error = e.target.required && !e.target.value ? 'This field is required' : '';
+    const newState = {...this.state};
+    newState[property].value = e.target.value;
+    newState[property].error = e.target.required && !e.target.value ? 'This field is required' : '';
     this.setState(newState);
+    this.props.onChange({...newState});
   }
 
   render() {
@@ -87,7 +88,7 @@ class FormPersonal extends React.Component {
 }
 
 FormPersonal.propTypes = {
-  className: React.PropTypes.string
+  onChange: React.PropTypes.func.isRequired
 };
 
 export default FormPersonal;

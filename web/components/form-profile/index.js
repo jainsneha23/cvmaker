@@ -18,6 +18,7 @@ class FormProfile extends React.Component {
     const newState = this.state;
     newState[property] = editorState;
     this.setState(newState);
+    this.props.onChange({...newState});
   }
 
   render() {
@@ -39,5 +40,9 @@ class FormProfile extends React.Component {
     );
   }
 }
+
+FormProfile.propTypes = {
+  onChange: React.PropTypes.func.isRequired
+};
 
 export default FormProfile;

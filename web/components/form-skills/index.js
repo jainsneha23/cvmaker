@@ -10,7 +10,7 @@ class FormSkills extends React.Component {
     super(props);
     this.state = {
       skill: {},
-      chipData: []
+      skillList: []
     };
     this.styles = {
       chip: {
@@ -27,25 +27,27 @@ class FormSkills extends React.Component {
   }
 
   handleChange(e, property) {
-    const newState = this.state[property] || {};
-    newState.value = e.target.value;
-    newState.error = e.target.value? '' : 'This field is required';
+    const newState = {...this.state};
+    newState[property].value = e.target.value;
+    newState[property].error = e.target.value? '' : 'This field is required';
     this.setState(newState);
   }
 
   handleDelete(i) {
-    const chipData = [...this.state.chipData];
-    chipData.splice(i, 1);
-    this.setState({chipData});
+    const skillList = [...this.state.skillList];
+    skillList.splice(i, 1);
+    this.setState({skillList});
+    this.props.onChange([...skillList]);
   }
 
   handleSubmit(e) {
     e.preventDefault();
-    const chipData = [...this.state.chipData];
-    if (chipData.indexOf(this.state.skill.value) === -1) {
-      chipData.push(this.state.skill.value);
+    const skillList = [...this.state.skillList];
+    if (skillList.indexOf(this.state.skill.value) === -1) {
+      skillList.push(this.state.skill.value);
     }
-    this.setState({chipData, skill: {value: '', error: ''}});
+    this.setState({skillList, skill: {value: '', error: ''}});
+    this.props.onChange([...skillList]);
   }
 
   render() {
@@ -70,7 +72,7 @@ class FormSkills extends React.Component {
           </FloatingActionButton>
         </form>
         <div style={this.styles.wrapper}>
-          {this.state.chipData.map((data, i) => (
+          {this.state.skillList.map((data, i) => (
             <Chip
               key={i}
               onRequestDelete={() => this.handleDelete(i)}
@@ -83,5 +85,9 @@ class FormSkills extends React.Component {
     );
   }
 }
+
+FormSkills.propTypes = {
+  onChange: React.PropTypes.func.isRequired
+};
 
 export default FormSkills;

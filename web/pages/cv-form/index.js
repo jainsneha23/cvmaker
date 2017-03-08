@@ -27,7 +27,15 @@ class CvForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      stepIndex: 0
+      stepIndex: 0,
+      formdata: {
+        personal: {},
+        profile: {},
+        skills: [],
+        job: [],
+        education: [],
+        others: []
+      }
     };
     this.stepCount = 6;
     this.handleBack = this.handleBack.bind(this);
@@ -39,7 +47,17 @@ class CvForm extends React.Component {
   }
 
   handleNext() {
+    if (this.state.stepIndex === this.stepCount - 1) {
+      console.log(this.state);
+      return;
+    }
     this.setState({stepIndex: this.state.stepIndex + 1});
+  }
+
+  collect(data, type){
+    const formdata = {...this.state.formdata};
+    formdata[type] = data;
+    this.setState({formdata});
   }
 
   render() {
@@ -84,12 +102,12 @@ class CvForm extends React.Component {
           index={this.state.stepIndex}
           disabled
           style={{marginTop: '122px'}} >
-          <FormPersonal />
-          <FormProfile />
-          <FormSkills />
-          <FormJob />
-          <FormEducation />
-          <FormOthers />
+          <FormPersonal onChange={(data) => this.collect(data, 'personal')} />
+          <FormProfile onChange={(data) => this.collect(data, 'profile')} />
+          <FormSkills onChange={(data) => this.collect(data, 'skills')} />
+          <FormJob onChange={(data) => this.collect(data, 'job')} />
+          <FormEducation onChange={(data) => this.collect(data, 'education')} />
+          <FormOthers onChange={(data) => this.collect(data, 'others')} />
         </SwipeableViews>
       </div>
     );
