@@ -35,6 +35,7 @@ class FormOthers extends React.Component {
     const newState = [...this.state.items];
     newState.splice(idx, 1);
     this.setState({items: newState});
+    this.props.onChange([...newState]);
   }
 
   toggle(idx) {
@@ -45,6 +46,7 @@ class FormOthers extends React.Component {
     const newState = [...this.state.items];
     newState[idx] = formdata;
     this.setState({items: newState});
+    this.props.onChange([...newState]);
   }
 
   render() {
@@ -76,5 +78,9 @@ class FormOthers extends React.Component {
     );
   }
 }
+
+FormOthers.propTypes = {
+  onChange: React.PropTypes.func.isRequired
+};
 
 export default FormOthers;

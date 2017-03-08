@@ -38,6 +38,7 @@ class FormEducation extends React.Component {
       description: EditorState.createEmpty()
     });
     this.setState({items: newState});
+    this.props.onChange([...newState]);
   }
 
   delete(e, idx) {
@@ -45,6 +46,7 @@ class FormEducation extends React.Component {
     const newState = [...this.state.items];
     newState.splice(idx, 1);
     this.setState({items: newState});
+    this.props.onChange([...newState]);
   }
 
   toggle(idx) {
@@ -55,6 +57,7 @@ class FormEducation extends React.Component {
     const newState = [...this.state.items];
     newState[idx] = formdata;
     this.setState({items: newState});
+    this.props.onChange([...newState]);
   }
 
   render() {
@@ -86,5 +89,9 @@ class FormEducation extends React.Component {
     );
   }
 }
+
+FormEducation.propTypes = {
+  onChange: React.PropTypes.func.isRequired
+};
 
 export default FormEducation;
