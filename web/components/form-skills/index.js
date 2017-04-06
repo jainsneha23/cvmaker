@@ -10,7 +10,7 @@ class FormSkills extends React.Component {
     super(props);
     this.state = {
       skill: {},
-      skillList: []
+      skillList: props.data || []
     };
     this.styles = {
       chip: {
@@ -87,6 +87,7 @@ class FormSkills extends React.Component {
 }
 
 FormSkills.propTypes = {
+  data: React.PropTypes.array,
   onChange: React.PropTypes.func.isRequired
 };
 

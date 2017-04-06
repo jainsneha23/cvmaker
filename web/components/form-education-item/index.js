@@ -55,6 +55,15 @@ class FormEducationItem extends React.Component {
           />
           <TextField
             fullWidth={true}
+            hintText="Eg. Bengaluru, India"
+            errorText={this.state.location.error}
+            floatingLabelText="Enter the location of this school"
+            value={this.state.location.value}
+            onChange={(e) => this.handleChange(e.target.value, 'location')}
+            onBlur={(e) => this.handleChange(e.target.value, 'location')}
+          />
+          <TextField
+            fullWidth={true}
             hintText="Eg. Computer Science"
             errorText={this.state.field.error}
             floatingLabelText="Enter your field of study"
@@ -92,7 +101,7 @@ class FormEducationItem extends React.Component {
             onBlur={(e, date) => this.handleChange(date, 'enddate')}
           />
           <RichEditor
-            editorState={this.state.description}
+            editorState={this.state.description.value}
             placeholder="Enter other information here..."
             onChange={(e) => this.handleChange(e, 'description')} />
         </form>

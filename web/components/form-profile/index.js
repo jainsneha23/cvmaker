@@ -7,7 +7,7 @@ import './small.less';
 class FormProfile extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
+    this.state = props.data || {
       summary: EditorState.createEmpty(),
       objectives: EditorState.createEmpty()
     };
@@ -42,6 +42,7 @@ class FormProfile extends React.Component {
 }
 
 FormProfile.propTypes = {
+  data: React.PropTypes.object,
   onChange: React.PropTypes.func.isRequired
 };
 
