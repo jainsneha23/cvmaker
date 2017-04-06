@@ -1,0 +1,306 @@
+{
+  "personal": {
+    "fullname": {
+      "value": "Sneha Jain",
+      "error": ""
+    },
+    "jobtitle": {
+      "value": "Principal Software Engineer",
+      "error": ""
+    },
+    "experience": {
+      "value": "66",
+      "error": ""
+    },
+    "email": {
+      "value": "birdie.sneha@gmail.com",
+      "error": ""
+    },
+    "mobile": {
+      "value": "8105266097",
+      "error": ""
+    }
+  },
+  "profile": {
+    "summary": "<p>A <strong>passionate</strong> Engineer</p>",
+    "objectives": "<ul>\n  <li>Re-usable modules</li>\n  <li>Less bugs</li>\n</ul>"
+  },
+  "skills": [
+    "javascript",
+    "html",
+    "css"
+  ],
+  "education": [
+    {
+      "school": {
+        "value": "ITER",
+        "error": ""
+      },
+      "degree": {
+        "value": "BTech",
+        "error": ""
+      },
+      "field": {
+        "value": "Computer Science",
+        "error": ""
+      },
+      "location": {
+        "value": "Bhubaneswar",
+        "error": ""
+      },
+      "grade": {
+        "value": "8.4",
+        "error": ""
+      },
+      "startdate": {
+        "value": "2007-05-31T18:30:00.000Z",
+        "error": ""
+      },
+      "enddate": {
+        "value": "2011-03-30T18:30:00.000Z",
+        "error": ""
+      },
+      "description": {
+        "_immutable": {
+          "allowUndo": true,
+          "currentContent": {
+            "entityMap": {},
+            "blockMap": {
+              "19u3h": {
+                "key": "19u3h",
+                "type": "unstyled",
+                "text": "",
+                "characterList": [],
+                "depth": 0,
+                "data": {}
+              }
+            },
+            "selectionBefore": {
+              "anchorKey": "19u3h",
+              "anchorOffset": 0,
+              "focusKey": "19u3h",
+              "focusOffset": 0,
+              "isBackward": false,
+              "hasFocus": false
+            },
+            "selectionAfter": {
+              "anchorKey": "19u3h",
+              "anchorOffset": 0,
+              "focusKey": "19u3h",
+              "focusOffset": 0,
+              "isBackward": false,
+              "hasFocus": false
+            }
+          },
+          "decorator": null,
+          "directionMap": {
+            "19u3h": "LTR"
+          },
+          "forceSelection": false,
+          "inCompositionMode": false,
+          "inlineStyleOverride": null,
+          "lastChangeType": null,
+          "nativelyRenderedContent": null,
+          "redoStack": [],
+          "selection": {
+            "anchorKey": "19u3h",
+            "anchorOffset": 0,
+            "focusKey": "19u3h",
+            "focusOffset": 0,
+            "isBackward": false,
+            "hasFocus": false
+          },
+          "treeMap": {
+            "19u3h": [
+              {
+                "start": 0,
+                "end": 0,
+                "decoratorKey": null,
+                "leaves": [
+                  {
+                    "start": 0,
+                    "end": 0
+                  }
+                ]
+              }
+            ]
+          },
+          "undoStack": []
+        },
+        "value": "<p>File splitter and joiner</p>",
+        "error": ""
+      }
+    }
+  ],
+  "job": [
+    {
+      "company": {
+        "value": "TCS",
+        "error": ""
+      },
+      "jobtitle": {
+        "value": "System Engineer",
+        "error": ""
+      },
+      "location": {
+        "value": "Kolkata",
+        "error": ""
+      },
+      "startdate": {
+        "error": "This field is required"
+      },
+      "enddate": {
+        "error": "This field is required"
+      },
+      "currentjob": {},
+      "responsibilities": {
+        "_immutable": {
+          "allowUndo": true,
+          "currentContent": {
+            "entityMap": {},
+            "blockMap": {
+              "3v150": {
+                "key": "3v150",
+                "type": "unstyled",
+                "text": "",
+                "characterList": [],
+                "depth": 0,
+                "data": {}
+              }
+            },
+            "selectionBefore": {
+              "anchorKey": "3v150",
+              "anchorOffset": 0,
+              "focusKey": "3v150",
+              "focusOffset": 0,
+              "isBackward": false,
+              "hasFocus": false
+            },
+            "selectionAfter": {
+              "anchorKey": "3v150",
+              "anchorOffset": 0,
+              "focusKey": "3v150",
+              "focusOffset": 0,
+              "isBackward": false,
+              "hasFocus": false
+            }
+          },
+          "decorator": null,
+          "directionMap": {
+            "3v150": "LTR"
+          },
+          "forceSelection": false,
+          "inCompositionMode": false,
+          "inlineStyleOverride": null,
+          "lastChangeType": null,
+          "nativelyRenderedContent": null,
+          "redoStack": [],
+          "selection": {
+            "anchorKey": "3v150",
+            "anchorOffset": 0,
+            "focusKey": "3v150",
+            "focusOffset": 0,
+            "isBackward": false,
+            "hasFocus": false
+          },
+          "treeMap": {
+            "3v150": [
+              {
+                "start": 0,
+                "end": 0,
+                "decoratorKey": null,
+                "leaves": [
+                  {
+                    "start": 0,
+                    "end": 0
+                  }
+                ]
+              }
+            ]
+          },
+          "undoStack": []
+        },
+        "value": "<p>Insurance project</p>\n<p>BPO project</p>",
+        "error": ""
+      }
+    }
+  ],
+  "others": [
+    {
+      "label": {
+        "value": "Language",
+        "error": ""
+      },
+      "description": {
+        "_immutable": {
+          "allowUndo": true,
+          "currentContent": {
+            "entityMap": {},
+            "blockMap": {
+              "8klin": {
+                "key": "8klin",
+                "type": "unstyled",
+                "text": "",
+                "characterList": [],
+                "depth": 0,
+                "data": {}
+              }
+            },
+            "selectionBefore": {
+              "anchorKey": "8klin",
+              "anchorOffset": 0,
+              "focusKey": "8klin",
+              "focusOffset": 0,
+              "isBackward": false,
+              "hasFocus": false
+            },
+            "selectionAfter": {
+              "anchorKey": "8klin",
+              "anchorOffset": 0,
+              "focusKey": "8klin",
+              "focusOffset": 0,
+              "isBackward": false,
+              "hasFocus": false
+            }
+          },
+          "decorator": null,
+          "directionMap": {
+            "8klin": "LTR"
+          },
+          "forceSelection": false,
+          "inCompositionMode": false,
+          "inlineStyleOverride": null,
+          "lastChangeType": null,
+          "nativelyRenderedContent": null,
+          "redoStack": [],
+          "selection": {
+            "anchorKey": "8klin",
+            "anchorOffset": 0,
+            "focusKey": "8klin",
+            "focusOffset": 0,
+            "isBackward": false,
+            "hasFocus": false
+          },
+          "treeMap": {
+            "8klin": [
+              {
+                "start": 0,
+                "end": 0,
+                "decoratorKey": null,
+                "leaves": [
+                  {
+                    "start": 0,
+                    "end": 0
+                  }
+                ]
+              }
+            ]
+          },
+          "undoStack": []
+        },
+        "value": "<ul>\n  <li>Hindi</li>\n  <li>English</li>\n</ul>",
+        "error": ""
+      }
+    }
+  ]
+}

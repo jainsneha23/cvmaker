@@ -95,7 +95,7 @@ class FormJobItem extends React.Component {
           />
           <Subheader style={{paddingLeft: 0, fontWeight: 'bold'}}>Roles and Responsibilities</Subheader>
           <RichEditor
-            editorState={this.state.responsibilities}
+            editorState={this.state.responsibilities.value}
             placeholder="Enter your roles and responsibilities here..."
             onChange={(e) => this.handleChange(e, 'responsibilities')} />
         </form>

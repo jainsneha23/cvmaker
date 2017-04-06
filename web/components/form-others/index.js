@@ -10,7 +10,7 @@ class FormOthers extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      items: [{
+      items: props.data || [{
         label: {},
         description: EditorState.createEmpty()
       }],
@@ -80,6 +80,7 @@ class FormOthers extends React.Component {
 }
 
 FormOthers.propTypes = {
+  data: React.PropTypes.array,
   onChange: React.PropTypes.func.isRequired
 };
 

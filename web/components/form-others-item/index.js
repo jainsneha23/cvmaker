@@ -31,7 +31,7 @@ class FormOthersItem extends React.Component {
             onBlur={(e) => this.handleChange(e.target.value, 'label')}
           />
           <RichEditor
-            editorState={this.state.description}
+            editorState={this.state.description.value}
             placeholder="Enter other information here..."
             onChange={(e) => this.handleChange(e, 'description')} />
         </form>

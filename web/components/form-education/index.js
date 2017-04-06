@@ -10,10 +10,11 @@ class FormEducation extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      items: [{
+      items: props.data || [{
         school: {},
         degree: {},
         field: {},
+        location:{},
         grade: {},
         startdate: {},
         enddate: {},
@@ -33,6 +34,7 @@ class FormEducation extends React.Component {
       degree: {},
       field: {},
       grade: {},
+      location:{},
       startdate: {},
       enddate: {},
       description: EditorState.createEmpty()
@@ -91,6 +93,7 @@ class FormEducation extends React.Component {
 }
 
 FormEducation.propTypes = {
+  data: React.PropTypes.array,
   onChange: React.PropTypes.func.isRequired
 };
 

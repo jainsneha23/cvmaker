@@ -5,7 +5,7 @@ import './small.less';
 class FormPersonal extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
+    this.state = props.data || {
       fullname: {},
       jobtitle: {},
       experience: {},
@@ -17,6 +17,7 @@ class FormPersonal extends React.Component {
 
   handleChange(e, property) {
     const newState = {...this.state};
+    if (!newState[property]) newState[property] = {};
     newState[property].value = e.target.value;
     newState[property].error = e.target.required && !e.target.value ? 'This field is required' : '';
     this.setState(newState);
@@ -88,6 +89,7 @@ class FormPersonal extends React.Component {
 }
 
 FormPersonal.propTypes = {
+  data: React.PropTypes.object,
   onChange: React.PropTypes.func.isRequired
 };
 

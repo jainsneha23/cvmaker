@@ -1,4 +1,5 @@
 import React from 'react';
+import clone from 'clone';
 import {
   Step,
   Stepper,
@@ -9,9 +10,13 @@ import {
   ToolbarGroup,
   ToolbarSeparator
 } from 'material-ui/Toolbar';
+import { browserHistory } from 'react-router';
 import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
 import SwipeableViews from 'react-swipeable-views';
+import {stateToHTML} from 'draft-js-export-html';
+import {stateFromHTML} from 'draft-js-import-html';
+import {EditorState} from 'draft-js';
 
 import Header from '../../components/header';
 import FormPersonal from '../../components/form-personal';
@@ -26,16 +31,18 @@ import './small.less';
 class CvForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
+    let cvdata = localStorage && localStorage.getItem('cvdata');
+    if (cvdata) {
+      cvdata = JSON.parse(cvdata);
+      cvdata.profile.summary = EditorState.createWithContent(stateFromHTML(cvdata.profile.summary));
+      cvdata.profile.objectives = EditorState.createWithContent(stateFromHTML(cvdata.profile.objectives));
+      cvdata.education.forEach(i => i.description.value = EditorState.createWithContent(stateFromHTML(i.description.value)));
+      cvdata.job.forEach(i => i.responsibilities.value = EditorState.createWithContent(stateFromHTML(i.responsibilities.value)));
+      cvdata.others.forEach(i => i.description.value = EditorState.createWithContent(stateFromHTML(i.description.value)));
+    }
+    this.state =  {
       stepIndex: 0,
-      formdata: {
-        personal: {},
-        profile: {},
-        skills: [],
-        job: [],
-        education: [],
-        others: []
-      }
+      formdata: cvdata || {}
     };
     this.stepCount = 6;
     this.handleBack = this.handleBack.bind(this);
@@ -48,7 +55,16 @@ class CvForm extends React.Component {
 
   handleNext() {
     if (this.state.stepIndex === this.stepCount - 1) {
-      console.log(this.state);
+      const cvdata = clone(this.state.formdata,3);
+      cvdata.profile.summary = stateToHTML(cvdata.profile.summary.getCurrentContent());
+      cvdata.profile.objectives = stateToHTML(cvdata.profile.objectives.getCurrentContent());
+      cvdata.education.forEach(i => i.description.value = stateToHTML(i.description.value.getCurrentContent()));
+      cvdata.job.forEach(i => i.responsibilities.value = stateToHTML(i.responsibilities.value.getCurrentContent()));
+      cvdata.others.forEach(i => i.description.value = stateToHTML(i.description.value.getCurrentContent()));
+      if (localStorage) {
+        localStorage.setItem('cvdata', JSON.stringify(cvdata));
+      }
+      browserHistory.push('/preview');
       return;
     }
     this.setState({stepIndex: this.state.stepIndex + 1});
@@ -102,12 +118,12 @@ class CvForm extends React.Component {
           index={this.state.stepIndex}
           disabled
           style={{marginTop: '122px'}} >
-          <FormPersonal onChange={(data) => this.collect(data, 'personal')} />
-          <FormProfile onChange={(data) => this.collect(data, 'profile')} />
-          <FormSkills onChange={(data) => this.collect(data, 'skills')} />
-          <FormJob onChange={(data) => this.collect(data, 'job')} />
-          <FormEducation onChange={(data) => this.collect(data, 'education')} />
-          <FormOthers onChange={(data) => this.collect(data, 'others')} />
+          <FormPersonal data={this.state.formdata.personal} onChange={(data) => this.collect(data, 'personal')} />
+          <FormProfile data={this.state.formdata.profile} onChange={(data) => this.collect(data, 'profile')} />
+          <FormSkills data={this.state.formdata.skills} onChange={(data) => this.collect(data, 'skills')} />
+          <FormJob data={this.state.formdata.job} onChange={(data) => this.collect(data, 'job')} />
+          <FormEducation data={this.state.formdata.education} onChange={(data) => this.collect(data, 'education')} />
+          <FormOthers data={this.state.formdata.others} onChange={(data) => this.collect(data, 'others')} />
         </SwipeableViews>
       </div>
     );

@@ -7,6 +7,7 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 
 import Home from '../web/pages/home';
 import CvForm from '../web/pages/cv-form';
+import Preview from '../web/pages/preview';
 
 injectTapEventPlugin();
 
@@ -25,8 +26,9 @@ const muiTheme = getMuiTheme({
 render((
   <MuiThemeProvider muiTheme={muiTheme}>
     <Router history = {browserHistory}>
-       <Route path = "/" component = {Home} />
-       <Route path = "/create" component = {CvForm} />
+      <Route path = "/" component = {Home} />
+      <Route path = "/create" component = {CvForm} />
+      <Route path = "/preview" component= {Preview} />
     </Router>
   </MuiThemeProvider>
 ), document.getElementById('app'));

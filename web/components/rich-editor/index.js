@@ -1,5 +1,5 @@
 import React from 'react';
-import {Editor, RichUtils} from 'draft-js';
+import {Editor, RichUtils, EditorState} from 'draft-js';
 import InlineStyleControls from './inline-style-controls';
 import BlockStyleControls from './block-style-controls';
 import 'draft-js/dist/Draft.css';
@@ -9,7 +9,7 @@ class RichEditor extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      editorState: this.props.editorState
+      editorState: this.props.editorState || EditorState.createEmpty()
     };
 
     this.styleMap = {
@@ -125,7 +125,7 @@ class RichEditor extends React.Component {
 RichEditor.propTypes = {
   placeholder: React.PropTypes.string.isRequired,
   onChange: React.PropTypes.func.isRequired,
-  editorState: React.PropTypes.object.isRequired
+  editorState: React.PropTypes.object
 };
 
 export default RichEditor;

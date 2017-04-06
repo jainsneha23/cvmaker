@@ -10,7 +10,7 @@ class FormJob extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      items: [{
+      items: props.data || [{
         company: {},
         jobtitle: {},
         location: {},
@@ -90,6 +90,7 @@ class FormJob extends React.Component {
 }
 
 FormJob.propTypes = {
+  data: React.PropTypes.array,
   onChange: React.PropTypes.func.isRequired
 };
 
