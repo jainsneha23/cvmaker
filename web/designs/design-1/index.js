@@ -1,5 +1,8 @@
 import React from 'react';
-import './small.less';
+import InlineCss from 'react-inline-css';
+
+const RequireText = require('require-text');
+const stylesheet = RequireText('./small.less', require);
 
 const formatDate = (date) => {
   if(!date) return '';
@@ -9,7 +12,7 @@ const formatDate = (date) => {
 };
 
 const Design1 = (props) => (
-  <div id="cv">
+  <InlineCss id="cv" componentName="Design1" stylesheet={stylesheet}>
     <div className="mainDetails">
       <div className="name goleft">
         <span>{props.data.personal.fullname.value}</span>
@@ -145,7 +148,7 @@ const Design1 = (props) => (
       </article>
     </section>
   </div>
-</div>
+</InlineCss>
 );
 
 Design1.propTypes = {
