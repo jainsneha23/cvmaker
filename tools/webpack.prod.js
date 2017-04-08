@@ -1,27 +1,28 @@
-import webpack from 'webpack';
+/* eslint-disable import/no-extraneous-dependencies */
+import 'colors';
+import path from 'path';
 
-export default {
+module.exports = {
   debug: true,
-  devtool: '#inline-source-map',
+  // devtool: '#inline-source-map',
   noInfo: false,
   colors: true,
   entry: [
-    'webpack-hot-middleware/client?reload=true', //note that it reloads the page if hot module reloading fails.
     './tools/main.js'
   ],
   target: 'web',
   output: {
-    path: __dirname + '../dist', // Note: Physical files are only output by the production build task `npm run build`.
+    path: path.join(__dirname, '../public'),
     publicPath: '/',
-    filename: 'bundle.js'
+    filename: 'main.js'
   },
   devServer: {
     contentBase: './src'
   },
-  plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin()
-  ],
+  node: {
+    module: 'empty',
+    fs: 'empty'
+  },
   module: {
     loaders: [
       {test: /\.jsx?$/, loaders: ['babel']},
@@ -32,5 +33,8 @@ export default {
       {test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=application/octet-stream'},
       {test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=image/svg+xml'}
     ]
+  },
+  stats: {
+    children: false // prevent outputs from child plugins like from extract-text-plugin
   }
 };
