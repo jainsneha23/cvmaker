@@ -47,6 +47,14 @@ app.post('/design/:id',bodyParser.json() , function(req, res){
   }
 });
 
+app.get('/design/:id', function(req, res){
+  try{
+    res.send(Design1);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+});
+
 
 app.use(express.static('assets'));
 app.use(express.static('public'));

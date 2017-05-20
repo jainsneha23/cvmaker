@@ -1,40 +1,118 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import 'colors';
+import webpack from 'webpack';
+import ExtractTextPlugin from 'extract-text-webpack-plugin';
+import CleanWebpackPlugin from 'clean-webpack-plugin';
+import WebpackAssetsManifest from 'webpack-assets-manifest';
 import path from 'path';
 
+const bundleHashType = 'chunkhash'; // aggregate of all chunks, specific hash per chunk
+
 module.exports = {
-  debug: true,
-  // devtool: '#inline-source-map',
-  noInfo: false,
-  colors: true,
-  entry: [
-    './tools/main.js'
-  ],
+  devtool: 'source-map',
   target: 'web',
+  entry: {
+    main: './tools/main.js',
+    vendor: [
+      'es6-promise',
+      'isomorphic-fetch',
+      'react',
+      'react-dom',
+      'react-router'
+    ]
+  },
   output: {
     path: path.join(__dirname, '../public'),
     publicPath: '/',
-    filename: 'main.js'
-  },
-  devServer: {
-    contentBase: './src'
+    filename: `[name]-[${bundleHashType}].js`
   },
   node: {
     module: 'empty',
     fs: 'empty'
   },
-  module: {
-    loaders: [
-      {test: /\.jsx?$/, loaders: ['babel']},
-      {test: /(\.css)$/, loaders: ['style', 'css']},
-      {test: /\.less$/, loader: 'style!css!less'},
-      {test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: 'file'},
-      {test: /\.(woff|woff2)$/, loader: 'url?prefix=font/&limit=5000'},
-      {test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=application/octet-stream'},
-      {test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=image/svg+xml'}
+  resolve: {
+    modules: [
+      'node_modules'
     ]
   },
+  module: {
+    rules: [{
+      test: /\.jsx?$/,
+      exclude: [/node_modules/, /dist/],
+      use: [{
+        loader: 'babel-loader',
+        query: {
+          presets: ['es2015', 'react'],
+          plugins: [
+            ['transform-es2015-classes', { loose: true }]
+          ]
+        }
+      }],
+    }, {
+      test: /\.css$/,
+      use: ExtractTextPlugin.extract({
+        fallback: 'style-loader',
+        use: 'css-loader'
+      })
+    }, {
+      test: /\.less$/,
+      use: ExtractTextPlugin.extract({
+        fallback: 'style-loader',
+        use: [
+          { loader: 'css-loader'  }, 'less-loader'
+        ]
+      })
+    }, {
+      test: /\.(eot|svg|ttf|woff|woff2)$/,
+      use: [{ loader: 'file-loader', options: { name: 'fonts/[name]-[hash].[ext]' } }]
+    }]
+  },
+  plugins: [
+    new webpack.IgnorePlugin(/@google/),
+    new webpack.DefinePlugin({
+      'process.env': { NODE_ENV: JSON.stringify('production') },
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor',
+      minChunks: Infinity,
+      filename: `vendor-[${bundleHashType}].js`
+    }),
+    new webpack.LoaderOptionsPlugin({
+      minimize: true,
+      debug: false,
+      options: {
+        context: '/',
+        debug: true
+      }
+    }),
+    new CleanWebpackPlugin(['public'], {
+      verbose: true,
+      dry: false,
+      exclude: ['fonts']
+    }),
+    new ExtractTextPlugin({
+      filename: 'main-[contenthash].css'
+    }),
+    new WebpackAssetsManifest({ output: '../build-manifest.json' }),
+    new webpack.optimize.UglifyJsPlugin({
+      beautify: false,
+      sourceMap: true,
+      mangle: {
+        screw_ie8: true,
+        keep_fnames: true
+      },
+      compress: {
+        screw_ie8: true,
+        warnings: false
+      },
+      comments: false
+    })
+  ],
+  performance: {
+    hints: 'warning'
+  },
   stats: {
-    children: false // prevent outputs from child plugins like from extract-text-plugin
+    children: false,
+    assets: true,
+    warnings: true
   }
 };
