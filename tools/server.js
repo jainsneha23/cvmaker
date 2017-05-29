@@ -11,8 +11,9 @@ import * as Designs from '../web/designs';
 
 /* eslint-disable no-console */
 
-const port = 3000;
 const app = express();
+const port = process.env.OPENSHIFT_NODEJS_PORT || 3000;
+const ip = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
 const ENV = process.env.NODE_ENV || 'development';
 
 app.locals.defaultTemplate = marko.load(`${__dirname}/./pages/index.marko`);
@@ -66,10 +67,13 @@ app.get('*', function(req, res) {
   }, res);
 });
 
-app.listen(port, function(err) {
+const server = app.listen(port, ip, (err) => {
   if (err) {
     console.log(err);
   } else {
     console.log(`Server listening on port: ${port}`);
   }
 });
+
+export default server;
+
