@@ -3,6 +3,7 @@ import bodyParser from 'body-parser';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import marko from 'marko';
+import 'ignore-styles';
 
 import {generateComponentAsPDF} from './generate-pdf.js';
 import * as Designs from '../web/designs';
@@ -34,16 +35,18 @@ if (ENV === 'development') {
 }
 
 app.post('/download',bodyParser.json() , function(req, res){
+  let Comp = Designs[`Design${req.body.id}`];
   const fileName = `Design${req.body.designId}-${new Date().getTime()}`;
-  generateComponentAsPDF({html: getComponentAsHTML(Designs[`Design${req.body.designId}`], req.body.cvdata), fileName}).then((response) => {
+  generateComponentAsPDF({html: getComponentAsHTML(Comp, req.body.cvdata), fileName}).then((response) => {
     res.send(response);
   }).catch((error) => res.status(500).send(error));
 });
 
-app.post('/design/:id',bodyParser.json() , function(req, res){
+app.get('/design/:id',bodyParser.json() , function(req, res){
   try{
+    const json = require('./mock.json');
     let Comp = Designs[`Design${req.params.id}`];
-    const html = getComponentAsHTML(Comp, req.body.cvdata);
+    const html = getComponentAsHTML(Comp, json);
     res.send(html);
   } catch (error) {
     res.status(500).send(error);
