@@ -1,15 +1,22 @@
 {
-  "presets": ["react", "latest"],
-  "plugins": ["transform-object-rest-spread"],
+  "plugins": [
+    "syntax-dynamic-import",
+    "transform-decorators-legacy",
+    "transform-class-properties",
+    "transform-object-rest-spread"
+  ],
+  "presets": [
+    ["env", {
+      "modules": false,
+      "loose": true
+    }],
+    "react", "latest"
+  ],
   "env": {
     "development": {
-      "plugins": [["react-transform", {
-        "transforms": [{
-          "transform": "react-transform-hmr",
-          "imports": ["react"],
-          "locals": ["module"]
-        }]
-      }]]
+      "plugins": [
+        "react-hot-loader/babel"
+      ]
     }
   }
 }
