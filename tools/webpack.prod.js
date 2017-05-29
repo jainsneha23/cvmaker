@@ -11,7 +11,7 @@ module.exports = {
   devtool: 'source-map',
   target: 'web',
   entry: {
-    main: './tools/main.js',
+    main: './web/index.js',
     vendor: [
       'es6-promise',
       'isomorphic-fetch',
