@@ -1,0 +1,13 @@
+language: node_js
+node_js:
+  - '6'
+install: true
+deploy:
+  provider: openshift
+  user: mystery.sneha@gmail.com
+  password:
+    secure: p3pjSv88GDR5k/LpjIogfIkkIsJvtKqvg+cwfkGFaZkoq6n41f4ohAI36ZfcGn7AdFRSLOERV6V4h+mWAhQzRQkUHYtGYC+LI4vNZBAMLj+R9u5pExaXuIdlplez3voh/YfCW0Eh53RwoigGnvCL8/LT8RrJ07i0H0lqf5Xdr1k/VFc8vt0FjXa77v8DhjJwdd7rtfSonQ+rG7QtFRjmWG04eDYnV7EUnrkXup7QIvPYSRATiWp58QnAnYJbEHDpc+KCVg4G3Z5NKr5QSm2RC0LPCmmsLLoOrvPtKI3vpia9BU/6SlAnQtnT49qmkYhMoWU/TbChiP+CLlk/X5WcOX3Ck4j6cFq/tW08ZULf9kJ3GQlsE8aMEZPXGHf7h/9TMpAU6DLM9xZocjntButDvAXYYjNIaC4f/IseDbdiDGEakPzIqLIU874jXrc1gRiLl+CM9IUFfUKblRdwGdUDO720td+oGzDEv4q+JlDxgIbJUiMWfM47Gm7TQ2h1N5GPiY2i5QJBoVb0/X0nXS4Hg3RTEOzFeUj5zi3SL2IQLn6msqvsw3iHBGvxA9VlYaBOJmViGHeyYFOOrkj3CXeipCvTmdY16geyjT5Tt3NkUNYmC17wrmUXs1LBGR8tK/xHhVteciDfqr5EyC/7hLBggD6qMrlyF3kLPWJemAELGBE=
+  app: cvmaker
+  domain: jsonly
+  on:
+    repo: jainsneha23/cvmaker
