@@ -17,7 +17,8 @@ module.exports = {
       'isomorphic-fetch',
       'react',
       'react-dom',
-      'react-router'
+      'react-router',
+      'material-ui'
     ]
   },
   output: {
@@ -41,9 +42,9 @@ module.exports = {
       use: [{
         loader: 'babel-loader',
         query: {
-          presets: ['es2015', 'react'],
+          presets: [['es2015', { modules: false }], 'react'],
           plugins: [
-            ['transform-es2015-classes', { loose: true }]
+            ['transform-es2015-classes', {loose: true}]
           ]
         }
       }],
@@ -67,7 +68,6 @@ module.exports = {
     }]
   },
   plugins: [
-    new webpack.IgnorePlugin(/@google/),
     new webpack.DefinePlugin({
       'process.env': { NODE_ENV: JSON.stringify('production') },
     }),
@@ -84,7 +84,8 @@ module.exports = {
         debug: true
       }
     }),
-    new CleanWebpackPlugin(['public'], {
+    new CleanWebpackPlugin([path.join(__dirname, '../public')], {
+      root: `${__dirname}/../`,
       verbose: true,
       dry: false,
       exclude: ['fonts']

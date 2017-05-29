@@ -12,3 +12,12 @@ node_modules
 
 *.pdf
 public/*
+
+# generated thru webpack for bundle identification accross relases and caching in CDN
+build-manifest.json
+
+#marko compiled templates
+*.marko.js
+
+.vscode
+
