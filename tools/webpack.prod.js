@@ -68,6 +68,7 @@ module.exports = {
     }]
   },
   plugins: [
+    new webpack.IgnorePlugin(/require-text/),
     new webpack.DefinePlugin({
       'process.env': { NODE_ENV: JSON.stringify('production') },
     }),
