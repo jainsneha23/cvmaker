@@ -12,8 +12,8 @@ import * as Designs from '../web/designs';
 /* eslint-disable no-console */
 
 const app = express();
-const port = process.env.OPENSHIFT_NODEJS_PORT || 3000;
-const ip = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
+const port = process.env.OPENSHIFT_NODEJS_PORT || process.env.PORT || 3000;
+const ip = process.env.OPENSHIFT_NODEJS_IP || process.env.IP || '127.0.0.1';
 const ENV = process.env.NODE_ENV || 'development';
 
 app.locals.defaultTemplate = marko.load(`${__dirname}/./pages/index.marko`);
