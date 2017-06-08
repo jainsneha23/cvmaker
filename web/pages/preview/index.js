@@ -3,12 +3,11 @@ import fetch from 'isomorphic-fetch';
 import fileSaver from 'file-saver';
 import { browserHistory } from 'react-router';
 
-import SelectField from 'material-ui/SelectField';
-import MenuItem from 'material-ui/MenuItem';
 import RaisedButton from 'material-ui/RaisedButton';
 import {Toolbar} from 'material-ui/Toolbar';
 import {Card, CardText} from 'material-ui/Card';
 import ChevronLeft from 'material-ui/svg-icons/navigation/chevron-left';
+import ColorLens from 'material-ui/svg-icons/image/color-lens';
 
 import * as Designs from '../../designs';
 import Header from '../../components/header';
@@ -20,12 +19,17 @@ class Preview extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      designId: 1
+      error: null
     };
+    this.designId = typeof localStorage !== 'undefined' && +localStorage.getItem('designId') || 1;
     let cvdata = typeof localStorage !== 'undefined' && localStorage.getItem('cvdata');
     this.cvdata = cvdata ? JSON.parse(cvdata) : (this.props.cvdata || {});
     this.download = this.download.bind(this);
-    this.handleChange = this.handleChange.bind(this);
+    this.choose = this.choose.bind(this);
+  }
+
+  choose() {
+    browserHistory.push('/designs');
   }
 
   download() {
@@ -34,7 +38,7 @@ class Preview extends React.Component {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({cvdata: this.cvdata, designId: this.state.designId})})
+      body: JSON.stringify({cvdata: this.cvdata, designId: this.designId})})
       .then((res) => {
         if (res.ok)
           return res.json();
@@ -49,12 +53,8 @@ class Preview extends React.Component {
     browserHistory.push('/create');
   }
 
-  handleChange(event, index, value) {
-    this.setState({designId: value});
-  }
-
   render() {
-    let Comp = Designs[`Design${this.state.designId}`];
+    let Comp = Designs[`Design${this.designId}`] || Designs['Design1'];
     return (
       <div className="preview">
         <Header rightElem={<RaisedButton
@@ -63,13 +63,7 @@ class Preview extends React.Component {
             onClick={this.download} /> }/>
         <Toolbar className="toolbar">
           <RaisedButton label="Edit" onClick={this.edit} icon={<ChevronLeft />}/>
-          <SelectField
-            floatingLabelText="Select Design"
-            value={this.state.designId}
-            onChange={this.handleChange} >
-            <MenuItem value={1} primaryText="Design 1" />
-            <MenuItem value={2} primaryText="Design 2" />
-          </SelectField>
+          <RaisedButton label="Template" onClick={this.choose} icon={<ColorLens />} />
         </Toolbar>
         <div className="error">{this.state.error}</div>
         <Card className="card">

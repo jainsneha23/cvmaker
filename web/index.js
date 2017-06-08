@@ -8,6 +8,7 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 import Home from '../web/pages/home';
 import CvForm from '../web/pages/cv-form';
 import Preview from '../web/pages/preview';
+import Design from '../web/pages/design';
 
 injectTapEventPlugin();
 
@@ -29,6 +30,7 @@ render((
       <Route path = "/" component = {Home} />
       <Route path = "/create" component = {CvForm} />
       <Route path = "/preview" component= {Preview} />
+      <Route path = "/designs" component= {Design} />
     </Router>
   </MuiThemeProvider>
 ), document.getElementById('app'));
