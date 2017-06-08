@@ -6,12 +6,9 @@ import { browserHistory } from 'react-router';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import RaisedButton from 'material-ui/RaisedButton';
-import {
-  Toolbar,
-  ToolbarGroup,
-  ToolbarSeparator
-} from 'material-ui/Toolbar';
+import {Toolbar} from 'material-ui/Toolbar';
 import {Card, CardText} from 'material-ui/Card';
+import ChevronLeft from 'material-ui/svg-icons/navigation/chevron-left';
 
 import * as Designs from '../../designs';
 import Header from '../../components/header';
@@ -60,20 +57,19 @@ class Preview extends React.Component {
     let Comp = Designs[`Design${this.state.designId}`];
     return (
       <div className="preview">
-        <Header />
+        <Header rightElem={<RaisedButton
+            label={'Download'}
+            secondary={true}
+            onClick={this.download} /> }/>
         <Toolbar className="toolbar">
-          <ToolbarGroup className="toolbar-group">
-            <SelectField
-              floatingLabelText="Select Design"
-              value={this.state.designId}
-              onChange={this.handleChange} >
-              <MenuItem value={1} primaryText="Design 1" />
-              <MenuItem value={2} primaryText="Design 2" />
-            </SelectField>
-            <ToolbarSeparator style={{height: '56px'}}/>
-            <RaisedButton label="Edit" onClick={this.edit} />
-            <RaisedButton label="Download" primary={true} onClick={this.download} />
-          </ToolbarGroup>
+          <RaisedButton label="Edit" onClick={this.edit} icon={<ChevronLeft />}/>
+          <SelectField
+            floatingLabelText="Select Design"
+            value={this.state.designId}
+            onChange={this.handleChange} >
+            <MenuItem value={1} primaryText="Design 1" />
+            <MenuItem value={2} primaryText="Design 2" />
+          </SelectField>
         </Toolbar>
         <div className="error">{this.state.error}</div>
         <Card className="card">

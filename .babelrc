@@ -10,7 +10,8 @@
       "modules": false,
       "loose": true
     }],
-    "react", "latest"
+    "react",
+    ["latest", { "modules": false }]
   ],
   "env": {
     "development": {
@@ -18,5 +19,5 @@
         "react-hot-loader/babel"
       ]
     }
-  }
+  } 
 }
