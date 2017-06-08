@@ -3,16 +3,19 @@ import AppBar from 'material-ui/AppBar';
 import Logo from '../logo';
 import './small.less';
 
-class Header extends React.Component{
+const Header = (props) => {
+  return (
+    <AppBar
+      className="fixed"
+      iconElementLeft={<Logo />}
+      iconElementRight={props.rightElem || null}
+      iconStyleRight={{margin: '16px 0 0 0'}}
+    />
+  );
+};
 
-  render() {
-    return (
-      <AppBar
-        className="fixed"
-        iconElementLeft={<Logo />}
-      />
-    );
-  }
-}
+Header.propTypes = {
+  rightElem: React.PropTypes.node
+};
 
 export default Header;
