@@ -16,6 +16,7 @@ import FormSkills from '../../components/form-skills';
 import FormJob from '../../components/form-job';
 import FormEducation from '../../components/form-education';
 import FormOthers from '../../components/form-others';
+import emptyJson from '../../../mock/empty.json';
 import {PersonalIcon, ProfileIcon, SkillIcon, JobIcon, EducationIcon, MiscIcon} from '../../components/icon';
 
 import './small.less';
@@ -34,7 +35,7 @@ class CvForm extends React.Component {
     }
     this.state =  {
       stepIndex: 0,
-      formdata: cvdata || {},
+      formdata: cvdata || emptyJson,
       showLabel: false
     };
     this.stepCount = 6;
@@ -60,11 +61,11 @@ class CvForm extends React.Component {
 
   preview() {
     const cvdata = clone(this.state.formdata,3);
-    cvdata.profile.summary = stateToHTML(cvdata.profile.summary.getCurrentContent());
-    cvdata.profile.objectives = stateToHTML(cvdata.profile.objectives.getCurrentContent());
-    cvdata.education.forEach(i => i.description.value = stateToHTML(i.description.value.getCurrentContent()));
-    cvdata.job.forEach(i => i.responsibilities.value = stateToHTML(i.responsibilities.value.getCurrentContent()));
-    cvdata.others.forEach(i => i.description.value = stateToHTML(i.description.value.getCurrentContent()));
+    cvdata.profile.summary = cvdata.profile.summary && stateToHTML(cvdata.profile.summary.getCurrentContent());
+    cvdata.profile.objectives = cvdata.profile.objectives && stateToHTML(cvdata.profile.objectives.getCurrentContent());
+    cvdata.education.forEach(i => i.description.value = i.description.value && stateToHTML(i.description.value.getCurrentContent()));
+    cvdata.job.forEach(i => i.responsibilities.value = i.responsibilities.value && stateToHTML(i.responsibilities.value.getCurrentContent()));
+    cvdata.others.forEach(i => i.description.value = i.description.value && stateToHTML(i.description.value.getCurrentContent()));
     if (localStorage) {
       localStorage.setItem('cvdata', JSON.stringify(cvdata));
     }

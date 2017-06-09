@@ -12,6 +12,7 @@ import ColorLens from 'material-ui/svg-icons/image/color-lens';
 import * as Designs from '../../designs';
 import Header from '../../components/header';
 import { base64ToBlob } from '../../utils/base64-to-blob.js';
+import emptyJson from '../../../mock/empty.json';
 
 import './small.less';
 
@@ -19,11 +20,12 @@ class Preview extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      error: null
+      error: null,
+      downloading: false
     };
     this.designId = typeof localStorage !== 'undefined' && +localStorage.getItem('designId') || 1;
     let cvdata = typeof localStorage !== 'undefined' && localStorage.getItem('cvdata');
-    this.cvdata = cvdata ? JSON.parse(cvdata) : (this.props.cvdata || {});
+    this.cvdata = cvdata ? JSON.parse(cvdata) : (this.props.cvdata || emptyJson);
     this.download = this.download.bind(this);
     this.choose = this.choose.bind(this);
   }
@@ -33,6 +35,7 @@ class Preview extends React.Component {
   }
 
   download() {
+    this.setState({downloading: true});
     fetch('/download',{
       method: 'POST',
       headers: {
@@ -40,6 +43,7 @@ class Preview extends React.Component {
       },
       body: JSON.stringify({cvdata: this.cvdata, designId: this.designId})})
       .then((res) => {
+        this.setState({downloading: false});
         if (res.ok)
           return res.json();
         else throw Error('Error in fetching resume');
@@ -58,7 +62,7 @@ class Preview extends React.Component {
     return (
       <div className="preview">
         <Header rightElem={<RaisedButton
-            label={'Download'}
+            label={this.state.downloading ? 'Downloading...' : 'Download'}
             secondary={true}
             onClick={this.download} /> }/>
         <Toolbar className="toolbar">
