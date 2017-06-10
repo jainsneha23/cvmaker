@@ -25,8 +25,16 @@
     "summary": "",
     "objectives": ""
   },
-  "skills": [],
+  "skills": [{
+    "heading": "",
+    "skillCategory": {
+      "value": "",
+      "error": ""
+    },
+    "skills": []
+  }],
   "education": [{
+    "heading": "",
     "school": {
       "value": "",
       "error": ""
@@ -61,6 +69,7 @@
     }
   }],
   "job": [{
+    "heading": "",
     "company": {
       "value": "",
       "error": ""
@@ -91,6 +100,7 @@
     }
   }],
   "others": [{
+    "heading": "",
     "label": {
       "value": "",
       "error": ""

@@ -14,6 +14,7 @@ class FormOthersItem extends React.Component {
     const newState = this.state;
     newState[property].value = val;
     newState[property].error = val? '' : 'This field is required';
+    if (property === 'label') newState.heading = val;
     this.setState(newState);
     this.props.onChange(newState);
   }
@@ -25,6 +26,7 @@ class FormOthersItem extends React.Component {
           <TextField
             fullWidth={true}
             errorText={this.state.label.error}
+            errorStyle={{bottom: '-4px'}}
             floatingLabelText="Enter the label for this paragraph"
             value={this.state.label.value}
             onChange={(e) => this.handleChange(e.target.value, 'label')}
