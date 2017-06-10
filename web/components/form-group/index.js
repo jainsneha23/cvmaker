@@ -1,5 +1,5 @@
 import React from 'react';
-import {Card, CardHeader, CardText} from 'material-ui/card';
+import {Card, CardHeader, CardText} from 'material-ui/Card';
 import RaisedButton from 'material-ui/RaisedButton';
 import Delete from 'material-ui/svg-icons/navigation/cancel';
 import ArrowUp from 'material-ui/svg-icons/navigation/arrow-upward';
