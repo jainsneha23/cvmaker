@@ -32,7 +32,7 @@ class CvForm extends React.Component {
     }
     this.state =  {
       stepIndex: 3,
-      formdata: cvdata || emptyJson,
+      formdata: cvdata || clone(emptyJson,3),
       showLabel: false
     };
     this.stepCount = 6;

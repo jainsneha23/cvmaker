@@ -1,4 +1,6 @@
 import React from 'react';
+import clone from 'clone';
+
 import {Card, CardHeader, CardText} from 'material-ui/Card';
 import RaisedButton from 'material-ui/RaisedButton';
 import Delete from 'material-ui/svg-icons/navigation/cancel';
@@ -26,7 +28,7 @@ class FormGroup extends React.Component {
 
   add() {
     const newState = [...this.state.items];
-    newState.push(this.props.structure);
+    newState.push(clone(this.props.structure, 3));
     this.setState({items: newState, expanded: newState.length - 1});
     this.props.onChange([...newState]);
   }
