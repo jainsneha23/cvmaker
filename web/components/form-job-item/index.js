@@ -1,7 +1,6 @@
 import React from 'react';
 import TextField from 'material-ui/TextField';
 import DatePicker from 'material-ui/DatePicker';
-import Checkbox from 'material-ui/Checkbox';
 import Subheader from 'material-ui/Subheader';
 import Toggle from 'material-ui/Toggle';
 import RichEditor from '../rich-editor';
@@ -40,7 +39,7 @@ class FormJobItem extends React.Component {
         <form>
           <TextField
             fullWidth={true}
-            hintText="Eg. ABC Consultancy services"
+            hintText="Eg. Software services"
             errorText={this.state.company.error}
             errorStyle={{bottom: '-4px'}}
             floatingLabelText="Enter the company name"
@@ -72,7 +71,7 @@ class FormJobItem extends React.Component {
             hintText="30-01-2017"
             container="inline"
             autoOk={true}
-            value={this.state.startdate.value}
+            value={this.state.startdate.value || null}
             errorText={this.state.startdate.error}
             errorStyle={{bottom: '-4px'}}
             onChange={(e, date) => this.handleChange(date, 'startdate')}
@@ -82,7 +81,7 @@ class FormJobItem extends React.Component {
             hintText="30-01-2017"
             container="inline"
             autoOk={true}
-            value={this.state.enddate.value}
+            value={this.state.enddate.value || null}
             errorText={this.state.enddate.error}
             errorStyle={{bottom: '-4px'}}
             onChange={(e, date) => this.handleChange(date, 'enddate')}
@@ -94,10 +93,6 @@ class FormJobItem extends React.Component {
             labelPosition="right"
             toggled={this.state.currentjob.value}
             onToggle={(e, data) => this.handleChange(data, 'currentjob')}
-          />
-          <Checkbox
-            label="Skill"
-            style={this.styles}
           />
           <Subheader style={{paddingLeft: 0, fontWeight: 'bold'}}>Roles and Responsibilities</Subheader>
           <RichEditor

@@ -31,7 +31,7 @@ class CvForm extends React.Component {
       cvdata.others.forEach(i => i.description.value = EditorState.createWithContent(stateFromHTML(i.description.value)));
     }
     this.state =  {
-      stepIndex: 2,
+      stepIndex: 3,
       formdata: cvdata || emptyJson,
       showLabel: false
     };
@@ -109,7 +109,7 @@ class CvForm extends React.Component {
               type="skills"
               title="Skill Category"
               buttonLabel="Add Skill Category"
-              structure={emptyJson.skills}
+              structure={emptyJson.skills[0]}
               data={this.state.formdata.skills}
               onChange={(data) => this.collect(data, 'skills')} />
           </Tab>
@@ -118,7 +118,7 @@ class CvForm extends React.Component {
               type="job"
               title="Company Name"
               buttonLabel="Add experience"
-              structure={emptyJson.job}
+              structure={emptyJson.job[0]}
               data={this.state.formdata.job}
               onChange={(data) => this.collect(data, 'job')} />
           </Tab>
@@ -127,7 +127,7 @@ class CvForm extends React.Component {
               type="education"
               title="Degree"
               buttonLabel="Add Education"
-              structure={emptyJson.education}
+              structure={emptyJson.education[0]}
               data={this.state.formdata.education}
               onChange={(data) => this.collect(data, 'education')} />
           </Tab>
@@ -136,7 +136,7 @@ class CvForm extends React.Component {
               type="others"
               title="Label"
               buttonLabel="Add More"
-              structure={emptyJson.others}
+              structure={emptyJson.others[0]}
               data={this.state.formdata.others}
               onChange={(data) => this.collect(data, 'others')} />
           </Tab>
