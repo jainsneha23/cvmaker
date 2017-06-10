@@ -31,7 +31,7 @@ class CvForm extends React.Component {
       cvdata.others.forEach(i => i.description.value = EditorState.createWithContent(stateFromHTML(i.description.value)));
     }
     this.state =  {
-      stepIndex: 3,
+      stepIndex: 0,
       formdata: cvdata || clone(emptyJson,3),
       showLabel: false
     };
