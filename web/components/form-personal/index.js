@@ -5,13 +5,7 @@ import './small.less';
 class FormPersonal extends React.Component {
   constructor(props) {
     super(props);
-    this.state = props.data || {
-      fullname: {},
-      jobtitle: {},
-      experience: {},
-      email: {},
-      mobile: {}
-    };
+    this.state = props.data;
     this.handleChange  =this.handleChange.bind(this);
   }
 
@@ -32,6 +26,7 @@ class FormPersonal extends React.Component {
             fullWidth={true}
             hintText="Eg. Sneha Jain"
             errorText={this.state.fullname.error}
+            errorStyle={{bottom: '-4px'}}
             floatingLabelText="Enter your full name"
             value={this.state.fullname.value}
             onChange={(e) => this.handleChange(e, 'fullname')}
@@ -43,6 +38,7 @@ class FormPersonal extends React.Component {
             fullWidth={true}
             hintText="Eg. Software Engineer"
             errorText={this.state.jobtitle.error}
+            errorStyle={{bottom: '-4px'}}
             floatingLabelText="Enter your job title"
             value={this.state.jobtitle.value}
             onChange={(e) => this.handleChange(e, 'jobtitle')}
@@ -54,6 +50,7 @@ class FormPersonal extends React.Component {
             fullWidth={true}
             hintText="Eg. 30"
             errorText={this.state.experience.error}
+            errorStyle={{bottom: '-4px'}}
             floatingLabelText="Enter your experience in months"
             value={this.state.experience.value}
             onChange={(e) => this.handleChange(e, 'experience')}
@@ -64,6 +61,7 @@ class FormPersonal extends React.Component {
             fullWidth={true}
             hintText="Eg. birdie.sneha@gmail.com"
             errorText={this.state.email.error}
+            errorStyle={{bottom: '-4px'}}
             floatingLabelText="Enter your email address"
             value={this.state.email.value}
             onChange={(e) => this.handleChange(e, 'email')}
@@ -75,6 +73,7 @@ class FormPersonal extends React.Component {
             fullWidth={true}
             hintText="Eg. 9876543210"
             errorText={this.state.mobile.error}
+            errorStyle={{bottom: '-4px'}}
             floatingLabelText="Enter your mobile number"
             value={this.state.mobile.value}
             onChange={(e) => this.handleChange(e, 'mobile')}

@@ -27,6 +27,7 @@ class FormEducationItem extends React.Component {
     const newState = this.state;
     newState[property].value = val;
     newState[property].error = val? '' : 'This field is required';
+    if (property === 'degree') newState.heading = val;
     this.setState(newState);
     this.props.onChange(newState);
   }
@@ -39,6 +40,7 @@ class FormEducationItem extends React.Component {
             fullWidth={true}
             hintText="Eg. Delhi University"
             errorText={this.state.school.error}
+            errorStyle={{bottom: '-4px'}}
             floatingLabelText="Enter the school name"
             value={this.state.school.value}
             onChange={(e) => this.handleChange(e.target.value, 'school')}
@@ -48,6 +50,7 @@ class FormEducationItem extends React.Component {
             fullWidth={true}
             hintText="Eg. BTech"
             errorText={this.state.degree.error}
+            errorStyle={{bottom: '-4px'}}
             floatingLabelText="Enter your degree obtained in this school"
             value={this.state.degree.value}
             onChange={(e) => this.handleChange(e.target.value, 'degree')}
@@ -57,6 +60,7 @@ class FormEducationItem extends React.Component {
             fullWidth={true}
             hintText="Eg. Bengaluru, India"
             errorText={this.state.location.error}
+            errorStyle={{bottom: '-4px'}}
             floatingLabelText="Enter the location of this school"
             value={this.state.location.value}
             onChange={(e) => this.handleChange(e.target.value, 'location')}
@@ -66,6 +70,7 @@ class FormEducationItem extends React.Component {
             fullWidth={true}
             hintText="Eg. Computer Science"
             errorText={this.state.field.error}
+            errorStyle={{bottom: '-4px'}}
             floatingLabelText="Enter your field of study"
             value={this.state.field.value}
             onChange={(e) => this.handleChange(e.target.value, 'field')}
@@ -75,6 +80,7 @@ class FormEducationItem extends React.Component {
             fullWidth={true}
             hintText="Eg. 9.2"
             errorText={this.state.grade.error}
+            errorStyle={{bottom: '-4px'}}
             floatingLabelText="Enter your grade achieved"
             value={this.state.grade.value}
             onChange={(e) => this.handleChange(e.target.value, 'grade')}
@@ -87,6 +93,7 @@ class FormEducationItem extends React.Component {
             autoOk={true}
             value={this.state.startdate.value}
             errorText={this.state.startdate.error}
+            errorStyle={{bottom: '-4px'}}
             onChange={(e, date) => this.handleChange(date, 'startdate')}
             onBlur={(e, date) => this.handleChange(date, 'startdate')}
           />
@@ -97,6 +104,7 @@ class FormEducationItem extends React.Component {
             autoOk={true}
             value={this.state.enddate.value}
             errorText={this.state.enddate.error}
+            errorStyle={{bottom: '-4px'}}
             onChange={(e, date) => this.handleChange(date, 'enddate')}
             onBlur={(e, date) => this.handleChange(date, 'enddate')}
           />

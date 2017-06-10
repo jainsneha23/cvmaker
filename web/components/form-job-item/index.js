@@ -29,6 +29,7 @@ class FormJobItem extends React.Component {
     const newState = this.state;
     newState[property].value = val;
     newState[property].error = val? '' : 'This field is required';
+    if (property === 'company') newState.heading = val;
     this.setState(newState);
     this.props.onChange(newState);
   }
@@ -41,6 +42,7 @@ class FormJobItem extends React.Component {
             fullWidth={true}
             hintText="Eg. ABC Consultancy services"
             errorText={this.state.company.error}
+            errorStyle={{bottom: '-4px'}}
             floatingLabelText="Enter the company name"
             value={this.state.company.value}
             onChange={(e) => this.handleChange(e.target.value, 'company')}
@@ -50,6 +52,7 @@ class FormJobItem extends React.Component {
             fullWidth={true}
             hintText="Eg. Software Engineer"
             errorText={this.state.jobtitle.error}
+            errorStyle={{bottom: '-4px'}}
             floatingLabelText="Enter your job title in this company"
             value={this.state.jobtitle.value}
             onChange={(e) => this.handleChange(e.target.value, 'jobtitle')}
@@ -59,6 +62,7 @@ class FormJobItem extends React.Component {
             fullWidth={true}
             hintText="Eg. Bengaluru, India"
             errorText={this.state.location.error}
+            errorStyle={{bottom: '-4px'}}
             floatingLabelText="Enter your job location for this company"
             value={this.state.location.value}
             onChange={(e) => this.handleChange(e.target.value, 'location')}
@@ -70,6 +74,7 @@ class FormJobItem extends React.Component {
             autoOk={true}
             value={this.state.startdate.value}
             errorText={this.state.startdate.error}
+            errorStyle={{bottom: '-4px'}}
             onChange={(e, date) => this.handleChange(date, 'startdate')}
             onBlur={(e, date) => this.handleChange(date, 'startdate')}
           />
@@ -79,6 +84,7 @@ class FormJobItem extends React.Component {
             autoOk={true}
             value={this.state.enddate.value}
             errorText={this.state.enddate.error}
+            errorStyle={{bottom: '-4px'}}
             onChange={(e, date) => this.handleChange(date, 'enddate')}
             onBlur={(e, date) => this.handleChange(date, 'enddate')}
             disabled={this.state.currentjob.value}

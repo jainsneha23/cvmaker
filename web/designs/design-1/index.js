@@ -55,15 +55,18 @@ const Design1 = (props) => (
           <span>Key Skills</span>
         </div>
         <article className="sectionContent">
-          <ul><li>
-          <ul>
-            {props.data.skills.map((skill,i) => 
-              <li key={i}>
-                <label>{skill}</label>
-              </li>
-            )}
+          <ul>{props.data.skills.map((item,i) =>
+            <li key={i}>
+            <span>{item.skillCategory.value}</span>
+            <ul>
+              {item.skills.map((skill,j) => 
+                <li key={j}>
+                  <label>{skill}</label>
+                </li>
+              )}
+            </ul>
+            </li>)}
           </ul>
-          </li></ul>
         </article>
       </section>
       <section className="workInfo">

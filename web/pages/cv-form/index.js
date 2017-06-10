@@ -12,10 +12,7 @@ import {EditorState} from 'draft-js';
 import Header from '../../components/header';
 import FormPersonal from '../../components/form-personal';
 import FormProfile from '../../components/form-profile';
-import FormSkills from '../../components/form-skills';
-import FormJob from '../../components/form-job';
-import FormEducation from '../../components/form-education';
-import FormOthers from '../../components/form-others';
+import FormGroup from '../../components/form-group';
 import emptyJson from '../../../mock/empty.json';
 import {PersonalIcon, ProfileIcon, SkillIcon, JobIcon, EducationIcon, MiscIcon} from '../../components/icon';
 
@@ -34,7 +31,7 @@ class CvForm extends React.Component {
       cvdata.others.forEach(i => i.description.value = EditorState.createWithContent(stateFromHTML(i.description.value)));
     }
     this.state =  {
-      stepIndex: 0,
+      stepIndex: 2,
       formdata: cvdata || emptyJson,
       showLabel: false
     };
@@ -100,7 +97,7 @@ class CvForm extends React.Component {
           value={this.state.stepIndex}
           tabItemContainerStyle={{top: '64px', position: 'fixed', width: '100%', zIndex: 2}}
           inkBarStyle={{top: this.state.showLabel ? '136px' : '112px', position: 'fixed', zIndex: 2}}
-          contentContainerStyle={{marginTop: '112px'}} >
+          contentContainerStyle={{margin: '145px 0 60px 0'}} >
           <Tab value={0} icon={<PersonalIcon />} label={this.state.showLabel && 'Personal'} >
             <FormPersonal data={this.state.formdata.personal} onChange={(data) => this.collect(data, 'personal')} />
           </Tab>
@@ -108,16 +105,40 @@ class CvForm extends React.Component {
             <FormProfile data={this.state.formdata.profile} onChange={(data) => this.collect(data, 'profile')} />
           </Tab>
           <Tab value={2} icon={<SkillIcon />} label={this.state.showLabel && 'Skill'} >
-            <FormSkills data={this.state.formdata.skills} onChange={(data) => this.collect(data, 'skills')} />
+            <FormGroup
+              type="skills"
+              title="Skill Category"
+              buttonLabel="Add Skill Category"
+              structure={emptyJson.skills}
+              data={this.state.formdata.skills}
+              onChange={(data) => this.collect(data, 'skills')} />
           </Tab>
           <Tab value={3} icon={<JobIcon />} label={this.state.showLabel && 'Job'} >
-            <FormJob data={this.state.formdata.job} onChange={(data) => this.collect(data, 'job')} />
+            <FormGroup
+              type="job"
+              title="Company Name"
+              buttonLabel="Add experience"
+              structure={emptyJson.job}
+              data={this.state.formdata.job}
+              onChange={(data) => this.collect(data, 'job')} />
           </Tab>
           <Tab value={4} icon={<EducationIcon />} label={this.state.showLabel && 'Education'} >
-            <FormEducation data={this.state.formdata.education} onChange={(data) => this.collect(data, 'education')} />
+            <FormGroup
+              type="education"
+              title="Degree"
+              buttonLabel="Add Education"
+              structure={emptyJson.education}
+              data={this.state.formdata.education}
+              onChange={(data) => this.collect(data, 'education')} />
           </Tab>
           <Tab value={5} icon={<MiscIcon />} label={this.state.showLabel && 'Others'} >
-            <FormOthers data={this.state.formdata.others} onChange={(data) => this.collect(data, 'others')} />
+            <FormGroup
+              type="others"
+              title="Label"
+              buttonLabel="Add More"
+              structure={emptyJson.others}
+              data={this.state.formdata.others}
+              onChange={(data) => this.collect(data, 'others')} />
           </Tab>
         </Tabs>
         <Toolbar style={{position: 'fixed', bottom: 0, width: '100%', padding: '10px 24px', zIndex: 2}}>
