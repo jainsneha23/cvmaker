@@ -56,11 +56,11 @@
       "error": ""
     },
     "startdate": {
-      "value": "",
+      "value": null,
       "error": ""
     },
     "enddate": {
-      "value": "",
+      "value": null,
       "error": ""
     },
     "description": {
@@ -83,15 +83,15 @@
       "error": ""
     },
     "startdate": {
-      "error": "",
+      "error": null,
       "value": ""
     },
     "enddate": {
-      "error": "",
+      "error": null,
       "value": ""
     },
     "currentjob": {
-      "value": null,
+      "value": false,
       "error": ""
     },
     "responsibilities": {

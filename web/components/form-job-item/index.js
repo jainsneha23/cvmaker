@@ -71,6 +71,7 @@ class FormJobItem extends React.Component {
             hintText="30-01-2017"
             container="inline"
             autoOk={true}
+            className="input-date"
             value={this.state.startdate.value || null}
             errorText={this.state.startdate.error}
             errorStyle={{bottom: '-4px'}}
@@ -81,6 +82,7 @@ class FormJobItem extends React.Component {
             hintText="30-01-2017"
             container="inline"
             autoOk={true}
+            className="input-date"
             value={this.state.enddate.value || null}
             errorText={this.state.enddate.error}
             errorStyle={{bottom: '-4px'}}
@@ -91,6 +93,7 @@ class FormJobItem extends React.Component {
           <Toggle
             label="I currently work here"
             labelPosition="right"
+            className="input-toggle"
             toggled={this.state.currentjob.value}
             onToggle={(e, data) => this.handleChange(data, 'currentjob')}
           />

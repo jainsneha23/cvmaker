@@ -90,6 +90,7 @@ class FormEducationItem extends React.Component {
           <DatePicker
             hintText="30-01-2017"
             container="inline"
+            className="input-date"
             autoOk={true}
             value={this.state.startdate.value}
             errorText={this.state.startdate.error}
@@ -101,6 +102,7 @@ class FormEducationItem extends React.Component {
           <DatePicker
             hintText="30-01-2017"
             container="inline"
+            className="input-date"
             autoOk={true}
             value={this.state.enddate.value}
             errorText={this.state.enddate.error}
