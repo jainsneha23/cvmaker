@@ -19,9 +19,7 @@ const formatDate = (date) => {
   return `${d.getDate()}-${month[d.getMonth()]}-${d.getFullYear()}`;
 };
 
-const Design1 = (props) => {
-  console.log(stylesheet);
-  return (
+const Design1 = (props) => (
   <InlineCss id="cv" componentName="design-1" stylesheet={stylesheet}>
     <div className="Design1">
       <div className="mainDetails">
@@ -58,111 +56,110 @@ const Design1 = (props) => {
           </article>
         </section>
         <section className="skillInfo">
-              <div className="sectionTitle">
-                <span>Key Skills</span>
-              </div>
-              <article className="sectionContent">
-                <ul>{props.data.skills.map((item,i) =>
-                  <li key={i}>
-                  <span>{item.skillCategory.value}</span>
-                  <ul>
-                    {item.skills.map((skill,j) => 
-                      <li key={j}>
-                        <label>{skill}</label>
-                      </li>
-                    )}
-                  </ul>
-                  </li>)}
-                </ul>
-              </article>
-        </section>
-        <section className="workInfo">
-              <div className="sectionTitle">
-                <span>Work Experience</span>
-              </div>
-              <article className="sectionContent">
-                <ul className="explist">
-                {props.data.job.map((item, i) =>
-                  <li key={i}>
-                    <div>
-                      <span>{item.jobtitle.value}</span>
-                      <span>at</span>
-                      <span>{item.company.value}</span>
-                    </div>
-                    <div className="subDetails">
-                      <span>{formatDate(item.startdate.value)}</span>
-                      <span>to</span>
-                      <span>{formatDate(item.enddate.value)}</span>
-                    </div>
-                    <label>Skills Used</label>
-                    <ul>
-                      {item.skills && item.skills.map((skill, i) =>
-                        <li key={i}>
-                          <span>{skill}</span>
-                        </li>
-                      )}
-                    </ul>
-                    <label>Role and Responsibilities</label>
-                    <div className="default" dangerouslySetInnerHTML={{__html: item.responsibilities.value}}></div>
+          <div className="sectionTitle">
+            <span>Key Skills</span>
+          </div>
+          <article className="sectionContent">
+            <ul>{props.data.skills.map((item,i) =>
+              <li key={i}>
+              <span>{item.skillCategory.value}</span>
+              <ul>
+                {item.skills.map((skill,j) => 
+                  <li key={j}>
+                    <label>{skill}</label>
                   </li>
                 )}
-                </ul>
-              </article>
+              </ul>
+              </li>)}
+            </ul>
+          </article>
         </section>
-        <section className="educationInfo">
-              <div className="sectionTitle">
-                <span>Education</span>
-              </div>
-              
-              <article className=" sectionContent">
+        <section className="workInfo">
+          <div className="sectionTitle">
+            <span>Work Experience</span>
+          </div>
+          <article className="sectionContent">
+            <ul className="explist">
+            {props.data.job.map((item, i) =>
+              <li key={i}>
+                <div>
+                  <span>{item.jobtitle.value}</span>
+                  <span>at</span>
+                  <span>{item.company.value}</span>
+                </div>
+                <div className="subDetails">
+                  <span>{formatDate(item.startdate.value)}</span>
+                  <span>to</span>
+                  <span>{formatDate(item.enddate.value)}</span>
+                </div>
+                <label>Skills Used</label>
                 <ul>
-                  {props.data.education.map((item, i) =>
+                  {item.skills && item.skills.map((skill, i) =>
                     <li key={i}>
-                      <div className="header">
-                        <div>{item.degree.value}</div>
-                      </div>
-                      <div className="subDetails">
-                        <span>{formatDate(item.startdate.value)}</span>
-                        <span>to</span>
-                        <span>{formatDate(item.enddate.value)}</span>
-                      </div>
-                      <div className="details">
-                        <label>Grade</label>
-                        <span>{item.grade.value}</span>
-                      </div>
-                      <div className="details">
-                        <span>From</span>
-                        <span>{item.school.value}</span>
-                        <span>at</span>
-                        <span>{item.location.value}</span>
-                      </div>
-                      <label>Description</label>
-                      <div className="default" dangerouslySetInnerHTML={{__html: item.description.value}}></div>
+                      <span>{skill}</span>
                     </li>
                   )}
                 </ul>
-              </article>
+                <label>Role and Responsibilities</label>
+                <div className="default" dangerouslySetInnerHTML={{__html: item.responsibilities.value}}></div>
+              </li>
+            )}
+            </ul>
+          </article>
+        </section>
+        <section className="educationInfo">
+          <div className="sectionTitle">
+            <span>Education</span>
+          </div>
+          <article className=" sectionContent">
+            <ul>
+              {props.data.education.map((item, i) =>
+                <li key={i}>
+                  <div className="header">
+                    <div>{item.degree.value}</div>
+                  </div>
+                  <div className="subDetails">
+                    <span>{formatDate(item.startdate.value)}</span>
+                    <span>to</span>
+                    <span>{formatDate(item.enddate.value)}</span>
+                  </div>
+                  <div className="details">
+                    <label>Grade</label>
+                    <span>{item.grade.value}</span>
+                  </div>
+                  <div className="details">
+                    <span>From</span>
+                    <span>{item.school.value}</span>
+                    <span>at</span>
+                    <span>{item.location.value}</span>
+                  </div>
+                  <label>Description</label>
+                  <div className="default" dangerouslySetInnerHTML={{__html: item.description.value}}></div>
+                </li>
+              )}
+            </ul>
+          </article>
         </section>
         <section className="othersInfo">
-              <article>
-                <ul>
-                {props.data.others.map((item, i) =>
-                  <li key={i}>
-                    <div className="sectionTitle">
-                      <span>{item.label.value}</span>
-                    </div>
-                    <div className="sectionContent">
-                      <div className="default" dangerouslySetInnerHTML={{__html: item.description.value}}></div>
-                    </div>
-                  </li>
-                )}
-                </ul>
-              </article>
+          <article>
+            <ul>
+            {props.data.others.map((item, i) =>
+              <li key={i}>
+                <div className="sectionTitle">
+                  <span>{item.label.value}</span>
+                </div>
+                <div className="sectionContent">
+                  <div className="default" dangerouslySetInnerHTML={{__html: item.description.value}}></div>
+                </div>
+              </li>
+            )}
+            </ul>
+          </article>
         </section>
       </div>
     </div>
   </InlineCss>
-)};
+);
 
 Design1.propTypes = {
   data: React.PropTypes.object.isRequired
