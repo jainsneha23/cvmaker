@@ -44,7 +44,7 @@ app.post('/download',bodyParser.json() , function(req, res){
 
 app.get('/design/:id',bodyParser.json() , function(req, res){
   try{
-    const json = require('./mock.json');
+    const json = require('../mock/snehajain.json');
     let Comp = Designs[`Design${req.params.id}`];
     const html = getComponentAsHTML(Comp, json);
     res.send(html);
