@@ -26,8 +26,16 @@ class CvForm extends React.Component {
       cvdata = JSON.parse(cvdata);
       cvdata.profile.summary = EditorState.createWithContent(stateFromHTML(cvdata.profile.summary));
       cvdata.profile.objectives = EditorState.createWithContent(stateFromHTML(cvdata.profile.objectives));
-      cvdata.education.forEach(i => i.description.value = EditorState.createWithContent(stateFromHTML(i.description.value)));
-      cvdata.job.forEach(i => i.responsibilities.value = EditorState.createWithContent(stateFromHTML(i.responsibilities.value)));
+      cvdata.education.forEach(i => {
+        i.startdate.value = i.startdate.value ? new Date(i.startdate.value) : new Date();
+        i.enddate.value = i.enddate.value ? new Date(i.enddate.value) : new Date();
+        i.description.value = EditorState.createWithContent(stateFromHTML(i.description.value));
+      });
+      cvdata.job.forEach(i => {
+        i.startdate.value = i.startdate.value ? new Date(i.startdate.value) : new Date();
+        i.enddate.value = i.enddate.value ? new Date(i.enddate.value) : new Date();
+        i.responsibilities.value = EditorState.createWithContent(stateFromHTML(i.responsibilities.value));
+      });
       cvdata.others.forEach(i => i.description.value = EditorState.createWithContent(stateFromHTML(i.description.value)));
     }
     this.state =  {
