@@ -2,28 +2,37 @@
 .Design2 {
   color: #888;
   min-width: 756px;
+  font-weight: lighter;
+  line-height: 1.2;
   .mainDetails {
-    padding: 25px 35px;
+    padding: 15px 30px;
     border: 1px solid transparent;
     border-bottom-width: 4px;
-    border-bottom-color: #40a7ba;
+    border-bottom-color: #fdb120;
     position: relative;
     .name {
-      text-align: center;
-      font-size: 24px;
+      font-size: 16px;
       height: 100px;
       display: block;
       span {
         display: block;
       }
       > span:first-child {
-        font-size: 40px;
+        font-size: 20px;
+        margin-bottom: 10px;
+        font-weight: normal;
+      }
+      > span:nth-child(2) {
+        text-transform: uppercase;
       }
       ul {
-        font-size: 14px;
+        font-size: 12px;
+        margin-top: 10px;
         li {
-          display: inline-block;
-          margin: 10px;
+          margin-right: 10px;
+          span {
+            display: inline;
+          }
         }
       }
     }
@@ -50,19 +59,17 @@
       }
       > ul {
         > li {
-          padding: 10px;
+          padding: 10px 0;
         }
       }
       .sectionTitle {
-        display: inline-block;
-        width: 30%;
         vertical-align: top;
-        font-size: 18px;
-        color: #2097AD;
+        font-size: 16px;
+        font-weight: normal;
+        line-height: 2;
+        color: #fdb120;
       }
       .sectionContent {
-        display: inline-block;
-        width: 70%;
         .subDetails {
           font-size: 12px;
           text-align: right;
@@ -76,9 +83,8 @@
         ul {
           li {
             h4 {
-              color: #2097ad;
               font-size: 16px;
-              border-bottom: 1px solid #2097ad;
+              border-bottom: 1px solid #888;
               display: inline-block;
             }
             ul {
@@ -89,9 +95,11 @@
       }
       &.skillInfo .sectionContent > ul {
         > li {
-          padding: 5px 10px;
-          display: inline-block;
-          vertical-align: top;
+          padding: 5px 0;
+          ul li {
+            display: inline;
+            margin-right: 4px; 
+          }
         }
       }
       &.workInfo .sectionContent > ul > li,
@@ -114,12 +122,12 @@
               color: inherit;
               display: inline-block;
               padding-right: 4px;
+              font-weight: normal;
             }
           }
         }
         h5 {
           display: block;
-          color: #2097ad;
           font-size: 16px;
           clear: both;
         }
