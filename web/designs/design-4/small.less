@@ -1,0 +1,126 @@
+@import '../../common/styles/reset.less';
+.Design4 {
+  color: #888;
+  font-weight: lighter;
+  .mainDetails {
+    padding: 25px 35px;
+    border-bottom: 2px solid #40a7ba;
+    .name {
+      text-align: center;
+      font-size: 16px;
+      height: 100px;
+      display: block;
+      span {
+        display: block;
+      }
+      > span:first-child {
+        font-size: 30px;
+        margin-bottom: 10px;
+      }
+      ul {
+        font-size: 12px;
+        margin-top: 10px;
+        li {
+          margin-right: 10px;
+          span {
+            display: inline;
+          }
+        }
+      }
+    }
+  }
+  .mainArea {
+    padding: 0 20px;
+    font-size: 14px;
+    line-height: 1.5;
+    .default {
+      ul {
+        list-style: disc;
+        padding-left: 20px;
+      }
+      ol {
+        list-style: decimal;
+        padding-left: 20px;
+      }
+    }
+    section {
+      .sectionTitle {
+        display: inline-block;
+        text-align: right;
+        width: 30%;
+        vertical-align: top;
+        font-size: 18px;
+        color: #2097AD;
+        padding: 10px;
+        box-sizing: border-box;
+      }
+      .sectionContent {
+        display: inline-block;
+        vertical-align: top;
+        border-left: 2px solid #40A7BA;
+        width: 70%;
+        box-sizing: border-box;
+        padding: 10px 10px 0px 20px;
+        .subDetails {
+          font-size: 12px;
+          text-align: right;
+          background: #eee;
+          border-radius: 4px;
+          display: inline-block;
+          padding: 4px;
+          float: right;
+          margin: 8px 0;
+        }
+        ul {
+          li {
+            h4 {
+              color: #2097ad;
+              font-size: 16px;
+              border-bottom: 1px solid #2097ad;
+              display: inline-block;
+            }
+            ul {
+              padding: 5px 0;
+            }
+          }
+        }
+      }
+      &.skillInfo .sectionContent > ul {
+        > li {
+          padding: 5px 10px;
+          display: inline-block;
+          vertical-align: top;
+        }
+      }
+      &.workInfo .sectionContent > ul > li,
+      &.educationInfo .sectionContent > ul > li {
+        > div {
+          span {
+            padding: 0 4px 0 0;
+          }
+          &.header {
+            font-size: 16px;
+            border-bottom: 1px solid #dedede;
+            span:first-child {
+              text-transform: uppercase;
+            }
+          }
+          &.details {
+            clear: both;
+            h5 {
+              color: inherit;
+              display: inline-block;
+              padding-right: 4px;
+            }
+          }
+        }
+        h5 {
+          display: block;
+          color: #2097ad;
+          font-size: 16px;
+          clear: both;
+        }
+      }
+    }
+  }
+}
