@@ -27,8 +27,8 @@ const Design2 = (props) => (
           <span>{props.data.personal.fullname.value}</span>
           <span>{props.data.personal.jobtitle.value}</span>
           <ul>
-            <li><span>{props.data.personal.email.value}</span></li>|
-            <li><span>{props.data.personal.mobile.value}</span></li>
+            <li>email: <span>{props.data.personal.email.value}</span></li>
+            <li>phone: <span>{props.data.personal.mobile.value}</span></li>
           </ul>
         </div>
       </div>
@@ -58,7 +58,7 @@ const Design2 = (props) => (
               <ul>
                 {item.skills.map((skill,j) => 
                   <li key={j}>
-                    <span>{skill}</span>
+                    <span>{skill},</span>
                   </li>
                 )}
               </ul>
