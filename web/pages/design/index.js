@@ -13,10 +13,10 @@ import Header from '../../components/header';
 import './small.less';
 
 const tilesData = [
-  {img: 'cvimages/image1.jpg'},
-  {img: 'cvimages/image2.jpg'},
-  {img: 'cvimages/image3.jpg'},
-  {img: 'cvimages/image4.jpg'}
+  {img: 'cvimages/design1'},
+  {img: 'cvimages/design2'},
+  {img: 'cvimages/design3'},
+  {img: 'cvimages/design4'}
 ];
 
 
@@ -79,7 +79,7 @@ class Design extends React.Component {
                     <CheckCircle color={this.state.designId === idx ? '#ff4081' : '#ccc'} />
                   </IconButton>
                 </div>} >
-              <img src={tile.img} />
+              <img src={`${tile.img}-thumb.png`} />
             </CardMedia>
           </Card>
         ))}
@@ -98,7 +98,7 @@ class Design extends React.Component {
           open={this.state.dialog}
           onRequestClose={this.toggleMagnify}
           autoScrollBodyContent={true} >
-          <img src={tilesData[this.state.dialogIdx].img} className="dialog-img" />
+          <img src={`${tilesData[this.state.dialogIdx].img}.png`} className="dialog-img" />
         </Dialog>
       </div>
     );

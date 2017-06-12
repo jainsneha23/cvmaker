@@ -1,11 +1,12 @@
 @import '../../common/styles/reset.less';
-
 .Design2 {
+  color: #888;
+  min-width: 756px;
   .mainDetails {
     padding: 25px 35px;
     border: 1px solid transparent;
     border-bottom-width: 4px;
-    border-bottom-color: red;
+    border-bottom-color: #40a7ba;
     position: relative;
     .name {
       text-align: center;
@@ -28,83 +29,101 @@
     }
   }
   .mainArea {
-    padding: 20px;
-    font-size: 13px;
-    article > ul > li {
-      padding: 5px 10px;
-      border: 1px solid transparent;
-      position: relative;
+    padding: 10px 20px;
+    font-size: 14px;
+    line-height: 1.5;
+    .default {
+      ul {
+        list-style: disc;
+        padding-left: 20px;
+      }
+      ol {
+        list-style: decimal;
+        padding-left: 20px;
+      }
     }
-  }
-  #headshot {
-    width: 100px;
-    height: 100px;
-    float: left;
-    text-align: center;
-  }
-  #headshot img {
-    height: 100%;
-  }
-  .cv section {
-    border-top: 1px solid #dedede;
-    padding: 20px 0 0;
-  }
-  section:first-child {
-    border-top: 0;
-  }
-  .sectionTitle {
-    display: inline-block;
-    width: 25%;
-    vertical-align: top;
-  }
-  .sectionContent {
-    display: inline-block;
-    width: 70%;
-  }
-  .sectionContent .header {
-    font-size: 16px;
-  }
-  .sectionTitle span {
-    font-size: 18px;
-    color: #2097AD;
-  }
-  .subDetails {
-    font-size: 12px;
-    text-align: right;
-  }
-  .explist > li,
-  .educationInfo > ul > li {
-    border-bottom: 1px solid #ccc;
-    padding: 10px 0;
-  }
-  .explist label,
-  .educationInfo label {
-    padding: 10px 0;
-    display: inline-block;
-    font-size: 16px;
-  }
-  .educationInfo label {
-    font-size: 13px;
-  }
-  .explist ul li {
-    display: inline;
-  }
-  .explist .default {
-    font-size: 0.9em;
-  }
-  .skillInfo {
-    > ul > li {
-      margin: 10px 0;
+    section {
+      border-top: 1px solid #dedede;
+      padding: 10px 0;
+      &:first-child {
+        border-top: 0;
+      }
+      > ul {
+        > li {
+          padding: 10px;
+        }
+      }
+      .sectionTitle {
+        display: inline-block;
+        width: 30%;
+        vertical-align: top;
+        font-size: 18px;
+        color: #2097AD;
+      }
+      .sectionContent {
+        display: inline-block;
+        width: 70%;
+        .subDetails {
+          font-size: 12px;
+          text-align: right;
+          background: #eee;
+          border-radius: 4px;
+          display: inline-block;
+          padding: 4px;
+          float: right;
+          margin: 8px 0;
+        }
+        ul {
+          li {
+            h4 {
+              color: #2097ad;
+              font-size: 16px;
+              border-bottom: 1px solid #2097ad;
+              display: inline-block;
+            }
+            ul {
+              padding: 5px 0;
+            }
+          }
+        }
+      }
+      &.skillInfo .sectionContent > ul {
+        > li {
+          padding: 5px 10px;
+          display: inline-block;
+          vertical-align: top;
+        }
+      }
+      &.workInfo .sectionContent > ul > li,
+      &.educationInfo .sectionContent > ul > li {
+        > div {
+          span {
+            padding: 0 4px 0 0;
+          }
+          &.header {
+            font-size: 16px;
+            margin-top: 10px;
+            border-bottom: 1px solid #dedede;
+            span:first-child {
+              text-transform: uppercase;
+            }
+          }
+          &.details {
+            clear: both;
+            h5 {
+              color: inherit;
+              display: inline-block;
+              padding-right: 4px;
+            }
+          }
+        }
+        h5 {
+          display: block;
+          color: #2097ad;
+          font-size: 16px;
+          clear: both;
+        }
+      }
     }
-    label {
-      display: inline-block;
-    }
-    span {
-      display: inline-block;
-      vertical-align: middle;
-    }
-  }
-  .educationInfo .details {
-    font-size: 0.9em;
   }
 }

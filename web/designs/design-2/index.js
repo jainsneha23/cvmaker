@@ -23,67 +23,56 @@ const Design2 = (props) => (
   <InlineCss id="cv" componentName="design-2" stylesheet={stylesheet}>
     <div className="Design2">
       <div className="mainDetails">
-        <div className="name goleft">
+        <div className="name">
           <span>{props.data.personal.fullname.value}</span>
           <span>{props.data.personal.jobtitle.value}</span>
           <ul>
             <li><span>{props.data.personal.email.value}</span></li>|
-            <li><span>{props.data.personal.mobile.value}</span></li>|
-            <li><span>{props.data.personal.experience.value}</span></li>
+            <li><span>{props.data.personal.mobile.value}</span></li>
           </ul>
         </div>
       </div>
       <div className="mainArea">
         <section className="portfolioInfo">
-          <article>
-            <ul>
-              <li>
-                <div className="sectionTitle">
-                  <span>Summary</span>
-                </div>
-                <div className="sectionContent">
-                  <div className="default" dangerouslySetInnerHTML={{__html: props.data.profile.summary}}></div>
-                </div>
-              </li>
-              <li>
-                <div className="sectionTitle">
-                  <span>Objectives</span>
-                </div>
-                <div className="sectionContent">
-                  <div className="default" dangerouslySetInnerHTML={{__html: props.data.profile.objectives}}></div>
-                </div>
-              </li>
-            </ul>
-          </article>
+          <ul>
+            <li>
+              <h3 className="sectionTitle">Summary</h3>
+              <div className="sectionContent">
+                <div className="default" dangerouslySetInnerHTML={{__html: props.data.profile.summary}}></div>
+              </div>
+            </li>
+            <li>
+              <h3 className="sectionTitle">Objectives</h3>
+              <div className="sectionContent">
+                <div className="default" dangerouslySetInnerHTML={{__html: props.data.profile.objectives}}></div>
+              </div>
+            </li>
+          </ul>
         </section>
         <section className="skillInfo">
-          <div className="sectionTitle">
-            <span>Key Skills</span>
-          </div>
-          <article className="sectionContent">
+          <h3 className="sectionTitle">Key Skills</h3>
+          <div className="sectionContent">
             <ul>{props.data.skills.map((item,i) =>
               <li key={i}>
-              <span>{item.skillCategory.value}</span>
+              <h4>{item.skillCategory.value}</h4>
               <ul>
                 {item.skills.map((skill,j) => 
                   <li key={j}>
-                    <label>{skill}</label>
+                    <span>{skill}</span>
                   </li>
                 )}
               </ul>
               </li>)}
             </ul>
-          </article>
+          </div>
         </section>
         <section className="workInfo">
-          <div className="sectionTitle">
-            <span>Work Experience</span>
-          </div>
-          <article className="sectionContent">
-            <ul className="explist">
+          <h3 className="sectionTitle">Work Experience</h3>
+          <div className="sectionContent">
+            <ul>
             {props.data.job.map((item, i) =>
               <li key={i}>
-                <div>
+                <div className="header">
                   <span>{item.jobtitle.value}</span>
                   <span>at</span>
                   <span>{item.company.value}</span>
@@ -91,29 +80,18 @@ const Design2 = (props) => (
                 <div className="subDetails">
                   <span>{formatDate(item.startdate.value)}</span>
                   <span>to</span>
-                  <span>{formatDate(item.enddate.value)}</span>
+                  <span>{formatDate(item.enddate.value) || 'Present'}</span>
                 </div>
-                <label>Skills Used</label>
-                <ul>
-                  {item.skills && item.skills.map((skill, i) =>
-                    <li key={i}>
-                      <span>{skill}</span>
-                    </li>
-                  )}
-                </ul>
-                <label>Role and Responsibilities</label>
+                <h5>Role and Responsibilities</h5>
                 <div className="default" dangerouslySetInnerHTML={{__html: item.responsibilities.value}}></div>
               </li>
             )}
             </ul>
-          </article>
+          </div>
         </section>
         <section className="educationInfo">
-          <div className="sectionTitle">
-            <span>Education</span>
-          </div>
-          
-          <article className=" sectionContent">
+          <h3 className="sectionTitle">Education</h3>
+          <div className="sectionContent">
             <ul>
               {props.data.education.map((item, i) =>
                 <li key={i}>
@@ -126,37 +104,35 @@ const Design2 = (props) => (
                     <span>{formatDate(item.enddate.value)}</span>
                   </div>
                   <div className="details">
-                    <label>Grade</label>
-                    <span>{item.grade.value}</span>
-                  </div>
-                  <div className="details">
                     <span>From</span>
                     <span>{item.school.value}</span>
                     <span>at</span>
                     <span>{item.location.value}</span>
                   </div>
-                  <label>Description</label>
-                  <div className="default" dangerouslySetInnerHTML={{__html: item.description.value}}></div>
+                  <div className="details">
+                    <h5>Grade:</h5>
+                    <span>{item.grade.value}</span>
+                  </div>
+                  <div className="details">
+                    {item.description.value && <h5>Description</h5>}
+                    <div className="default" dangerouslySetInnerHTML={{__html: item.description.value}}></div>
+                  </div>
                 </li>
               )}
             </ul>
-          </article>
+          </div>
         </section>
         <section className="othersInfo">
-          <article>
-            <ul>
-            {props.data.others.map((item, i) =>
-              <li key={i}>
-                <div className="sectionTitle">
-                  <span>{item.label.value}</span>
-                </div>
-                <div className="sectionContent">
-                  <div className="default" dangerouslySetInnerHTML={{__html: item.description.value}}></div>
-                </div>
-              </li>
-            )}
-            </ul>
-          </article>
+          <ul>
+          {props.data.others.map((item, i) =>
+            <li key={i}>
+              <h3 className="sectionTitle">{item.label.value}</h3>
+              <div className="sectionContent">
+                <div className="default" dangerouslySetInnerHTML={{__html: item.description.value}}></div>
+              </div>
+            </li>
+          )}
+          </ul>
         </section>
       </div>
     </div>
