@@ -15,7 +15,7 @@ import * as Designs from '../web/designs';
 const app = express();
 const port = process.env.PORT || 3000;
 const ENV = process.env.NODE_ENV || 'development';
-const mailService = new Mailer(process.env.MAIL_USER, process.env.MAIL_PASS);
+const mailService = new Mailer();
 
 app.locals.defaultTemplate = marko.load(`${__dirname}/./pages/index.marko`);
 app.locals.buildAssetsInfo = require(`${__dirname}/../build-manifest.json`);
@@ -56,8 +56,12 @@ app.get('/design/:id', bodyParser.json() , function(req, res){
 });
 
 app.post('/feedback', bodyParser.json() , function(req, res){
-  mailService.sendFeedback(req.body);
-  res.sendStatus(204);
+  mailService.sendFeedback(req.body).then(() => {
+    res.sendStatus(204);
+  }).catch((e) => {
+    console.log(e);
+    res.sendStatus(204);
+  });
 });
 
 app.use(express.static('assets'));

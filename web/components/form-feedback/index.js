@@ -32,6 +32,9 @@ class FormFeedback extends React.Component{
     };
     fetch('/feedback', {
       method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
       body: JSON.stringify(postData)
     }).then((data) => {
       if(data.ok){

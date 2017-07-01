@@ -1,32 +1,33 @@
-import nodemailer from 'nodemailer';
+import Mailgun from 'mailgun-js';
 
 class Mailer {
-  constructor(user, pass) {
+  constructor() {
     try {
-      this.transporter = nodemailer.createTransport({
-        host: 'smtp.gmail.com',
-        port: 465,
-        secure: true,
-        auth: {
-          user: user,
-          pass: pass
-        }
+      this.transporter = new Mailgun({
+        apiKey: process.env.MAILGUN_API_KEY || 'key-16162dd2f99e7806cbacb9f39cd98932',
+        domain: process.env.MAILGUN_DOMAIN || 'app15de01f268714be18715eb7d6050e2e8.mailgun.org'
       });
     } catch(e) {
       console.log(e);
     }
   }
   sendFeedback(obj) {
-    let mailOptions = {
+    console.log(obj);
+    const mailData = {
       from: obj.email,
       to: 'cvmakerindia@gmail.com',
       subject: `Feedback form from ${obj.fullname}`,
-      html: obj.message
+      text: obj.message
     };
-
-    this.transporter.sendMail(mailOptions, (error, info) => {
-      if (error) console.log(error);
-      else console.log('Message %s sent: %s', info.messageId, info.response);
+    return new Promise((resolve, reject) => {
+      this.transporter.messages().send(mailData, function (err, body) {
+        if (err) {
+          reject(`Mailer error: ${err}`);
+        }
+        else {
+          resolve(`Mailer success: ${body}`);
+        }
+      });
     });
   }
 }
