@@ -36,8 +36,8 @@ if (ENV === 'development') {
 
 app.post('/download',bodyParser.json() , function(req, res){
   let Comp = Designs[`Design${req.body.designId}`];
-  const fileName = `Design${req.body.designId}-${new Date().getTime()}`;
-  generateComponentAsPDF({html: getComponentAsHTML(Comp, req.body.cvdata), fileName}).then((response) => {
+  const filename = `Design${req.body.designId}-${new Date().getTime()}`;
+  generateComponentAsPDF({html: getComponentAsHTML(Comp, req.body.cvdata), filename}).then((response) => {
     res.send(response);
   }).catch((error) => res.status(500).send(error));
 });

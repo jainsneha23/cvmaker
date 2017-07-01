@@ -67,7 +67,7 @@ class Preview extends React.Component {
             onClick={this.download} /> }/>
         <Toolbar className="toolbar">
           <RaisedButton label="Edit" onClick={this.edit} icon={<ChevronLeft />}/>
-          <RaisedButton label="Template" onClick={this.choose} icon={<ColorLens />} />
+          <RaisedButton label="Select Design" onClick={this.choose} icon={<ColorLens />} />
         </Toolbar>
         <div className="error">{this.state.error}</div>
         <Card className="card">
