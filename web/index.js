@@ -9,7 +9,7 @@ import Home from '../web/pages/home';
 import CvForm from '../web/pages/cv-form';
 import Preview from '../web/pages/preview';
 import Design from '../web/pages/design';
-import NotFound from '../web/pages/error';
+import ErrorPage from '../web/pages/error-page';
 
 injectTapEventPlugin();
 
@@ -32,7 +32,7 @@ render((
       <Route path = "/create" component = {CvForm} />
       <Route path = "/preview" component= {Preview} />
       <Route path = "/designs" component= {Design} />
-      <Route path='*' component={NotFound} />
+      <Route path='*' component={ErrorPage} />
     </Router>
   </MuiThemeProvider>
 ), document.getElementById('app'));
