@@ -2,15 +2,19 @@ import nodemailer from 'nodemailer';
 
 class Mailer {
   constructor(user, pass) {
-    this.transporter = nodemailer.createTransport({
-      host: 'smtp.gmail.com',
-      port: 465,
-      secure: true,
-      auth: {
-        user: user,
-        pass: pass
-      }
-    });
+    try {
+      this.transporter = nodemailer.createTransport({
+        host: 'smtp.gmail.com',
+        port: 465,
+        secure: true,
+        auth: {
+          user: user,
+          pass: pass
+        }
+      });
+    } catch(e) {
+      console.log(e);
+    }
   }
   sendFeedback(obj) {
     let mailOptions = {
@@ -21,10 +25,8 @@ class Mailer {
     };
 
     this.transporter.sendMail(mailOptions, (error, info) => {
-      if (error) {
-        console.log(error);
-      }
-      console.log('Message %s sent: %s', info.messageId, info.response);
+      if (error) console.log(error);
+      else console.log('Message %s sent: %s', info.messageId, info.response);
     });
   }
 }

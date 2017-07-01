@@ -8,9 +8,9 @@ class FormFeedback extends React.Component{
   constructor(props) {
     super(props);
     this.state = {
-      fullname: {},
-      email: {},
-      message: {}
+      fullname: {value: '', error: ''},
+      email: {value: '', error: ''},
+      message: {value: '', error: ''}
     };
     this.submitForm = this.submitForm.bind(this);
     this.handleChange  =this.handleChange.bind(this);
@@ -24,6 +24,7 @@ class FormFeedback extends React.Component{
   }
   submitForm(event) {
     event.preventDefault();
+    if (this.state.fullname.error || this.state.email.error || this.state.message.error) return;
     var postData = {
       fullname: this.state.fullname.value,
       email: this.state.email.value,
@@ -33,16 +34,14 @@ class FormFeedback extends React.Component{
       method: 'POST',
       body: JSON.stringify(postData)
     }).then((data) => {
-      return data.json();
-    }).then((data) => {
-      if(data.status == 'Success'){
+      if(data.ok){
         this.setState({
-          fullname: {},
-          email: {},
-          message: {}
+          fullname: {value: '', error: ''},
+          email: {value: '', error: ''},
+          message: {value: '', error: ''}
         });
         alert('Thanks for writing to Us.');
-      }else alert('Error Occured.');
+      } else alert('Error Occured.');
     }).catch(() => {
       alert('Error Occured.');
     });
@@ -84,7 +83,7 @@ class FormFeedback extends React.Component{
           onBlur={(e) => this.handleChange(e, 'message')}
           fullWidth={true}
           multiLine={true}
-          rows={5}
+          rows={2}
           name="message"
           required
         />
