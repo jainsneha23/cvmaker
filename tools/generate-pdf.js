@@ -31,8 +31,8 @@ const generatePDF = ({html, filename}, promise) => {
   }
 };
 
-export const generateComponentAsPDF = ({ html, fileName }) => {
+export const generateComponentAsPDF = ({ html, filename }) => {
   return new Promise((resolve, reject) => {
-    return generatePDF({ html, fileName }, { resolve, reject });
+    return generatePDF({ html, filename }, { resolve, reject });
   });
 };
