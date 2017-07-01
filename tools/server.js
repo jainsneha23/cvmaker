@@ -56,12 +56,8 @@ app.get('/design/:id', bodyParser.json() , function(req, res){
 });
 
 app.post('/feedback', bodyParser.json() , function(req, res){
-  try{
-    mailService.sendFeedback(req.body);
-    res.res.sendStatus(204);
-  } catch (error) {
-    res.res.sendStatus(500);
-  }
+  mailService.sendFeedback(req.body);
+  res.sendStatus(204);
 });
 
 app.use(express.static('assets'));
