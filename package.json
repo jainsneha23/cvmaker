@@ -46,6 +46,7 @@
     "less-loader": "2.2.3",
     "marko": "^4.4.5",
     "material-ui": "0.17.4",
+    "nodemailer": "^4.0.1",
     "path": "^0.12.7",
     "raw-loader": "^0.5.1",
     "rc-scroll-anim": "0.6.5",

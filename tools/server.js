@@ -5,6 +5,7 @@ import ReactDOMServer from 'react-dom/server';
 import marko from 'marko';
 import 'ignore-styles';
 
+import Mailer from './mailer';
 import {generateComponentAsPDF} from './generate-pdf.js';
 import * as Designs from '../web/designs';
 
@@ -14,6 +15,7 @@ import * as Designs from '../web/designs';
 const app = express();
 const port = process.env.PORT || 3000;
 const ENV = process.env.NODE_ENV || 'development';
+const mailService = new Mailer(process.env.MAIL_USER, process.env.MAIL_PASS);
 
 app.locals.defaultTemplate = marko.load(`${__dirname}/./pages/index.marko`);
 app.locals.buildAssetsInfo = require(`${__dirname}/../build-manifest.json`);
@@ -34,7 +36,7 @@ if (ENV === 'development') {
   app.use(require('webpack-hot-middleware')(compiler));
 }
 
-app.post('/download',bodyParser.json() , function(req, res){
+app.post('/download', bodyParser.json() , function(req, res){
   let Comp = Designs[`Design${req.body.designId}`];
   const filename = `Design${req.body.designId}-${new Date().getTime()}`;
   generateComponentAsPDF({html: getComponentAsHTML(Comp, req.body.cvdata), filename}).then((response) => {
@@ -42,7 +44,7 @@ app.post('/download',bodyParser.json() , function(req, res){
   }).catch((error) => res.status(500).send(error));
 });
 
-app.get('/design/:id',bodyParser.json() , function(req, res){
+app.get('/design/:id', bodyParser.json() , function(req, res){
   try{
     const json = require('../mock/snehajain.json');
     let Comp = Designs[`Design${req.params.id}`];
@@ -50,6 +52,15 @@ app.get('/design/:id',bodyParser.json() , function(req, res){
     res.send(html);
   } catch (error) {
     res.status(500).send(error);
+  }
+});
+
+app.post('/feedback', bodyParser.json() , function(req, res){
+  try{
+    mailService.sendFeedback(req.body);
+    res.res.sendStatus(204);
+  } catch (error) {
+    res.res.sendStatus(500);
   }
 });
 

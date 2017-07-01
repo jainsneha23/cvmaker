@@ -1,29 +1,46 @@
 import React from 'react';
 import fetch from 'isomorphic-fetch';
+import TextField from 'material-ui/TextField';
+import RaisedButton from 'material-ui/RaisedButton';
 import './small.less';
 
 class FormFeedback extends React.Component{
   constructor(props) {
     super(props);
+    this.state = {
+      fullname: {},
+      email: {},
+      message: {}
+    };
     this.submitForm = this.submitForm.bind(this);
+    this.handleChange  =this.handleChange.bind(this);
+  }
+  handleChange(e, property) {
+    const newState = {...this.state};
+    if (!newState[property]) newState[property] = {};
+    newState[property].value = e.target.value;
+    newState[property].error = e.target.required && !e.target.value ? 'This field is required' : '';
+    this.setState(newState);
   }
   submitForm(event) {
     event.preventDefault();
     var postData = {
-      username: this.form.username.value,
-      email: this.form.email.value,
-      message: this.form.message.value
+      fullname: this.state.fullname.value,
+      email: this.state.email.value,
+      message: this.state.message.value
     };
-    fetch('http://localhost:8888/phpservice/feedback.php', {
+    fetch('/feedback', {
       method: 'POST',
       body: JSON.stringify(postData)
     }).then((data) => {
       return data.json();
     }).then((data) => {
       if(data.status == 'Success'){
-        this.form.username.value = '';
-        this.form.email.value = '';
-        this.form.message.value = '';
+        this.setState({
+          fullname: {},
+          email: {},
+          message: {}
+        });
         alert('Thanks for writing to Us.');
       }else alert('Error Occured.');
     }).catch(() => {
@@ -32,11 +49,52 @@ class FormFeedback extends React.Component{
   }
   render() {
     return (
-      <form className="feedback-form" ref={(form) => { this.form = form; }} >
-        <label>Name: <input name="username" type="text" required/></label>
-        <label>Email ID: <input name="email" type="email" required/></label>
-        <label>Message: <textarea name="message"></textarea></label>
-        <input type="submit" value="Submit" onClick={this.submitForm} />
+      <form className="feedback-form">
+        <TextField
+          fullWidth={true}
+          hintText="Eg. Sneha Jain"
+          errorText={this.state.fullname.error}
+          errorStyle={{bottom: '-4px'}}
+          floatingLabelText="Enter your full name"
+          value={this.state.fullname.value}
+          onChange={(e) => this.handleChange(e, 'fullname')}
+          onBlur={(e) => this.handleChange(e, 'fullname')}
+          required
+          name="fullname"
+        />
+        <TextField
+          fullWidth={true}
+          hintText="Eg. birdie.sneha@gmail.com"
+          errorText={this.state.email.error}
+          errorStyle={{bottom: '-4px'}}
+          floatingLabelText="Enter your email address"
+          value={this.state.email.value}
+          onChange={(e) => this.handleChange(e, 'email')}
+          onBlur={(e) => this.handleChange(e, 'email')}
+          required
+          name="email"
+          type="email"
+        />
+        <TextField
+          floatingLabelText="Enter your feedback"
+          errorText={this.state.message.error}
+          errorStyle={{bottom: '-4px'}}
+          value={this.state.message.value}
+          onChange={(e) => this.handleChange(e, 'message')}
+          onBlur={(e) => this.handleChange(e, 'message')}
+          fullWidth={true}
+          multiLine={true}
+          rows={5}
+          name="message"
+          required
+        />
+        <RaisedButton
+          fullWidth={true}
+          label="Submit"
+          primary={true}
+          onClick={this.submitForm}
+          stlye={{marginTop: '12px'}}
+        />
       </form>
     );
   }

@@ -93,10 +93,10 @@ class Home extends React.Component {
         <ScrollElement className="templates" id="designs">
           <header>Our templates</header>
           <div className="maxwidth">
-            <img src="cvimages/image1.jpg"/>
-            <img src="cvimages/image2.jpg"/>
-            <img src="cvimages/image3.jpg"/>
-            <img src="cvimages/image4.jpg"/>
+            <img src="/cvimages/design1.png"/>
+            <img src="/cvimages/design2.png"/>
+            <img src="/cvimages/design3.png"/>
+            <img src="/cvimages/design4.png"/>
           </div>
         </ScrollElement>
         <ScrollElement className="messageSection" id="contact">
