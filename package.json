@@ -47,6 +47,7 @@
     "mailgun-js": "^0.11.2",
     "marko": "^4.4.5",
     "material-ui": "0.17.4",
+    "newrelic": "^1.40.0",
     "path": "^0.12.7",
     "raw-loader": "^0.5.1",
     "rc-scroll-anim": "0.6.5",
