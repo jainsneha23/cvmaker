@@ -6,6 +6,7 @@ import marko from 'marko';
 import 'ignore-styles';
 
 import Mailer from './mailer';
+import Messager from './messager';
 import {generateComponentAsPDF} from './generate-pdf.js';
 import * as Designs from '../web/designs';
 
@@ -16,6 +17,7 @@ const app = express();
 const port = process.env.PORT || 3000;
 const ENV = process.env.NODE_ENV || 'development';
 const mailService = new Mailer();
+const messager = new Messager();
 
 app.locals.defaultTemplate = marko.load(`${__dirname}/./pages/index.marko`);
 app.locals.buildAssetsInfo = require(`${__dirname}/../build-manifest.json`);
@@ -56,12 +58,15 @@ app.get('/design/:id', bodyParser.json() , function(req, res){
 });
 
 app.post('/feedback', bodyParser.json() , function(req, res){
-  mailService.sendFeedback(req.body).then(() => {
+  messager.sendFeedback(req.body);
+  mailService.sendFeedback(req.body);
+  /*.then(() => {
     res.sendStatus(204);
   }).catch((e) => {
     console.log(e);
     res.sendStatus(204);
-  });
+  });*/
+  res.sendStatus(204);
 });
 
 app.use(express.static('assets'));

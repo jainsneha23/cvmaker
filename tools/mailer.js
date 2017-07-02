@@ -12,7 +12,6 @@ class Mailer {
     }
   }
   sendFeedback(obj) {
-    console.log(obj);
     const mailData = {
       from: obj.email,
       to: 'cvmakerindia@gmail.com',
