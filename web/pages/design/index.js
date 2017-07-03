@@ -98,7 +98,9 @@ class Design extends React.Component {
           open={this.state.dialog}
           onRequestClose={this.toggleMagnify}
           autoScrollBodyContent={true} >
-          <img src={`${tilesData[this.state.dialogIdx].img}.png`} className="dialog-img" />
+          <div style={{minHeight: window.innerHeight}}>
+            <img src={`${tilesData[this.state.dialogIdx].img}.png`} className="dialog-img" />
+          </div>
         </Dialog>
       </div>
     );

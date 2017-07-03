@@ -18,17 +18,16 @@ class Mailer {
   }
   sendFeedback(obj) {
     const mailData = {
-      from: obj.email,
+      from: 'cvmakerindia@gmail.com',
       to: 'cvmakerindia@gmail.com',
-      subject: `Feedback form from ${obj.fullname}`,
+      subject: `Feedback form from ${obj.email} ${obj.fullname}`,
       text: obj.message
     };
     return new Promise((resolve, reject) => {
       this.transporter.sendMail(mailData, (error, info) => {
         if (error) {
           reject(`Mailer error: ${error}`);
-        }
-        resolve(`Mailer success: ${info}`);
+        } else resolve(`Mailer success: ${info}`);
       });
     });
   }

@@ -15,8 +15,7 @@ class Messager {
           phone: ['+918105266097', '+919590716661'],
           text: `Feedback from ${obj.email}-${obj.fullname}: ${obj.message}`
         })
-      }).then((res) => {
-        console.log(res);
+      }).then(() => {
         resolve();
       }).catch(e => {
         console.log(e);
