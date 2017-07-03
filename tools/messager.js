@@ -2,7 +2,7 @@ import fetch from 'isomorphic-fetch';
 
 class Messager {
   constructor() {
-    this.TILL_URL = process.env.TILL_URL || 'https://platform.tillmobile.com/api/send?username=88d6777fb09743b1a818fc75a2d0a0&api_key=d0d3e5b3e3374fff79f0addb558b50c6a35545c4';
+    this.TILL_URL = process.env.TILL_URL;
   }
   sendFeedback(obj) {
     return new Promise((resolve, reject) => {
