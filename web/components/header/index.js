@@ -10,6 +10,7 @@ const Header = (props) => {
       iconElementLeft={<Logo />}
       iconElementRight={props.rightElem || null}
       iconStyleRight={{margin: '16px 0 0 0'}}
+      iconStyleLeft={{marginLeft: '20px'}}
     />
   );
 };
