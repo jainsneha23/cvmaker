@@ -9,6 +9,7 @@ const Logo = () => (
       <span className="color">CV</span>
       <span className="small">Maker</span>
     </a>
+    <div className="beta">Beta</div>
   </div>
 );
 

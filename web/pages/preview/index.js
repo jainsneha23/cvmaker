@@ -71,7 +71,7 @@ class Preview extends React.Component {
         </Toolbar>
         <div className="error">{this.state.error}</div>
         <Card className="card">
-          <CardText style={{padding: 0}} >
+          <CardText style={{padding: 0, width: '768px'}} >
             <Comp data={this.cvdata} />
           </CardText>
         </Card>
