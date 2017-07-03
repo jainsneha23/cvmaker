@@ -1,11 +1,16 @@
-import Mailgun from 'mailgun-js';
+import Nodemailer from 'nodemailer';
 
 class Mailer {
   constructor() {
     try {
-      this.transporter = new Mailgun({
-        apiKey: process.env.MAILGUN_API_KEY || 'key-16162dd2f99e7806cbacb9f39cd98932',
-        domain: process.env.MAILGUN_DOMAIN || 'app15de01f268714be18715eb7d6050e2e8.mailgun.org'
+      this.transporter = Nodemailer.createTransport({
+        host: 'smtp.gmail.com',
+        port: 465,
+        secure: true,
+        auth: {
+          user: process.env.MAIL_USER,
+          pass: process.env.MAIL_PASS
+        }
       });
     } catch(e) {
       console.log(e);
@@ -19,13 +24,11 @@ class Mailer {
       text: obj.message
     };
     return new Promise((resolve, reject) => {
-      this.transporter.messages().send(mailData, function (err, body) {
-        if (err) {
-          reject(`Mailer error: ${err}`);
+      this.transporter.sendMail(mailData, (error, info) => {
+        if (error) {
+          reject(`Mailer error: ${error}`);
         }
-        else {
-          resolve(`Mailer success: ${body}`);
-        }
+        resolve(`Mailer success: ${info}`);
       });
     });
   }

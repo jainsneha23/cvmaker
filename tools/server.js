@@ -69,8 +69,8 @@ app.post('/feedback', bodyParser.json() , function(req, res){
   res.sendStatus(204);
 });
 
-app.use(express.static('assets'));
-app.use('/public', express.static('public'));
+app.use(express.static('assets', {maxage: {maxAge: '182d'}}));
+app.use('/public', express.static('public', {maxAge: '182d'}));
 
 app.get('*', function(req, res) {
   res.setHeader('Content-Type', 'text/html; charset=utf-8');
