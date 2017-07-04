@@ -1,10 +1,11 @@
 @import '../../common/styles/reset.less';
+@import '../../common/styles/print.less';
+
 .Design3 {
   color: #888;
   zoom: 0.75;
   font-weight: lighter;
   line-height: 1.2;
-  border-left: 4px solid #40A7BA;
   .mainDetails {
     padding: 25px 0 0 20px;
     position: relative;
@@ -61,23 +62,12 @@
         display: inline-block;
         font-size: 18px;
         background-color: #40A7BA;
-        padding: 0 0 0 20px;
+        padding: 0 20px;
         line-height: 30px;
         color: #fff;
         font-weight: 100;
         position: relative;
         margin: 5px 0;
-        &:after{
-          content:'';
-          width: 0;
-          height: 0;
-          border-width: 15px;
-          border-style: solid;
-          border-color: #40A7BA;
-          position: absolute;
-          right: -25px;
-          border-right: 10px solid #fff;
-        }
       }
       .sectionContent {
         padding-left: 10px;
