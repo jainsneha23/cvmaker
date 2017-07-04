@@ -15,8 +15,7 @@ import './small.less';
 const tilesData = [
   {img: 'cvimages/design1'},
   {img: 'cvimages/design2'},
-  {img: 'cvimages/design3'},
-  {img: 'cvimages/design4'}
+  {img: 'cvimages/design3'}
 ];
 
 

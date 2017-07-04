@@ -96,7 +96,6 @@ class Home extends React.Component {
             <img src="/cvimages/design1.png"/>
             <img src="/cvimages/design2.png"/>
             <img src="/cvimages/design3.png"/>
-            <img src="/cvimages/design4.png"/>
           </div>
         </ScrollElement>
         <ScrollElement className="messageSection" id="contact">
