@@ -13,9 +13,9 @@ import Header from '../../components/header';
 import './small.less';
 
 const tilesData = [
-  {img: 'cvimages/design1'},
-  {img: 'cvimages/design2'},
-  {img: 'cvimages/design3'}
+  {img: 'cvimages/design1', designColor: '#40a7ba'},
+  {img: 'cvimages/design2', designColor: '#fdb120'},
+  {img: 'cvimages/design3', designColor: '#40a7ba'}
 ];
 
 
@@ -53,6 +53,7 @@ class Design extends React.Component {
   preview() {
     if (typeof localStorage !== 'undefined') {
       localStorage.setItem('designId', this.state.designId+1);
+      localStorage.setItem('designColor', tilesData[this.state.designId].designColor);
       browserHistory.push('/preview');
     }
     else browserHistory.push(`/preview?designId=${this.state.designId+1}`);

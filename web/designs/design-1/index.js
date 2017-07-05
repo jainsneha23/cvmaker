@@ -21,6 +21,8 @@ const formatDate = (date) => {
 
 const Design1 = (props) => (
   <InlineCss id="cv" componentName="design-1" stylesheet={stylesheet}>
+  <style>{`.Design1 .mainDetails{border-bottom-color: ${props.designColor} !important}
+             .Design1 .mainArea section .sectionTitle{ color: ${props.designColor} !important}`}</style>
     <div className="Design1">
       <div className="mainDetails">
         <div className="name">
@@ -139,8 +141,13 @@ const Design1 = (props) => (
   </InlineCss>
 );
 
+Design1.defaultProps = {
+  designColor: '#40a7ba'
+};
+
 Design1.propTypes = {
-  data: React.PropTypes.object.isRequired
+  data: React.PropTypes.object.isRequired,
+  designColor: React.PropTypes.string
 };
 
 export default Design1;
