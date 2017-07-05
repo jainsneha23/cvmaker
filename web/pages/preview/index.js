@@ -19,15 +19,17 @@ import './small.less';
 class Preview extends React.Component {
   constructor(props) {
     super(props);
+    const designColor = typeof localStorage !== 'undefined' && localStorage.getItem('designColor') || '#40A7BA';
     this.state = {
       error: null,
+      designColor,
       downloading: false
     };
     this.designId = typeof localStorage !== 'undefined' && +localStorage.getItem('designId') || 1;
     let cvdata = typeof localStorage !== 'undefined' && localStorage.getItem('cvdata');
     this.cvdata = cvdata ? JSON.parse(cvdata) : (this.props.cvdata || emptyJson);
     this.download = this.download.bind(this);
-    this.choose = this.choose.bind(this);
+    this.handleColorChange = this.handleColorChange.bind(this);
   }
 
   choose() {
@@ -41,7 +43,7 @@ class Preview extends React.Component {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({cvdata: this.cvdata, designId: this.designId})})
+      body: JSON.stringify({cvdata: this.cvdata, designId: this.designId, designColor: this.state.designColor})})
       .then((res) => {
         this.setState({downloading: false});
         if (res.ok)
@@ -57,6 +59,10 @@ class Preview extends React.Component {
     browserHistory.push('/create');
   }
 
+  handleColorChange(e) {
+    this.setState({designColor: e.target.value});
+  }
+
   render() {
     let Comp = Designs[`Design${this.designId}`] || Designs['Design1'];
     return (
@@ -67,12 +73,15 @@ class Preview extends React.Component {
             onClick={this.download} /> }/>
         <Toolbar className="toolbar">
           <RaisedButton label="Edit" onClick={this.edit} icon={<ChevronLeft />}/>
-          <RaisedButton label="Select Design" onClick={this.choose} icon={<ColorLens />} />
+          <div>
+            <input type="color" value={this.state.designColor} onChange={this.handleColorChange} className="colorpicker" />
+            <RaisedButton label="Select Design" onClick={this.choose} icon={<ColorLens />} />
+          </div>
         </Toolbar>
         <div className="error">{this.state.error}</div>
         <Card className="card">
           <CardText className="cardtext" >
-            <Comp data={this.cvdata} />
+            <Comp data={this.cvdata} designColor={this.state.designColor} />
           </CardText>
         </Card>
       </div>

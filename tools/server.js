@@ -22,10 +22,11 @@ const messager = new Messager();
 app.locals.defaultTemplate = marko.load(`${__dirname}/./pages/index.marko`);
 app.locals.buildAssetsInfo = require(`${__dirname}/../build-manifest.json`);
 
-const getComponentAsHTML = (Component, props) => {
+const getComponentAsHTML = (Component, cvdata, designColor) => {
   try {
-    return ReactDOMServer.renderToStaticMarkup(<Component data={props} />);
-  } catch (exception) {
+    return ReactDOMServer.renderToStaticMarkup(<Component data={cvdata} designColor={designColor} />);
+  } catch (e) {
+    console.error(e);
     return '<div>Some Error Occured</div>';
   }
 };
@@ -41,7 +42,7 @@ if (ENV === 'development') {
 app.post('/download', bodyParser.json() , function(req, res){
   let Comp = Designs[`Design${req.body.designId}`];
   const filename = `Design${req.body.designId}-${new Date().getTime()}`;
-  generateComponentAsPDF({html: getComponentAsHTML(Comp, req.body.cvdata), filename}).then((response) => {
+  generateComponentAsPDF({html: getComponentAsHTML(Comp, req.body.cvdata, req.body.designColor), filename}).then((response) => {
     res.send(response);
   }).catch((error) => res.status(500).send(error));
 });
@@ -60,12 +61,6 @@ app.get('/design/:id', bodyParser.json() , function(req, res){
 app.post('/feedback', bodyParser.json() , function(req, res){
   messager.sendFeedback(req.body);
   mailService.sendFeedback(req.body);
-  /*.then(() => {
-    res.sendStatus(204);
-  }).catch((e) => {
-    console.log(e);
-    res.sendStatus(204);
-  });*/
   res.sendStatus(204);
 });
 
