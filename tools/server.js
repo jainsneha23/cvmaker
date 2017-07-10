@@ -3,6 +3,8 @@ import bodyParser from 'body-parser';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import marko from 'marko';
+import { graphql } from 'graphql';
+import graphqlHTTP from 'express-graphql';
 import 'ignore-styles';
 
 import Mailer from './mailer';
@@ -10,6 +12,7 @@ import Messager from './messager';
 import {generateComponentAsPDF} from './generate-pdf.js';
 import * as Designs from '../web/designs';
 
+import Schema from '../api/graphql';
 
 /* eslint-disable no-console */
 
@@ -38,6 +41,28 @@ if (ENV === 'development') {
   app.use(require('webpack-dev-middleware')(compiler));
   app.use(require('webpack-hot-middleware')(compiler));
 }
+
+// GraphqQL server route
+app.use('/graphql', graphqlHTTP(() => ({
+  Schema,
+  pretty: true
+})));
+
+let i = 0;
+
+app.get('/query', (req, res) => {
+  let query = ['query { todos { id, title, completed } }',
+    'mutation { add (title: "Clean garage") { id, title } }',
+    'query { todos { id, title, completed } }',
+    'mutation { update (id: "1", title: "Clean inbox") { id, title } }',
+    'query { todos { id, title, completed } }',
+    'mutation { delete (id: "2") { id, title } }',
+    'query { todos { id, title, completed } }'];
+  graphql(Schema, query[i]).then( function(result) {
+    res.send(JSON.stringify(result,null,' '));
+    i++;
+  });
+});
 
 app.post('/download', bodyParser.json() , function(req, res){
   let Comp = Designs[`Design${req.body.designId}`];
@@ -78,12 +103,13 @@ app.get('*', function(req, res) {
   }, res);
 });
 
+app.use(function(err, req, res) {
+  res.status(err.status || 500).send('Internal Server Error');
+});
+
 const server = app.listen(port, (err) => {
-  if (err) {
-    console.log(err);
-  } else {
-    console.log(`Server listening on port: ${port}`);
-  }
+  if (err) console.log(err);
+  else console.log(`Server listening on port: ${port}`);
 });
 
 export default server;
