@@ -1,13 +1,11 @@
 import { MongoClient } from 'mongodb';
 import deasync from 'deasync';
 
-import config from './config';
-
 class Database {
-  constructor() {
+  constructor(config) {
     let connecting = true;
     const self = this;
-    MongoClient.connect(config.dbUrl, (err, db) => {
+    MongoClient.connect(config.database.url, (err, db) => {
       if (err) throw `DB connection failed: ${err}`;
       else {
         connecting = false;
@@ -17,6 +15,7 @@ class Database {
     while(connecting) {
       deasync.sleep(100);
     }
+    return self.db;
   }
 
   createTable(name) {

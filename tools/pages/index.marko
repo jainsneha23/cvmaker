@@ -39,8 +39,8 @@
         display: block;
         background-repeat: no-repeat;
         background-size: contain;
-        width: 35px;
-        height: 35px;
+        width: 45px;
+        height: 45px;
         opacity: 1;
         position: absolute;
         bottom: 0; right: 0;
@@ -52,7 +52,7 @@
       #toggle + .toggle span {
         display: block;
         height:35px;width: 35px;
-        background: url(/images/like.png) no-repeat;
+        background: url(/assets/images/like.png) no-repeat;
         background-size: contain;
       }
       #toggle:checked + .toggle {
@@ -65,13 +65,24 @@
   </head>
   <body>
     <div id="fb-root"></div>
-    <script if(data.env != "development")>(function(d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) return;
-      js = d.createElement(s); js.id = id;
-      js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.9";
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));</script>
+    <script if(data.env === "production")>
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '150860672153783',
+          cookie     : true,
+          xfbml      : true,
+          version    : 'v2.8'
+        });
+        FB.AppEvents.logPageView();   
+      };
+      (function(d, s, id){
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement(s); js.id = id;
+        js.src = '//connect.facebook.net/en_US/sdk.js';
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+    </script>
     <div id="app"></div>
     <div id="social">
       <input type="checkbox" id="toggle" />
@@ -82,13 +93,29 @@
     </div>
     <script src="${data.vendorJsBundle}"></script>
     <script src="${data.mainJsBundle}"></script>
-    <script if(data.env != "development")>
+    <script if(data.env === "production")>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m);
       })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
       ga('create', 'UA-64292987-1', 'auto');
       ga('send', 'pageview');
+    </script>
+    <script>
+      window.__SERVER_DATA__ = ${data.serverVars};
+      if (window.opener) {
+        window.opener.focus();
+
+        if(window.opener.loginCallBack) {
+          window.opener.loginCallBack(${data.serverVars});
+        }
+
+        window.close();
+      }
+      
+      function loginCallBack(data) {
+        window.__SERVER_DATA__ = data;
+      }
     </script>
   </body>
 </html> 

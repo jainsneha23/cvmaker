@@ -58,7 +58,7 @@ class Home extends React.Component {
           <article className="bigImage" ref={(bigImage) => { this.bigImage = bigImage; }} >
             <section>
               <p>Which one would you choose?</p>
-              <img src="/images/background.png"/>
+              <img src="/assets/images/background.png"/>
               <p>Then why not take one for you ??</p>
             </section>
             <section>
@@ -70,20 +70,20 @@ class Home extends React.Component {
         </ScrollElement>
         <article className="highlights maxwidth">
           <section>
-            <img src="/images/design.png"/>
+            <img src="/assets/images/design.png"/>
             <header>we Have</header>
             <p>Existing professional resume templates to suit any profession. Perfect for entry level, senior, creative, intern and graduate positions.
             </p>
           </section>
           <section>
-            <img src="/images/choose.png"/>
+            <img src="/assets/images/choose.png"/>
             <header>we Offer</header>
             <p>
               Proffesional templates, along with on demand resume services. Just drop us a email, through our feedback form.
             </p>
           </section>
           <section>
-            <img src="/images/edit.png"/>
+            <img src="/assets/images/edit.png"/>
             <header>we are Different</header>
             <p>
               No signup required. We provide easy forms to prepare your resume. Then it can be easily downloaded as a pdf.
@@ -93,9 +93,9 @@ class Home extends React.Component {
         <ScrollElement className="templates" id="designs">
           <header>Our templates</header>
           <div className="maxwidth">
-            <img src="/cvimages/design1.png"/>
-            <img src="/cvimages/design2.png"/>
-            <img src="/cvimages/design3.png"/>
+            <img src="/assets/cvimages/design1.png"/>
+            <img src="/assets/cvimages/design2.png"/>
+            <img src="/assets/cvimages/design3.png"/>
           </div>
         </ScrollElement>
         <ScrollElement className="messageSection" id="contact">
