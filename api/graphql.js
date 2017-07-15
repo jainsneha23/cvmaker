@@ -8,27 +8,8 @@ import {
   GraphQLSchema
 } from 'graphql';
 
-import Database from './database';
-
-const db = new Database();
-
 const dbName = 'TODOS';
-
-db.createTable(dbName).then(() => {
-  db.delete(dbName, {title: /.*/}).then(() => {
-    db.insert(dbName, [{
-      id: '1',
-      title: 'Read emails',
-      completed: false
-    }, {
-      id: '2',
-      title: 'Buy orange',
-      completed: false
-    }]).then((res) => {
-      console.log(res);
-    });
-  });
-});
+const db = global.db;
 
 const TodoType = new GraphQLObjectType({  
   name: 'todo',

@@ -13,9 +13,9 @@ import Header from '../../components/header';
 import './small.less';
 
 const tilesData = [
-  {img: 'cvimages/design1', designColor: '#40a7ba'},
-  {img: 'cvimages/design2', designColor: '#fdb120'},
-  {img: 'cvimages/design3', designColor: '#40a7ba'}
+  {img: '/assets/cvimages/design1', designColor: '#40a7ba'},
+  {img: '/assets/cvimages/design2', designColor: '#fdb120'},
+  {img: '/assets/cvimages/design3', designColor: '#40a7ba'}
 ];
 
 
