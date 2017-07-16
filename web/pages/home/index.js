@@ -12,6 +12,9 @@ class Home extends React.Component {
     this.state = {
       activeLink: (window && window.location.hash.substr(1)) || 'top'
     };
+    if (window.__SERVER_DATA__) {
+      this.user = window.__SERVER_DATA__.user;
+    }
     this.setActiveNav = this.setActiveNav.bind(this);
     this.handlePageScroll = this.handlePageScroll.bind(this);
   }
@@ -22,6 +25,11 @@ class Home extends React.Component {
 
   componentWillUnmount() {
     document.removeEventListener('scroll', this.handlePageScroll);
+  }
+
+  handleLogin() {
+    window.open('/auth/facebook','popup','width=600,height=600');
+    return false;
   }
 
   handlePageScroll() {
@@ -64,7 +72,21 @@ class Home extends React.Component {
             <section>
               <header>Impress with your resume</header>
               <p>Your CV is the first point of contact with the recruiter. Stand out and get a interview call faster</p>
-              <Link to='/create'>Start Now</Link>
+              {this.user ? <div className="loggedIn">
+                <span>Welcome, </span>
+                <span>{this.user.displayName}</span>
+              </div> :  
+              <div className="login">
+                <span>Signin with your social accounts</span>
+                <ul>
+                  <li>
+                    <a className="facebook" href="/auth/facebook" target="popup" onClick={this.handleLogin}>
+                      <img src="/assets/images/facebook.png" alt="facebook" />
+                    </a>
+                  </li>
+                </ul>
+              </div>}
+              <Link to='/create'>{this.user ? 'Create CV now' : 'Or, start without signing in'}</Link>
             </section>
           </article>
         </ScrollElement>

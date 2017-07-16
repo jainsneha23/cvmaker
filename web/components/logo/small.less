@@ -4,10 +4,11 @@
   font-size: 22px;
   font-weight: 100;
   line-height: 50px;
+  position: relative;
   > span {
     display: inline-block;
     vertical-align: text-bottom;
-    background: url('/images/logo.png') no-repeat left top;
+    background: url('/assets/images/logo.png') no-repeat left top;
     width: 25px;
     height: 30px;
     background-position: -23px 0;
@@ -29,13 +30,14 @@
   }
   .beta {
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 36px;
+    right: 0;
+    display: inline-block;
     background: #ff7c00;
-    font-size: 16px;
+    font-size: 14px;
     line-height: 1;
+    text-align: center;
     color: #fff;
-    padding: 5px 30px;
-    transform: translate3d(-30px, 4px, 0) rotateZ(-45deg);
+    padding: 2px 10px;
   }
 }

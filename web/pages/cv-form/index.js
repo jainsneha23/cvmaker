@@ -4,6 +4,9 @@ import clone from 'clone';
 import {Tabs, Tab} from 'material-ui/Tabs';
 import {Toolbar} from 'material-ui/Toolbar';
 import RaisedButton from 'material-ui/RaisedButton';
+import Avatar from 'material-ui/Avatar';
+import PreviewIcon from 'material-ui/svg-icons/action/visibility';
+
 import { browserHistory } from 'react-router';
 import {stateToHTML} from 'draft-js-export-html';
 import {stateFromHTML} from 'draft-js-import-html';
@@ -41,23 +44,27 @@ class CvForm extends React.Component {
     this.state =  {
       stepIndex: 0,
       formdata: cvdata || clone(emptyJson,3),
-      showLabel: false
+      mobileView: false
     };
     this.stepCount = 6;
     this.preview = this.preview.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleBack = this.handleBack.bind(this);
     this.handleNext = this.handleNext.bind(this);
-    this.handleLabel = this.handleLabel.bind(this);
+    this.handleWidth = this.handleWidth.bind(this);
   }
 
   componentDidMount() {
-    this.handleLabel();
-    window.onresize = this.handleLabel;
+    this.handleWidth();
+    window.addEventListener('resize', this.handleWidth);
   }
 
-  handleLabel() {
-    this.setState({showLabel: window.innerWidth > 604});
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.handleWidth);
+  }
+
+  handleWidth() {
+    this.setState({mobileView: window.innerWidth <= 604});
   }
 
   handleBack() {
@@ -96,23 +103,26 @@ class CvForm extends React.Component {
   render() {
     return (
       <div className="cv-form">
-        <Header rightElem={<RaisedButton
-            label={'Preview'}
-            secondary={true}
-            onClick={this.preview} /> }/>
+        <Header rightElem={this.state.mobileView ? <Avatar backgroundColor='#fff' onClick={this.preview}>
+          <PreviewIcon color='rgb(64, 167, 186)' />
+        </Avatar> : <RaisedButton
+          onClick={this.preview}
+          icon={<PreviewIcon color='rgb(64, 167, 186)' />}
+          label="Preview"
+          labelColor='rgb(64, 167, 186)' />}/>
         <Tabs
           onChange={this.handleChange}
           value={this.state.stepIndex}
           tabItemContainerStyle={{top: '64px', position: 'fixed', width: '100%', zIndex: 2}}
-          inkBarStyle={{top: this.state.showLabel ? '136px' : '112px', position: 'fixed', zIndex: 2}}
+          inkBarStyle={{top: this.state.mobileView ? '112px' : '136px', position: 'fixed', zIndex: 2}}
           contentContainerStyle={{margin: '145px 0 60px 0'}} >
-          <Tab value={0} icon={<PersonalIcon />} label={this.state.showLabel && 'Personal'} >
+          <Tab value={0} icon={<PersonalIcon />} label={!this.state.mobileView && 'Personal'} >
             <FormPersonal data={this.state.formdata.personal} onChange={(data) => this.collect(data, 'personal')} />
           </Tab>
-          <Tab value={1} icon={<ProfileIcon />} label={this.state.showLabel && 'Profile'}>
+          <Tab value={1} icon={<ProfileIcon />} label={!this.state.mobileView && 'Profile'}>
             <FormProfile data={this.state.formdata.profile} onChange={(data) => this.collect(data, 'profile')} />
           </Tab>
-          <Tab value={2} icon={<SkillIcon />} label={this.state.showLabel && 'Skill'} >
+          <Tab value={2} icon={<SkillIcon />} label={!this.state.mobileView && 'Skill'} >
             <FormGroup
               type="skills"
               title="Skill Category"
@@ -121,7 +131,7 @@ class CvForm extends React.Component {
               data={this.state.formdata.skills}
               onChange={(data) => this.collect(data, 'skills')} />
           </Tab>
-          <Tab value={3} icon={<JobIcon />} label={this.state.showLabel && 'Job'} >
+          <Tab value={3} icon={<JobIcon />} label={!this.state.mobileView && 'Job'} >
             <FormGroup
               type="job"
               title="Company Name"
@@ -130,7 +140,7 @@ class CvForm extends React.Component {
               data={this.state.formdata.job}
               onChange={(data) => this.collect(data, 'job')} />
           </Tab>
-          <Tab value={4} icon={<EducationIcon />} label={this.state.showLabel && 'Education'} >
+          <Tab value={4} icon={<EducationIcon />} label={!this.state.mobileView && 'Education'} >
             <FormGroup
               type="education"
               title="Degree"
@@ -139,7 +149,7 @@ class CvForm extends React.Component {
               data={this.state.formdata.education}
               onChange={(data) => this.collect(data, 'education')} />
           </Tab>
-          <Tab value={5} icon={<MiscIcon />} label={this.state.showLabel && 'Others'} >
+          <Tab value={5} icon={<MiscIcon />} label={!this.state.mobileView && 'Others'} >
             <FormGroup
               type="others"
               title="Label"
@@ -149,17 +159,19 @@ class CvForm extends React.Component {
               onChange={(data) => this.collect(data, 'others')} />
           </Tab>
         </Tabs>
-        <Toolbar style={{position: 'fixed', bottom: 0, width: '100%', padding: '10px 24px', zIndex: 2}}>
-          <RaisedButton
-            label="Back"
-            primary={true}
-            onClick={this.handleBack}
-            disabled={this.state.stepIndex === 0} />
-          <RaisedButton
-            label={this.state.stepIndex >= this.stepCount - 1 ? 'Preview' : 'Next'}
-            primary={true}
-            onClick={this.handleNext}
-            disabled={this.state.stepIndex === this.stepCount} />
+        <Toolbar className="toolbar">
+          <div>
+            <RaisedButton
+              label="Back"
+              primary={true}
+              onClick={this.handleBack}
+              disabled={this.state.stepIndex === 0} />
+            <RaisedButton
+              label={this.state.stepIndex >= this.stepCount - 1 ? 'Preview' : 'Next'}
+              primary={true}
+              onClick={this.handleNext}
+              disabled={this.state.stepIndex === this.stepCount} />
+            </div>
         </Toolbar>
       </div>
     );
