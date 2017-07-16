@@ -5,7 +5,9 @@ import { browserHistory } from 'react-router';
 
 import RaisedButton from 'material-ui/RaisedButton';
 import {Toolbar} from 'material-ui/Toolbar';
+import Avatar from 'material-ui/Avatar';
 import {Card, CardText} from 'material-ui/Card';
+import DownloadIcon from 'material-ui/svg-icons/file/cloud-download';
 import ChevronLeft from 'material-ui/svg-icons/navigation/chevron-left';
 import ColorLens from 'material-ui/svg-icons/image/color-lens';
 
@@ -23,13 +25,28 @@ class Preview extends React.Component {
     this.state = {
       error: null,
       designColor,
-      downloading: false
+      downloading: false,
+      mobileView: false
     };
     this.designId = typeof localStorage !== 'undefined' && +localStorage.getItem('designId') || 1;
     let cvdata = typeof localStorage !== 'undefined' && localStorage.getItem('cvdata');
     this.cvdata = cvdata ? JSON.parse(cvdata) : (this.props.cvdata || emptyJson);
     this.download = this.download.bind(this);
     this.handleColorChange = this.handleColorChange.bind(this);
+    this.handleWidth = this.handleWidth.bind(this);
+  }
+
+  componentDidMount() {
+    this.handleWidth();
+    window.addEventListener('resize', this.handleWidth);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.handleWidth);
+  }
+
+  handleWidth() {
+    this.setState({mobileView: window.innerWidth <= 604});
   }
 
   choose() {
@@ -67,16 +84,19 @@ class Preview extends React.Component {
     let Comp = Designs[`Design${this.designId}`] || Designs['Design1'];
     return (
       <div className="preview">
-        <Header rightElem={<RaisedButton
-            label={this.state.downloading ? 'Downloading...' : 'Download'}
-            secondary={true}
-            onClick={this.download} /> }/>
+        <Header rightElem={this.state.mobileView ? <Avatar backgroundColor='#fff' onClick={this.download}>
+          <DownloadIcon color='rgb(64, 167, 186)' className={this.state.downloading && 'downloading'} />
+        </Avatar> : <RaisedButton
+          onClick={this.download}
+          icon={<DownloadIcon color='rgb(64, 167, 186)' className={this.state.downloading && 'downloading'} />}
+          label={this.state.downloading ? 'Downloading...' : 'Download'}
+          labelColor='rgb(64, 167, 186)' />}/>
         <Toolbar className="toolbar">
           <div>
-            <RaisedButton label="Edit" onClick={this.edit} icon={<ChevronLeft />}/>
+            <RaisedButton style={{minWidth: '48px'}} label={this.state.mobileView ? '' : 'Edit'} onClick={this.edit} icon={<ChevronLeft />}/>
             <div>
               <input type="color" value={this.state.designColor} onChange={this.handleColorChange} className="colorpicker" />
-              <RaisedButton label="Select Design" onClick={this.choose} icon={<ColorLens />} />
+              <RaisedButton style={{minWidth: '48px'}} label={this.state.mobileView ? '' : 'Select Design'} onClick={this.choose} icon={<ColorLens />} />
             </div>
           </div>
         </Toolbar>
