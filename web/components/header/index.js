@@ -38,6 +38,7 @@ class Header extends React.Component {
   }
 
   render() {
+    const photo = this.user && this.user.photos && this.user.photos.length && this.user.photos[0].value;
     return (
       <div className="header fixed">
         <AppBar
@@ -48,13 +49,12 @@ class Header extends React.Component {
             {this.user ?
               <IconMenu
                 style={{marginLeft: '10px', cursor: 'pointer'}}
-                iconButtonElement={<div>{this.state.mobileView ? <Avatar
-                  color='rgb(64, 167, 186)'
-                  backgroundColor='#fff'>
-                  {this.user && this.user.displayName[0]}</Avatar> : <RaisedButton
-                  icon={<AccountCircle color='rgb(64, 167, 186)' />}
-                  label={this.user.displayName}
-                  labelColor='rgb(64, 167, 186)' />}</div>}
+                iconButtonElement={<div>{this.state.mobileView ?
+                  <Avatar src={photo} /> :
+                  <RaisedButton
+                    icon={<Avatar size={30} src={photo} />}
+                    label={this.user.displayName}
+                    labelColor='rgb(64, 167, 186)' />}</div>}
                 anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}>
                 <MenuItem>
                   <a href='/auth/logout'>Log Out</a>
