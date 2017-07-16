@@ -8,7 +8,8 @@ const AuthRouter = (app, express, CONFIG) => {
   passport.use(new Strategy({
     clientID: CONFIG.facebook.appID,
     clientSecret: CONFIG.facebook.appSecret,
-    callbackURL: CONFIG.facebook.callbackURL
+    callbackURL: CONFIG.facebook.callbackURL,
+    profileFields: ['id', 'displayName', 'name', 'gender', 'picture.type(medium)']
   }, (accessToken, refreshToken, profile, cb) => {
     return cb(null, profile);
   }));
