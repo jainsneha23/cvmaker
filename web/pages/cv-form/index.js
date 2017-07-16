@@ -113,7 +113,7 @@ class CvForm extends React.Component {
         <Tabs
           onChange={this.handleChange}
           value={this.state.stepIndex}
-          tabItemContainerStyle={{top: '64px', position: 'fixed', width: '100%', zIndex: 2}}
+          tabItemContainerStyle={{top: '63px', position: 'fixed', width: '100%', zIndex: 2}}
           inkBarStyle={{top: this.state.mobileView ? '112px' : '136px', position: 'fixed', zIndex: 2}}
           contentContainerStyle={{margin: '145px 0 60px 0'}} >
           <Tab value={0} icon={<PersonalIcon />} label={!this.state.mobileView && 'Personal'} >

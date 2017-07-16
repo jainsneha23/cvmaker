@@ -60,8 +60,14 @@ class Header extends React.Component {
                   <a href='/auth/logout'>Log Out</a>
                 </MenuItem>
               </IconMenu> :
-            <Link to='/login'>
-              <Avatar backgroundColor='#fff'><AccountCircle color='rgb(64, 167, 186)' /></Avatar>
+            <Link to='/login' style={{marginLeft: '10px'}}>
+              {this.state.mobileView ?
+                <Avatar backgroundColor='#fff'><AccountCircle color='rgb(64, 167, 186)' /></Avatar> :
+                <RaisedButton
+                  icon={<AccountCircle color='rgb(64, 167, 186)' />}
+                  label='Login'
+                  labelColor='rgb(64, 167, 186)' />
+              }
             </Link>}
           </div>}
           iconStyleRight={{margin: '16px 0 0 0'}}
