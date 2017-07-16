@@ -6,6 +6,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
 import Home from '../web/pages/home';
+import Login from '../web/pages/login';
 import CvForm from '../web/pages/cv-form';
 import Preview from '../web/pages/preview';
 import Design from '../web/pages/design';
@@ -28,10 +29,11 @@ const muiTheme = getMuiTheme({
 render((
   <MuiThemeProvider muiTheme={muiTheme}>
     <Router history = {browserHistory}>
-      <Route path = "/" component = {Home} />
-      <Route path = "/create" component = {CvForm} />
-      <Route path = "/preview" component= {Preview} />
-      <Route path = "/designs" component= {Design} />
+      <Route path="/" component={Home} />
+      <Route path="/login" component={Login} />
+      <Route path="/create" component ={CvForm} />
+      <Route path="/preview" component={Preview} />
+      <Route path="/designs" component={Design} />
       <Route path='*' component={ErrorPage} />
     </Router>
   </MuiThemeProvider>

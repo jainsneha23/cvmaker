@@ -1,4 +1,6 @@
 @import '../../common/styles/reset.less';
+@import '../../common/styles/styles.less';
+
 .preview {
   background: #e7e7e7;
   .toolbar {
@@ -7,6 +9,12 @@
     width: 100%;
     z-index: 1;
     padding: 10px 24px !important; 
+    > div {
+      .maxwidth;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+    }
     .colorpicker {
       margin-top: 0 !important;
       margin-right: 12px;

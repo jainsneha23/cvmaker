@@ -72,10 +72,12 @@ class Preview extends React.Component {
             secondary={true}
             onClick={this.download} /> }/>
         <Toolbar className="toolbar">
-          <RaisedButton label="Edit" onClick={this.edit} icon={<ChevronLeft />}/>
           <div>
-            <input type="color" value={this.state.designColor} onChange={this.handleColorChange} className="colorpicker" />
-            <RaisedButton label="Select Design" onClick={this.choose} icon={<ColorLens />} />
+            <RaisedButton label="Edit" onClick={this.edit} icon={<ChevronLeft />}/>
+            <div>
+              <input type="color" value={this.state.designColor} onChange={this.handleColorChange} className="colorpicker" />
+              <RaisedButton label="Select Design" onClick={this.choose} icon={<ColorLens />} />
+            </div>
           </div>
         </Toolbar>
         <div className="error">{this.state.error}</div>

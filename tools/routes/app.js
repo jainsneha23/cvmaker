@@ -36,7 +36,7 @@ const AppRoutes = (app, express) => {
   });
 
   router.get('*', (req, res) => {
-    app.locals.renderIndex(res, req.user);
+    app.locals.renderIndex(res, {user: req.user});
   });
 
   return router;
