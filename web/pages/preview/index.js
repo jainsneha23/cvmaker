@@ -95,8 +95,10 @@ class Preview extends React.Component {
           <div>
             <RaisedButton style={{minWidth: '48px'}} label={this.state.mobileView ? '' : 'Edit'} onClick={this.edit} icon={<ChevronLeft />}/>
             <div>
-              <input type="color" value={this.state.designColor} onChange={this.handleColorChange} className="colorpicker" />
-              <RaisedButton style={{minWidth: '48px'}} label={this.state.mobileView ? '' : 'Select Design'} onClick={this.choose} icon={<ColorLens />} />
+              <RaisedButton style={{minWidth: '48px'}}
+                icon={<input type="color" value={this.state.designColor} onChange={this.handleColorChange} className="colorpicker" />}
+              />
+              <RaisedButton style={{minWidth: '48px', marginLeft: '10px'}} label={this.state.mobileView ? '' : 'Select Design'} onClick={this.choose} icon={<ColorLens />} />
             </div>
           </div>
         </Toolbar>
