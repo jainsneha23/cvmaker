@@ -9,7 +9,7 @@ const AuthRouter = (app, express, CONFIG) => {
     clientID: CONFIG.facebook.appID,
     clientSecret: CONFIG.facebook.appSecret,
     callbackURL: CONFIG.facebook.callbackURL,
-    profileFields: ['id', 'displayName', 'name', 'gender', 'picture.type(medium)']
+    profileFields: CONFIG.facebook.permissions
   }, (accessToken, refreshToken, profile, cb) => {
     return cb(null, profile);
   }));
