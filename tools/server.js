@@ -70,7 +70,7 @@ app.use(Session({
     httpOnly: true
   },
   store: new MongoStore({
-    db: global.db,
+    db: global.db.db,
     collection: CONFIG.database.user_session,
     clear_interval: CONFIG.session.clear_interval
   }, (err) => {

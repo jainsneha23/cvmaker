@@ -15,7 +15,6 @@ class Database {
     while(connecting) {
       deasync.sleep(100);
     }
-    return self.db;
   }
 
   createTable(name) {

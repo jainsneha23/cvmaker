@@ -112,7 +112,7 @@ FormGroup.propTypes = {
   type: React.PropTypes.string.isRequired,
   title: React.PropTypes.string.isRequired,
   buttonLabel: React.PropTypes.string.isRequired,
-  structure: React.PropTypes.array.isRequired
+  structure: React.PropTypes.object.isRequired
 };
 
 export default FormGroup;

@@ -7,6 +7,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import Avatar from 'material-ui/Avatar';
 import PreviewIcon from 'material-ui/svg-icons/action/visibility';
 
+import fetch from 'isomorphic-fetch';
 import { browserHistory } from 'react-router';
 import {stateToHTML} from 'draft-js-export-html';
 import {stateFromHTML} from 'draft-js-import-html';
@@ -24,7 +25,43 @@ import './small.less';
 class CvForm extends React.Component {
   constructor(props) {
     super(props);
-    let cvdata = localStorage && localStorage.getItem('cvdata');
+    if (window.__SERVER_DATA__) {
+      this.user = window.__SERVER_DATA__.user;
+    }
+    var query = `query { resumes (userid: ${this.user.id}) { id, resumeid, cvdata } }`;
+    fetch('/api/resume', {
+      method: 'POST',
+      body: query
+    }).then(data => data.json())
+    .then(data => this.handleCvData(data.resumes[0].cvdata))
+    .catch(() => {
+      let cvdata = localStorage && localStorage.getItem('cvdata');
+      this.handleCvData(cvdata);
+    });
+    this.state =  {
+      stepIndex: 0,
+      formdata: clone(emptyJson,3),
+      mobileView: false
+    };
+    this.stepCount = 6;
+    this.preview = this.preview.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleBack = this.handleBack.bind(this);
+    this.handleNext = this.handleNext.bind(this);
+    this.handleWidth = this.handleWidth.bind(this);
+    this.handleCvData = this.handleCvData.bind(this);
+  }
+
+  componentDidMount() {
+    this.handleWidth();
+    window.addEventListener('resize', this.handleWidth);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.handleWidth);
+  }
+
+  handleCvData (cvdata) {
     if (cvdata) {
       cvdata = JSON.parse(cvdata);
       cvdata.profile.summary = EditorState.createWithContent(stateFromHTML(cvdata.profile.summary));
@@ -40,27 +77,8 @@ class CvForm extends React.Component {
         i.responsibilities.value = EditorState.createWithContent(stateFromHTML(i.responsibilities.value));
       });
       cvdata.others.forEach(i => i.description.value = EditorState.createWithContent(stateFromHTML(i.description.value)));
+      this.setState({formdata: cvdata});
     }
-    this.state =  {
-      stepIndex: 0,
-      formdata: cvdata || clone(emptyJson,3),
-      mobileView: false
-    };
-    this.stepCount = 6;
-    this.preview = this.preview.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-    this.handleBack = this.handleBack.bind(this);
-    this.handleNext = this.handleNext.bind(this);
-    this.handleWidth = this.handleWidth.bind(this);
-  }
-
-  componentDidMount() {
-    this.handleWidth();
-    window.addEventListener('resize', this.handleWidth);
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('resize', this.handleWidth);
   }
 
   handleWidth() {
@@ -81,8 +99,15 @@ class CvForm extends React.Component {
     if (localStorage) {
       localStorage.setItem('cvdata', JSON.stringify(cvdata));
     }
-    browserHistory.push('/preview');
-    return;
+    var query = `mutation { update (id: ${this.user.id}_1, userid: ${this.user.id}, resumeId: 1, cvdata: "${JSON.stringify(cvdata)}") { id } }`;
+    fetch('/api/resume', {
+      method: 'POST',
+      body: query
+    }).then(() => {
+      browserHistory.push('/preview');
+    }).catch(() => {
+      browserHistory.push('/preview');
+    });
   }
 
   handleNext() {
