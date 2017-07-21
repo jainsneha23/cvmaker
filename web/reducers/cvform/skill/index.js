@@ -20,7 +20,7 @@ const skill = (state = initialState, action) => {
   }
 
   case 'MOVE_SKILL_GROUP': {
-    const list = [...state.list];
+    const list = clone(state.list);
     const item = list.splice(payload.idx, 1);
     list.splice(payload.dir === 'up' ? payload.idx - 1: payload.idx + 1, 0, item[0]);
     return { ...state, list};

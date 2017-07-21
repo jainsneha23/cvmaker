@@ -1,4 +1,5 @@
 export * from './skill';
+export * from './misc';
 
 const changePersonal = (e, type) => ({
   type: 'CHANGE_PERSONAL',
