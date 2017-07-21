@@ -11,7 +11,7 @@ module.exports = {
   devtool: '#inline-source-map',
   target: 'web',
   entry: {
-    main: './web/index.js',
+    main: './web/clientRenderer.js',
     vendor: [
       'es6-promise',
       'isomorphic-fetch',

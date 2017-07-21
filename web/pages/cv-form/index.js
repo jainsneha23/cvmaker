@@ -14,11 +14,10 @@ import {stateFromHTML} from 'draft-js-import-html';
 import {EditorState} from 'draft-js';
 
 import Header from '../../components/header';
-import FormPersonal from '../../components/form-personal';
-import FormProfile from '../../components/form-profile';
-import FormGroup from '../../components/form-group';
-import emptyJson from '../../../mock/empty.json';
-import {PersonalIcon, ProfileIcon, SkillIcon, JobIcon, EducationIcon, MiscIcon} from '../../components/icon';
+import PersonalDetails from '../../container/personal-details-container';
+import ProfileContainer from '../../container/profile-container';
+import SkillContainer from '../../container/skill-container';
+import {PersonalIcon, ProfileIcon, SkillIcon, JobIcon, EducationIcon, MiscIcon} from '../../components/basic/icon';
 
 import './small.less';
 
@@ -28,19 +27,23 @@ class CvForm extends React.Component {
     if (window.__SERVER_DATA__) {
       this.user = window.__SERVER_DATA__.user;
     }
-    var query = `query { resumes (userid: ${this.user.id}) { id, resumeid, cvdata } }`;
-    fetch('/api/resume', {
-      method: 'POST',
-      body: query
-    }).then(data => data.json())
-    .then(data => this.handleCvData(data.resumes[0].cvdata))
-    .catch(() => {
+    if (this.user) {
+      var query = `query { resumes (userid: ${this.user.id}) { id, resumeid, cvdata } }`;
+      fetch('/api/resume', {
+        method: 'POST',
+        body: query
+      }).then(data => data.json())
+      .then(data => this.handleCvData(data.resumes[0].cvdata))
+      .catch(() => {
+        let cvdata = localStorage && localStorage.getItem('cvdata');
+        this.handleCvData(cvdata);
+      });
+    } else {
       let cvdata = localStorage && localStorage.getItem('cvdata');
       this.handleCvData(cvdata);
-    });
+    }
     this.state =  {
-      stepIndex: 0,
-      formdata: clone(emptyJson,3),
+      stepIndex: 2,
       mobileView: false
     };
     this.stepCount = 6;
@@ -99,15 +102,17 @@ class CvForm extends React.Component {
     if (localStorage) {
       localStorage.setItem('cvdata', JSON.stringify(cvdata));
     }
-    var query = `mutation { update (id: ${this.user.id}_1, userid: ${this.user.id}, resumeId: 1, cvdata: "${JSON.stringify(cvdata)}") { id } }`;
-    fetch('/api/resume', {
-      method: 'POST',
-      body: query
-    }).then(() => {
-      browserHistory.push('/preview');
-    }).catch(() => {
-      browserHistory.push('/preview');
-    });
+    if (this.user) {
+      var query = `mutation { update (id: ${this.user.id}_1, userid: ${this.user.id}, resumeId: 1, cvdata: "${JSON.stringify(cvdata)}") { id } }`;
+      fetch('/api/resume', {
+        method: 'POST',
+        body: query
+      }).then(() => {
+        browserHistory.push('/preview');
+      }).catch(() => {
+        browserHistory.push('/preview');
+      });
+    } else browserHistory.push('/preview');
   }
 
   handleNext() {
@@ -117,12 +122,6 @@ class CvForm extends React.Component {
 
   handleChange(value) {
     this.setState({stepIndex: value});
-  }
-
-  collect(data, type){
-    const formdata = {...this.state.formdata};
-    formdata[type] = data;
-    this.setState({formdata});
   }
 
   render() {
@@ -142,47 +141,32 @@ class CvForm extends React.Component {
           inkBarStyle={{top: this.state.mobileView ? '112px' : '136px', position: 'fixed', zIndex: 2}}
           contentContainerStyle={{margin: '145px 0 60px 0'}} >
           <Tab value={0} icon={<PersonalIcon />} label={!this.state.mobileView && 'Personal'} >
-            <FormPersonal data={this.state.formdata.personal} onChange={(data) => this.collect(data, 'personal')} />
+            <PersonalDetails />
           </Tab>
           <Tab value={1} icon={<ProfileIcon />} label={!this.state.mobileView && 'Profile'}>
-            <FormProfile data={this.state.formdata.profile} onChange={(data) => this.collect(data, 'profile')} />
+            <ProfileContainer />
           </Tab>
           <Tab value={2} icon={<SkillIcon />} label={!this.state.mobileView && 'Skill'} >
-            <FormGroup
-              type="skills"
-              title="Skill Category"
-              buttonLabel="Add Skill Category"
-              structure={emptyJson.skills[0]}
-              data={this.state.formdata.skills}
-              onChange={(data) => this.collect(data, 'skills')} />
+            <SkillContainer />
           </Tab>
-          <Tab value={3} icon={<JobIcon />} label={!this.state.mobileView && 'Job'} >
-            <FormGroup
+          {/*<Tab value={3} icon={<JobIcon />} label={!this.state.mobileView && 'Job'} >
+            <FormGroupContainer
               type="job"
               title="Company Name"
-              buttonLabel="Add experience"
-              structure={emptyJson.job[0]}
-              data={this.state.formdata.job}
-              onChange={(data) => this.collect(data, 'job')} />
+              buttonLabel="Add experience" />
           </Tab>
           <Tab value={4} icon={<EducationIcon />} label={!this.state.mobileView && 'Education'} >
-            <FormGroup
+            <FormGroupContainer
               type="education"
               title="Degree"
-              buttonLabel="Add Education"
-              structure={emptyJson.education[0]}
-              data={this.state.formdata.education}
-              onChange={(data) => this.collect(data, 'education')} />
+              buttonLabel="Add Education" />
           </Tab>
           <Tab value={5} icon={<MiscIcon />} label={!this.state.mobileView && 'Others'} >
-            <FormGroup
+            <FormGroupContainer
               type="others"
               title="Label"
-              buttonLabel="Add More"
-              structure={emptyJson.others[0]}
-              data={this.state.formdata.others}
-              onChange={(data) => this.collect(data, 'others')} />
-          </Tab>
+              buttonLabel="Add More" />
+          </Tab>*/}
         </Tabs>
         <Toolbar className="toolbar">
           <div>

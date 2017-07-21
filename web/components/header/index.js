@@ -6,7 +6,7 @@ import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
 import AccountCircle from 'material-ui/svg-icons/action/account-circle';
 import { Link } from 'react-router';
-import Logo from '../logo';
+import Logo from '../basic/logo';
 import './small.less';
 
 class Header extends React.Component {

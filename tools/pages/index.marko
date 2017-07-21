@@ -101,7 +101,7 @@
       ga('send', 'pageview');
     </script>
     <script>
-      window.__SERVER_DATA__ = ${data.serverVars};
+      window.__REDUX_STATE__ = ${data.__REDUX_STATE__};
       if (window.opener) {
         if(window.opener.loginCallBack) {
           window.opener.loginCallBack(${data.serverVars});
@@ -114,7 +114,7 @@
       }
       
       function loginCallBack(data) {
-        window.__SERVER_DATA__ = data;
+        window.__REDUX_STATE__ = data;
       }
     </script>
     <script src="${data.vendorJsBundle}"></script>

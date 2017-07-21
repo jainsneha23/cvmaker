@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ScrollAnim from 'rc-scroll-anim';
 import { Link } from 'react-router';
-import Logo from '../../components/logo';
+import Logo from '../../components/basic/logo';
 import FormFeedback from '../../components/form-feedback';
 import './small.less';
 
