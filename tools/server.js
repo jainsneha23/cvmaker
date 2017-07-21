@@ -34,7 +34,7 @@ app.locals.renderIndex = (res, data) => {
     mainCssBundle: ENV === 'development' ? '' : `/public/${app.locals.buildAssetsInfo['main.css']}`,
     mainJsBundle: ENV === 'development' ? '/main.js' : `/public/${app.locals.buildAssetsInfo['main.js']}`,
     vendorJsBundle: ENV === 'development' ? '' : `/public/${app.locals.buildAssetsInfo['vendor.js']}`,
-    serverVars: JSON.stringify(data)
+    __REDUX_STATE__: JSON.stringify({...data, build: {env: ENV}})
   }, res);
 };
 

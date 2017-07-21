@@ -1,0 +1,51 @@
+@import '~ui-components-library/dist/styles/colours';
+@import '~ui-components-library/dist/styles/fonts';
+
+.ui-components-library {
+  .loading-indicator {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: fade(white, 80%);
+    width: 100%;
+    height: 100%;
+    z-index: 7;
+    display: none;
+    .loader {
+       position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+      height: 64px;
+      .spinner {
+        height: 48px;
+        width: 48px;
+        margin: auto;
+        border-radius: 50%;
+        border-top: 8px solid #e5e5e5;
+        border-right: 8px solid #e5e5e5;
+        border-bottom: 8px solid #e5e5e5;
+        border-left: 8px solid @ddl-blue-2;
+        animation: spinner 1.5s infinite linear;
+      }
+      .text {
+        position: absolute;
+        text-align: center;
+        .tesco-font();
+        font-size: 20px;
+        line-height: 1.2;
+        height: 24px;
+        width: 100%;
+        padding-top: 28px;
+      }
+    }
+    &.inside-container {
+      position: absolute;
+    }
+    &.show {
+      display: block;
+    }
+  }
+}

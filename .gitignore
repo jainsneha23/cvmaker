@@ -26,3 +26,6 @@ profile.json
 data/*
 assets/site-images/*
 
+#yarn files
+yarn*
+
