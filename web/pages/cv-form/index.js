@@ -17,6 +17,8 @@ import Header from '../../components/header';
 import PersonalDetails from '../../container/personal-details-container';
 import ProfileContainer from '../../container/profile-container';
 import SkillContainer from '../../container/skill-container';
+import JobContainer from '../../container/job-container';
+import EducationContainer from '../../container/education-container';
 import MiscContainer from '../../container/misc-container';
 import {PersonalIcon, ProfileIcon, SkillIcon, JobIcon, EducationIcon, MiscIcon} from '../../components/basic/icon';
 
@@ -44,7 +46,7 @@ class CvForm extends React.Component {
       this.handleCvData(cvdata);
     }
     this.state =  {
-      stepIndex: 5,
+      stepIndex: 0,
       mobileView: false
     };
     this.stepCount = 6;
@@ -139,7 +141,7 @@ class CvForm extends React.Component {
           onChange={this.handleChange}
           value={this.state.stepIndex}
           tabItemContainerStyle={{top: '63px', position: 'fixed', width: '100%', zIndex: 2}}
-          inkBarStyle={{top: this.state.mobileView ? '112px' : '136px', position: 'fixed', zIndex: 2}}
+          inkBarStyle={{height: '4px', top: this.state.mobileView ? '109px' : '133px', position: 'fixed', zIndex: 2}}
           contentContainerStyle={{margin: '145px 0 60px 0'}} >
           <Tab value={0} icon={<PersonalIcon />} label={!this.state.mobileView && 'Personal'} >
             <PersonalDetails />
@@ -150,18 +152,12 @@ class CvForm extends React.Component {
           <Tab value={2} icon={<SkillIcon />} label={!this.state.mobileView && 'Skill'} >
             <SkillContainer />
           </Tab>
-          {/*<Tab value={3} icon={<JobIcon />} label={!this.state.mobileView && 'Job'} >
-            <FormGroupContainer
-              type="job"
-              title="Company Name"
-              buttonLabel="Add experience" />
+          <Tab value={3} icon={<JobIcon />} label={!this.state.mobileView && 'Job'} >
+            <JobContainer />
           </Tab>
           <Tab value={4} icon={<EducationIcon />} label={!this.state.mobileView && 'Education'} >
-            <FormGroupContainer
-              type="education"
-              title="Degree"
-              buttonLabel="Add Education" />
-          </Tab>*/}
+            <EducationContainer />
+          </Tab>}
           <Tab value={5} icon={<MiscIcon />} label={!this.state.mobileView && 'Others'} >
             <MiscContainer />
           </Tab>
@@ -178,7 +174,7 @@ class CvForm extends React.Component {
               primary={true}
               onClick={this.handleNext}
               disabled={this.state.stepIndex === this.stepCount} />
-            </div>
+          </div>
         </Toolbar>
       </div>
     );

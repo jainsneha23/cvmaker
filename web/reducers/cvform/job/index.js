@@ -1,36 +1,36 @@
 import clone from 'clone';
 import initialState from './initial-state';
 
-const others = (state = initialState, action) => {
+const job = (state = initialState, action) => {
 
   const payload = action.payload;
   
   switch (action.type) {
-
-  case 'ADD_MISC_GROUP': {
+    
+  case 'ADD_JOB_GROUP': {
     const list = [...state.list];
     list.push(clone(initialState.list[0]));
     return { ...state, list};
   }
 
-  case 'DELETE_MISC_GROUP': {
+  case 'DELETE_JOB_GROUP': {
     const list = [...state.list];
     list.splice(payload.idx, 1);
     return { ...state, list};
   }
 
-  case 'MOVE_MISC_GROUP': {
+  case 'MOVE_JOB_GROUP': {
     const list = [...state.list];
     const item = list.splice(payload.idx, 1);
     list.splice(payload.dir === 'up' ? payload.idx - 1: payload.idx + 1, 0, item[0]);
     return { ...state, list};
   }
 
-  case 'TOGGLE_MISC_GROUP': {
+  case 'TOGGLE_JOB_GROUP': {
     return { ...state, expanded: payload.idx};
   }
     
-  case 'HANDLE_MISC_CHANGE': {
+  case 'HANDLE_JOB_CHANGE': {
     const list = clone(state.list);
     const { idx, type, val } = {...payload};
     list[idx][type].value = val;
@@ -43,4 +43,4 @@ const others = (state = initialState, action) => {
   }
 };
 
-export default others;
+export default job;
