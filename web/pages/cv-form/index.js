@@ -17,6 +17,7 @@ import Header from '../../components/header';
 import PersonalDetails from '../../container/personal-details-container';
 import ProfileContainer from '../../container/profile-container';
 import SkillContainer from '../../container/skill-container';
+import MiscContainer from '../../container/misc-container';
 import {PersonalIcon, ProfileIcon, SkillIcon, JobIcon, EducationIcon, MiscIcon} from '../../components/basic/icon';
 
 import './small.less';
@@ -43,7 +44,7 @@ class CvForm extends React.Component {
       this.handleCvData(cvdata);
     }
     this.state =  {
-      stepIndex: 2,
+      stepIndex: 5,
       mobileView: false
     };
     this.stepCount = 6;
@@ -160,13 +161,10 @@ class CvForm extends React.Component {
               type="education"
               title="Degree"
               buttonLabel="Add Education" />
-          </Tab>
-          <Tab value={5} icon={<MiscIcon />} label={!this.state.mobileView && 'Others'} >
-            <FormGroupContainer
-              type="others"
-              title="Label"
-              buttonLabel="Add More" />
           </Tab>*/}
+          <Tab value={5} icon={<MiscIcon />} label={!this.state.mobileView && 'Others'} >
+            <MiscContainer />
+          </Tab>
         </Tabs>
         <Toolbar className="toolbar">
           <div>
