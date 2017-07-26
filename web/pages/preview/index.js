@@ -1,6 +1,4 @@
 import React from 'react';
-import fetch from 'isomorphic-fetch';
-import fileSaver from 'file-saver';
 import { browserHistory } from 'react-router';
 
 import RaisedButton from 'material-ui/RaisedButton';
@@ -11,10 +9,10 @@ import DownloadIcon from 'material-ui/svg-icons/file/cloud-download';
 import ChevronLeft from 'material-ui/svg-icons/navigation/chevron-left';
 import ColorLens from 'material-ui/svg-icons/image/color-lens';
 
+import ResumeService from '../../api/resume';
+
 import * as Designs from '../../designs';
 import Header from '../../components/header';
-import { base64ToBlob } from '../../utils/base64-to-blob.js';
-import emptyJson from '../../../mock/empty.json';
 
 import './small.less';
 
@@ -22,15 +20,15 @@ class Preview extends React.Component {
   constructor(props) {
     super(props);
     const designColor = typeof localStorage !== 'undefined' && localStorage.getItem('designColor') || '#40A7BA';
+    this.designId = typeof localStorage !== 'undefined' && +localStorage.getItem('designId') || 1;
+    let cvdata = typeof localStorage !== 'undefined' && localStorage.getItem('cvdata');
+    this.cvdata = cvdata ? JSON.parse(cvdata) : (this.props.cvdata || emptyJson);
     this.state = {
       error: null,
       designColor,
       downloading: false,
       mobileView: false
     };
-    this.designId = typeof localStorage !== 'undefined' && +localStorage.getItem('designId') || 1;
-    let cvdata = typeof localStorage !== 'undefined' && localStorage.getItem('cvdata');
-    this.cvdata = cvdata ? JSON.parse(cvdata) : (this.props.cvdata || emptyJson);
     this.download = this.download.bind(this);
     this.handleColorChange = this.handleColorChange.bind(this);
     this.handleWidth = this.handleWidth.bind(this);
@@ -55,21 +53,14 @@ class Preview extends React.Component {
 
   download() {
     this.setState({downloading: true});
-    fetch('/download',{
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({cvdata: this.cvdata, designId: this.designId, designColor: this.state.designColor})})
-      .then((res) => {
-        this.setState({downloading: false});
-        if (res.ok)
-          return res.json();
-        else throw Error('Error in fetching resume');
-      }).then((response) => {
-        const blob = base64ToBlob(response.base64);
-        fileSaver.saveAs(blob, 'resume.pdf');
-      }).catch(e => this.setState({error: e.message}));
+    const data = JSON.stringify({
+      cvdata: this.cvdata,
+      designId: this.designId,
+      designColor: this.state.designColor
+    });
+    ResumeService.download(data).then(() => {
+      this.setState({downloading: false});
+    }).catch(e => this.setState({downloading: false, error: e.message}));
   }
 
   edit() {
