@@ -7,6 +7,8 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
+import {ResumeService} from './api';
+import {jsonToHtml} from './utils/parse-cvform';
 import Page from './index';
 /* global document, window, alert */
 
@@ -46,12 +48,14 @@ if (document) {
     try {
       /* eslint-disable no-underscore-dangle */
       const initialState = window.__REDUX_STATE__;
-
-      ReactDOM.render(<MuiThemeProvider muiTheme={muiTheme}>
-        <Page initialState={initialState} />
-      </MuiThemeProvider>,
-      document.getElementById('app'));
-
+      initialState.user = initialState.user || {};
+      ResumeService.get(initialState.user).then(data => {
+        initialState.cvform = jsonToHtml(data);
+        ReactDOM.render(<MuiThemeProvider muiTheme={muiTheme}>
+          <Page initialState={initialState} />
+        </MuiThemeProvider>,
+        document.getElementById('app'));
+      });
     } catch (err) {
       // sendErr(err);
       // showError();

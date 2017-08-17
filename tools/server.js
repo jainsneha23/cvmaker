@@ -21,7 +21,7 @@ const app = express();
 const MongoStore = Mongo(Session);
 const port = process.env.PORT || CONFIG.port;
 const ENV = process.env.NODE_ENV || 'development';
-// global.db = new Database(CONFIG);
+global.db = new Database(CONFIG);
 
 app.locals.defaultTemplate = marko.load(`${__dirname}/./pages/index.marko`);
 app.locals.buildAssetsInfo = require(`${__dirname}/../build-manifest.json`);
@@ -60,7 +60,7 @@ app.use(methodOverride());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-/*app.use(Session({
+app.use(Session({
   name: CONFIG.session.name,
   secret: CONFIG.session.secret,
   resave: true,
@@ -76,7 +76,7 @@ app.use(bodyParser.json());
   }, (err) => {
     console.error(`Mongo store error: ${err}`);
   })
-}));*/
+}));
 
 app.use(passport.initialize());
 app.use(passport.session());
