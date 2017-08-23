@@ -13,8 +13,8 @@ const ProfileContainer = (props) => (
 );
 
 const mapStateToProps = (state) => ({
-  objectives: state.cvform.profile.objectives,
-  summary: state.cvform.profile.summary
+  objectives: state.cvform.profile.objectives.value,
+  summary: state.cvform.profile.summary.value
 });
 
 const mapDispatchToProps = dispatch => ({

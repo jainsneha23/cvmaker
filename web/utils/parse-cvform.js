@@ -5,8 +5,8 @@ import { EditorState } from 'draft-js';
 
 const htmlToJson = (data) => {
   const cvdata = JSON.parse(data);
-  cvdata.profile.summary = EditorState.createWithContent(stateFromHTML(cvdata.profile.summary));
-  cvdata.profile.objectives = EditorState.createWithContent(stateFromHTML(cvdata.profile.objectives));
+  cvdata.profile.summary.value = EditorState.createWithContent(stateFromHTML(cvdata.profile.summary.value));
+  cvdata.profile.objectives.value = EditorState.createWithContent(stateFromHTML(cvdata.profile.objectives.value));
   cvdata.education.list.forEach(i => {
     i.startdate.value = i.startdate.value ? new Date(i.startdate.value) : new Date();
     i.enddate.value = i.enddate.value ? new Date(i.enddate.value) : new Date();
@@ -23,11 +23,11 @@ const htmlToJson = (data) => {
 
 const jsonToHtml = (data) => {
   const cvdata = clone(data);
-  cvdata.profile.summary = cvdata.profile.summary && stateToHTML(cvdata.profile.summary.getCurrentContent());
-  cvdata.profile.objectives = cvdata.profile.objectives && stateToHTML(cvdata.profile.objectives.getCurrentContent());
-  cvdata.education.list.forEach(i => i.description.value = i.description.value && stateToHTML(i.description.value.getCurrentContent()));
-  cvdata.job.list.forEach(i => i.responsibilities.value = i.responsibilities.value && stateToHTML(i.responsibilities.value.getCurrentContent()));
-  cvdata.misc.list.forEach(i => i.description.value = i.description.value && stateToHTML(i.description.value.getCurrentContent()));
+  cvdata.profile.summary.value = stateToHTML(cvdata.profile.summary.value.getCurrentContent()).replace(/\n\s*/g,'');
+  cvdata.profile.objectives.value = stateToHTML(cvdata.profile.objectives.value.getCurrentContent()).replace(/\n\s*/g,'');
+  cvdata.education.list.forEach(i => i.description.value = stateToHTML(i.description.value.getCurrentContent()).replace(/\n\s*/g,''));
+  cvdata.job.list.forEach(i => i.responsibilities.value = stateToHTML(i.responsibilities.value.getCurrentContent()).replace(/\n\s*/g,''));
+  cvdata.misc.list.forEach(i => i.description.value = stateToHTML(i.description.value.getCurrentContent()).replace(/\n\s*/g,''));
   return cvdata;
 };
 

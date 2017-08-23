@@ -1,6 +1,6 @@
 import {EditorState} from 'draft-js';
 
 export default {
-  summary: EditorState.createEmpty(),
-  objectives: EditorState.createEmpty()
+  summary: {value: EditorState.createEmpty()},
+  objectives: {value: EditorState.createEmpty()}
 };

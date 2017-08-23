@@ -57,10 +57,17 @@ if (document) {
       const initialState = window.__REDUX_STATE__;
       if (initialState.user) {
         ResumeService.get(initialState.user).then(res => {
-          initialState.cvform = htmlToJson(res.data.resumes[0].cvdata);
-          if (res.data.design)
-            initialState.design = res.data.design;
+          if (res.data.resumes.length === 0) {
+            initialState.user.isNew = true;
+          } else {
+            initialState.cvform = htmlToJson(res.data.resumes[0].cvdata);
+            initialState.design = JSON.parse(res.data.resumes[0].design);
+          }
           render(initialState);
+        }).catch((e) => {
+          // sendErr(e);
+          // showError();
+          console.log(e);
         });
       } else render(initialState);
     } catch (err) {

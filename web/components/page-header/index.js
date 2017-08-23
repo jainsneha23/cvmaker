@@ -65,7 +65,7 @@ class PageHeader extends React.Component {
               width={240}
               open={this.props.wideView ? true : this.state.burgerState}
               onRequestChange={this.toggleBurger}>
-              <Menu width={240} autoWidth={false} >
+              <Menu width={240} autoWidth={false} disableAutoFocus={true} >
                 <MenuItem>
                   <div style={{textAlign: 'center'}}>
                     {this.props.user.id ? <div>
