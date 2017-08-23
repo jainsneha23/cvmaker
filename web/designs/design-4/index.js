@@ -39,13 +39,13 @@ const Design4 = (props) => (
             <li>
               <h3 className="sectionTitle">Summary</h3>
               <div className="sectionContent">
-                <div className="default" dangerouslySetInnerHTML={{__html: props.data.profile.summary}}></div>
+                <div className="default" dangerouslySetInnerHTML={{__html: props.data.profile.summary.value}}></div>
               </div>
             </li>
             <li>
               <h3 className="sectionTitle">Objectives</h3>
               <div className="sectionContent">
-                <div className="default" dangerouslySetInnerHTML={{__html: props.data.profile.objectives}}></div>
+                <div className="default" dangerouslySetInnerHTML={{__html: props.data.profile.objectives.value}}></div>
               </div>
             </li>
           </ul>

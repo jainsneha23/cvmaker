@@ -11,7 +11,7 @@ import DownloadIcon from 'material-ui/svg-icons/file/cloud-download';
 import ChevronLeft from 'material-ui/svg-icons/navigation/chevron-left';
 import ColorLens from 'material-ui/svg-icons/image/color-lens';
 
-import ResumeService from '../../api';
+import {ResumeService} from '../../api';
 import {jsonToHtml} from '../../utils/parse-cvform';
 import * as ACTIONS from '../../actions';
 
