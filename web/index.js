@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {Provider} from 'react-redux';
 import { Router, browserHistory, RouterContext } from 'react-router';
 
@@ -29,7 +30,7 @@ class Page extends React.Component {
 }
 
 Page.propTypes = {
-  initialState: React.PropTypes.object.isRequired
+  initialState: PropTypes.object.isRequired
 };
 
 export default Page;

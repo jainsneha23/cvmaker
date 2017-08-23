@@ -1,16 +1,15 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import Paper from 'material-ui/Paper';
 
-import Header from '../../components/header';
+import PageHeaderContainer from '../../containers/page-header';
 import './small.less';
 
 class Login extends React.Component {
   constructor(props) {
-    super(props);
-    if (window.__SERVER_DATA__) {
-      this.user = window.__SERVER_DATA__.user;
-    }
+    super(props); 
   }
 
   handleLogin() {
@@ -28,27 +27,40 @@ class Login extends React.Component {
     };
     return (
       <div className="loginpage">
-        <Header/>
+        <PageHeaderContainer />
         <Paper style={style} zDepth={2}>
-          {this.user ? <div className="loggedIn">
+          {this.props.user.id ? <div className="loggedIn">
             <span>Welcome, </span>
-            <span>{this.user.displayName}</span>
+            <span>{this.props.user.displayName}</span>
           </div> :  
-          <div className="login">
-            <span>Signin with your social accounts</span>
-            <ul>
-              <li>
-                <a className="facebook" href="/auth/facebook" target="popup" onClick={this.handleLogin}>
-                  <img src="/assets/images/facebook.png" alt="facebook" />
-                </a>
-              </li>
-            </ul>
-          </div>}
-          <Link to='/create' className="link">{this.user ? 'Create CV now' : 'Or, go back'}</Link>
+            <div className="login">
+              <span>Signin with your social accounts</span>
+              <ul className="social">
+                <li>
+                  <a className="facebook" href="/auth/facebook" target="popup" onClick={this.handleLogin}>
+                    <img src="/assets/images/facebook.svg"/>
+                    <span>Log in with Facebook </span>
+                  </a>
+                </li>
+              </ul>
+            </div>}
+          <Link to='/create' className="link">{this.props.user.id ? 'Create CV now' : 'Or, continue without login'}</Link>
         </Paper>
       </div>
     );
   }
 }
 
-export default Login;
+const mapStateToProps = (state) => ({
+  user: state.user,
+});
+
+export default connect(
+  mapStateToProps
+)(Login);
+
+Login.propTypes = {
+  user: PropTypes.object.isRequired
+};
+
+Login.defaultProps = {};

@@ -41,6 +41,9 @@ class ResumeSchema {
           },
           cvdata: {
             type: GraphQLString
+          },
+          designid: {
+            type: GraphQLInt
           }
         };
       }
@@ -65,14 +68,18 @@ class ResumeSchema {
         cvdata: {
           name: 'Resume data',
           type: new GraphQLNonNull(GraphQLString)
-        }
+        },
+        designid: {
+          name: 'Design id',
+          type: new GraphQLNonNull(GraphQLInt)
+        },
       },
-      resolve: (root, {id, userid, resumeid, cvdata}) => {
+      resolve: (root, {id, userid, resumeid, cvdata, designid}) => {
         return new Promise((resolve, reject) => {
-          db.insert(dbName, {id, userid, resumeid, cvdata})
-          .then(() => db.selectAll(dbName))
-          .then(resumes => resolve(resumes))
-          .catch(err => reject(err));
+          db.insert(dbName, {id, userid, resumeid, cvdata, designid})
+            .then(() => db.selectAll(dbName))
+            .then(resumes => resolve(resumes))
+            .catch(err => reject(err));
         });
       }
     };
@@ -89,9 +96,9 @@ class ResumeSchema {
       resolve: (root, {id}) => {
         return new Promise((resolve, reject) => {
           db.delete(dbName, {id})
-          .then(() => db.selectAll(dbName))
-          .then(resumes => resolve(resumes))
-          .catch(err => reject(err));
+            .then(() => db.selectAll(dbName))
+            .then(resumes => resolve(resumes))
+            .catch(err => reject(err));
         });
       }
     };
@@ -107,14 +114,18 @@ class ResumeSchema {
         cvdata: {
           name: 'Resume data',
           type: new GraphQLNonNull(GraphQLString)
+        },
+        designid: {
+          name: 'Design id',
+          type: new GraphQLNonNull(GraphQLInt)
         }
       },
-      resolve: (root, {id, cvdata}) => {
+      resolve: (root, {id, cvdata, designid}) => {
         return new Promise((resolve, reject) => {
-          db.update(dbName, {id}, {$set:{cvdata}})
-          .then(() => db.selectAll(dbName))
-          .then(resumes => resolve(resumes))
-          .catch(err => reject(err));
+          db.update(dbName, {id}, {$set:{cvdata, designid}})
+            .then(() => db.selectAll(dbName))
+            .then(resumes => resolve(resumes))
+            .catch(err => reject(err));
         });
       }
     };
@@ -135,8 +146,8 @@ class ResumeSchema {
             resolve: (root, {userid}) => {
               return new Promise((resolve, reject) => {
                 db.find(dbName, {userid})
-                .then(resumes => resolve(resumes))
-                .catch(err => reject(err));
+                  .then(resumes => resolve(resumes))
+                  .catch(err => reject(err));
               });
             }
           }

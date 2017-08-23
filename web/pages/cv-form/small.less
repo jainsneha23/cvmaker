@@ -1,17 +1,30 @@
 @import '../../common/styles/reset.less';
 @import '../../common/styles/styles.less';
+
 .cv-form {
+  .tabs {
+    z-index: 2;
+    > div:first-child {
+      .fixed;
+      z-index: 2;
+    }
+    > div:nth-child(2) {
+      .fixed;
+      z-index: 2;
+      height: 4px;
+      top: 135px;
+    }
+  }
   .toolbar {
-    position: fixed;
     bottom: 0;
-    width: 100%;
+    top: auto;
     padding: 10px 24px;
     z-index: 2;
     > div {
-      .maxwidth;
       width: 100%;
       display: flex;
       justify-content: space-between;
+      align-items: center;
     }
   }
   .form-section {
@@ -19,5 +32,29 @@
     padding: 24px;
     margin: auto;
     padding-bottom: 24px;
+  }
+}
+
+@media all and (min-width: 1120px) {
+  .cv-form {
+    .tabs {
+      > div:first-child {
+        margin-left: 240px;
+      }
+      > div:nth-child(2) {
+        width: ~'calc(100% - 240px)';
+        left: 240px;
+      }
+    }
+  }
+}
+
+@media all and (max-width: 604px) {
+  .cv-form {
+    .tabs {
+      > div:nth-child(2) {
+        top: 111px
+      }
+    }
   }
 }

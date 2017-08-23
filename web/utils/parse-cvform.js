@@ -3,8 +3,8 @@ import { stateToHTML } from 'draft-js-export-html';
 import { stateFromHTML } from 'draft-js-import-html';
 import { EditorState } from 'draft-js';
 
-const jsonToHtml = (data) => {
-  const cvdata = clone(data);
+const htmlToJson = (data) => {
+  const cvdata = JSON.parse(data);
   cvdata.profile.summary = EditorState.createWithContent(stateFromHTML(cvdata.profile.summary));
   cvdata.profile.objectives = EditorState.createWithContent(stateFromHTML(cvdata.profile.objectives));
   cvdata.education.list.forEach(i => {
@@ -21,7 +21,7 @@ const jsonToHtml = (data) => {
   return cvdata;
 };
 
-const htmlToJson = (data) => {
+const jsonToHtml = (data) => {
   const cvdata = clone(data);
   cvdata.profile.summary = cvdata.profile.summary && stateToHTML(cvdata.profile.summary.getCurrentContent());
   cvdata.profile.objectives = cvdata.profile.objectives && stateToHTML(cvdata.profile.objectives.getCurrentContent());

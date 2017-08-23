@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import InlineCss from 'react-inline-css';
 
 let stylesheet;
@@ -140,7 +141,7 @@ const Design4 = (props) => (
 );
 
 Design4.propTypes = {
-  data: React.PropTypes.object.isRequired
+  data: PropTypes.object.isRequired
 };
 
 export default Design4;
