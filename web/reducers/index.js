@@ -1,14 +1,18 @@
 import {combineReducers} from 'redux';
 import { routerReducer } from 'react-router-redux';
 
-import cvformReducer from './cvform/';
+import cvform from './cvform/';
 import build from './build';
+import design from './design';
 import user from './user';
+import app from './app';
 
 const reducer = combineReducers({
-  cvform: cvformReducer,
-  user: user,
-  build: build,
+  cvform,
+  user,
+  build,
+  design,
+  app,
   routing: routerReducer
 });
 

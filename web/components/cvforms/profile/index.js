@@ -10,12 +10,12 @@ const Profile = (props) => (
       <RichEditor
         editorState={props.objectives}
         placeholder="Enter your objectives here..."
-        onChange={(e) => this.handleChange(e, 'objectives')} />
+        onChange={(e) => props.handleChange(e, 'objectives')} />
       <Subheader style={{paddingLeft: 0, fontWeight: 'bold'}}>Profile Summary</Subheader>
       <RichEditor
         editorState={props.summary}
         placeholder="Enter your profile summary here..."
-        onChange={(e) => this.handleChange(e, 'summary')} />
+        onChange={(e) => props.handleChange(e, 'summary')} />
     </form>
   </div>
 );

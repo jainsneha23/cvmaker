@@ -8,7 +8,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
 import {ResumeService} from './api';
-import {jsonToHtml} from './utils/parse-cvform';
+import {htmlToJson} from './utils/parse-cvform';
 import Page from './index';
 /* global document, window, alert */
 
@@ -44,18 +44,25 @@ if (document) {
     /* eslint-enable no-alert */
   };
 
-  const render = () => {
+  const render = (initialState) => {
+    ReactDOM.render(<MuiThemeProvider muiTheme={muiTheme}>
+      <Page initialState={initialState} />
+    </MuiThemeProvider>,
+    document.getElementById('app'));
+  };
+
+  const main = () => {
     try {
       /* eslint-disable no-underscore-dangle */
       const initialState = window.__REDUX_STATE__;
-      initialState.user = initialState.user || {};
-      ResumeService.get(initialState.user).then(data => {
-        initialState.cvform = jsonToHtml(data);
-        ReactDOM.render(<MuiThemeProvider muiTheme={muiTheme}>
-          <Page initialState={initialState} />
-        </MuiThemeProvider>,
-        document.getElementById('app'));
-      });
+      if (initialState.user) {
+        ResumeService.get(initialState.user).then(res => {
+          initialState.cvform = htmlToJson(res.data.resumes[0].cvdata);
+          if (res.data.design)
+            initialState.design = res.data.design;
+          render(initialState);
+        });
+      } else render(initialState);
     } catch (err) {
       // sendErr(err);
       // showError();
@@ -63,5 +70,5 @@ if (document) {
     }
   };
 
-  render();
+  main();
 }

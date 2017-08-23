@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 /*
  *  @prop  loading(boolean): Set current loading state on parent component
  *  @prop  isFullOverlay(boolean): Is the indicator required on whole page or the first adjacent sibling container
@@ -13,9 +14,9 @@ const LoadingIndicator = props => (
 );
 
 LoadingIndicator.propTypes = {
-  loading: React.PropTypes.bool.isRequired,
-  isFullOverlay: React.PropTypes.bool.isRequired,
-  text: React.PropTypes.string
+  loading: PropTypes.bool.isRequired,
+  isFullOverlay: PropTypes.bool.isRequired,
+  text: PropTypes.string
 };
 
 export default LoadingIndicator;

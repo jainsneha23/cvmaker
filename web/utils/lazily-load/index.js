@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 /* eslint-disable no-underscore-dangle */
 class LazilyLoad extends React.Component {
@@ -64,13 +65,13 @@ class LazilyLoad extends React.Component {
 }
 
 LazilyLoad.propTypes = {
-  children: React.PropTypes.func.isRequired,
-  modules: React.PropTypes.oneOfType([
-    React.PropTypes.arrayOf(React.PropTypes.node),
-    React.PropTypes.node,
-    React.PropTypes.object
+  children: PropTypes.func.isRequired,
+  modules: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+    PropTypes.object
   ]),
-  loadingComponent: React.PropTypes.node
+  loadingComponent: PropTypes.node
 };
 
 const importLazy = promise => (promise.then && promise.then(result => result.default)) || promise.default;

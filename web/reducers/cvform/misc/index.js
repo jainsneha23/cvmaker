@@ -27,7 +27,7 @@ const others = (state = initialState, action) => {
   }
 
   case 'TOGGLE_MISC_GROUP': {
-    return { ...state, expanded: payload.idx};
+    return { ...state, expanded: payload.idx === state.expanded ? -1 : payload.idx};
   }
     
   case 'HANDLE_MISC_CHANGE': {

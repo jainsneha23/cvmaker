@@ -1,4 +1,5 @@
 import initialState from './initial-state';
+import clone from 'clone';
 
 const profile = (state = initialState, action) => {
 
@@ -7,7 +8,7 @@ const profile = (state = initialState, action) => {
   switch (action.type) {
     
   case 'CHANGE_PROFILE':
-    return { ...state, [payload.type]: {value: payload.value}};
+    return { ...state, [payload.type]: {value: clone(payload.value)}};
 
   default:
     return { ...state };

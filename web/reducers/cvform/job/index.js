@@ -27,7 +27,7 @@ const job = (state = initialState, action) => {
   }
 
   case 'TOGGLE_JOB_GROUP': {
-    return { ...state, expanded: payload.idx};
+    return { ...state, expanded: payload.idx === state.expanded ? -1 : payload.idx};
   }
     
   case 'HANDLE_JOB_CHANGE': {

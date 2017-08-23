@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import InlineCss from 'react-inline-css';
 
 let stylesheet;
@@ -54,7 +55,7 @@ const Design2 = (props) => (
         <section className="skillInfo">
           <h3 className="sectionTitle">Key Skills</h3>
           <div className="sectionContent">
-            <ul>{props.data.skills.map((item,i) =>
+            <ul>{props.data.skill.list.map((item,i) =>
               <li key={i}>
               <h4>{item.skillCategory.value}</h4>
               <ul>
@@ -72,7 +73,7 @@ const Design2 = (props) => (
           <h3 className="sectionTitle">Work Experience</h3>
           <div className="sectionContent">
             <ul>
-            {props.data.job.map((item, i) =>
+            {props.data.job.list.map((item, i) =>
               <li key={i}>
                 <div className="header">
                   <span>{item.jobtitle.value}</span>
@@ -95,7 +96,7 @@ const Design2 = (props) => (
           <h3 className="sectionTitle">Education</h3>
           <div className="sectionContent">
             <ul>
-              {props.data.education.map((item, i) =>
+              {props.data.education.list.map((item, i) =>
                 <li key={i}>
                   <div className="header">
                     <div>{item.degree.value}</div>
@@ -126,7 +127,7 @@ const Design2 = (props) => (
         </section>
         <section className="othersInfo">
           <ul>
-          {props.data.others.map((item, i) =>
+          {props.data.misc.list.map((item, i) =>
             <li key={i}>
               <h3 className="sectionTitle">{item.label.value}</h3>
               <div className="sectionContent">
@@ -146,8 +147,8 @@ Design2.defaultProps = {
 };
 
 Design2.propTypes = {
-  data: React.PropTypes.object.isRequired,
-  designColor: React.PropTypes.string
+  data: PropTypes.object.isRequired,
+  designColor: PropTypes.string
 };
 
 export default Design2;

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class ScrollLock extends React.Component {
 
@@ -69,7 +70,7 @@ class ScrollLock extends React.Component {
 }
 
 ScrollLock.propTypes = {
-  children: React.PropTypes.node.isRequired
+  children: PropTypes.node.isRequired
 };
 
 export default ScrollLock;

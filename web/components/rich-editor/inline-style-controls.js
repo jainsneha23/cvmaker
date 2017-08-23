@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import StyleButton from './style-button';
 
 const INLINE_STYLES = [
@@ -26,8 +27,8 @@ const InlineStyleControls = (props) => {
 };
 
 InlineStyleControls.propTypes = {
-  editorState: React.PropTypes.object.isRequired,
-  onToggle: React.PropTypes.func.isRequired
+  editorState: PropTypes.object.isRequired,
+  onToggle: PropTypes.func.isRequired
 };
 
 export default InlineStyleControls;

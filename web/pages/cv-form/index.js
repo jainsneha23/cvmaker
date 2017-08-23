@@ -9,9 +9,10 @@ import RaisedButton from 'material-ui/RaisedButton';
 import Avatar from 'material-ui/Avatar';
 import PreviewIcon from 'material-ui/svg-icons/action/visibility';
 
-import {htmlToJson} from '../../utils/parse-cvform';
+import {jsonToHtml} from '../../utils/parse-cvform';
+import {ResumeService} from '../../api';
 
-import Header from '../../components/header';
+import PageHeaderContainer from '../../containers/page-header';
 import PersonalDetails from '../../containers/cvforms/personal-details-container';
 import ProfileContainer from '../../containers/cvforms/profile-container';
 import SkillContainer from '../../containers/cvforms/skill-container';
@@ -26,28 +27,13 @@ class CvForm extends React.Component {
   constructor(props) {
     super(props);
     this.state =  {
-      stepIndex: 0,
-      mobileView: false
+      stepIndex: 0
     };
     this.stepCount = 6;
     this.preview = this.preview.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleBack = this.handleBack.bind(this);
     this.handleNext = this.handleNext.bind(this);
-    this.handleWidth = this.handleWidth.bind(this);
-  }
-
-  componentDidMount() {
-    this.handleWidth();
-    window.addEventListener('resize', this.handleWidth);
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('resize', this.handleWidth);
-  }
-
-  handleWidth() {
-    this.setState({mobileView: window.innerWidth <= 604});
   }
 
   handleBack() {
@@ -55,10 +41,9 @@ class CvForm extends React.Component {
   }
 
   preview() {
-    if (localStorage) {
-      localStorage.setItem('cvdata', JSON.stringify(htmlToJson(this.props.cvdata)));
-    }
-    browserHistory.push('/preview');
+    ResumeService.update(this.props.user, 1, jsonToHtml(this.props.cvdata))
+      .then(() => browserHistory.push('/preview'))
+      .catch(() => alert('Some error occured. Please try again'));
   }
 
   handleNext() {
@@ -73,39 +58,41 @@ class CvForm extends React.Component {
   render() {
     return (
       <div className="cv-form">
-        <Header rightElem={this.state.mobileView ? <Avatar backgroundColor='#fff' onClick={this.preview}>
+        <PageHeaderContainer rightElem={this.props.mobileView ? <Avatar backgroundColor='#fff' onClick={this.preview}>
           <PreviewIcon color='rgb(64, 167, 186)' />
         </Avatar> : <RaisedButton
           onClick={this.preview}
+          style={{marginTop: '6px'}}
           icon={<PreviewIcon color='rgb(64, 167, 186)' />}
           label="Preview"
           labelColor='rgb(64, 167, 186)' />}/>
         <Tabs
           onChange={this.handleChange}
           value={this.state.stepIndex}
-          tabItemContainerStyle={{top: '63px', position: 'fixed', width: '100%', zIndex: 2}}
-          inkBarStyle={{height: '4px', top: this.state.mobileView ? '109px' : '133px', position: 'fixed', zIndex: 2}}
-          contentContainerStyle={{margin: '145px 0 60px 0'}} >
-          <Tab value={0} icon={<PersonalIcon />} label={!this.state.mobileView && 'Personal'} >
+          className="tabs"
+          tabItemContainerStyle={{position: 'fixed', top: '65px'}}
+          inkBarStyle={{height: '4px'}}
+          contentContainerStyle={{margin: this.props.mobileView ? '112px 0px 60px' : '136px 0px 60px'}} >
+          <Tab value={0} icon={<PersonalIcon />} label={!this.props.mobileView && 'Personal'} >
             <PersonalDetails />
           </Tab>
-          <Tab value={1} icon={<ProfileIcon />} label={!this.state.mobileView && 'Profile'}>
+          <Tab value={1} icon={<ProfileIcon />} label={!this.props.mobileView && 'Profile'}>
             <ProfileContainer />
           </Tab>
-          <Tab value={2} icon={<SkillIcon />} label={!this.state.mobileView && 'Skill'} >
+          <Tab value={2} icon={<SkillIcon />} label={!this.props.mobileView && 'Skill'} >
             <SkillContainer />
           </Tab>
-          <Tab value={3} icon={<JobIcon />} label={!this.state.mobileView && 'Job'} >
+          <Tab value={3} icon={<JobIcon />} label={!this.props.mobileView && 'Job'} >
             <JobContainer />
           </Tab>
-          <Tab value={4} icon={<EducationIcon />} label={!this.state.mobileView && 'Education'} >
+          <Tab value={4} icon={<EducationIcon />} label={!this.props.mobileView && 'Education'} >
             <EducationContainer />
           </Tab>}
-          <Tab value={5} icon={<MiscIcon />} label={!this.state.mobileView && 'Others'} >
+          <Tab value={5} icon={<MiscIcon />} label={!this.props.mobileView && 'Others'} >
             <MiscContainer />
           </Tab>
         </Tabs>
-        <Toolbar className="toolbar">
+        <Toolbar className="toolbar fixed">
           <div>
             <RaisedButton
               label="Back"
@@ -126,6 +113,10 @@ class CvForm extends React.Component {
 
 const mapStateToProps = (state) => ({
   cvdata: state.cvform,
+  user: state.user,
+  designid: state.design.id,
+  mobileView: state.app.mobileView,
+  wideView: state.app.wideView
 });
 
 export default connect(
@@ -133,7 +124,11 @@ export default connect(
 )(CvForm);
 
 CvForm.propTypes = {
-  cvdata: PropTypes.object.isRequired
+  cvdata: PropTypes.object.isRequired,
+  user: PropTypes.object.isRequired,
+  designid: PropTypes.number.isRequired,
+  mobileView: PropTypes.bool.isRequired,
+  wideView: PropTypes.bool.isRequired
 };
 
 CvForm.defaultProps = {};

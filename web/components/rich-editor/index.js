@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {Editor, RichUtils} from 'draft-js';
 import InlineStyleControls from './inline-style-controls';
 import BlockStyleControls from './block-style-controls';
@@ -35,7 +36,12 @@ class RichEditor extends React.Component {
 
   onChange(editorState) {
     this.setState({editorState});
-    this.props.onChange(editorState);
+    const currentContent = this.state.editorState.getCurrentContent();
+    const newContent = editorState.getCurrentContent();
+
+    if (currentContent !== newContent) {
+      this.props.onChange(editorState);
+    }
   }
 
   handleKeyCommand(command) {
@@ -123,9 +129,9 @@ class RichEditor extends React.Component {
 }
 
 RichEditor.propTypes = {
-  placeholder: React.PropTypes.string.isRequired,
-  onChange: React.PropTypes.func.isRequired,
-  editorState: React.PropTypes.object
+  placeholder: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+  editorState: PropTypes.object
 };
 
 export default RichEditor;

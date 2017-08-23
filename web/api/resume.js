@@ -8,6 +8,12 @@ promise.polyfill();
 class ResumeService {
 
   static get(user) {
+    if (!user) {
+      return new Promise((resolve) => {
+        let cvdata = (localStorage && localStorage.getItem('cvdata'));
+        resolve((cvdata && JSON.parse(cvdata)) || {});
+      });
+    }
     var query = `query { resumes (userid: ${user.id}) { id, resumeid, cvdata } }`;
     return new Promise((resolve) => {
       fetch('/api/resume', {
@@ -23,14 +29,38 @@ class ResumeService {
   }
 
   static update(user, resumeid, cvdata) {
-    localStorage && localStorage.setItem('cvdata', JSON.stringify(cvdata));
+    cvdata = JSON.stringify(cvdata);
+    localStorage && localStorage.setItem('cvdata', cvdata);
+    if (!user) {
+      return new Promise((resolve) => {
+        resolve();
+      });
+    }
     return new Promise((resolve, reject) => {
-      var query = `mutation { update (id: ${user.id}_${resumeid}, userid: ${user.id}, resumeId: ${resumeid}, cvdata: "${JSON.stringify(cvdata)}") { id } }`;
+      var query = `mutation { update (id: ${user.id}_${resumeid}, userid: ${user.id}, resumeId: ${resumeid}, cvdata: "${cvdata}") { id } }`;
       fetch('/api/resume', {
         method: 'POST',
         body: query
       }).then(() => resolve())
-      .catch((e) => reject(e));
+        .catch((e) => reject(e));
+    });
+  }
+
+  static updateDesign(user, resumeid, designid, designcolor) {
+    const design = JSON.stringify({designid,designcolor});
+    localStorage && localStorage.setItem('design', design);
+    if (!user) {
+      return new Promise((resolve) => {
+        resolve();
+      });
+    }
+    return new Promise((resolve, reject) => {
+      var query = `mutation { update (id: ${user.id}_${resumeid}, userid: ${user.id}, resumeId: ${resumeid}, design: "${design}") { id } }`;
+      fetch('/api/resume', {
+        method: 'POST',
+        body: query
+      }).then(() => resolve())
+        .catch((e) => reject(e));
     });
   }
 

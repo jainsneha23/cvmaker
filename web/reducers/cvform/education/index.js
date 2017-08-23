@@ -27,7 +27,7 @@ const education = (state = initialState, action) => {
   }
 
   case 'TOGGLE_EDU_GROUP': {
-    return { ...state, expanded: payload.idx};
+    return { ...state, expanded: payload.idx === state.expanded ? -1 : payload.idx};
   }
     
   case 'HANDLE_EDU_CHANGE': {
