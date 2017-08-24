@@ -31,10 +31,10 @@ const PersonalDetails = (props) => (
       />
       <TextField
         fullWidth={true}
-        hintText="Eg. 30"
+        hintText="Eg. 4.5"
         errorText={props.experience.error}
         errorStyle={{bottom: '-4px'}}
-        floatingLabelText="Enter your experience in months"
+        floatingLabelText="Enter your experience in years"
         value={props.experience.value}
         onChange={(e) => props.handleChange(e, 'experience')}
         onBlur={(e) => props.handleChange(e, 'experience')}

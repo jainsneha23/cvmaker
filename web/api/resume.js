@@ -9,7 +9,14 @@ class ResumeService {
 
   static add(user, resumeid, cvdata, designid, designcolor) {
     cvdata = JSON.stringify(JSON.stringify(cvdata));
+    localStorage && localStorage.setItem('cvdata', cvdata);
     const design = JSON.stringify(JSON.stringify({id: designid, color: designcolor}));
+    localStorage && localStorage.setItem('design', design);
+    if (!user) {
+      return new Promise((resolve) => {
+        resolve();
+      });
+    }
     var query = `mutation { add (id: "${user.id}_${resumeid}", userid: ${user.id}, resumeid: ${resumeid}, cvdata: ${cvdata}, design: ${design}) { id } }`;
     return new Promise((resolve) => {
       fetch('/api/resume', {
@@ -31,7 +38,10 @@ class ResumeService {
     if (!user) {
       return new Promise((resolve) => {
         let cvdata = (localStorage && localStorage.getItem('cvdata'));
-        resolve((cvdata && JSON.parse(cvdata)) || {});
+        cvdata = cvdata && JSON.parse(cvdata);
+        let design = (localStorage && localStorage.getItem('design'));
+        design = design && JSON.parse(design);
+        resolve(cvdata ? {data: {resumes: [{cvdata, design}]}} : {data: {resumes: []}});
       });
     }
     var query = `query { resumes (userid: ${user.id}) { id, resumeid, cvdata, design } }`;
@@ -42,7 +52,7 @@ class ResumeService {
       }).then(data => data.json())
         .then(data => resolve(data))
         .catch(() => {
-          let cvdata = (localStorage && localStorage.getItem('cvdata'));
+          const cvdata = (localStorage && localStorage.getItem('cvdata'));
           resolve((cvdata && JSON.parse(cvdata)) || {});
         });
     });
