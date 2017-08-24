@@ -55,25 +55,23 @@ if (document) {
     try {
       /* eslint-disable no-underscore-dangle */
       const initialState = window.__REDUX_STATE__;
-      if (initialState.user) {
-        ResumeService.get(initialState.user).then(res => {
-          if (res.data.resumes.length === 0) {
+      ResumeService.get(initialState.user).then(res => {
+        if (res.data.resumes.length === 0) {
+          if (initialState.user)
             initialState.user.isNew = true;
-          } else {
-            initialState.cvform = htmlToJson(res.data.resumes[0].cvdata);
-            initialState.design = JSON.parse(res.data.resumes[0].design);
-          }
-          render(initialState);
-        }).catch((e) => {
-          // sendErr(e);
-          // showError();
-          console.log(e);
-        });
-      } else render(initialState);
+          else initialState.user = {isNew: true};
+        } else {
+          initialState.cvform = htmlToJson(res.data.resumes[0].cvdata);
+          initialState.design = JSON.parse(res.data.resumes[0].design);
+        }
+        render(initialState);
+      }).catch((e) => {
+        sendErr(e);
+        showError();
+      });
     } catch (err) {
-      // sendErr(err);
-      // showError();
-      console.log(err);
+      sendErr(err);
+      showError();
     }
   };
 
