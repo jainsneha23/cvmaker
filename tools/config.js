@@ -22,7 +22,7 @@ const _database = {
   name: 'cvmaker',
   host: 'www.cvmaker.co.in',
   port: 27017,
-  url: process.env.MONGOLAB_GREEN_URI,
+  url: process.env.MONGODB_URI,
   user_session: 'user_sessions'
 };
 
