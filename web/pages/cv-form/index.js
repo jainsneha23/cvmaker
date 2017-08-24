@@ -58,11 +58,11 @@ class CvForm extends React.Component {
   render() {
     return (
       <div className="cv-form">
-        <PageHeaderContainer rightElem={this.props.mobileView ? <Avatar backgroundColor='#fff' onClick={this.preview}>
+        <PageHeaderContainer rightElem={this.props.mobileView ? <Avatar style={{marginTop: '4px'}} backgroundColor='#fff' onClick={this.preview}>
           <PreviewIcon color='rgb(64, 167, 186)' />
         </Avatar> : <RaisedButton
           onClick={this.preview}
-          style={{marginTop: '6px'}}
+          style={{marginTop: '4px'}}
           icon={<PreviewIcon color='rgb(64, 167, 186)' />}
           label="Preview"
           labelColor='rgb(64, 167, 186)' />}/>

@@ -41,9 +41,10 @@ class Preview extends React.Component {
       designId: this.props.designId,
       designColor: this.props.designColor
     });
-    ResumeService.download(data).then(() => {
-      this.setState({downloading: false});
-    }).catch(e => this.setState({downloading: false, error: e.message}));
+    ResumeService.updateDesign(this.props.user, 1, this.props.designId, this.props.designColor)
+      .then(ResumeService.download(data))
+      .then(() => this.setState({downloading: false}))
+      .catch(e => this.setState({downloading: false, error: e.message}));
   }
 
   edit() {
@@ -54,10 +55,11 @@ class Preview extends React.Component {
     let Comp = Designs[`Design${this.props.designId}`] || Designs['Design1'];
     return (
       <div className="preview">
-        <PageHeaderContainer rightElem={this.props.mobileView ? <Avatar backgroundColor='#fff' onClick={this.download}>
+        <PageHeaderContainer rightElem={this.props.mobileView ? <Avatar style={{marginTop: '4px'}} backgroundColor='#fff' onClick={this.download}>
           <DownloadIcon color='rgb(64, 167, 186)' className={this.state.downloading && 'downloading'} />
         </Avatar> : <RaisedButton
           onClick={this.download}
+          style={{marginTop: '12px'}}
           icon={<DownloadIcon color='rgb(64, 167, 186)' className={this.state.downloading && 'downloading'} />}
           label={this.state.downloading ? 'Downloading...' : 'Download'}
           labelColor='rgb(64, 167, 186)' />}/>
@@ -85,6 +87,7 @@ class Preview extends React.Component {
 
 const mapStateToProps = (state) => ({
   cvdata: jsonToHtml(state.cvform),
+  user: state.user,
   designId: state.design.id,
   designColor: state.design.color,
   mobileView: state.app.mobileView
@@ -101,7 +104,8 @@ export default connect(
 )(Preview);
 
 Preview.propTypes = {
-  cvdata: PropTypes.object,
+  cvdata: PropTypes.object.isRequired,
+  user: PropTypes.object.isRequired,
   mobileView: PropTypes.bool.isRequired,
   designId: PropTypes.number.isRequired,
   designColor: PropTypes.string.isRequired,
