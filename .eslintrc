@@ -29,6 +29,10 @@
       "error",
       "single"
     ],
+    "quote-props": [
+      "error",
+      "as-needed"
+    ],
     "semi": [
       "error",
       "always"

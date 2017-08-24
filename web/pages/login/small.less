@@ -1,0 +1,54 @@
+.loginpage {
+  margin-top: 100px;
+  .link {
+    display: inline-block;
+    font-size: 20px;
+    margin-top: 25px;
+    cursor: pointer;
+    padding: 0 15px;
+    background-color: #40a7ba;
+    color: #fff;
+    line-height: 40px;
+    border-radius: 5px;
+  }
+  .login,
+  .loggedIn {
+    padding-top: 20px;
+    span {
+      &:first-child {
+        font-size: 16px;
+      }
+      &:last-child {
+        font-weight: 400;
+      }
+    }
+    ul.social {
+      padding-top: 10px;
+      li {
+        a {
+          display: inline-block;
+          color: #fff;
+          line-height: 40px;
+          border-radius: 5px;
+          img {
+            height: 40px;
+            width: 40px;
+            vertical-align: top;
+          }
+          span {
+            display: inline-block;
+            padding: 0 10px; 
+            line-height: 40px;
+            vertical-align: top;
+          }
+          &.facebook {
+            background: #4267b2;
+            img {
+              border-right: 1px solid #365391;
+            }
+          }
+        }
+      }
+    }
+  }
+}

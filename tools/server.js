@@ -1,28 +1,44 @@
 import express from 'express';
-import bodyParser from 'body-parser';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import marko from 'marko';
+import passport from 'passport';
+import Session from 'express-session';
+import bodyParser from 'body-parser';
+import cookieParser from 'cookie-parser';
+import methodOverride from 'method-override';
+import Mongo from 'connect-mongo';
 import 'ignore-styles';
 
-import Mailer from './mailer';
-import Messager from './messager';
-import {generateComponentAsPDF} from './generate-pdf.js';
-import * as Designs from '../web/designs';
+import Routes from './routes';
 
+import CONFIG from './config';
+import Database from './database';
 
 /* eslint-disable no-console */
 
 const app = express();
-const port = process.env.PORT || 3000;
+const MongoStore = Mongo(Session);
+const port = process.env.PORT || CONFIG.port;
 const ENV = process.env.NODE_ENV || 'development';
-const mailService = new Mailer();
-const messager = new Messager();
+global.db = new Database(CONFIG);
 
 app.locals.defaultTemplate = marko.load(`${__dirname}/./pages/index.marko`);
 app.locals.buildAssetsInfo = require(`${__dirname}/../build-manifest.json`);
 
-const getComponentAsHTML = (Component, cvdata, designColor) => {
+app.locals.renderIndex = (res, data) => {
+  res.setHeader('Content-Type', 'text/html; charset=utf-8');
+  res.setHeader('Cache-Control', 'no-store, no-cache');
+  app.locals.defaultTemplate.render({
+    env: ENV,
+    mainCssBundle: ENV === 'development' ? '' : `/public/${app.locals.buildAssetsInfo['main.css']}`,
+    mainJsBundle: ENV === 'development' ? '/main.js' : `/public/${app.locals.buildAssetsInfo['main.js']}`,
+    vendorJsBundle: ENV === 'development' ? '' : `/public/${app.locals.buildAssetsInfo['vendor.js']}`,
+    __REDUX_STATE__: JSON.stringify({...data, build: {env: ENV}})
+  }, res);
+};
+
+app.locals.getComponentAsHTML = (Component, cvdata, designColor) => {
   try {
     return ReactDOMServer.renderToStaticMarkup(<Component data={cvdata} designColor={designColor} />);
   } catch (e) {
@@ -39,51 +55,50 @@ if (ENV === 'development') {
   app.use(require('webpack-hot-middleware')(compiler));
 }
 
-app.post('/download', bodyParser.json() , function(req, res){
-  let Comp = Designs[`Design${req.body.designId}`];
-  const filename = `Design${req.body.designId}-${new Date().getTime()}`;
-  generateComponentAsPDF({html: getComponentAsHTML(Comp, req.body.cvdata, req.body.designColor), filename}).then((response) => {
-    res.send(response);
-  }).catch((error) => res.status(500).send(error));
+app.use(cookieParser(CONFIG.session.secret));
+app.use(methodOverride());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+app.use(Session({
+  name: CONFIG.session.name,
+  secret: CONFIG.session.secret,
+  resave: true,
+  saveUninitialized: true,
+  cookie: {
+    maxAge: CONFIG.session.cookie.maxAge,
+    httpOnly: true
+  },
+  store: new MongoStore({
+    db: global.db.db,
+    collection: CONFIG.database.user_session,
+    clear_interval: CONFIG.session.clear_interval
+  }, (err) => {
+    console.error(`Mongo store error: ${err}`);
+  })
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use(Routes(app, express, CONFIG));
+
+app.use((req, res) => {
+  res.status(404).send('Path not found');
 });
 
-app.get('/design/:id', bodyParser.json() , function(req, res){
-  try{
-    const json = require('../mock/snehajain.json');
-    let Comp = Designs[`Design${req.params.id}`];
-    const html = getComponentAsHTML(Comp, json);
-    res.send(html);
-  } catch (error) {
-    res.status(500).send(error);
-  }
+app.use((err, req, res) => {
+  console.warn(`Internal server error: ${err}`);
+  res.status(err.status || 500).send('Internal Server Error');
 });
 
-app.post('/feedback', bodyParser.json() , function(req, res){
-  messager.sendFeedback(req.body);
-  mailService.sendFeedback(req.body);
-  res.sendStatus(204);
-});
-
-app.use(express.static('assets', {maxage: {maxAge: '182d'}}));
-app.use('/public', express.static('public', {maxAge: '182d'}));
-
-app.get('*', function(req, res) {
-  res.setHeader('Content-Type', 'text/html; charset=utf-8');
-  res.setHeader('Cache-Control', 'no-store, no-cache');
-  app.locals.defaultTemplate.render({
-    env: ENV,
-    mainCssBundle: ENV === 'development' ? '' : `/public/${app.locals.buildAssetsInfo['main.css']}`,
-    mainJsBundle: ENV === 'development' ? '/main.js' : `/public/${app.locals.buildAssetsInfo['main.js']}`,
-    vendorJsBundle: ENV === 'development' ? '' : `/public/${app.locals.buildAssetsInfo['vendor.js']}`,
-  }, res);
+process.on('uncaughtException', (err) => {
+  console.error(`Uncaught Exception Error: ${err}`);
 });
 
 const server = app.listen(port, (err) => {
-  if (err) {
-    console.log(err);
-  } else {
-    console.log(`Server listening on port: ${port}`);
-  }
+  if (err) console.log(err);
+  else console.log(`Server listening on port: ${port}`);
 });
 
 export default server;

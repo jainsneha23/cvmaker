@@ -1,113 +1,510 @@
 {
-  "personal": {
-    "fullname": {
+  "personal":
+  {
+    "fullname":
+    {
       "value": "",
       "error": ""
     },
-    "jobtitle": {
+    "jobtitle":
+    {
       "value": "",
       "error": ""
     },
-    "experience": {
+    "experience":
+    {
       "value": "",
       "error": ""
     },
-    "email": {
+    "email":
+    {
       "value": "",
       "error": ""
     },
-    "mobile": {
+    "mobile":
+    {
       "value": "",
       "error": ""
     }
   },
-  "profile": {
+  "profile":
+  {
     "summary": "",
     "objectives": ""
   },
-  "skills": [{
-    "heading": "",
-    "skillCategory": {
-      "value": "",
-      "error": ""
+  "skill":
+  {
+    "list": [
+    {
+      "input":
+      {
+        "value": "",
+        "error": ""
+      },
+      "skillCategory":
+      {
+        "value": "",
+        "error": ""
+      },
+      "skills": []
     },
-    "skills": []
-  }],
-  "education": [{
-    "heading": "",
-    "school": {
-      "value": "",
-      "error": ""
+    {
+      "input":
+      {
+        "value": "",
+        "error": ""
+      },
+      "skillCategory":
+      {
+        "value": "",
+        "error": ""
+      },
+      "skills": []
     },
-    "degree": {
-      "value": "",
-      "error": ""
+    {
+      "input":
+      {
+        "value": "",
+        "error": ""
+      },
+      "skillCategory":
+      {
+        "value": "",
+        "error": ""
+      },
+      "skills": []
     },
-    "field": {
-      "value": "",
-      "error": ""
+    {
+      "input":
+      {
+        "value": "",
+        "error": ""
+      },
+      "skillCategory":
+      {
+        "value": "",
+        "error": ""
+      },
+      "skills": []
     },
-    "location": {
-      "value": "",
-      "error": ""
+    {
+      "input":
+      {
+        "value": "",
+        "error": ""
+      },
+      "skillCategory":
+      {
+        "value": "",
+        "error": ""
+      },
+      "skills": []
     },
-    "grade": {
-      "value": "",
-      "error": ""
+    {
+      "input":
+      {
+        "value": "",
+        "error": ""
+      },
+      "skillCategory":
+      {
+        "value": "",
+        "error": ""
+      },
+      "skills": []
     },
-    "startdate": {
-      "value": null,
-      "error": ""
+    {
+      "input":
+      {
+        "value": "",
+        "error": ""
+      },
+      "skillCategory":
+      {
+        "value": "",
+        "error": ""
+      },
+      "skills": []
     },
-    "enddate": {
-      "value": null,
-      "error": ""
+    {
+      "input":
+      {
+        "value": "",
+        "error": ""
+      },
+      "skillCategory":
+      {
+        "value": "",
+        "error": ""
+      },
+      "skills": []
     },
-    "description": {
-      "value": "",
-      "error": ""
-    }
-  }],
-  "job": [{
-    "heading": "",
-    "company": {
-      "value": "",
-      "error": ""
+    {
+      "input":
+      {
+        "value": "",
+        "error": ""
+      },
+      "skillCategory":
+      {
+        "value": "",
+        "error": ""
+      },
+      "skills": []
+    }]
+  },
+  "education":
+  {
+    "list": [
+    {
+      "input":
+      {
+        "value": "",
+        "error": ""
+      },
+      "school":
+      {
+        "value": "",
+        "error": ""
+      },
+      "degree":
+      {
+        "value": "",
+        "error": ""
+      },
+      "field":
+      {
+        "value": "",
+        "error": ""
+      },
+      "location":
+      {
+        "value": "",
+        "error": ""
+      },
+      "grade":
+      {
+        "value": "",
+        "error": ""
+      },
+      "startdate":
+      {
+        "error": ""
+      },
+      "enddate":
+      {
+        "value": "",
+        "error": ""
+      },
+      "description":
+      {
+        "value": "",
+        "error": ""
+      }
     },
-    "jobtitle": {
-      "value": "",
-      "error": ""
+    {
+      "input":
+      {
+        "value": "",
+        "error": ""
+      },
+      "school":
+      {
+        "value": "",
+        "error": ""
+      },
+      "degree":
+      {
+        "value": "",
+        "error": ""
+      },
+      "field":
+      {
+        "value": "",
+        "error": ""
+      },
+      "location":
+      {
+        "value": "",
+        "error": ""
+      },
+      "grade":
+      {
+        "value": "",
+        "error": ""
+      },
+      "startdate":
+      {
+        "value": "",
+        "error": ""
+      },
+      "enddate":
+      {
+        "value": "",
+        "error": ""
+      },
+      "description":
+      {
+        "value": "",
+        "error": ""
+      }
     },
-    "location": {
-      "value": "",
-      "error": ""
+    {
+      "input":
+      {
+        "value": "",
+        "error": ""
+      },
+      "school":
+      {
+        "value": "",
+        "error": ""
+      },
+      "degree":
+      {
+        "value": "",
+        "error": ""
+      },
+      "field":
+      {
+        "value": "",
+        "error": ""
+      },
+      "location":
+      {
+        "value": "",
+        "error": ""
+      },
+      "grade":
+      {
+        "value": "",
+        "error": ""
+      },
+      "startdate":
+      {
+        "value": "",
+        "error": ""
+      },
+      "enddate":
+      {
+        "value": "",
+        "error": ""
+      },
+      "description":
+      {
+        "value": "",
+        "error": ""
+      }
+    }]
+  },
+  "job":
+  {
+    "list": [
+    {
+      "input":
+      {
+        "value": "",
+        "error": ""
+      },
+      "company":
+      {
+        "value": "",
+        "error": ""
+      },
+      "jobtitle":
+      {
+        "value": "",
+        "error": ""
+      },
+      "location":
+      {
+        "value": "",
+        "error": ""
+      },
+      "startdate":
+      {
+        "error": "",
+        "value": ""
+      },
+      "enddate":
+      {
+        "error": null,
+        "value": ""
+      },
+      "currentjob":
+      {
+        "value": true,
+        "error": ""
+      },
+      "responsibilities":
+      {
+        "value": "",
+        "error": ""
+      }
     },
-    "startdate": {
-      "error": null,
-      "value": ""
+    {
+      "input":
+      {
+        "value": "",
+        "error": ""
+      },
+      "company":
+      {
+        "value": "",
+        "error": ""
+      },
+      "jobtitle":
+      {
+        "value": "",
+        "error": ""
+      },
+      "location":
+      {
+        "value": "",
+        "error": ""
+      },
+      "startdate":
+      {
+        "error": "",
+        "value": ""
+      },
+      "enddate":
+      {
+        "error": "",
+        "value": ""
+      },
+      "currentjob":
+      {
+        "value": false,
+        "error": ""
+      },
+      "responsibilities":
+      {
+        "value": "",
+        "error": ""
+      }
     },
-    "enddate": {
-      "error": null,
-      "value": ""
+    {
+      "input":
+      {
+        "value": "",
+        "error": ""
+      },
+      "company":
+      {
+        "value": "",
+        "error": ""
+      },
+      "jobtitle":
+      {
+        "value": "",
+        "error": ""
+      },
+      "location":
+      {
+        "value": "",
+        "error": ""
+      },
+      "startdate":
+      {
+        "error": "",
+        "value": ""
+      },
+      "enddate":
+      {
+        "error": "",
+        "value": ""
+      },
+      "currentjob":
+      {
+        "value": false,
+        "error": ""
+      },
+      "responsibilities":
+      {
+        "value": "",
+        "error": ""
+      }
     },
-    "currentjob": {
-      "value": false,
-      "error": ""
+    {
+      "input":
+      {
+        "value": "",
+        "error": ""
+      },
+      "company":
+      {
+        "value": "",
+        "error": ""
+      },
+      "jobtitle":
+      {
+        "value": "",
+        "error": ""
+      },
+      "location":
+      {
+        "value": "",
+        "error": ""
+      },
+      "startdate":
+      {
+        "error": "",
+        "value": ""
+      },
+      "enddate":
+      {
+        "error": "",
+        "value": ""
+      },
+      "currentjob":
+      {
+        "value": false,
+        "error": ""
+      },
+      "responsibilities":
+      {
+        "value": "",
+        "error": ""
+      }
+    }]
+  },
+  "misc":
+  {
+    "list": [
+    {
+      "input":
+      {
+        "value": "",
+        "error": ""
+      },
+      "label":
+      {
+        "value": "",
+        "error": ""
+      },
+      "description":
+      {
+        "value": "",
+        "error": ""
+      }
     },
-    "responsibilities": {
-      "value": "",
-      "error": ""
-    }
-  }],
-  "others": [{
-    "heading": "",
-    "label": {
-      "value": "",
-      "error": ""
-    },
-    "description": {
-      "value": "",
-      "error": ""
-    }
-  }]
+    {
+      "input":
+      {
+        "value": "",
+        "error": ""
+      },
+      "label":
+      {
+        "value": "",
+        "error": ""
+      },
+      "description":
+      {
+        "value": "",
+        "error": ""
+      }
+    }]
+  }
 }

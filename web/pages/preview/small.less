@@ -1,15 +1,24 @@
 @import '../../common/styles/reset.less';
+@import '../../common/styles/styles.less';
+
 .preview {
   background: #e7e7e7;
   .toolbar {
-    position: fixed;
     top: 64px;
-    width: 100%;
     z-index: 1;
     padding: 10px 24px !important; 
+    > div {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+    }
     .colorpicker {
       margin-top: 0 !important;
       margin-right: 12px;
+      height: 40px !important;
+      width: 48px;
+      padding: 0;
+      margin-top: -2px !important;
     }
   }
   .error {
@@ -32,5 +41,24 @@
   }
   div[class^='Design'] {
     zoom: 1;
+  }
+  .downloading {
+    animation-name: download;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+  }
+}
+
+@keyframes download {
+  0% {
+    margin-top: -5px;
+  }
+
+  50% {
+    margin-top: 5px;
+  }
+
+  100% {
+    margin-top: -5px;
   }
 }

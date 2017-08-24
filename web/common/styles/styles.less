@@ -6,11 +6,21 @@
 
 .fixed {
   position: fixed !important;
+  width: auto !important;
   top: 64px;
   left: 0;
+  right: 0;
   top: 0;
-  width: 100%;
   z-index: 10;
+}
+
+@media all and (min-width: 1120px) {
+  body {
+    padding-left: 240px !important; 
+  }
+  .fixed {
+    margin-left: 240px;
+  }
 }
 
 

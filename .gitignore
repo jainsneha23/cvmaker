@@ -22,3 +22,10 @@ build-manifest.json
 .vscode
 profile.json
 
+# monodb database
+data/*
+assets/site-images/*
+
+#yarn files
+yarn*
+

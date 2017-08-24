@@ -1,39 +1,41 @@
 import React from 'react';
-import {render} from 'react-dom';
-import { Router, Route, browserHistory } from 'react-router';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import injectTapEventPlugin from 'react-tap-event-plugin';
+import PropTypes from 'prop-types';
+import {Provider} from 'react-redux';
+import { Router, browserHistory, RouterContext } from 'react-router';
 
-import Home from '../web/pages/home';
-import CvForm from '../web/pages/cv-form';
-import Preview from '../web/pages/preview';
-import Design from '../web/pages/design';
-import ErrorPage from '../web/pages/error-page';
+import {jsonToHtml} from './utils/parse-cvform';
+import {ResumeService} from './api';
+import configureStore from './store/configureStore';
+import Routes from './routes';
 
-injectTapEventPlugin();
+class Page extends React.Component {
 
-const muiTheme = getMuiTheme({
-  palette: {
-    primary1Color: '#40a7ba',
-    primary2Color: '#d36d4d',
-    primary3Color: '#F5F5F5',
-  },
-}, {
-  avatar: {
-    borderColor: null,
+  constructor(props) {
+    super(props);
+    this.reduxStore = configureStore(props.initialState);
+    const state = this.reduxStore.getState();
+    if (state.user.isNew)
+      ResumeService.add(state.user, 1, jsonToHtml(state.cvform), state.design.id, state.design.color);
   }
-});
 
-render((
-  <MuiThemeProvider muiTheme={muiTheme}>
-    <Router history = {browserHistory}>
-      <Route path = "/" component = {Home} />
-      <Route path = "/create" component = {CvForm} />
-      <Route path = "/preview" component= {Preview} />
-      <Route path = "/designs" component= {Design} />
-      <Route path='*' component={ErrorPage} />
-    </Router>
-  </MuiThemeProvider>
-), document.getElementById('app'));
+  render() {
+    if (typeof window !== 'undefined') {
+      return (
+        <Provider store={this.reduxStore}>
+          <Router history={browserHistory} routes={Routes} />
+        </Provider>
+      );
+    }
+    return (
+      <Provider store={this.reduxStore}>
+        <RouterContext {...this.props} />
+      </Provider>
+    );
+  }
+}
 
+Page.propTypes = {
+  initialState: PropTypes.object.isRequired
+};
+
+export default Page;

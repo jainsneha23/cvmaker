@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 
 import {Card, CardMedia} from 'material-ui/Card';
@@ -8,23 +10,23 @@ import IconButton from 'material-ui/IconButton';
 import CheckCircle from 'material-ui/svg-icons/action/check-circle';
 import ZoomIn from 'material-ui/svg-icons/action/zoom-in';
 
-import Header from '../../components/header';
+import {ResumeService} from '../../api';
+import PageHeaderContainer from '../../containers/page-header';
+import * as ACTIONS from '../../actions';
 
 import './small.less';
 
 const tilesData = [
-  {img: 'cvimages/design1', designColor: '#40a7ba'},
-  {img: 'cvimages/design2', designColor: '#fdb120'},
-  {img: 'cvimages/design3', designColor: '#40a7ba'}
+  {img: '/assets/cvimages/design1', designColor: '#40a7ba'},
+  {img: '/assets/cvimages/design2', designColor: '#fdb120'},
+  {img: '/assets/cvimages/design3', designColor: '#40a7ba'}
 ];
 
 
 class Design extends React.Component {
   constructor(props) {
     super(props);
-    const designId = (typeof localStorage !== 'undefined' && (+localStorage.getItem('designId') - 1)) || 0;
     this.state = {
-      designId,
       cols: 1,
       dialog: false,
       dialogIdx: 0
@@ -43,7 +45,9 @@ class Design extends React.Component {
   }
 
   handleChange(e, value) {
-    this.setState({designId: value});
+    const designid = value + 1;
+    const designcolor = tilesData[value].designColor;
+    this.props.changeDesign(designid, designcolor);
   }
 
   toggleMagnify(e, value) {
@@ -51,18 +55,17 @@ class Design extends React.Component {
   }
 
   preview() {
-    if (typeof localStorage !== 'undefined') {
-      localStorage.setItem('designId', this.state.designId+1);
-      localStorage.setItem('designColor', tilesData[this.state.designId].designColor);
-      browserHistory.push('/preview');
-    }
-    else browserHistory.push(`/preview?designId=${this.state.designId+1}`);
+    const designid = this.props.id;
+    const designcolor = tilesData[this.props.id - 1].designColor;
+    ResumeService.updateDesign(this.props.user, 1, designid, designcolor)
+      .then(() => browserHistory.push('/preview'))
+      .catch(() => alert('Some error occured. Please try again'));
   }
 
   render() {
     return (
       <div className="designs">
-        <Header rightElem={<RaisedButton
+        <PageHeaderContainer rightElem={<RaisedButton
           label={'Preview'}
           secondary={true}
           onClick={this.preview} /> }/>
@@ -76,7 +79,7 @@ class Design extends React.Component {
                     <ZoomIn color="#fff" />
                   </IconButton>
                   <IconButton onTouchTap={(e) => this.handleChange(e, idx)}>
-                    <CheckCircle color={this.state.designId === idx ? '#ff4081' : '#ccc'} />
+                    <CheckCircle color={this.props.id - 1 === idx ? '#ff4081' : '#ccc'} />
                   </IconButton>
                 </div>} >
               <img src={`${tile.img}-thumb.png`} />
@@ -93,7 +96,7 @@ class Design extends React.Component {
             label="Done"
             primary={true}
             onTouchTap={this.toggleMagnify}
-            />]}
+          />]}
           modal={false}
           open={this.state.dialog}
           onRequestClose={this.toggleMagnify}
@@ -107,4 +110,27 @@ class Design extends React.Component {
   }
 }
 
-export default Design;
+const mapStateToProps = (state) => ({
+  id: state.design.id,
+  user: state.user
+});
+
+const mapDispatchToProps = dispatch => ({
+  changeDesign: (designid, designcolor) => dispatch(ACTIONS.changeDesign(designid, designcolor)),
+});
+
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Design);
+
+Design.propTypes = {
+  user: PropTypes.object.isRequired,
+  id: PropTypes.number.isRequired,
+  changeDesign: PropTypes.func.isRequired
+};
+
+Design.defaultProps = {
+  id: 0
+};
