@@ -9,7 +9,7 @@ class ResumeService {
 
   static add(user, resumeid, cvdata, designid, designcolor) {
     cvdata = JSON.stringify(JSON.stringify(cvdata));
-    const design = JSON.stringify(JSON.stringify({designid, designcolor}));
+    const design = JSON.stringify(JSON.stringify({id: designid, color: designcolor}));
     var query = `mutation { add (id: "${user.id}_${resumeid}", userid: ${user.id}, resumeid: ${resumeid}, cvdata: ${cvdata}, design: ${design}) { id } }`;
     return new Promise((resolve) => {
       fetch('/api/resume', {
@@ -67,7 +67,7 @@ class ResumeService {
   }
 
   static updateDesign(user, resumeid, designid, designcolor) {
-    const design = JSON.stringify({designid,designcolor});
+    const design = JSON.stringify(JSON.stringify({id: designid, color: designcolor}));
     localStorage && localStorage.setItem('design', design);
     if (!user) {
       return new Promise((resolve) => {
@@ -75,7 +75,7 @@ class ResumeService {
       });
     }
     return new Promise((resolve, reject) => {
-      var query = `mutation { update (id: ${user.id}_${resumeid}, userid: ${user.id}, resumeId: ${resumeid}, design: ${design}) { id } }`;
+      var query = `mutation { update (id: "${user.id}_${resumeid}", design: ${design}) { id } }`;
       fetch('/api/resume', {
         method: 'POST',
         body: query

@@ -122,7 +122,10 @@ class ResumeSchema {
       },
       resolve: (root, {id, cvdata, design}) => {
         return new Promise((resolve, reject) => {
-          db.update(dbName, {id}, {$set:{cvdata, design}})
+          const dataToUpdate = {};
+          if(cvdata) dataToUpdate.cvdata = cvdata;
+          if(design) dataToUpdate.design = design;
+          db.update(dbName, {id}, {$set:dataToUpdate})
             .then(() => db.selectAll(dbName))
             .then(resumes => resolve(resumes))
             .catch(err => reject(err));
