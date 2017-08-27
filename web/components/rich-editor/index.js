@@ -30,6 +30,10 @@ class RichEditor extends React.Component {
     this.onChange = this.onChange.bind(this);
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.setState({editorState: nextProps.editorState});
+  }
+
   focus() {
     this.refs.editor.focus();
   }

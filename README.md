@@ -20,6 +20,7 @@ A tool to create resumes online with easy to use forms, and pre defined template
 
 ### Technology used
 - ReactJS
+- Redux
 - MaterialUI
 - LESS
 - Marko
