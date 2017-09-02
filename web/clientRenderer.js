@@ -7,7 +7,7 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
-import {ResumeService} from './api';
+import {ResumeService, UserService} from './api';
 import {htmlToJson} from './utils/parse-cvform';
 import Page from './index';
 /* global document, window, alert */
@@ -28,11 +28,11 @@ const muiTheme = getMuiTheme({
 
 if (document) {
 
-  const sendErr = (err) => {
+  window.sendErr = (err) => {
     fetch('/logs/report-client-error', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json, text/plain'
+        'Content-Type': 'text/plain'
       },
       body: err
     });
@@ -55,25 +55,35 @@ if (document) {
     try {
       /* eslint-disable no-underscore-dangle */
       const initialState = window.__REDUX_STATE__;
+      if (!initialState.user) {
+        const user_id = UserService.get();
+        if (user_id) {
+          initialState.user = {id: user_id};
+        } else {
+          initialState.user = {id: new Date().getTime()};
+          UserService.add(initialState.user);
+        }
+        initialState.user.isLoggedIn = false;
+      }
       ResumeService.get(initialState.user).then(res => {
+        if (res.errors) {
+          throw `ResumeService get error: ${res.errors}`;
+        }
         if (res.data.resumes.length === 0) {
-          if (initialState.user)
-            initialState.user.isNew = true;
-          else initialState.user = {isNew: true};
+          initialState.user.isNew = true;
         } else {
           initialState.cvform = htmlToJson(res.data.resumes[0].cvdata);
           initialState.design = JSON.parse(res.data.resumes[0].design);
         }
         render(initialState);
       }).catch((e) => {
-        sendErr(e);
+        window.sendErr(e.message);
         showError();
       });
     } catch (err) {
-      sendErr(err);
+      window.sendErr(err.stack);
       showError();
     }
   };
-
   main();
 }

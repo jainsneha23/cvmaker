@@ -1,4 +1,10 @@
 
 import ResumeService from './resume';
+import UserService from './user';
 
-export {ResumeService};
+if (localStorage) {
+  localStorage.removeItem('cvdata');
+  localStorage.removeItem('design');
+}
+
+export {ResumeService, UserService};

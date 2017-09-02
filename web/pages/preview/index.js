@@ -35,6 +35,7 @@ class Preview extends React.Component {
   }
 
   download() {
+    this.props.trackDownload();
     this.setState({downloading: true});
     const data = JSON.stringify({
       cvdata: this.props.cvdata,
@@ -94,7 +95,10 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  changeDesignColor: (e) => dispatch(ACTIONS.changeDesignColor(e.target.value)),
+  changeDesignColor: (e) => {
+    dispatch(ACTIONS.changeDesignColor(e.target.value));
+  },
+  trackDownload: () => dispatch(ACTIONS.fireButtonClick('download'))
 });
 
 
@@ -109,7 +113,8 @@ Preview.propTypes = {
   mobileView: PropTypes.bool.isRequired,
   designId: PropTypes.number.isRequired,
   designColor: PropTypes.string.isRequired,
-  changeDesignColor: PropTypes.func.isRequired
+  changeDesignColor: PropTypes.func.isRequired,
+  trackDownload: PropTypes.func.isRequired
 };
 
 Preview.defaultProps = {};

@@ -68,7 +68,7 @@ class PageHeader extends React.Component {
               <Menu width={240} autoWidth={false} disableAutoFocus={true} >
                 <MenuItem>
                   <div style={{textAlign: 'center'}}>
-                    {this.props.user.id ? <div>
+                    {this.props.user.isLoggedIn ? <div>
                       {photo? <Avatar size={80} src={photo} /> : <Avatar size={80} backgroundColor={'#40a7ba'}>{this.props.user.displayName.substr(0,1)}</Avatar>}
                       <p>{this.props.user.displayName}</p>
                     </div> :
@@ -77,10 +77,10 @@ class PageHeader extends React.Component {
                   </div>
                 </MenuItem>
                 <Divider />
-                {this.props.user.id && <MenuItem onClick={this.toggleBurger}>
+                {this.props.user.isLoggedIn && <MenuItem onClick={this.toggleBurger}>
                   <a className="menulink" href='/auth/logout'>Logout</a>
                 </MenuItem>}
-                {!this.props.user.id && <MenuItem style={(this.location === '/login' && this.menuItemStyle) || {}} onClick={this.toggleBurger}>
+                {!this.props.user.isLoggedIn && <MenuItem style={(this.location === '/login' && this.menuItemStyle) || {}} onClick={this.toggleBurger}>
                   <Link className="menulink" to='/login'>Login</Link>
                 </MenuItem>}
                 <Divider />

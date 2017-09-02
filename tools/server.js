@@ -81,6 +81,11 @@ app.use(Session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.post('/logs/report-client-error', bodyParser.text() , (req, res) => {
+  console.error(`client_error: ${req.body}`);
+  res.sendStatus(204);
+});
+
 app.use(Routes(app, express, CONFIG));
 
 app.use((req, res) => {

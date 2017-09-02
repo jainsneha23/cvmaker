@@ -11,6 +11,7 @@ import PreviewIcon from 'material-ui/svg-icons/action/visibility';
 
 import {jsonToHtml} from '../../utils/parse-cvform';
 import {ResumeService} from '../../api';
+import * as ACTIONS from '../../actions';
 
 import PageHeaderContainer from '../../containers/page-header';
 import PersonalDetails from '../../containers/cvforms/personal-details-container';
@@ -30,6 +31,7 @@ class CvForm extends React.Component {
       stepIndex: 0
     };
     this.stepCount = 6;
+    this.steps = ['Personal', 'Profile', 'Skill', 'Job', 'Education', 'Misc'];
     this.preview = this.preview.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleBack = this.handleBack.bind(this);
@@ -37,21 +39,25 @@ class CvForm extends React.Component {
   }
 
   handleBack() {
+    this.props.trackFormSection('cvform-back');
     this.setState({stepIndex: this.state.stepIndex - 1});
   }
 
   preview() {
+    this.props.trackPreview();
     ResumeService.update(this.props.user, 1, jsonToHtml(this.props.cvdata))
       .then(() => browserHistory.push('/preview'))
       .catch(() => alert('Some error occured. Please try again'));
   }
 
   handleNext() {
+    this.props.trackFormSection('cvform-next');
     if (this.state.stepIndex === this.stepCount - 1) this.preview();
     else this.setState({stepIndex: this.state.stepIndex + 1});
   }
 
   handleChange(value) {
+    this.props.trackFormSection(`cvform-${this.steps[value]}`);
     this.setState({stepIndex: value});
   }
 
@@ -73,22 +79,22 @@ class CvForm extends React.Component {
           tabItemContainerStyle={{position: 'fixed', top: '65px'}}
           inkBarStyle={{height: '4px'}}
           contentContainerStyle={{margin: this.props.mobileView ? '112px 0px 60px' : '136px 0px 60px'}} >
-          <Tab value={0} icon={<PersonalIcon />} label={!this.props.mobileView && 'Personal'} >
+          <Tab value={0} icon={<PersonalIcon />} label={!this.props.mobileView && this.steps[0]} >
             <PersonalDetails />
           </Tab>
-          <Tab value={1} icon={<ProfileIcon />} label={!this.props.mobileView && 'Profile'}>
+          <Tab value={1} icon={<ProfileIcon />} label={!this.props.mobileView && this.steps[1]}>
             <ProfileContainer />
           </Tab>
-          <Tab value={2} icon={<SkillIcon />} label={!this.props.mobileView && 'Skill'} >
+          <Tab value={2} icon={<SkillIcon />} label={!this.props.mobileView && this.steps[2]} >
             <SkillContainer />
           </Tab>
-          <Tab value={3} icon={<JobIcon />} label={!this.props.mobileView && 'Job'} >
+          <Tab value={3} icon={<JobIcon />} label={!this.props.mobileView && this.steps[3]} >
             <JobContainer />
           </Tab>
-          <Tab value={4} icon={<EducationIcon />} label={!this.props.mobileView && 'Education'} >
+          <Tab value={4} icon={<EducationIcon />} label={!this.props.mobileView && this.steps[4]} >
             <EducationContainer />
           </Tab>}
-          <Tab value={5} icon={<MiscIcon />} label={!this.props.mobileView && 'Others'} >
+          <Tab value={5} icon={<MiscIcon />} label={!this.props.mobileView && this.steps[5]} >
             <MiscContainer />
           </Tab>
         </Tabs>
@@ -119,8 +125,14 @@ const mapStateToProps = (state) => ({
   wideView: state.app.wideView
 });
 
+const mapDispatchToProps = dispatch => ({
+  trackPreview: () => dispatch(ACTIONS.fireButtonClick('preview')),
+  trackFormSection: (val) => dispatch(ACTIONS.fireButtonClick(val))
+});
+
 export default connect(
-  mapStateToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(CvForm);
 
 CvForm.propTypes = {
@@ -128,7 +140,9 @@ CvForm.propTypes = {
   user: PropTypes.object.isRequired,
   designid: PropTypes.number.isRequired,
   mobileView: PropTypes.bool.isRequired,
-  wideView: PropTypes.bool.isRequired
+  wideView: PropTypes.bool.isRequired,
+  trackPreview: PropTypes.func.isRequired,
+  trackFormSection: PropTypes.func.isRequired
 };
 
 CvForm.defaultProps = {};

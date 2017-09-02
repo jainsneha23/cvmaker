@@ -1,42 +1,19 @@
-import AnalyticsModule from '../../analytics';
+/* global dataLayer */
 
-const analyticsModule = new AnalyticsModule();
-
-export function fireBasicEvent(type, tag, storeId, storeName) {
+const firePageChange = (action, page) => {
   return () => {
-    analyticsModule.compEvtHandler({
-                        type,
-                        tag,
-                        storeId,
-                        storeName,
-                        eventType: 'UIEventBasicEvent'
-                      });
+    dataLayer.push({
+      PAGE_CHANGE: {action, page}
+    });
   };
-}
+};
 
-export function fireSearchEvent(type, tag, searchTerm) {
+const fireButtonClick = (value) => {
   return () => {
-    analyticsModule.compEvtHandler({
-                        type,
-                        tag,
-                        searchTerm,
-                        eventType: 'UISearch'
-                      });
+    dataLayer.push({
+      BUTTON_CLICK: value
+    });
   };
-}
+};
 
-export function fireFilterEvent(type, tag) {
-  return () => {
-    analyticsModule.compEvtHandler({
-                        type,
-                        tag,
-                        eventType: 'UIEventFilterOp'
-                      });
-  };
-}
-
-export function firePageEvent(pageName, storeId) {
-  return () => {
-    analyticsModule.firePageEvent(pageName, storeId);
-  };
-}
+export {firePageChange, fireButtonClick};

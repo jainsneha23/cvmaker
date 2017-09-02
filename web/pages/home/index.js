@@ -39,7 +39,7 @@ class Home extends React.Component {
               <section>
                 <header>Impress with your resume</header>
                 <p>Your CV is the first point of contact with the recruiter. Stand out and get a interview call faster</p>
-                <Link to={this.props.user.id ? '/create' : '/login'}>Create CV now</Link>
+                <Link to={this.props.user.isLoggedIn ? '/create' : '/login'}>Create CV now</Link>
               </section>
             </div>
           </article>

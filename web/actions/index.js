@@ -1,3 +1,4 @@
+export * from './analytics';
 export * from './cvform/';
-export * from './design';
 export * from './app';
+export * from './design';

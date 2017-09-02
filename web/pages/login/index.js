@@ -29,7 +29,7 @@ class Login extends React.Component {
       <div className="loginpage">
         <PageHeaderContainer />
         <Paper style={style} zDepth={2}>
-          {this.props.user.id ? <div className="loggedIn">
+          {this.props.user.isLoggedIn ? <div className="loggedIn">
             <span>Welcome, </span>
             <span>{this.props.user.displayName}</span>
           </div> :  
@@ -44,7 +44,7 @@ class Login extends React.Component {
                 </li>
               </ul>
             </div>}
-          <Link to='/create' className="link">{this.props.user.id ? 'Create CV now' : 'Or, continue without login'}</Link>
+          <Link to='/create' className="link">{this.props.user.isLoggedIn ? 'Create CV now' : 'Or, continue without login'}</Link>
         </Paper>
       </div>
     );

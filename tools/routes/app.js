@@ -36,6 +36,7 @@ const AppRoutes = (app, express) => {
   });
 
   router.get('*', (req, res) => {
+    if (req.user) req.user.isLoggedIn = true;
     app.locals.renderIndex(res, {user: req.user});
   });
 
