@@ -3,7 +3,9 @@
 const firePageChange = (action, page) => {
   return () => {
     dataLayer.push({
-      PAGE_CHANGE: {action, page}
+      event: 'PAGE_CHANGE',
+      PAGE_ACTION: action,
+      PAGE_NAME: page
     });
   };
 };
@@ -11,7 +13,8 @@ const firePageChange = (action, page) => {
 const fireButtonClick = (value) => {
   return () => {
     dataLayer.push({
-      BUTTON_CLICK: value
+      event: 'BUTTON_CLICK',
+      BUTTON_NAME: value
     });
   };
 };

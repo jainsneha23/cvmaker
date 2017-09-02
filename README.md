@@ -11,6 +11,7 @@ A tool to create resumes online with easy to use forms, and pre defined template
 `export COOKIE_SECRET=<Cookie secret>`
 `export COOKIE_NAME=<Cookie name>`
 `export MONGODB_URI=mongodb://127.0.0.1:27017/cvmaker`
+`export WRENCHMODE_PROJECT_JWT=<Wrenchmode JWT>`
 
 - Start mongodb in the project foler as `mongod --dbpath=data`
 - Install dependencies ` npm install`
