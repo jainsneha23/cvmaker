@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import TextField from 'material-ui/TextField';
-import DatePicker from 'material-ui/DatePicker';
-import Subheader from 'material-ui/Subheader';
 import RichEditor from '../../rich-editor';
+import DatePicker from '../../basic/date-picker';
 
 const Education = (props) => (
   <div className="form-job-item" >
@@ -58,29 +57,17 @@ const Education = (props) => (
         onChange={(e) => props.handleChange(e.target.value, 'grade')}
         onBlur={(e) => props.handleChange(e.target.value, 'grade')}
       />
-      <Subheader label="Start Date" />
       <DatePicker
-        hintText="30-01-2017"
-        container="inline"
-        className="input-date"
-        autoOk={true}
+        label="Enter the start date "
         value={props.startdate.value}
         errorText={props.startdate.error}
-        errorStyle={{bottom: '-4px'}}
-        onChange={(e, date) => props.handleChange(date, 'startdate')}
-        onBlur={(e, date) => props.handleChange(date, 'startdate')}
+        onChange={(date) => props.handleChange(date, 'startdate')}
       />
-      <Subheader label="End Date" />
       <DatePicker
-        hintText="30-01-2017"
-        container="inline"
-        className="input-date"
-        autoOk={true}
+        label="Enter the end date"
         value={props.enddate.value}
         errorText={props.enddate.error}
-        errorStyle={{bottom: '-4px'}}
-        onChange={(e, date) => props.handleChange(date, 'enddate')}
-        onBlur={(e, date) => props.handleChange(date, 'enddate')}
+        onChange={(date) => props.handleChange(date, 'enddate')}
       />
       <RichEditor
         editorState={props.description.value}
@@ -96,8 +83,8 @@ Education.propTypes = {
   location: PropTypes.shape({value: PropTypes.string, error: PropTypes.string}),
   field: PropTypes.shape({value: PropTypes.string, error: PropTypes.string}),
   grade: PropTypes.shape({value: PropTypes.string, error: PropTypes.string}),
-  startdate: PropTypes.shape({value: PropTypes.string, error: PropTypes.string}),
-  enddate: PropTypes.shape({value: PropTypes.string, error: PropTypes.string}),
+  startdate: PropTypes.shape({value: PropTypes.oneOfType([PropTypes.object, PropTypes.string]), error: PropTypes.string}),
+  enddate: PropTypes.shape({value: PropTypes.oneOfType([PropTypes.object, PropTypes.string]), error: PropTypes.string}),
   description: PropTypes.shape({value: PropTypes.object, error: PropTypes.string}),
   handleChange: PropTypes.func.isRequired
 };

@@ -52,7 +52,7 @@
       }
       > ul {
         > li {
-          padding: 10px;
+          padding: 10px 0;
         }
       }
       .sectionTitle {
@@ -61,6 +61,7 @@
         vertical-align: top;
         font-size: 18px;
         color: #2097AD;
+        padding-right: 10px;
       }
       .sectionContent {
         display: inline-block;
@@ -127,5 +128,36 @@
         }
       }
     }
+  }
+}
+
+.Design1 {
+  *:empty {
+    display: inline-block;
+    background: #efefef;
+    min-width: 100px;
+    height: 16px;
+  }
+  .subDetails span:empty {
+    min-width: 60px;
+  }
+  p:empty {
+    display: block;
+  }
+  .mainDetails *:empty {
+    display: block;
+    width: 30%;
+    text-align: center;
+    margin: 0 auto;
+  }
+  .portfolioInfo *:empty {
+    display: block;
+  }
+  .skillInfo *:empty {
+    display: block;
+    min-width: 150px;
+  }
+  .educationInfo *:empty {
+    min-width: 100px;
   }
 }

@@ -34,7 +34,7 @@ const others = (state = initialState, action) => {
     const list = clone(state.list);
     const { idx, type, val } = {...payload};
     list[idx][type].value = val;
-    list[idx][type].error = !val && 'This field is required';
+    list[idx][type].error = (!val && 'This field is required') || '';
     return { ...state, list};
   }
 

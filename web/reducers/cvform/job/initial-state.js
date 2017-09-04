@@ -24,8 +24,7 @@ export default {
       value: ''
     },
     currentjob: {
-      value: false,
-      error: ''
+      value: false
     },
     responsibilities: {
       value: EditorState.createEmpty(),
