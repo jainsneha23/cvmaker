@@ -27,11 +27,8 @@ data/*
 assets/site-images/*
 
 #yarn files
-yarn*
+*yarn*
 
 #config file with data
 tools/config.sh
-
-# google verification file
-google*
 

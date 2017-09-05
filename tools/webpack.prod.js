@@ -8,17 +8,10 @@ import path from 'path';
 const bundleHashType = 'chunkhash'; // aggregate of all chunks, specific hash per chunk
 
 module.exports = {
-  devtool: '#inline-source-map',
+  devtool: 'source-map',
   target: 'web',
   entry: {
-    main: './web/clientRenderer.js',
-    vendor: [
-      'es6-promise',
-      'isomorphic-fetch',
-      'react',
-      'react-dom',
-      'react-router'
-    ]
+    main: './web/clientRenderer.js'
   },
   output: {
     path: path.join(__dirname, '../public'),
@@ -67,14 +60,19 @@ module.exports = {
     }]
   },
   plugins: [
-    new webpack.IgnorePlugin(/require-text/),
+    new webpack.IgnorePlugin(/path|less-to-css\.js/),
     new webpack.DefinePlugin({
       'process.env': { NODE_ENV: JSON.stringify('production') },
     }),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
-      minChunks: Infinity,
-      filename: `vendor-[${bundleHashType}].js`
+      filename: `vendor-[${bundleHashType}].js`,
+      minChunks: (module) => {
+        if(module.resource && (/^.*\.(css|scss|less)$/).test(module.resource)) {
+          return false;
+        }
+        return module.context && module.context.indexOf('node_modules') !== -1;
+      }
     }),
     new webpack.LoaderOptionsPlugin({
       minimize: true,

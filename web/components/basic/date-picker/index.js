@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {DatePicker, IconButton, TextField} from 'material-ui';
+import TextField from 'material-ui/TextField';
+import DatePicker from 'material-ui/DatePicker';
+import IconButton from 'material-ui/IconButton';
 import ActionDateRange from 'material-ui/svg-icons/action/date-range';
 
 class DatePickerField extends React.Component{

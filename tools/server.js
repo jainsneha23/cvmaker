@@ -6,6 +6,8 @@ import passport from 'passport';
 import Session from 'express-session';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
+import compression from 'compression';
+import helmet from 'helmet';
 import methodOverride from 'method-override';
 import Mongo from 'connect-mongo';
 import wrenchmodeExpress from 'wrenchmode-express';
@@ -57,6 +59,8 @@ if (ENV === 'development') {
 }
 
 app.use(wrenchmodeExpress());
+app.use(compression());
+app.use(helmet());
 app.use(cookieParser(CONFIG.session.secret));
 app.use(methodOverride());
 app.use(bodyParser.urlencoded({ extended: true }));

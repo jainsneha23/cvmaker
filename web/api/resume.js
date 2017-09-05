@@ -88,7 +88,7 @@ class ResumeService {
       }).then((res) => {
         if (res.ok)
           return res.json();
-        else throw Error({message: 'Error in fetching resume'});
+        else throw 'Error in fetching resume';
       }).then((response) => {
         const blob = base64ToBlob(response.base64);
         fileSaver.saveAs(blob, 'resume.pdf');
