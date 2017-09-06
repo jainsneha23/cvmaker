@@ -29,6 +29,9 @@ class PageHeader extends React.Component {
   componentDidMount() {
     this.handleWidth();
     window.addEventListener('resize', this.handleWidth);
+    /* global gapi*/
+    gapi.plusone.go();
+    gapi.follow.go();
   }
 
   componentWillUnmount() {
@@ -65,7 +68,7 @@ class PageHeader extends React.Component {
               width={240}
               open={this.props.wideView ? true : this.state.burgerState}
               onRequestChange={this.toggleBurger}>
-              <Menu width={240} autoWidth={false} disableAutoFocus={true} >
+              <Menu style={{marginBottom: '20px'}} width={240} autoWidth={false} disableAutoFocus={true} >
                 <MenuItem>
                   <div style={{textAlign: 'center'}}>
                     {this.props.user.isLoggedIn ? <div>
@@ -102,7 +105,11 @@ class PageHeader extends React.Component {
                 </MenuItem>
                 <MenuItem>
                   <p>Like Us:</p>
-                  <div className="fb-like" data-href="https://www.facebook.com/instantCvMaker/" data-width="25" data-layout="box_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>
+                  <ul className="social">
+                    <li><div className="fb-like" data-href="https://www.facebook.com/instantCvMaker/" data-width="25" data-layout="box_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div></li>
+                    <li><div className="g-follow" data-annotation="vertical-bubble" data-height="24" data-href="//plus.google.com/u/0/113575630639787427005" data-rel="author"></div></li>
+                    <li><div className="g-plusone" data-annotation="standard" data-href="http://www.cvmaker.co.in"></div></li>
+                  </ul>
                 </MenuItem>
               </Menu>
             </Drawer>
