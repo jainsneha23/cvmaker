@@ -10,7 +10,6 @@ import compression from 'compression';
 import helmet from 'helmet';
 import methodOverride from 'method-override';
 import Mongo from 'connect-mongo';
-import wrenchmodeExpress from 'wrenchmode-express';
 import 'ignore-styles';
 
 import Routes from './routes';
@@ -58,7 +57,6 @@ if (ENV === 'development') {
   app.use(require('webpack-hot-middleware')(compiler));
 }
 
-app.use(wrenchmodeExpress());
 app.use(compression());
 app.use(helmet());
 app.use(cookieParser(CONFIG.session.secret));

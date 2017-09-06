@@ -9,6 +9,19 @@ const _facebook = {
   callbackURL: 'http://www.cvmaker.co.in/auth/facebook/return'
 };
 
+const _linkedin = {
+  appID: process.env.LINKEDIN_ID,
+  appSecret: process.env.LINKEDIN_SECRET,
+  permissions: ['id', 'first-name', 'last-name', 'email-address', 'picture-url', 'public-profile-url'],
+  callbackURL: 'http://www.cvmaker.co.in/auth/linkedin/return'
+};
+
+const _google = {
+  appID: process.env.GOOGLE_ID,
+  appSecret: process.env.GOOGLE_SECRET,
+  callbackURL: 'http://www.cvmaker.co.in/auth/google/return'
+};
+
 const _session = {
   name: process.env.COOKIE_NAME,
   secret: process.env.COOKIE_SECRET,
@@ -30,6 +43,8 @@ const _config = {
   database: _database,
   session: _session,
   facebook: _facebook,
+  linkedin: _linkedin,
+  google: _google,
   port: 80
 };
 

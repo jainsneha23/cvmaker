@@ -6,12 +6,22 @@ A tool to create resumes online with easy to use forms, and pre defined template
 ## How to use
 
 - Create tools/config.sh file with the following
-`export FACEBOOK_ID=<FB app ID>`
-`export FACEBOOK_SECRET=<FB app Secret>`
-`export COOKIE_SECRET=<Cookie secret>`
-`export COOKIE_NAME=<Cookie name>`
-`export MONGODB_URI=mongodb://127.0.0.1:27017/cvmaker`
-`export WRENCHMODE_PROJECT_JWT=<Wrenchmode JWT>`
+
+`export COOKIE_NAME = <Generate your own>`
+`export COOKIE_SECRET = <Generate your own>`
+`export FACEBOOK_ID = <Generate your own>`
+`export FACEBOOK_SECRET = <Generate your own>`
+`export MAIL_PASS = <Generate your own>`
+`export MAIL_USER = <Generate your own>`
+`export MONGODB_URI = <Generate your own>`
+`export NEW_RELIC_LICENSE_KEY = <Generate your own>`
+`export NEW_RELIC_Lexport OG = <Generate your own>`
+`export TILL_URL = <Generate your own>`
+`export GOOGLE_ID = <Generate your own>`
+`export GOOGLE_SECRET = <Generate your own>`
+`export LINKEDIN_ID = <Generate your own>`
+`export LINKEDIN_SECRET = <Generate your own>`
+
 
 - Start mongodb in the project foler as `mongod --dbpath=data`
 - Install dependencies ` npm install`

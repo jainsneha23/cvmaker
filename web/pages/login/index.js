@@ -9,11 +9,16 @@ import './small.less';
 
 class Login extends React.Component {
   constructor(props) {
-    super(props); 
+    super(props);
+    this.handleLogin = this.handleLogin.bind(this); 
   }
 
-  handleLogin() {
-    window.open('/auth/facebook','popup','width=600,height=600');
+  handleLogin(e, loginUrl) {
+    e.preventDefault();
+    if (this.props.user.isLoggedIn && this.props.user.provider === loginUrl)
+      window.location.href = '/auth/logout';
+    else if (!this.props.user.isLoggedIn)
+      window.open(`/auth/${loginUrl}`,'popup','width=600,height=600');
     return false;
   }
 
@@ -25,26 +30,49 @@ class Login extends React.Component {
       padding: '20px',
       textAlign: 'center'
     };
+    const isLoggedIn = this.props.user.isLoggedIn;
+    const provider = this.props.user.provider; 
     return (
       <div className="loginpage">
         <PageHeaderContainer />
         <Paper style={style} zDepth={2}>
-          {this.props.user.isLoggedIn ? <div className="loggedIn">
-            <span>Welcome, </span>
-            <span>{this.props.user.displayName}</span>
-          </div> :  
-            <div className="login">
-              <span>Signin with your social accounts</span>
-              <ul className="social">
-                <li>
-                  <a className="facebook" href="/auth/facebook" target="popup" onClick={this.handleLogin}>
-                    <img src="/assets/images/facebook.svg"/>
-                    <span>Log in with Facebook </span>
-                  </a>
-                </li>
-              </ul>
+          {isLoggedIn &&
+            <div className="loggedIn">
+              <span>Welcome, </span>
+              <span>{this.props.user.displayName}</span>
             </div>}
-          <Link to='/create' className="link">{this.props.user.isLoggedIn ? 'Create CV now' : 'Or, continue without login'}</Link>
+          <div className="login">
+            {!isLoggedIn && <span>Signin with your social accounts</span>}
+            <ul className="social">
+              <li>
+                <a
+                  className={`google ${isLoggedIn && provider != 'google' && 'disabled'}`}
+                  href="/auth/google"
+                  target="popup"
+                  onClick={(e) => this.handleLogin(e, 'google')}>
+                  <img src="/assets/images/google.svg"/>
+                  <span>{provider === 'google' ? 'Log out from' : 'Log in with'} Google</span>
+                </a>
+                <a
+                  className={`facebook ${isLoggedIn && provider != 'facebook' && 'disabled'}`}
+                  href="/auth/facebook"
+                  target="popup"
+                  onClick={(e) => this.handleLogin(e, 'facebook')}>
+                  <img src="/assets/images/facebook.svg"/>
+                  <span>{provider === 'facebook' ? 'Log out from' : 'Log in with'} Facebook </span>
+                </a>
+                <a
+                  className={`linkedin ${isLoggedIn && provider != 'linkedin' && 'disabled'}`}
+                  href="/auth/linkedin"
+                  target="popup"
+                  onClick={(e) => this.handleLogin(e, 'linkedin')}>
+                  <img src="/assets/images/linkedin.svg"/>
+                  <span>{provider === 'linkedin' ? 'Log out from' : 'Log in with'} Linkedin </span>
+                </a>
+              </li>
+            </ul>
+          </div>
+          <Link to='/create' className="link">{isLoggedIn ? 'Create CV now' : 'Or, continue without login'}</Link>
         </Paper>
       </div>
     );

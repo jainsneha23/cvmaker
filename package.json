@@ -60,6 +60,8 @@
     "nodemailer": "4.0.1",
     "passport": "0.3.2",
     "passport-facebook": "2.1.1",
+    "passport-google-oauth20": "^1.0.0",
+    "passport-linkedin": "^1.0.0",
     "path": "0.12.7",
     "prop-types": "15.5.10",
     "raw-loader": "0.5.1",
@@ -76,8 +78,7 @@
     "style-loader": "0.13.1",
     "url-loader": "0.5.7",
     "webpack": "2.7.0",
-    "webpack-assets-manifest": "0.6.2",
-    "wrenchmode-express": "0.0.3"
+    "webpack-assets-manifest": "0.6.2"
   },
   "devDependencies": {
     "babel-preset-es2015-native-modules": "6.9.4",

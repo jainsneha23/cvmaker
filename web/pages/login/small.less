@@ -6,7 +6,7 @@
     margin-top: 25px;
     cursor: pointer;
     padding: 0 15px;
-    background-color: #40a7ba;
+    background-color:   #d36d4d;
     color: #fff;
     line-height: 40px;
     border-radius: 5px;
@@ -30,22 +30,37 @@
           color: #fff;
           line-height: 40px;
           border-radius: 5px;
+          margin: 5px 0;
+          border: 1px solid transparent;
           img {
             height: 40px;
             width: 40px;
             vertical-align: top;
+            border-top-left-radius: 5px;
+            border-bottom-left-radius: 5px;
           }
           span {
             display: inline-block;
-            padding: 0 10px; 
+            padding: 0 10px;
+            min-width: 200px;
             line-height: 40px;
             vertical-align: top;
           }
+          &.google {
+            background: #4285F4;
+            border-color: #4285f4;
+          }
           &.facebook {
             background: #4267b2;
-            img {
-              border-right: 1px solid #365391;
-            }
+            border-color: #4267b2;
+          }
+          &.linkedin {
+            background: #007bb5;
+            border-color: #007bb5;
+          }
+          &.disabled {
+            background: #888;
+            border-color: #888;
           }
         }
       }
