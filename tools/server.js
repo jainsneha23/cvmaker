@@ -23,6 +23,7 @@ const app = express();
 const MongoStore = Mongo(Session);
 const port = process.env.PORT || CONFIG.port;
 const ENV = process.env.NODE_ENV || 'development';
+const enableAnalytics = process.env.ENABLE_ANALYTICS || false;
 global.db = new Database(CONFIG);
 
 app.locals.defaultTemplate = marko.load(`${__dirname}/./pages/index.marko`);
@@ -33,6 +34,7 @@ app.locals.renderIndex = (res, data) => {
   res.setHeader('Cache-Control', 'no-store, no-cache');
   app.locals.defaultTemplate.render({
     env: ENV,
+    enableAnalytics,
     mainCssBundle: ENV === 'development' ? '' : `/public/${app.locals.buildAssetsInfo['main.css']}`,
     mainJsBundle: ENV === 'development' ? '/main.js' : `/public/${app.locals.buildAssetsInfo['main.js']}`,
     vendorJsBundle: ENV === 'development' ? '' : `/public/${app.locals.buildAssetsInfo['vendor.js']}`,
