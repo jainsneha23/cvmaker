@@ -20,7 +20,7 @@ class Mailer {
   }
 
   sendFeedback(obj) {
-    const from_email = new helper.Email('support@cvmaker.co.in');
+    const from_email = new helper.Email(obj.email);
     const to_email = new helper.Email('cvmakerindia@gmail.com');
     const subject = `Feedback form from ${obj.email} ${obj.fullname}`;
     const content = new helper.Content('text/plain', obj.message);
