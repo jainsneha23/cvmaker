@@ -16,13 +16,32 @@ injectTapEventPlugin();
 
 const muiTheme = getMuiTheme({
   palette: {
-    primary1Color: '#40a7ba',
-    primary2Color: '#d36d4d',
-    primary3Color: '#F5F5F5',
-  },
+    primary1Color: '#1976D2',
+    primary2Color: '#2196F3',
+    primary3Color: '#BBDEFB',
+    accent1Color: '#FF9800',
+    accent2Color: '#E8E8E8',
+    accent3Color: '#E8E8E8',
+    textColor: '#666',
+    alternateTextColor: '#FFF',
+    canvasColor: '#FFF',
+    borderColor: '#EFEFEF',
+    disabledColor: '#CCC',
+    pickerHeaderColor: '#555',
+    clockCircleColor: '#FFF',
+    shadowColor: '#000'
+  }
 }, {
+  raisedButton: {
+    textColor: '#1976D2'
+  },
+  menuItem: {
+    textColor: '#1976D2',
+    alternateTextColor: '#1976D2'
+  },
   avatar: {
-    borderColor: null,
+    backgroundColor: '#FFF',
+    borderColor: null
   }
 });
 

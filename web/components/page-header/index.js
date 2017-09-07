@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router';
 
+import muiThemeable from 'material-ui/styles/muiThemeable';
 import Drawer from 'material-ui/Drawer';
 import AppBar from 'material-ui/AppBar';
 import Divider from 'material-ui/Divider';
@@ -21,7 +22,7 @@ class PageHeader extends React.Component {
     this.state =  {
       burgerState: window.innerWidth >= 1120 ? true : false
     };
-    this.menuItemStyle = {color: '#fff', backgroundColor: '#40a7ba'};
+    this.menuItemStyle = {color: props.muiTheme.palette.alternateTextColor, backgroundColor: props.muiTheme.palette.primary1Color};
     this.toggleBurger = this.toggleBurger.bind(this);
     this.handleWidth = this.handleWidth.bind(this);
   }
@@ -62,7 +63,7 @@ class PageHeader extends React.Component {
       <div className="pageheader fixed">
         <AppBar
           iconElementLeft={<div>
-            <NavigationMenu onClick={this.toggleBurger} style={{height: 40, width: 40, cursor: 'pointer'}}  color="#fff" />
+            <NavigationMenu onClick={this.toggleBurger} style={{height: 40, width: 40, cursor: 'pointer'}} color={this.props.muiTheme.palette.canvasColor} />
             <Drawer
               docked={this.props.wideView ? true : false}
               width={240}
@@ -72,10 +73,10 @@ class PageHeader extends React.Component {
                 <MenuItem>
                   <div style={{textAlign: 'center'}}>
                     {this.props.user.isLoggedIn ? <div>
-                      {photo? <Avatar size={80} src={photo} /> : <Avatar size={80} backgroundColor={'#40a7ba'}>{this.props.user.displayName.substr(0,1)}</Avatar>}
+                      {photo? <Avatar size={80} src={photo} /> : <Avatar size={80}>{this.props.user.displayName.substr(0,1)}</Avatar>}
                       <p>{this.props.user.displayName}</p>
                     </div> :
-                      <AccountCircle style={{height: 80, width: 80}} color='rgb(64, 167, 186)' />
+                      <AccountCircle color={this.props.muiTheme.palette.primary1Color} style={{height: 80, width: 80}} />
                     }
                   </div>
                 </MenuItem>
@@ -130,4 +131,4 @@ PageHeader.propTypes = {
   changeView: PropTypes.func.isRequired
 };
 
-export default PageHeader;
+export default muiThemeable()(PageHeader);

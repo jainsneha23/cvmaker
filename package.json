@@ -75,6 +75,7 @@
     "redux": "3.7.2",
     "redux-promise": "0.5.3",
     "redux-thunk": "2.2.0",
+    "sendgrid": "^5.2.3",
     "style-loader": "0.13.1",
     "url-loader": "0.5.7",
     "webpack": "2.7.0",

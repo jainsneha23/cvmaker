@@ -1,37 +1,34 @@
-import Nodemailer from 'nodemailer';
+import sendgrid, {mail as helper} from 'sendgrid';
 
 class Mailer {
   constructor() {
-    try {
-      this.transporter = Nodemailer.createTransport({
-        host: 'smtp.gmail.com',
-        port: 465,
-        secure: true,
-        auth: {
-          user: process.env.MAIL_USER,
-          pass: process.env.MAIL_PASS
-        }
-      });
-    } catch(e) {
-      console.log(e);
-    }
+    this.sg = sendgrid(process.env.SENDGRID_API_KEY);
   }
-  sendFeedback(obj) {
-    const mailData = {
-      from: 'cvmakerindia@gmail.com',
-      to: 'cvmakerindia@gmail.com',
-      subject: `Feedback form from ${obj.email} ${obj.fullname}`,
-      text: obj.message
-    };
+
+  sendEmail(mail) {
     return new Promise((resolve, reject) => {
-      this.transporter.sendMail(mailData, (error, info) => {
-        if (error) {
-          reject(`Mailer error: ${error}`);
-        } else resolve(`Mailer success: ${info}`);
+      var request = this.sg.emptyRequest({
+        method: 'POST',
+        path: '/v3/mail/send',
+        body: mail.toJSON(),
+      });
+      this.sg.API(request, function(error) {
+        if (error) reject(`Error in sending email: ${error}`);
+        else resolve('Success sending email');
       });
     });
   }
+
+  sendFeedback(obj) {
+    const from_email = new helper.Email('support@cvmaker.co.in');
+    const to_email = new helper.Email('cvmakerindia@gmail.com');
+    const subject = `Feedback form from ${obj.email} ${obj.fullname}`;
+    const content = new helper.Content('text/plain', obj.message);
+    const mail = new helper.Mail(from_email, subject, to_email, content);
+    return this.sendEmail(mail);
+  }
 }
+
 
 export default Mailer;
 

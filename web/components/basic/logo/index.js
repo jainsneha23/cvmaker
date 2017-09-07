@@ -1,10 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router';
+
 import './small.less';
 
 const Logo = () => (
-  <a className="logo" href="#">
+  <Link className="logo" to='#'>
     <span className="beta">Beta</span>
-  </a>
+  </Link>
 );
 
 export default Logo;

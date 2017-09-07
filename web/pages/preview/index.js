@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 
+import muiThemeable from 'material-ui/styles/muiThemeable';
 import RaisedButton from 'material-ui/RaisedButton';
 import {Toolbar} from 'material-ui/Toolbar';
 import Avatar from 'material-ui/Avatar';
@@ -56,14 +57,13 @@ class Preview extends React.Component {
     let Comp = Designs[`Design${this.props.designId}`] || Designs['Design1'];
     return (
       <div className="preview">
-        <PageHeaderContainer rightElem={this.props.mobileView ? <Avatar style={{marginTop: '4px'}} backgroundColor='#fff' onClick={this.download}>
-          <DownloadIcon color='rgb(64, 167, 186)' className={this.state.downloading && 'downloading'} />
+        <PageHeaderContainer rightElem={this.props.mobileView ? <Avatar style={{marginTop: '4px'}} onClick={this.download}>
+          <DownloadIcon color={this.props.muiTheme.palette.primary1Color} className={this.state.downloading && 'downloading'} />
         </Avatar> : <RaisedButton
           onClick={this.download}
           style={{marginTop: '12px'}}
-          icon={<DownloadIcon color='rgb(64, 167, 186)' className={this.state.downloading && 'downloading'} />}
-          label={this.state.downloading ? 'Downloading...' : 'Download'}
-          labelColor='rgb(64, 167, 186)' />}/>
+          icon={<DownloadIcon className={this.state.downloading && 'downloading'} />}
+          label={this.state.downloading ? 'Downloading...' : 'Download'} />}/>
         <Toolbar className="toolbar fixed">
           <div>
             <RaisedButton style={{minWidth: '48px'}} label={this.props.mobileView ? '' : 'Edit'} onClick={this.edit} icon={<ChevronLeft />}/>
@@ -101,11 +101,10 @@ const mapDispatchToProps = dispatch => ({
   trackDownload: () => dispatch(ACTIONS.fireButtonClick('download'))
 });
 
-
-export default connect(
+export default muiThemeable()(connect(
   mapStateToProps,
   mapDispatchToProps
-)(Preview);
+)(Preview));
 
 Preview.propTypes = {
   cvdata: PropTypes.object.isRequired,

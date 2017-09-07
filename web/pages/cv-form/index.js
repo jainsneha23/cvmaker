@@ -3,6 +3,7 @@ import { browserHistory } from 'react-router';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+import muiThemeable from 'material-ui/styles/muiThemeable';
 import {Tabs, Tab} from 'material-ui/Tabs';
 import {Toolbar} from 'material-ui/Toolbar';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -64,14 +65,13 @@ class CvForm extends React.Component {
   render() {
     return (
       <div className="cv-form">
-        <PageHeaderContainer rightElem={this.props.mobileView ? <Avatar style={{marginTop: '4px'}} backgroundColor='#fff' onClick={this.preview}>
-          <PreviewIcon color='rgb(64, 167, 186)' />
+        <PageHeaderContainer rightElem={this.props.mobileView ? <Avatar style={{marginTop: '4px'}} onClick={this.preview}>
+          <PreviewIcon color={this.props.muiTheme.palette.primary1Color} />
         </Avatar> : <RaisedButton
           onClick={this.preview}
           style={{marginTop: '4px'}}
-          icon={<PreviewIcon color='rgb(64, 167, 186)' />}
-          label="Preview"
-          labelColor='rgb(64, 167, 186)' />}/>
+          icon={<PreviewIcon />}
+          label="Preview" />}/>
         <Tabs
           onChange={this.handleChange}
           value={this.state.stepIndex}
@@ -130,10 +130,10 @@ const mapDispatchToProps = dispatch => ({
   trackFormSection: (val) => dispatch(ACTIONS.fireButtonClick(val))
 });
 
-export default connect(
+export default muiThemeable()(connect(
   mapStateToProps,
   mapDispatchToProps
-)(CvForm);
+)(CvForm));
 
 CvForm.propTypes = {
   cvdata: PropTypes.object.isRequired,
