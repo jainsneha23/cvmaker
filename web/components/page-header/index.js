@@ -29,9 +29,9 @@ class PageHeader extends React.Component {
   componentDidMount() {
     this.handleWidth();
     window.addEventListener('resize', this.handleWidth);
-    /* global gapi*/
-    gapi.plusone.go();
-    gapi.follow.go();
+    /* global gapi FB*/
+    window.onGapiLoaded = () => gapi.follow.go();
+    window.onFbLoaded = () => FB.XFBML.parse();
   }
 
   componentWillUnmount() {
