@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.1">
+  <url>
+    <loc>http://www.cvmaker.co.in/</loc>
+    <lastmod>2017-09-08</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1</priority>
+  </url>
+  <url>
+    <loc>http://www.cvmaker.co.in/create</loc>
+    <lastmod>2017-09-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>http://www.cvmaker.co.in/preview</loc>
+    <lastmod>2017-09-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>http://www.cvmaker.co.in/designs</loc>
+    <lastmod>2017-09-08</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1</priority>
+  </url>
+</urlset>
