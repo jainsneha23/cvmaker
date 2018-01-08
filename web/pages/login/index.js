@@ -48,8 +48,7 @@ class Login extends React.Component {
                 <a
                   className={`weibo ${isLoggedIn && provider != 'weibo' && 'disabled'}`}
                   href="/auth/weibo"
-                  target="popup"
-                  onClick={(e) => this.handleLogin(e, 'weibo')}>
+                >
                   <img src="/assets/images/weibo.svg"/>
                   <span>{provider === 'weibo' ? 'Log out from' : 'Log in with'} Weibo</span>
                 </a>

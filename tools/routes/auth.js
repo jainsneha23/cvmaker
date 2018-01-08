@@ -10,18 +10,16 @@ const AuthRouter = (app, config) => {
     clientID: config.weibo.appID,
     clientSecret: config.weibo.appSecret,
     callbackURL: config.weibo.callbackURL,
-  }, (accessToken, refreshToken, profile, cb) => cb(null, profile)));
+  }, (accessToken, refreshToken, profile, cb) => {
+    cb(null, profile);
+  }));
 
   passport.serializeUser((user, cb) => cb(null, user));
-
   passport.deserializeUser((user, cb) => cb(null, user));
 
-
-  router.get('/weibo',
-    passport.authenticate('weibo', { display: 'popup' }));
-
+  router.get('/weibo', passport.authenticate('weibo'));
   router.get('/weibo/return',
-    passport.authenticate('weibo'),
+    passport.authenticate('weibo', { failureRedirect: '/login' }),
     (req, res) => {
       res.redirect('/');
     });

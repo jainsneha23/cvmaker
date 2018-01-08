@@ -57,7 +57,7 @@ class PageHeader extends React.Component {
   }
 
   render() {
-    const photo = this.props.user && this.props.user.photos && this.props.user.photos.length && this.props.user.photos[0].value;
+    const photo = this.props.user && this.props.user._raw && this.props.user._raw.avatar_large;
     this.location = `${window.location.pathname}${window.location.hash}`;
     return (
       <div className="pageheader fixed">
