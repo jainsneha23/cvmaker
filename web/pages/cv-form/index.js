@@ -32,7 +32,7 @@ class CvForm extends React.Component {
       stepIndex: 0
     };
     this.stepCount = 6;
-    this.steps = ['Personal', 'Profile', 'Skill', 'Job', 'Education', 'Misc'];
+    this.steps = ['基本信息', '个人信息', '技能证书', '工作经验', '教育背景', '其它类别'];
     this.preview = this.preview.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleBack = this.handleBack.bind(this);
@@ -71,7 +71,7 @@ class CvForm extends React.Component {
           onClick={this.preview}
           style={{marginTop: '4px'}}
           icon={<PreviewIcon />}
-          label="Preview" />}/>
+          label="预览" />}/>
         <Tabs
           onChange={this.handleChange}
           value={this.state.stepIndex}
@@ -101,12 +101,12 @@ class CvForm extends React.Component {
         <Toolbar className="toolbar fixed">
           <div>
             <RaisedButton
-              label="Back"
+              label="上一步"
               primary={true}
               onClick={this.handleBack}
               disabled={this.state.stepIndex === 0} />
             <RaisedButton
-              label={this.state.stepIndex >= this.stepCount - 1 ? 'Preview' : 'Next'}
+              label={this.state.stepIndex >= this.stepCount - 1 ? '预览' : '下一步'}
               primary={true}
               onClick={this.handleNext}
               disabled={this.state.stepIndex === this.stepCount} />

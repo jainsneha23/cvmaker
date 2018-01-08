@@ -7,7 +7,7 @@ import Job from '../../components/cvforms/job';
 
 const JobContainer = (props) => (
   <FormList
-    buttonLabel="Add Another Job"
+    buttonLabel="添加工作经验"
     add={props.add}>
     {props.list.map((item, i) =>
       <ListItem
@@ -17,7 +17,7 @@ const JobContainer = (props) => (
         moveDown={() => props.move(i, 'down')}
         arrowDownStyle={{display: i === props.list.length - 1 ? 'none' : 'inline-block'}}
         delete={() => props.delete(i)}
-        title={item.company.value || 'Company'}
+        title={item.company.value || '公司'}
         expanded={i === props.expanded}
         toggle={() => props.toggle(i)}
       >

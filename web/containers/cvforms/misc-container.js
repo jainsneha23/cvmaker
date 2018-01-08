@@ -7,7 +7,7 @@ import Misc from '../../components/cvforms/misc';
 
 const MiscContainer = (props) => (
   <FormList
-    buttonLabel="Add More"
+    buttonLabel="添加段落"
     add={props.add}>
     {props.list.map((item, i) =>
       <ListItem
@@ -17,7 +17,7 @@ const MiscContainer = (props) => (
         moveDown={() => props.move(i, 'down')}
         arrowDownStyle={{display: i === props.list.length - 1 ? 'none' : 'inline-block'}}
         delete={() => props.delete(i)}
-        title={item.label.value || 'Label'}
+        title={item.label.value || '标签'}
         expanded={i === props.expanded}
         toggle={() => props.toggle(i)}
       >

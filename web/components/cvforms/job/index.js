@@ -11,42 +11,42 @@ const Job = (props) => (
     <form>
       <TextField
         fullWidth={true}
-        hintText="Eg. Software services"
+        hintText="Eg. 美团点评"
         errorText={props.company.error}
         errorStyle={{bottom: '-4px'}}
-        floatingLabelText="Enter the company name"
+        floatingLabelText="公司名称"
         value={props.company.value}
         onChange={(e) => props.handleChange(e.target.value, 'company')}
         onBlur={(e) => props.handleChange(e.target.value, 'company')}
       />
       <TextField
         fullWidth={true}
-        hintText="Eg. Software Engineer"
+        hintText="Eg. 算法开发"
         errorText={props.jobtitle.error}
         errorStyle={{bottom: '-4px'}}
-        floatingLabelText="Enter your job title in this company"
+        floatingLabelText="职位名称"
         value={props.jobtitle.value}
         onChange={(e) => props.handleChange(e.target.value, 'jobtitle')}
         onBlur={(e) => props.handleChange(e.target.value, 'jobtitle')}
       />
       <TextField
         fullWidth={true}
-        hintText="Eg. Bengaluru, India"
+        hintText="Eg. 北京"
         errorText={props.location.error}
         errorStyle={{bottom: '-4px'}}
-        floatingLabelText="Enter your job location for this company"
+        floatingLabelText="公司地点"
         value={props.location.value}
         onChange={(e) => props.handleChange(e.target.value, 'location')}
         onBlur={(e) => props.handleChange(e.target.value, 'location')}
       />
       <DatePicker
-        label="Enter the start date"
+        label="开始日期"
         value={props.startdate.value}
         errorText={props.startdate.error}
         onChange={(date) => props.handleChange(date, 'startdate')}
       />
       <DatePicker
-        label="Enter the end date"
+        label="结束日期"
         value={props.enddate.value}
         errorText={props.enddate.error}
         disabled={props.currentjob.value}
@@ -54,7 +54,7 @@ const Job = (props) => (
       />
       <Toggle
         style={{marginTop: '10px'}}
-        label="I currently work here"
+        label="至今"
         labelPosition="right"
         className="input-toggle"
         toggled={props.currentjob.value}
@@ -63,10 +63,10 @@ const Job = (props) => (
           props.handleChange('Present', 'enddate');
         }}
       />
-      <Subheader style={{paddingLeft: 0, fontWeight: 'bold'}}>Roles and Responsibilities</Subheader>
+      <Subheader style={{paddingLeft: 0, fontWeight: 'bold'}}>我的职责</Subheader>
       <RichEditor
         editorState={props.responsibilities.value}
-        placeholder="Enter your roles and responsibilities here..."
+        placeholder="担任的角色和职责..."
         onChange={(e) => props.handleChange(e, 'responsibilities')} />
     </form>
   </div>

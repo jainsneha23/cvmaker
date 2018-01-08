@@ -7,7 +7,7 @@ import Education from '../../components/cvforms/education';
 
 const EducationContainer = (props) => (
   <FormList
-    buttonLabel="Add Another Education"
+    buttonLabel="添加教育背景"
     add={props.add}>
     {props.list.map((item, i) =>
       <ListItem
@@ -17,7 +17,7 @@ const EducationContainer = (props) => (
         moveDown={() => props.move(i, 'down')}
         arrowDownStyle={{display: i === props.list.length - 1 ? 'none' : 'inline-block'}}
         delete={() => props.delete(i)}
-        title={item.degree.value || 'Degree'}
+        title={item.degree.value || '学位'}
         expanded={i === props.expanded}
         toggle={() => props.toggle(i)}
       >

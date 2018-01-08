@@ -5,7 +5,7 @@ import './small.less';
 
 const Logo = () => (
   <Link className="logo" to='#'>
-    <span className="beta">Beta</span>
+    {/* <span className="beta">Beta</span> */}
   </Link>
 );
 

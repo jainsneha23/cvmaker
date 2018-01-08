@@ -12,7 +12,7 @@ const Skill = (props) => (
       fullWidth={true}
       errorText={props.skillCategory.error}
       errorStyle={{bottom: '-4px'}}
-      floatingLabelText="Enter the skill category"
+      floatingLabelText="技能类别"
       value={props.skillCategory.value}
       onChange={props.handleCategoryChange}
       onBlur={props.handleCategoryChange}
@@ -32,7 +32,7 @@ const Skill = (props) => (
           fullWidth={true}
           hintText="Eg. Javascript"
           errorText={props.input.error}
-          floatingLabelText="Enter the skill and tap enter"
+          floatingLabelText="技能标签"
           value={props.input.value}
           onChange={props.handleInputChange}
           required

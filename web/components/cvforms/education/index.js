@@ -9,69 +9,69 @@ const Education = (props) => (
     <form>
       <TextField
         fullWidth={true}
-        hintText="Eg. Delhi University"
+        hintText="Eg. 北京化工大学"
         errorText={props.school.error}
         errorStyle={{bottom: '-4px'}}
-        floatingLabelText="Enter the school name"
+        floatingLabelText="名称"
         value={props.school.value}
         onChange={(e) => props.handleChange(e.target.value, 'school')}
         onBlur={(e) => props.handleChange(e.target.value, 'school')}
       />
       <TextField
         fullWidth={true}
-        hintText="Eg. BTech"
+        hintText="Eg. 本科"
         errorText={props.degree.error}
         errorStyle={{bottom: '-4px'}}
-        floatingLabelText="Enter your degree obtained in this school"
+        floatingLabelText="学位"
         value={props.degree.value}
         onChange={(e) => props.handleChange(e.target.value, 'degree')}
         onBlur={(e) => props.handleChange(e.target.value, 'degree')}
       />
       <TextField
         fullWidth={true}
-        hintText="Eg. Bengaluru, India"
+        hintText="Eg. 北京a"
         errorText={props.location.error}
         errorStyle={{bottom: '-4px'}}
-        floatingLabelText="Enter the location of this school"
+        floatingLabelText="地点"
         value={props.location.value}
         onChange={(e) => props.handleChange(e.target.value, 'location')}
         onBlur={(e) => props.handleChange(e.target.value, 'location')}
       />
       <TextField
         fullWidth={true}
-        hintText="Eg. Computer Science"
+        hintText="Eg. 计算机科学与技术"
         errorText={props.field.error}
         errorStyle={{bottom: '-4px'}}
-        floatingLabelText="Enter your field of study"
+        floatingLabelText="专业"
         value={props.field.value}
         onChange={(e) => props.handleChange(e.target.value, 'field')}
         onBlur={(e) => props.handleChange(e.target.value, 'field')}
       />
       <TextField
         fullWidth={true}
-        hintText="Eg. 9.2"
+        hintText="Eg. 3.14"
         errorText={props.grade.error}
         errorStyle={{bottom: '-4px'}}
-        floatingLabelText="Enter your grade achieved"
+        floatingLabelText="GPA"
         value={props.grade.value}
         onChange={(e) => props.handleChange(e.target.value, 'grade')}
         onBlur={(e) => props.handleChange(e.target.value, 'grade')}
       />
       <DatePicker
-        label="Enter the start date "
+        label="开始日期"
         value={props.startdate.value}
         errorText={props.startdate.error}
         onChange={(date) => props.handleChange(date, 'startdate')}
       />
       <DatePicker
-        label="Enter the end date"
+        label="结束日期"
         value={props.enddate.value}
         errorText={props.enddate.error}
         onChange={(date) => props.handleChange(date, 'enddate')}
       />
       <RichEditor
         editorState={props.description.value}
-        placeholder="Enter other information here..."
+        placeholder="其它描述..."
         onChange={(e) => props.handleChange(e, 'description')} />
     </form>
   </div>

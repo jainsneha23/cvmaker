@@ -32,13 +32,13 @@ const Design2 = (props) => (
         <section className="portfolioInfo">
           <ul>
             <li>
-              <h3 className="sectionTitle">Summary</h3>
+              <h3 className="sectionTitle">求职意向</h3>
               <div className="sectionContent">
                 <div className="default" dangerouslySetInnerHTML={{__html: props.data.profile.summary.value}}></div>
               </div>
             </li>
             <li>
-              <h3 className="sectionTitle">Objectives</h3>
+              <h3 className="sectionTitle">自我评价</h3>
               <div className="sectionContent">
                 <div className="default" dangerouslySetInnerHTML={{__html: props.data.profile.objectives.value}}></div>
               </div>
@@ -46,7 +46,7 @@ const Design2 = (props) => (
           </ul>
         </section>
         <section className="skillInfo">
-          <h3 className="sectionTitle">Key Skills</h3>
+          <h3 className="sectionTitle">技能证书</h3>
           <div className="sectionContent">
             <ul>{props.data.skill.list.map((item,i) =>
               <li key={i}>
@@ -63,7 +63,7 @@ const Design2 = (props) => (
           </div>
         </section>
         <section className="workInfo">
-          <h3 className="sectionTitle">Work Experience</h3>
+          <h3 className="sectionTitle">工作经验</h3>
           <div className="sectionContent">
             <ul>
               {props.data.job.list.map((item, i) =>
@@ -78,7 +78,7 @@ const Design2 = (props) => (
                     <span>to</span>
                     <span>{item.enddate.value}</span>
                   </div>
-                  <h5>Role and Responsibilities</h5>
+                  <h5>职责</h5>
                   <div className="default" dangerouslySetInnerHTML={{__html: item.responsibilities.value}}></div>
                 </li>
               )}
@@ -86,7 +86,7 @@ const Design2 = (props) => (
           </div>
         </section>
         <section className="educationInfo">
-          <h3 className="sectionTitle">Education</h3>
+          <h3 className="sectionTitle">教育背景</h3>
           <div className="sectionContent">
             <ul>
               {props.data.education.list.map((item, i) =>
@@ -106,11 +106,11 @@ const Design2 = (props) => (
                     <span>{item.location.value}</span>
                   </div>
                   <div className="details">
-                    <h5>Grade:</h5>
+                    <h5>GPA:</h5>
                     <span>{item.grade.value}</span>
                   </div>
                   <div className="details">
-                    {item.description.value && <h5>Description</h5>}
+                    {item.description.value && <h5>描述</h5>}
                     <div className="default" dangerouslySetInnerHTML={{__html: item.description.value}}></div>
                   </div>
                 </li>

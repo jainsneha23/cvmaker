@@ -6,12 +6,12 @@ import RichEditor from '../../rich-editor';
 const Profile = (props) => (
   <div className="form-profile form-section" >
     <form>
-      <Subheader style={{paddingLeft: 0, fontWeight: 'bold'}}>Objectives</Subheader>
+      <Subheader style={{paddingLeft: 0, fontWeight: 'bold'}}>自我评价</Subheader>
       <RichEditor
         editorState={props.objectives}
         placeholder="Enter your objectives here..."
         onChange={(e) => props.handleChange(e, 'objectives')} />
-      <Subheader style={{paddingLeft: 0, fontWeight: 'bold'}}>Profile Summary</Subheader>
+      <Subheader style={{paddingLeft: 0, fontWeight: 'bold'}}>求职意向</Subheader>
       <RichEditor
         editorState={props.summary}
         placeholder="Enter your profile summary here..."

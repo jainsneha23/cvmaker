@@ -7,7 +7,7 @@ import Skill from '../../components/cvforms/skill';
 
 const SkillContainer = (props) => (
   <FormList
-    buttonLabel="Add Skill Category"
+    buttonLabel="添加技能类别"
     add={props.add}>
     {props.list.map((item, i) =>
       <ListItem
@@ -17,7 +17,7 @@ const SkillContainer = (props) => (
         moveDown={() => props.move(i, 'down')}
         arrowDownStyle={{display: i === props.list.length - 1 ? 'none' : 'inline-block'}}
         delete={() => props.delete(i)}
-        title={item.skillCategory.value || 'Skill Category'}
+        title={item.skillCategory.value || '技能类别'}
         expanded={i === props.expanded}
         toggle={() => props.toggle(i)}
       >

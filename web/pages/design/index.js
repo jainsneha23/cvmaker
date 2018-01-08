@@ -66,7 +66,7 @@ class Design extends React.Component {
     return (
       <div className="designs">
         <PageHeaderContainer rightElem={<RaisedButton
-          label={'Preview'}
+          label={'预览'}
           secondary={true}
           onClick={this.preview} /> }/>
         {tilesData.map((tile, idx) => (

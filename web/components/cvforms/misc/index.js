@@ -10,14 +10,14 @@ const Misc = (props) => (
         fullWidth={true}
         errorText={props.label.error}
         errorStyle={{bottom: '-4px'}}
-        floatingLabelText="Enter the label for this paragraph"
+        floatingLabelText="段落标签"
         value={props.label.value}
         onChange={(e) => props.handleChange(e.target.value, 'label')}
         onBlur={(e) => props.handleChange(e.target.value, 'label')}
       />
       <RichEditor
         editorState={props.description.value}
-        placeholder="Enter other information here..."
+        placeholder="描述"
         onChange={(e) => props.handleChange(e, 'description')} />
     </form>
   </div>

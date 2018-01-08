@@ -63,15 +63,15 @@ class Preview extends React.Component {
           onClick={this.download}
           style={{marginTop: '12px'}}
           icon={<DownloadIcon className={this.state.downloading && 'downloading'} />}
-          label={this.state.downloading ? 'Downloading...' : 'Download'} />}/>
+          label={this.state.downloading ? '下载中...' : '下载'} />}/>
         <Toolbar className="toolbar fixed">
           <div>
-            <RaisedButton style={{minWidth: '48px'}} label={this.props.mobileView ? '' : 'Edit'} onClick={this.edit} icon={<ChevronLeft />}/>
+            <RaisedButton style={{minWidth: '48px'}} label={this.props.mobileView ? '' : '编辑'} onClick={this.edit} icon={<ChevronLeft />}/>
             <div>
               <RaisedButton style={{minWidth: '48px'}}
                 icon={<input type="color" value={this.props.designColor} onChange={this.props.changeDesignColor} className="colorpicker" />}
               />
-              <RaisedButton style={{minWidth: '48px', marginLeft: '10px'}} label={this.props.mobileView ? '' : 'Select Design'} onClick={this.choose} icon={<ColorLens />} />
+              <RaisedButton style={{minWidth: '48px', marginLeft: '10px'}} label={this.props.mobileView ? '' : '选择模板'} onClick={this.choose} icon={<ColorLens />} />
             </div>
           </div>
         </Toolbar>

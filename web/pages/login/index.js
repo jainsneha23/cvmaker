@@ -42,7 +42,7 @@ class Login extends React.Component {
               <span>{this.props.user.displayName}</span>
             </div>}
           <div className="login">
-            {!isLoggedIn && <span>Signin with your social accounts</span>}
+            {!isLoggedIn && <span>社交账号登录</span>}
             <ul className="social">
               <li>
                 <a
@@ -50,12 +50,12 @@ class Login extends React.Component {
                   href="/auth/weibo"
                 >
                   <img src="/assets/images/weibo.svg"/>
-                  <span>{provider === 'weibo' ? 'Log out from' : 'Log in with'} Weibo</span>
+                  <span>{provider === 'weibo' ? '登出' : ''}Weibo</span>
                 </a>
               </li>
             </ul>
           </div>
-          <Link to='/create' className="link">{isLoggedIn ? 'Create CV now' : 'Or, continue without login'}</Link>
+          <Link to='/create' className="link">{isLoggedIn ? 'Create CV now' : '匿名登录'}</Link>
         </Paper>
       </div>
     );

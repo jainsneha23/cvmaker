@@ -82,23 +82,23 @@ class PageHeader extends React.Component {
                 </MenuItem>
                 <Divider />
                 {this.props.user.isLoggedIn && <MenuItem onClick={this.toggleBurger}>
-                  <a className="menulink" href='/auth/logout'>Logout</a>
+                  <a className="menulink" href='/auth/logout'>登出</a>
                 </MenuItem>}
                 {!this.props.user.isLoggedIn && <MenuItem style={(this.location === '/login' && this.menuItemStyle) || {}} onClick={this.toggleBurger}>
-                  <Link className="menulink" to='/login'>Login</Link>
+                  <Link className="menulink" to='/login'>登录</Link>
                 </MenuItem>}
                 <Divider />
                 <MenuItem style={(this.location === '/' && this.menuItemStyle) || {}} onClick={this.toggleBurger}>
-                  <Link className="menulink" to='/'>Home</Link>
+                  <Link className="menulink" to='/'>主页</Link>
                 </MenuItem>
                 <MenuItem style={(this.location === '/create' && this.menuItemStyle) || {}} onClick={this.toggleBurger}>
-                  <Link className="menulink" to='/create'>Create</Link>
+                  <Link className="menulink" to='/create'>创建</Link>
                 </MenuItem>
                 <MenuItem style={(this.location === '/preview' && this.menuItemStyle) || {}} onClick={this.toggleBurger}>
-                  <Link className="menulink" to='/preview'>Preview</Link>
+                  <Link className="menulink" to='/preview'>预览</Link>
                 </MenuItem>
                 <MenuItem style={(this.location === '/designs' && this.menuItemStyle) || {}} onClick={this.toggleBurger}>
-                  <Link className="menulink" to='/designs'>Designs</Link>
+                  <Link className="menulink" to='/designs'>模板</Link>
                 </MenuItem>
               </Menu>
             </Drawer>
