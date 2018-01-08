@@ -9,7 +9,7 @@ const Routes = (app, express, CONFIG) => {
   router.use('/auth', AuthRouter(app, express, CONFIG));
   router.use('/api', ApiRouter(app, express, CONFIG));
 
-  router.use('/assets', express.static('assets', {maxage: '182d'}));
+  router.use('/assets', express.static('assets', {maxAge: '182d'}));
   router.use('/public', express.static('public', {maxAge: '182d'}));
 
   router.use(AppRouter(app, express, CONFIG));
