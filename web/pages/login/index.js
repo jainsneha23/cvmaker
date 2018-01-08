@@ -10,7 +10,7 @@ import './small.less';
 class Login extends React.Component {
   constructor(props) {
     super(props);
-    this.handleLogin = this.handleLogin.bind(this); 
+    this.handleLogin = this.handleLogin.bind(this);
   }
 
   handleLogin(e, loginUrl) {
@@ -31,7 +31,7 @@ class Login extends React.Component {
       textAlign: 'center'
     };
     const isLoggedIn = this.props.user.isLoggedIn;
-    const provider = this.props.user.provider; 
+    const provider = this.props.user.provider;
     return (
       <div className="loginpage">
         <PageHeaderContainer />
@@ -46,28 +46,12 @@ class Login extends React.Component {
             <ul className="social">
               <li>
                 <a
-                  className={`google ${isLoggedIn && provider != 'google' && 'disabled'}`}
-                  href="/auth/google"
+                  className={`weibo ${isLoggedIn && provider != 'weibo' && 'disabled'}`}
+                  href="/auth/weibo"
                   target="popup"
-                  onClick={(e) => this.handleLogin(e, 'google')}>
-                  <img src="/assets/images/google.svg"/>
-                  <span>{provider === 'google' ? 'Log out from' : 'Log in with'} Google</span>
-                </a>
-                <a
-                  className={`facebook ${isLoggedIn && provider != 'facebook' && 'disabled'}`}
-                  href="/auth/facebook"
-                  target="popup"
-                  onClick={(e) => this.handleLogin(e, 'facebook')}>
-                  <img src="/assets/images/facebook.svg"/>
-                  <span>{provider === 'facebook' ? 'Log out from' : 'Log in with'} Facebook </span>
-                </a>
-                <a
-                  className={`linkedin ${isLoggedIn && provider != 'linkedin' && 'disabled'}`}
-                  href="/auth/linkedin"
-                  target="popup"
-                  onClick={(e) => this.handleLogin(e, 'linkedin')}>
-                  <img src="/assets/images/linkedin.svg"/>
-                  <span>{provider === 'linkedin' ? 'Log out from' : 'Log in with'} Linkedin </span>
+                  onClick={(e) => this.handleLogin(e, 'weibo')}>
+                  <img src="/assets/images/weibo.svg"/>
+                  <span>{provider === 'weibo' ? 'Log out from' : 'Log in with'} Weibo</span>
                 </a>
               </li>
             </ul>
