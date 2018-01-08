@@ -10,11 +10,6 @@ class Home extends React.Component {
     super(props);
   }
 
-  handleLogin() {
-    window.open('/auth/facebook','popup','width=600,height=600');
-    return false;
-  }
-
   componentDidUpdate() {
     if (window.location.hash) {
       const hash = window.location.hash.substr(1);
