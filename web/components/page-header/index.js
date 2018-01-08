@@ -100,18 +100,6 @@ class PageHeader extends React.Component {
                 <MenuItem style={(this.location === '/designs' && this.menuItemStyle) || {}} onClick={this.toggleBurger}>
                   <Link className="menulink" to='/designs'>Designs</Link>
                 </MenuItem>
-                <Divider />
-                <MenuItem style={(this.location === '/#contact' && this.menuItemStyle) || {}} onClick={this.toggleBurger}>
-                  <Link className="menulink" to='/#contact'>Contact</Link>
-                </MenuItem>
-                <MenuItem>
-                  <p>Like Us:</p>
-                  <ul className="social">
-                    <li><div className="fb-like" data-href="https://www.facebook.com/instantCvMaker/" data-width="25" data-layout="box_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div></li>
-                    <li><div className="g-follow" data-annotation="vertical-bubble" data-height="24" data-href="//plus.google.com/u/0/113575630639787427005" data-rel="author"></div></li>
-                    <li><div className="g-plusone" data-annotation="standard" data-href="http://www.cvmaker.co.in"></div></li>
-                  </ul>
-                </MenuItem>
               </Menu>
             </Drawer>
           </div>}

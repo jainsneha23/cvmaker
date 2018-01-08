@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import PageHeaderContainer from '../../containers/page-header';
-import FormFeedback from '../../components/form-feedback';
 import './small.less';
 
 class Home extends React.Component {
@@ -73,11 +72,6 @@ class Home extends React.Component {
             <img src="/assets/cvimages/design2.png"/>
             <img src="/assets/cvimages/design3.png"/>
           </div>
-        </div>
-        <div className="messageSection" id="contact">
-          <h3>We would love to hear from you.</h3>
-          <p>Please contact us for customised designs, help on any area, or just drop a feedback. <br/>We will like to serve you better.</p>
-          <FormFeedback />
         </div>
       </div>
     );
