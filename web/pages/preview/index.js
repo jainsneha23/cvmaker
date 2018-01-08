@@ -44,7 +44,7 @@ class Preview extends React.Component {
       designColor: this.props.designColor
     });
     ResumeService.updateDesign(this.props.user, 1, this.props.designId, this.props.designColor)
-      .then(ResumeService.download(data))
+      .then(ResumeService.download(data, this.props.user))
       .then(() => this.setState({downloading: false}))
       .catch(e => this.setState({downloading: false, error: e.message}));
   }

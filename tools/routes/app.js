@@ -9,7 +9,8 @@ const AppRoutes = (app) => {
 
   router.post('/download', bodyParser.json() , function(req, res){
     let Comp = Designs[`Design${req.body.designId}`];
-    const filename = `Design${req.body.designId}-${new Date().getTime()}`;
+    let name = (req.user && req.user && req.user['displayName']) || '';
+    const filename = `${name}-简历-${new Date().getTime()}`;
     generateComponentAsPDF({html: app.locals.getComponentAsHTML(Comp, req.body.cvdata, req.body.designColor), filename}).then((response) => {
       res.send(response);
     }).catch((error) => res.status(500).send(error));

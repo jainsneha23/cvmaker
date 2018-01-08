@@ -77,7 +77,7 @@ class ResumeService {
     });
   }
 
-  static download(data) {
+  static download(data, user) {
     return new Promise((resolve, reject) => {
       fetch('/download', {
         method: 'POST',
@@ -91,7 +91,7 @@ class ResumeService {
         else throw 'Error in fetching resume';
       }).then((response) => {
         const blob = base64ToBlob(response.base64);
-        fileSaver.saveAs(blob, 'resume.pdf');
+        fileSaver.saveAs(blob, `${user['displayName']}-简历-${new Date().getTime()}`);
         resolve();
       }).catch((err) => {
         window.sendErr(`ResumeService download err: ${JSON.stringify(err)}`);
