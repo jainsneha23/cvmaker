@@ -1,8 +1,9 @@
+import express from 'express';
 import bodyParser from 'body-parser';
 import {generateComponentAsPDF} from '../middlewares/generate-pdf';
 import * as Designs from '../../web/designs';
 
-const AppRoutes = (app, express) => {
+const AppRoutes = (app) => {
 
   const router = express.Router();
 

@@ -1,14 +1,15 @@
+import express from 'express';
 import passport from 'passport';
 import { Strategy as WeiboStrategy } from 'passport-weibo';
 
-const AuthRouter = (app, express, CONFIG) => {
+const AuthRouter = (app, config) => {
 
   const router = express.Router();
 
   passport.use(new WeiboStrategy({
-    clientID: CONFIG.weibo.appID,
-    clientSecret: CONFIG.weibo.appSecret,
-    callbackURL: CONFIG.weibo.callbackURL,
+    clientID: config.weibo.appID,
+    clientSecret: config.weibo.appSecret,
+    callbackURL: config.weibo.callbackURL,
   }, (accessToken, refreshToken, profile, cb) => cb(null, profile)));
 
   passport.serializeUser((user, cb) => cb(null, user));

@@ -1,11 +1,12 @@
+import express from 'express';
 import { graphql } from 'graphql';
 import graphqlHTTP from 'express-graphql';
 import bodyParser from 'body-parser';
 
 import ResumeSchema from '../../api/graphql';
 
-const ApiRouter = (app, express) => {
-  
+const ApiRouter = () => {
+
   const router = express.Router();
   const resumeSchema = new ResumeSchema().getSchema();
 

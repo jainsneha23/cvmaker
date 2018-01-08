@@ -14,17 +14,17 @@ import 'ignore-styles';
 
 import Routes from './routes';
 
-import CONFIG from './config';
+import config from './config';
 import Database from './database';
 
 /* eslint-disable no-console */
 
 const app = express();
 const MongoStore = Mongo(Session);
-const port = process.env.PORT || CONFIG.port;
+const port = process.env.PORT || config.port;
 const ENV = process.env.NODE_ENV || 'development';
 const enableAnalytics = process.env.ENABLE_ANALYTICS || false;
-global.db = new Database(CONFIG);
+global.db = new Database(config);
 
 app.locals.defaultTemplate = marko.load(`${__dirname}/./pages/index.marko`);
 app.locals.buildAssetsInfo = require(`${__dirname}/../build-manifest.json`);
@@ -61,24 +61,24 @@ if (ENV === 'development') {
 
 app.use(compression());
 app.use(helmet());
-app.use(cookieParser(CONFIG.session.secret));
+app.use(cookieParser(config.session.secret));
 app.use(methodOverride());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.use(Session({
-  name: CONFIG.session.name,
-  secret: CONFIG.session.secret,
+  name: config.session.name,
+  secret: config.session.secret,
   resave: true,
   saveUninitialized: true,
   cookie: {
-    maxAge: CONFIG.session.cookie.maxAge,
+    maxAge: config.session.cookie.maxAge,
     httpOnly: true
   },
   store: new MongoStore({
     db: global.db.db,
-    collection: CONFIG.database.user_session,
-    clear_interval: CONFIG.session.clear_interval
+    collection: config.database.user_session,
+    clear_interval: config.session.clear_interval
   }, (err) => {
     console.error(`Mongo store error: ${err}`);
   })
@@ -92,7 +92,7 @@ app.post('/logs/report-client-error', bodyParser.text() , (req, res) => {
   res.sendStatus(204);
 });
 
-app.use(Routes(app, express, CONFIG));
+app.use(Routes(app, config));
 
 app.use((req, res) => {
   res.status(404).send('Path not found');
