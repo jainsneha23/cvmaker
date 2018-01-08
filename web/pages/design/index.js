@@ -71,7 +71,7 @@ class Design extends React.Component {
           onClick={this.preview} /> }/>
         {tilesData.map((tile, idx) => (
           <Card key={idx} className="card" >
-            <CardMedia 
+            <CardMedia
               overlayContentStyle={{padding: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%)'}}
               overlay={
                 <div className='overlay' >

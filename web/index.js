@@ -20,7 +20,7 @@ class Page extends React.Component {
   }
 
   componentDidMount() {
-    this.unlisten = browserHistory.listen(location => 
+    this.unlisten = browserHistory.listen(location =>
       this.reduxStore.dispatch(ACTIONS.firePageChange(location.action, location.pathname))
     );
   }

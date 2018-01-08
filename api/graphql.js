@@ -26,7 +26,7 @@ class ResumeSchema {
   createScema() {
     const db = global.db;
 
-    const ResumeType = new GraphQLObjectType({  
+    const ResumeType = new GraphQLObjectType({
       name: 'resume',
       fields: function () {
         return {
@@ -133,7 +133,7 @@ class ResumeSchema {
       }
     };
 
-    this.queryType = new GraphQLObjectType({  
+    this.queryType = new GraphQLObjectType({
       name: 'Query',
       fields: () => {
         return {
@@ -169,7 +169,7 @@ class ResumeSchema {
   }
 
   getSchema() {
-    return new GraphQLSchema({  
+    return new GraphQLSchema({
       query: this.queryType,
       mutation: this.MutationType
     });

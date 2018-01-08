@@ -14,8 +14,6 @@ const _session = {
 };
 
 const _database = {
-  name: 'cvmaker',
-  host: 'www.cvmaker.co.in',
   port: 27017,
   url: 'mongodb://127.0.0.1',
   user_session: 'user_sessions'
