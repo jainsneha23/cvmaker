@@ -32,3 +32,6 @@ assets/site-images/*
 #config file with data
 tools/config.sh
 
+.sonar
+
+
