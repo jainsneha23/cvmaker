@@ -92,6 +92,10 @@ app.post('/logs/report-client-error', bodyParser.text() , (req, res) => {
   res.sendStatus(204);
 });
 
+app.get('/sitemap', (req, res) => {
+  res.sendFile('sitemap.xml', {root: '.'});
+});
+
 app.use(Routes(app, express, CONFIG));
 
 app.use((req, res) => {
