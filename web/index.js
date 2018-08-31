@@ -16,7 +16,7 @@ class Page extends React.Component {
     this.reduxStore = configureStore(props.initialState);
     const state = this.reduxStore.getState();
     if (state.user.isNew)
-      ResumeService.add(state.user, 1, jsonToHtml(state.cvform), state.design.id, state.design.color);
+      ResumeService.add(state.user, 1, jsonToHtml(state.cvform), state.templateList.id, state.templateList.color);
   }
 
   componentDidMount() {

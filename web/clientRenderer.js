@@ -17,11 +17,11 @@ injectTapEventPlugin();
 const muiTheme = getMuiTheme({
   palette: {
     primary1Color: '#1976D2',
-    primary2Color: '#2196F3',
-    primary3Color: '#BBDEFB',
-    accent1Color: '#FF9800',
-    accent2Color: '#E8E8E8',
-    accent3Color: '#E8E8E8',
+    primary2Color: '#DCDCDC',
+    primary3Color: '#DCDCDC',
+    accent1Color: '#1976D2',
+    accent2Color: '#DCDCDC',
+    accent3Color: '#DCDCDC',
     textColor: '#666',
     alternateTextColor: '#FFF',
     canvasColor: '#FFF',
@@ -42,6 +42,12 @@ const muiTheme = getMuiTheme({
   avatar: {
     backgroundColor: '#FFF',
     borderColor: null
+  },
+  toolbar: {
+    backgroundColor: '#E7E7E7'
+  },
+  tabs: {
+    backgroundColor: '#E7E7E7'
   }
 });
 
@@ -92,7 +98,7 @@ if (document) {
           initialState.user.isNew = true;
         } else {
           initialState.cvform = htmlToJson(res.data.resumes[0].cvdata);
-          initialState.design = JSON.parse(res.data.resumes[0].design);
+          initialState.templateList = JSON.parse(res.data.resumes[0].template);
         }
         render(initialState);
       }).catch((e) => {

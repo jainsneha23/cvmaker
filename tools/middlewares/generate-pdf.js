@@ -1,5 +1,4 @@
 import puppeteer from 'puppeteer';
-import path from 'path';
 import fs from 'fs';
 
 let module;
@@ -13,30 +12,29 @@ const getBase64String = (path) => {
   }
 };
 
-const generatePDF = ({html, filename}, promise) => {
+const generatePDF = ({html, filename, filePath}, promise) => {
   module = promise;
-  const file = path.join(__dirname,`../pdf/${filename}.pdf`);
   try {
     (async () => {
       const browser = await puppeteer.launch();
       const page = await browser.newPage();
       page.setContent(html);
       await page.pdf({
-        path: file,
+        path: filePath,
         format: 'A4',
         printBackground: true
       });
       browser.close();
-      module.resolve({ filename, base64: getBase64String(file) });
-      fs.unlink(file);
+      module.resolve({ filename, base64: getBase64String(filePath) });
+      fs.unlink(filePath);
     })();
   } catch (exception) {
     module.reject(exception);
   }
 };
 
-export const generateComponentAsPDF = ({ html, filename }) => {
+export const generateComponentAsPDF = ({ html, filename, filePath }) => {
   return new Promise((resolve, reject) => {
-    return generatePDF({ html, filename }, { resolve, reject });
+    return generatePDF({ html, filename, filePath }, { resolve, reject });
   });
 };

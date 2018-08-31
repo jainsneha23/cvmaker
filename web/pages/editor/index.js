@@ -25,7 +25,7 @@ import {PersonalIcon, ProfileIcon, SkillIcon, JobIcon, EducationIcon, MiscIcon} 
 
 import './small.less';
 
-class CvForm extends React.Component {
+class Editor extends React.Component {
   constructor(props) {
     super(props);
     this.state =  {
@@ -63,38 +63,42 @@ class CvForm extends React.Component {
   }
 
   render() {
+    const primaryColor = this.props.muiTheme.palette.primary1Color;
     return (
-      <div className="cv-form">
-        <PageHeaderContainer rightElem={this.props.mobileView ? <Avatar style={{marginTop: '4px'}} onClick={this.preview}>
-          <PreviewIcon color={this.props.muiTheme.palette.primary1Color} />
-        </Avatar> : <RaisedButton
-          onClick={this.preview}
-          style={{marginTop: '4px'}}
-          icon={<PreviewIcon />}
-          label="Preview" />}/>
+      <div className="editor">
+        <PageHeaderContainer />
+        <Toolbar className="toolbar fixed" style={{top: '64px'}}>
+          <div>
+            <RaisedButton
+              onClick={this.preview}
+              icon={<PreviewIcon />}
+              style={{minWidth: '48px'}}
+              label={!this.props.mobileView && 'Preview'} />
+          </div>
+        </Toolbar>
         <Tabs
           onChange={this.handleChange}
           value={this.state.stepIndex}
           className="tabs"
-          tabItemContainerStyle={{position: 'fixed', top: '65px'}}
+          tabItemContainerStyle={{position: 'fixed', top: '120px'}}
           inkBarStyle={{height: '4px'}}
-          contentContainerStyle={{margin: this.props.mobileView ? '112px 0px 60px' : '136px 0px 60px'}} >
-          <Tab value={0} icon={<PersonalIcon />} label={!this.props.mobileView && this.steps[0]} >
+          contentContainerStyle={{margin: this.props.mobileView ? '170px 0px 60px' : '192px 0px 60px'}} >
+          <Tab value={0} buttonStyle={{color: primaryColor}} icon={<PersonalIcon />} label={!this.props.mobileView && this.steps[0]} >
             <PersonalDetails />
           </Tab>
-          <Tab value={1} icon={<ProfileIcon />} label={!this.props.mobileView && this.steps[1]}>
+          <Tab value={1} buttonStyle={{color: primaryColor}} icon={<ProfileIcon />} label={!this.props.mobileView && this.steps[1]}>
             <ProfileContainer />
           </Tab>
-          <Tab value={2} icon={<SkillIcon />} label={!this.props.mobileView && this.steps[2]} >
+          <Tab value={2} buttonStyle={{color: primaryColor}} icon={<SkillIcon />} label={!this.props.mobileView && this.steps[2]} >
             <SkillContainer />
           </Tab>
-          <Tab value={3} icon={<JobIcon />} label={!this.props.mobileView && this.steps[3]} >
+          <Tab value={3} buttonStyle={{color: primaryColor}} icon={<JobIcon />} label={!this.props.mobileView && this.steps[3]} >
             <JobContainer />
           </Tab>
-          <Tab value={4} icon={<EducationIcon />} label={!this.props.mobileView && this.steps[4]} >
+          <Tab value={4} buttonStyle={{color: primaryColor}} icon={<EducationIcon />} label={!this.props.mobileView && this.steps[4]} >
             <EducationContainer />
           </Tab>}
-          <Tab value={5} icon={<MiscIcon />} label={!this.props.mobileView && this.steps[5]} >
+          <Tab value={5} buttonStyle={{color: primaryColor}} icon={<MiscIcon />} label={!this.props.mobileView && this.steps[5]} >
             <MiscContainer />
           </Tab>
         </Tabs>
@@ -120,9 +124,7 @@ class CvForm extends React.Component {
 const mapStateToProps = (state) => ({
   cvdata: state.cvform,
   user: state.user,
-  designid: state.design.id,
-  mobileView: state.app.mobileView,
-  wideView: state.app.wideView
+  mobileView: state.app.mobileView
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -133,16 +135,15 @@ const mapDispatchToProps = dispatch => ({
 export default muiThemeable()(connect(
   mapStateToProps,
   mapDispatchToProps
-)(CvForm));
+)(Editor));
 
-CvForm.propTypes = {
+Editor.propTypes = {
+  muiTheme: PropTypes.object,
   cvdata: PropTypes.object.isRequired,
   user: PropTypes.object.isRequired,
-  designid: PropTypes.number.isRequired,
   mobileView: PropTypes.bool.isRequired,
-  wideView: PropTypes.bool.isRequired,
   trackPreview: PropTypes.func.isRequired,
   trackFormSection: PropTypes.func.isRequired
 };
 
-CvForm.defaultProps = {};
+Editor.defaultProps = {};

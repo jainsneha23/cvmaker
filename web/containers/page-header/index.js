@@ -7,14 +7,14 @@ import * as ACTIONS from '../../actions';
 const PageHeaderContainer = (props) => (
   <PageHeader
     changeView={props.changeView}
-    wideView={props.wideView}
     rightElem={props.rightElem}
-    user={props.user} />
+    user={props.user}
+    mobileView={props.mobileView} />
 );
 
 const mapStateToProps = (state) => ({
   user: state.user,
-  wideView: state.app.wideView
+  mobileView: state.app.mobileView
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -27,8 +27,8 @@ export default connect(
 )(PageHeaderContainer);
 
 PageHeaderContainer.propTypes = {
+  mobileView: PropTypes.bool.isRequired,
   changeView: PropTypes.func.isRequired,
-  wideView: PropTypes.bool.isRequired,
   user: PropTypes.object.isRequired,
   rightElem: PropTypes.node
 };

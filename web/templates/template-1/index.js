@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import InlineCss from 'react-inline-css';
 
 let stylesheet;
 if (typeof window == 'undefined') {
@@ -13,17 +12,18 @@ if (typeof window == 'undefined') {
   stylesheet = stylesheet.toString();
 }
 
-const Design3 = (props) => (
-  <InlineCss id="cv" componentName="design-3" stylesheet={stylesheet}>
-    <style>{`.Design3 .mainArea section .sectionTitle{background-color: ${props.designColor} !important}`}</style>
-    <div className="Design3">
+const Template1 = (props) => (
+  <div id="cv">
+    <style scoped>{stylesheet}{`.Template1 .mainDetails{border-bottom-color: ${props.templateColor} !important}
+             .Template1 .mainArea section .sectionTitle{ color: ${props.templateColor} !important}`}</style>
+    <div className="Template1">
       <div className="mainDetails">
         <div className="name">
           <span>{props.data.personal.fullname.value}</span>
           <span>{props.data.personal.jobtitle.value}</span>
           <ul>
-            <li>email: <span>{props.data.personal.email.value}</span></li>
-            <li>phone: <span>{props.data.personal.mobile.value}</span></li>
+            <li><span>{props.data.personal.email.value}</span></li>|
+            <li><span>{props.data.personal.mobile.value}</span></li>
           </ul>
         </div>
       </div>
@@ -53,7 +53,7 @@ const Design3 = (props) => (
                 <ul>
                   {item.skills.map((skill,j) => 
                     <li key={j}>
-                      <span>{skill},</span>
+                      <span>{skill}</span>
                     </li>
                   )}
                 </ul>
@@ -131,16 +131,16 @@ const Design3 = (props) => (
         </section>
       </div>
     </div>
-  </InlineCss>
+  </div>
 );
 
-Design3.defaultProps = {
-  designColor: '#40a7ba'
+Template1.defaultProps = {
+  templateColor: '#40a7ba'
 };
 
-Design3.propTypes = {
+Template1.propTypes = {
   data: PropTypes.object.isRequired,
-  designColor: PropTypes.string
+  templateColor: PropTypes.string
 };
 
-export default Design3;
+export default Template1;

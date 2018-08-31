@@ -1,8 +1,9 @@
 import bodyParser from 'body-parser';
+import path from 'path';
 import Mailer from '../middlewares/mailer';
 import Messager from '../middlewares/messager';
 import {generateComponentAsPDF} from '../middlewares/generate-pdf';
-import * as Designs from '../../web/designs';
+import * as Templates from '../../web/templates';
 
 const AppRoutes = (app, express) => {
   
@@ -11,17 +12,18 @@ const AppRoutes = (app, express) => {
   const messager = new Messager();
 
   router.post('/download', bodyParser.json() , function(req, res){
-    let Comp = Designs[`Design${req.body.designId}`];
-    const filename = `Design${req.body.designId}-${new Date().getTime()}`;
-    generateComponentAsPDF({html: app.locals.getComponentAsHTML(Comp, req.body.cvdata, req.body.designColor), filename}).then((response) => {
+    let Comp = Templates[`Template${req.body.templateId}`];
+    const filename = `Template${req.body.templateId}-${new Date().getTime()}`;
+    const filePath = path.join(__dirname,`../generated_files/${filename}.pdf`);
+    generateComponentAsPDF({html: app.locals.getComponentAsHTML(Comp, req.body.cvdata, req.body.templateColor), filename, filePath}).then((response) => {
       res.send(response);
     }).catch((error) => res.status(500).send(error));
   });
 
-  router.get('/design/:id', bodyParser.json() , function(req, res){
+  router.get('/template/:id', bodyParser.json() , function(req, res){
     try{
       const json = require('../mock/snehajain.json');
-      let Comp = Designs[`Design${req.params.id}`];
+      let Comp = Templates[`Template${req.params.id}`];
       const html = app.locals.getComponentAsHTML(Comp, json);
       res.send(html);
     } catch (error) {

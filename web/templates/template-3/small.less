@@ -1,15 +1,12 @@
 @import '../../common/styles/reset.less';
 @import '../../common/styles/print.less';
 
-.Design2 {
+.Template3 {
   color: #888;
   font-weight: lighter;
   line-height: 1.2;
   .mainDetails {
-    padding: 15px 30px;
-    border: 1px solid transparent;
-    border-bottom-width: 4px;
-    border-bottom-color: #fdb120;
+    padding: 25px 0 0 20px;
     position: relative;
     .name {
       font-size: 16px;
@@ -39,22 +36,19 @@
     }
   }
   .mainArea {
-    padding: 10px 20px;
     font-size: 14px;
     line-height: 1.5;
     .default {
       ul {
         list-style: disc;
-        padding-left: 20px !important;
+        padding-left: 20px;
       }
       ol {
         list-style: decimal;
-        padding-left: 20px !important;
+        padding-left: 20px;
       }
     }
     section {
-      border-top: 1px solid #dedede;
-      padding: 10px 0;
       &:first-child {
         border-top: 0;
       }
@@ -63,14 +57,19 @@
           padding: 10px 0;
         }
       }
-      .sectionTitle {
-        vertical-align: top;
-        font-size: 16px;
-        font-weight: normal;
-        line-height: 2;
-        color: #fdb120;
+      .sectionTitle{
+        display: inline-block;
+        font-size: 18px;
+        background-color: #40A7BA;
+        padding: 0 20px;
+        line-height: 30px;
+        color: #fff;
+        font-weight: 100;
+        position: relative;
+        margin: 5px 0;
       }
       .sectionContent {
+        padding-left: 10px;
         .subDetails {
           font-size: 12px;
           text-align: right;
@@ -79,7 +78,7 @@
           display: inline-block;
           padding: 4px;
           float: right;
-          margin: 8px 0;
+          margin: 8px;
         }
         ul {
           li {
@@ -89,7 +88,7 @@
               display: inline-block;
             }
             ul {
-              padding: 5px 0;
+              padding: 5px 20px;
             }
           }
         }
@@ -137,7 +136,7 @@
   }
 }
 
-.Design2 {
+.Template3 {
   *:empty {
     display: inline-block;
     background: #efefef;

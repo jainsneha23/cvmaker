@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import InlineCss from 'react-inline-css';
 
 let stylesheet;
 if (typeof window == 'undefined') {
@@ -13,9 +12,11 @@ if (typeof window == 'undefined') {
   stylesheet = stylesheet.toString();
 }
 
-const Design4 = (props) => (
-  <InlineCss id="cv" componentName="design-4" stylesheet={stylesheet}>
-    <div className="Design4">
+const Template2 = (props) => (
+  <div id="cv">
+    <style scoped>{stylesheet}{`.Template2 .mainDetails{border-bottom-color: ${props.templateColor} !important}
+             .Template2 .mainArea section .sectionTitle{ color: ${props.templateColor} !important}`}</style>
+    <div className="Template2">
       <div className="mainDetails">
         <div className="name">
           <span>{props.data.personal.fullname.value}</span>
@@ -46,7 +47,7 @@ const Design4 = (props) => (
         <section className="skillInfo">
           <h3 className="sectionTitle">Key Skills</h3>
           <div className="sectionContent">
-            <ul>{props.data.skills.map((item,i) =>
+            <ul>{props.data.skill.list.map((item,i) =>
               <li key={i}>
                 <h4>{item.skillCategory.value}</h4>
                 <ul>
@@ -64,7 +65,7 @@ const Design4 = (props) => (
           <h3 className="sectionTitle">Work Experience</h3>
           <div className="sectionContent">
             <ul>
-              {props.data.job.map((item, i) =>
+              {props.data.job.list.map((item, i) =>
                 <li key={i}>
                   <div className="header">
                     <span>{item.jobtitle.value}</span>
@@ -87,7 +88,7 @@ const Design4 = (props) => (
           <h3 className="sectionTitle">Education</h3>
           <div className="sectionContent">
             <ul>
-              {props.data.education.map((item, i) =>
+              {props.data.education.list.map((item, i) =>
                 <li key={i}>
                   <div className="header">
                     <div>{item.degree.value}</div>
@@ -118,7 +119,7 @@ const Design4 = (props) => (
         </section>
         <section className="othersInfo">
           <ul>
-            {props.data.others.map((item, i) =>
+            {props.data.misc.list.map((item, i) =>
               <li key={i}>
                 <h3 className="sectionTitle">{item.label.value}</h3>
                 <div className="sectionContent">
@@ -130,11 +131,16 @@ const Design4 = (props) => (
         </section>
       </div>
     </div>
-  </InlineCss>
+  </div>
 );
 
-Design4.propTypes = {
-  data: PropTypes.object.isRequired
+Template2.defaultProps = {
+  templateColor: '#fdb120'
 };
 
-export default Design4;
+Template2.propTypes = {
+  data: PropTypes.object.isRequired,
+  templateColor: PropTypes.string
+};
+
+export default Template2;

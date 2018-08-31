@@ -7,9 +7,9 @@ promise.polyfill();
 
 class ResumeService {
 
-  static add(user, resumeid, cvdata, designid, designcolor) {
-    const design = JSON.stringify(JSON.stringify({id: designid, color: designcolor}));
-    var query = `mutation { add (id: "${user.id}_${resumeid}", userid: ${user.id}, resumeid: ${resumeid}, cvdata: ${JSON.stringify(JSON.stringify(cvdata))}, design: ${design}) { id } }`;
+  static add(user, resumeid, cvdata, templateid, templatecolor) {
+    const template = JSON.stringify(JSON.stringify({id: templateid, color: templatecolor}));
+    var query = `mutation { add (id: "${user.id}_${resumeid}", userid: ${user.id}, resumeid: ${resumeid}, cvdata: ${JSON.stringify(JSON.stringify(cvdata))}, template: ${template}) { id } }`;
     return new Promise((resolve) => {
       fetch('/api/resume', {
         method: 'POST',
@@ -26,7 +26,7 @@ class ResumeService {
   }
 
   static get(user) {
-    var query = `query { resumes (userid: ${user.id}) { id, resumeid, cvdata, design } }`;
+    var query = `query { resumes (userid: ${user.id}) { id, resumeid, cvdata, template } }`;
     return new Promise((resolve) => {
       fetch('/api/resume', {
         method: 'POST',
@@ -59,10 +59,10 @@ class ResumeService {
     });
   }
 
-  static updateDesign(user, resumeid, designid, designcolor) {
-    const design = JSON.stringify(JSON.stringify({id: designid, color: designcolor}));
+  static updateTemplate(user, resumeid, templateid, templatecolor) {
+    const template = JSON.stringify(JSON.stringify({id: templateid, color: templatecolor}));
     return new Promise((resolve) => {
-      var query = `mutation { update (id: "${user.id}_${resumeid}", design: ${design}) { id } }`;
+      var query = `mutation { update (id: "${user.id}_${resumeid}", template: ${template}) { id } }`;
       fetch('/api/resume', {
         method: 'POST',
         body: query
@@ -71,7 +71,7 @@ class ResumeService {
           if (res.errors) throw res.errors;
           else resolve();
         }).catch((err) => {
-          window.sendErr(`ResumeService update design err: ${JSON.stringify(err)}`);
+          window.sendErr(`ResumeService update template err: ${JSON.stringify(err)}`);
           resolve();
         });
     });

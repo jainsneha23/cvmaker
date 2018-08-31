@@ -1,4 +1,5 @@
 import express from 'express';
+import fs from 'fs';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import marko from 'marko';
@@ -16,6 +17,9 @@ import Routes from './routes';
 
 import CONFIG from './config';
 import Database from './database';
+
+const fileDirectory = 'tools/generated_files';
+!fs.existsSync(fileDirectory) && fs.mkdirSync(fileDirectory);
 
 /* eslint-disable no-console */
 

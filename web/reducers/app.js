@@ -1,6 +1,6 @@
-const initialState = {mobileView: false, wideView: false};
+const initialState = {mobileView: false};
 
-const design = (state = initialState, action) => {
+const app = (state = initialState, action) => {
 
   const payload = action.payload;
 
@@ -14,4 +14,4 @@ const design = (state = initialState, action) => {
   }
 };
 
-export default design;
+export default app;

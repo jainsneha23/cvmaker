@@ -1,18 +1,19 @@
 @import '../../common/styles/reset.less';
 @import '../../common/styles/styles.less';
 
-.cv-form {
+.editor {
   .tabs {
     z-index: 2;
     > div:first-child {
       .fixed;
       z-index: 2;
+      height: 72px;
     }
     > div:nth-child(2) {
       .fixed;
       z-index: 2;
       height: 4px;
-      top: 135px;
+      top: 190px;
     }
   }
   .toolbar {
@@ -23,8 +24,11 @@
     > div {
       width: 100%;
       display: flex;
-      justify-content: space-between;
+      justify-content: flex-end;
       align-items: center;
+      > div {
+        margin-left: 8px;
+      }
     }
   }
   .form-section {
@@ -35,25 +39,14 @@
   }
 }
 
-@media all and (min-width: 1120px) {
-  .cv-form {
+@media all and (max-width: 604px) {
+  .editor {
     .tabs {
       > div:first-child {
-        margin-left: 240px;
+        height: 50px;
       }
       > div:nth-child(2) {
-        width: ~'calc(100% - 240px)';
-        left: 240px;
-      }
-    }
-  }
-}
-
-@media all and (max-width: 604px) {
-  .cv-form {
-    .tabs {
-      > div:nth-child(2) {
-        top: 111px
+        top: 168px
       }
     }
   }
