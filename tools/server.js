@@ -2,7 +2,6 @@ import express from 'express';
 import fs from 'fs';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
-import fs from 'fs';
 import marko from 'marko';
 import passport from 'passport';
 import Session from 'express-session';
@@ -23,9 +22,6 @@ const fileDirectory = 'tools/generated_files';
 !fs.existsSync(fileDirectory) && fs.mkdirSync(fileDirectory);
 
 /* eslint-disable no-console */
-
-const fileDirectory = 'tools/generated_files';
-!fs.existsSync(fileDirectory) && fs.mkdirSync(fileDirectory);
 
 const app = express();
 const MongoStore = Mongo(Session);
