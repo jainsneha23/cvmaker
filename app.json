@@ -37,24 +37,6 @@
     },
     "MONGODB_URI": {
       "generator": "secret"
-    },
-    "NEW_RELIC_LICENSE_KEY": {
-      "required": true
-    },
-    "NEW_RELIC_LOG": {
-      "generator": "secret"
-    },
-    "SENDGRID_API_KEY": {
-      "generator": "secret"
-    },
-    "SENDGRID_PASSWORD": {
-      "generator": "secret"
-    },
-    "SENDGRID_USERNAME": {
-      "generator": "secret"
-    },
-    "TILL_URL": {
-      "generator": "secret"
     }
   },
   "formation": {
@@ -63,10 +45,7 @@
     }
   },
   "addons": [
-    "mongolab",
-    "newrelic",
-    "sendgrid",
-    "till"
+    "mongolab"
   ],
   "buildpacks": [
     {
