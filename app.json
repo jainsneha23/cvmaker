@@ -1,0 +1,55 @@
+{
+  "name": "cvmaker",
+  "description": "",
+  "scripts": {
+  },
+  "env": {
+    "COOKIE_NAME": {
+      "required": true
+    },
+    "COOKIE_SECRET": {
+      "required": true
+    },
+    "ENABLE_ANALYTICS": "false",
+    "FACEBOOK_ID": {
+      "required": true
+    },
+    "FACEBOOK_SECRET": {
+      "required": true
+    },
+    "GOOGLE_ID": {
+      "required": true
+    },
+    "GOOGLE_SECRET": {
+      "required": true
+    },
+    "LINKEDIN_ID": {
+      "required": true
+    },
+    "LINKEDIN_SECRET": {
+      "required": true
+    },
+    "MAIL_PASS": {
+      "required": true
+    },
+    "MAIL_USER": {
+      "required": true
+    },
+    "MONGODB_URI": {
+      "generator": "secret"
+    }
+  },
+  "formation": {
+    "web": {
+      "quantity": 1
+    }
+  },
+  "addons": [
+    "mongolab"
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ]
+}
