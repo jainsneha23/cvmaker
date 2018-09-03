@@ -54,3 +54,4 @@ A tool to create resumes online with easy to use forms, and pre defined template
 - More resume templates to be added
 - Paypal integration for paying for premium templates
 - Inline editing in templates for advanced users
+
