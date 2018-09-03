@@ -15,7 +15,7 @@ const getBase64String = (path) => {
 
 const generatePDF = ({html, filename}, promise) => {
   module = promise;
-  const file = path.join(__dirname,`../pdf/${filename}.pdf`);
+  const file = path.join(__dirname,`../generated_files/${filename}.pdf`);
   try {
     (async () => {
       const browser = await puppeteer.launch();
