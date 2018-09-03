@@ -13,7 +13,7 @@ if (typeof window == 'undefined') {
 }
 
 const Template4 = (props) => (
-  <div id="cv">
+  <div className="cv_pdf">
     <style scoped>{stylesheet}</style>
     <div className="Template4">
       <div className="mainDetails">

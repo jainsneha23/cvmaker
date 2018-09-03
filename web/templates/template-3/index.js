@@ -13,7 +13,7 @@ if (typeof window == 'undefined') {
 }
 
 const Template3 = (props) => (
-  <div id="cv">
+  <div className="cv_pdf">
     <style scoped>{stylesheet}{`.Template3 .mainArea section .sectionTitle{background-color: ${props.templateColor} !important}`}</style>
     <div className="Template3">
       <div className="mainDetails">
