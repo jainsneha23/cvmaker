@@ -18,7 +18,9 @@ const generatePDF = ({html, filename}, promise) => {
   const file = path.join(__dirname,`../generated_files/${filename}.pdf`);
   try {
     (async () => {
-      const browser = await puppeteer.launch();
+      const browser = await puppeteer.launch({
+        args: ['--no-sandbox', '--disable-setuid-sandbox']
+      });
       const page = await browser.newPage();
       page.setContent(html);
       await page.pdf({
