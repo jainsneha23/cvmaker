@@ -1,0 +1,77 @@
+{
+  "name": "cvmaker",
+  "description": "",
+  "scripts": {
+  },
+  "env": {
+    "COOKIE_NAME": {
+      "required": true
+    },
+    "COOKIE_SECRET": {
+      "required": true
+    },
+    "ENABLE_ANALYTICS": "false",
+    "FACEBOOK_ID": {
+      "required": true
+    },
+    "FACEBOOK_SECRET": {
+      "required": true
+    },
+    "GOOGLE_ID": {
+      "required": true
+    },
+    "GOOGLE_SECRET": {
+      "required": true
+    },
+    "LINKEDIN_ID": {
+      "required": true
+    },
+    "LINKEDIN_SECRET": {
+      "required": true
+    },
+    "MAIL_PASS": {
+      "required": true
+    },
+    "MAIL_USER": {
+      "required": true
+    },
+    "MONGODB_URI": {
+      "generator": "secret"
+    },
+    "NEW_RELIC_LICENSE_KEY": {
+      "required": true
+    },
+    "NEW_RELIC_LOG": {
+      "generator": "secret"
+    },
+    "SENDGRID_API_KEY": {
+      "generator": "secret"
+    },
+    "SENDGRID_PASSWORD": {
+      "generator": "secret"
+    },
+    "SENDGRID_USERNAME": {
+      "generator": "secret"
+    },
+    "TILL_URL": {
+      "generator": "secret"
+    }
+  },
+  "formation": {
+    "web": {
+      "quantity": 1
+    }
+  },
+  "addons": [
+    "coralogix",
+    "mongolab",
+    "newrelic",
+    "sendgrid",
+    "till"
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ]
+}
