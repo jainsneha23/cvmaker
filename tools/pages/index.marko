@@ -14,17 +14,18 @@
     <link rel="stylesheet" type="text/css" href="${data.mainCssBundle}">
     <script>
       window.__REDUX_STATE__ = ${data.__REDUX_STATE__};
-      if (window.opener) {
-        if(window.opener.loginCallBack) {
-          window.opener.loginCallBack(${data.serverVars});
+      try {
+        if (window.opener) {
+          if(window.opener.loginCallBack) {
+            window.opener.loginCallBack(${data.serverVars});
+          }
+
+          window.opener.location.reload();
+          window.opener.focus();
+
+          window.close();
         }
-
-        window.opener.location.reload();
-        window.opener.focus();
-
-        window.close();
-      }
-      
+      } catch(e) {}
       function loginCallBack(data) {
         window.__REDUX_STATE__ = data;
       }
