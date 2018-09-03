@@ -36,7 +36,7 @@
       "required": true
     },
     "MONGODB_URI": {
-      "generator": "secret"
+      "required": true
     }
   },
   "formation": {
