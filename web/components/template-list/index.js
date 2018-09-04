@@ -19,10 +19,12 @@ class TemplateList extends React.Component {
     this.state = {
       cols: 1,
       dialog: false,
-      dialogIdx: 0
+      dialogIdx: 0,
+      dialogHeight: window.innerHeight
     };
     this.handleColumns = this.handleColumns.bind(this);
     this.toggleMagnify = this.toggleMagnify.bind(this);
+    this.handleDialogHeight = this.handleDialogHeight.bind(this);
   }
 
   componentDidMount() {
@@ -39,8 +41,12 @@ class TemplateList extends React.Component {
     this.props.changeTemplate(templateid, templatecolor);
   }
 
+  handleDialogHeight() {
+    this.setState({dialogHeight: this.img.height});
+  }
+
   toggleMagnify(value) {
-    this.setState({dialog: !this.state.dialog, dialogIdx: value || 0});
+    this.setState({dialog: !this.state.dialog, dialogHeight: window.innerHeight, dialogIdx: value || 0});
   }
 
   render() {
@@ -93,8 +99,8 @@ class TemplateList extends React.Component {
           open={this.state.dialog}
           onRequestClose={() => this.toggleMagnify(0)}
           autoScrollBodyContent={true} >
-          <div style={{minHeight: window.innerHeight}}>
-            <img src={`${tilesData[this.state.dialogIdx].img}.png`} className="dialog-img" />
+          <div style={{minHeight: this.state.dialogHeight}}>
+            <img src={`${tilesData[this.state.dialogIdx].img}.png`} className="dialog-img" ref={c => {this.img = c;}} onLoad={this.handleDialogHeight}/>
           </div>
         </Dialog>
       </div>

@@ -34,18 +34,14 @@ class Template extends React.Component {
   }
 
   render() {
-    const primaryColor = this.props.muiTheme.palette.primaryColor;
     return (
       <div className="templates">
         <PageHeaderContainer />
-        <Toolbar className="toolbar fixed" style={{top: '64px'}}>
+        <Toolbar className="toolbar fixed">
           <div>
-            {this.props.mobileView ? <Avatar onClick={this.preview}>
-              <PreviewIcon color={primaryColor} />
-            </Avatar> : <RaisedButton
+            <RaisedButton style={{minWidth: '48px'}} label={!this.props.mobileView && 'Preview'}
               onClick={this.preview}
-              icon={<PreviewIcon />}
-              label="Preview" />}
+              icon={<PreviewIcon />}/>
           </div>
         </Toolbar>
         <TemplateListContainer />
@@ -73,7 +69,6 @@ Template.propTypes = {
   muiTheme: PropTypes.object,
   user: PropTypes.object.isRequired,
   templateId: PropTypes.number.isRequired,
-  changeTemplate: PropTypes.func.isRequired,
   trackPreview: PropTypes.func.isRequired,
   mobileView: PropTypes.bool.isRequired
 };

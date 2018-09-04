@@ -39,11 +39,11 @@ class Home extends React.Component {
               <div>Share CV across any platform
                 <br />
                 <ul>
-                  <li><ComputerIcon />Computer</li>
+                  {/*<li><ComputerIcon />Computer</li>
                   <li><TabletIcon />Tablet</li>
-                  <li><MobileIcon/> Mobile</li>
+                  <li><MobileIcon/> Mobile</li>*/}
                   <li><PDFIcon/> PDF</li>
-                  <li><EmailIcon/> Email</li>
+                  {/*<li><EmailIcon/> Email</li>*/}
                   <li><PrintIcon/> Print</li>
                 </ul>
                 <Link to='/editor'>Create CV Now</Link>
