@@ -42,7 +42,7 @@ class ResumeSchema {
           cvdata: {
             type: GraphQLString
           },
-          design: {
+          template: {
             type: GraphQLString
           }
         };
@@ -69,14 +69,14 @@ class ResumeSchema {
           name: 'Resume data',
           type: new GraphQLNonNull(GraphQLString)
         },
-        design: {
-          name: 'Resume design',
+        template: {
+          name: 'Resume template',
           type: new GraphQLNonNull(GraphQLString)
         }
       },
-      resolve: (root, {id, userid, resumeid, cvdata, design}) => {
+      resolve: (root, {id, userid, resumeid, cvdata, template}) => {
         return new Promise((resolve, reject) => {
-          db.insert(dbName, {id, userid, resumeid, cvdata, design})
+          db.insert(dbName, {id, userid, resumeid, cvdata, template})
             .then(() => db.selectAll(dbName))
             .then(resumes => resolve(resumes))
             .catch(err => reject(err));
@@ -115,16 +115,16 @@ class ResumeSchema {
           name: 'Resume data',
           type: GraphQLString
         },
-        design: {
-          name: 'Resume design',
+        template: {
+          name: 'Resume template',
           type: GraphQLString
         }
       },
-      resolve: (root, {id, cvdata, design}) => {
+      resolve: (root, {id, cvdata, template}) => {
         return new Promise((resolve, reject) => {
           const dataToUpdate = {};
           if(cvdata) dataToUpdate.cvdata = cvdata;
-          if(design) dataToUpdate.design = design;
+          if(template) dataToUpdate.template = template;
           db.update(dbName, {id}, {$set:dataToUpdate})
             .then(() => db.selectAll(dbName))
             .then(resumes => resolve(resumes))

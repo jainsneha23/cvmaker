@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import InlineCss from 'react-inline-css';
 
 let stylesheet;
 if (typeof window == 'undefined') {
@@ -13,11 +12,11 @@ if (typeof window == 'undefined') {
   stylesheet = stylesheet.toString();
 }
 
-const Design2 = (props) => (
-  <InlineCss id="cv" componentName="design-2" stylesheet={stylesheet}>
-    <style>{`.Design2 .mainDetails{border-bottom-color: ${props.designColor} !important}
-             .Design2 .mainArea section .sectionTitle{ color: ${props.designColor} !important}`}</style>
-    <div className="Design2">
+const Template2 = (props) => (
+  <div className="cv_pdf">
+    <style scoped>{stylesheet}{`.Template2 .mainDetails{border-bottom-color: ${props.templateColor} !important}
+             .Template2 .mainArea section .sectionTitle{ color: ${props.templateColor} !important}`}</style>
+    <div className="Template2">
       <div className="mainDetails">
         <div className="name">
           <span>{props.data.personal.fullname.value}</span>
@@ -132,16 +131,16 @@ const Design2 = (props) => (
         </section>
       </div>
     </div>
-  </InlineCss>
+  </div>
 );
 
-Design2.defaultProps = {
-  designColor: '#fdb120'
+Template2.defaultProps = {
+  templateColor: '#fdb120'
 };
 
-Design2.propTypes = {
+Template2.propTypes = {
   data: PropTypes.object.isRequired,
-  designColor: PropTypes.string
+  templateColor: PropTypes.string
 };
 
-export default Design2;
+export default Template2;

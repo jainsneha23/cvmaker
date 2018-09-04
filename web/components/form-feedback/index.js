@@ -95,7 +95,7 @@ class FormFeedback extends React.Component{
           label="Submit"
           primary={true}
           onClick={this.submitForm}
-          stlye={{marginTop: '12px'}}
+          style={{marginTop: '12px'}}
         />
       </form>
     );

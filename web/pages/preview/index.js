@@ -6,8 +6,6 @@ import { browserHistory } from 'react-router';
 import muiThemeable from 'material-ui/styles/muiThemeable';
 import RaisedButton from 'material-ui/RaisedButton';
 import {Toolbar} from 'material-ui/Toolbar';
-import Avatar from 'material-ui/Avatar';
-import {Card, CardText} from 'material-ui/Card';
 import DownloadIcon from 'material-ui/svg-icons/file/cloud-download';
 import ChevronLeft from 'material-ui/svg-icons/navigation/chevron-left';
 import ColorLens from 'material-ui/svg-icons/image/color-lens';
@@ -16,7 +14,7 @@ import {ResumeService} from '../../api';
 import {jsonToHtml} from '../../utils/parse-cvform';
 import * as ACTIONS from '../../actions';
 
-import * as Designs from '../../designs';
+import * as Templates from '../../templates';
 import PageHeaderContainer from '../../containers/page-header';
 
 import './small.less';
@@ -32,7 +30,7 @@ class Preview extends React.Component {
   }
 
   choose() {
-    browserHistory.push('/designs');
+    browserHistory.push('/templates');
   }
 
   download() {
@@ -40,47 +38,40 @@ class Preview extends React.Component {
     this.setState({downloading: true});
     const data = JSON.stringify({
       cvdata: this.props.cvdata,
-      designId: this.props.designId,
-      designColor: this.props.designColor
+      templateId: this.props.templateId,
+      templateColor: this.props.templateColor
     });
-    ResumeService.updateDesign(this.props.user, 1, this.props.designId, this.props.designColor)
+    ResumeService.updateTemplate(this.props.user, 1, this.props.templateId, this.props.templateColor)
       .then(ResumeService.download(data))
       .then(() => this.setState({downloading: false}))
       .catch(e => this.setState({downloading: false, error: e.message}));
   }
 
   edit() {
-    browserHistory.push('/create');
+    browserHistory.push('/editor');
   }
 
   render() {
-    let Comp = Designs[`Design${this.props.designId}`] || Designs['Design1'];
+    let Comp = Templates[`Template${this.props.templateId}`] || Templates['Template1'];
     return (
       <div className="preview">
-        <PageHeaderContainer rightElem={this.props.mobileView ? <Avatar style={{marginTop: '4px'}} onClick={this.download}>
-          <DownloadIcon color={this.props.muiTheme.palette.primary1Color} className={this.state.downloading && 'downloading'} />
-        </Avatar> : <RaisedButton
-          onClick={this.download}
-          style={{marginTop: '12px'}}
-          icon={<DownloadIcon className={this.state.downloading && 'downloading'} />}
-          label={this.state.downloading ? 'Downloading...' : 'Download'} />}/>
+        <PageHeaderContainer />
         <Toolbar className="toolbar fixed">
           <div>
             <RaisedButton style={{minWidth: '48px'}} label={this.props.mobileView ? '' : 'Edit'} onClick={this.edit} icon={<ChevronLeft />}/>
             <div>
               <RaisedButton style={{minWidth: '48px'}}
-                icon={<input type="color" value={this.props.designColor} onChange={this.props.changeDesignColor} className="colorpicker" />}
+                icon={<input type="color" value={this.props.templateColor} onChange={this.props.changeTemplateColor} className="colorpicker" />}
               />
-              <RaisedButton style={{minWidth: '48px', marginLeft: '10px'}} label={this.props.mobileView ? '' : 'Select Design'} onClick={this.choose} icon={<ColorLens />} />
+              <RaisedButton style={{minWidth: '48px', marginLeft: '8px'}} label={this.props.mobileView ? '' : 'Select Template'} onClick={this.choose} icon={<ColorLens />} />
+              <RaisedButton style={{minWidth: '48px', marginLeft: '8px'}} label={this.props.mobileView ? '' : (this.state.downloading ? 'Downloading...' : 'Download')} onClick={this.download} icon={<DownloadIcon className={this.state.downloading && 'downloading'} />} />
             </div>
           </div>
         </Toolbar>
         <div className="error">{this.state.error}</div>
-        <Card className="card">
-          <CardText className="cardtext" >
-            <Comp data={this.props.cvdata} designColor={this.props.designColor} />
-          </CardText>
-        </Card>
+        <div className="preview-card">
+          <Comp data={this.props.cvdata} templateColor={this.props.templateColor} />
+        </div>
       </div>
     );
   }
@@ -89,14 +80,14 @@ class Preview extends React.Component {
 const mapStateToProps = (state) => ({
   cvdata: jsonToHtml(state.cvform),
   user: state.user,
-  designId: state.design.id,
-  designColor: state.design.color,
+  templateId: state.templateList.id,
+  templateColor: state.templateList.color,
   mobileView: state.app.mobileView
 });
 
 const mapDispatchToProps = dispatch => ({
-  changeDesignColor: (e) => {
-    dispatch(ACTIONS.changeDesignColor(e.target.value));
+  changeTemplateColor: (e) => {
+    dispatch(ACTIONS.changeTemplateColor(e.target.value));
   },
   trackDownload: () => dispatch(ACTIONS.fireButtonClick('download'))
 });
@@ -110,9 +101,9 @@ Preview.propTypes = {
   cvdata: PropTypes.object.isRequired,
   user: PropTypes.object.isRequired,
   mobileView: PropTypes.bool.isRequired,
-  designId: PropTypes.number.isRequired,
-  designColor: PropTypes.string.isRequired,
-  changeDesignColor: PropTypes.func.isRequired,
+  templateId: PropTypes.number.isRequired,
+  templateColor: PropTypes.string.isRequired,
+  changeTemplateColor: PropTypes.func.isRequired,
   trackDownload: PropTypes.func.isRequired
 };
 

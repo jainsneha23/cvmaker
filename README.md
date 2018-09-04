@@ -13,7 +13,7 @@ A tool to create resumes online with easy to use forms, and pre defined template
 `export FACEBOOK_SECRET = <Generate your own>`
 `export MAIL_PASS = <Generate your own>`
 `export MAIL_USER = <Generate your own>`
-`export MONGODB_URI = <Generate your own>`
+`export MONGOLAB_BROWN_URI = <Generate your own>`
 `export NEW_RELIC_LICENSE_KEY = <Generate your own>`
 `export NEW_RELIC_Lexport OG = <Generate your own>`
 `export TILL_URL = <Generate your own>`
@@ -54,3 +54,4 @@ A tool to create resumes online with easy to use forms, and pre defined template
 - More resume templates to be added
 - Paypal integration for paying for premium templates
 - Inline editing in templates for advanced users
+

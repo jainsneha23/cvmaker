@@ -72,7 +72,7 @@ class Login extends React.Component {
               </li>
             </ul>
           </div>
-          <Link to='/create' className="link">{isLoggedIn ? 'Create CV now' : 'Or, continue without login'}</Link>
+          <Link to='/editor' className="link">{isLoggedIn ? 'Create CV now' : 'Or, continue without login'}</Link>
         </Paper>
       </div>
     );

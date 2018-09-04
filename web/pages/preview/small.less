@@ -3,6 +3,7 @@
 
 .preview {
   background: #e7e7e7;
+  padding-bottom: 1px;
   .toolbar {
     top: 64px;
     z-index: 1;
@@ -27,16 +28,26 @@
     text-align: center;
     font-size: 16px;
     font-weight: bold;
+    min-height: 1px;
   }
-  .card {
-    width: 100%;
-    overflow: auto;
+  .preview-card {
+    background: #fff;
+    overflow: overlay;
+    width: 90%;
     margin: 24px auto;
-    .cardtext {
-      padding: 0 !important;
-      width: 768px;
-      margin: auto;
-      box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px;
+    border-radius: 4px;
+    box-shadow: 0 1px 6px rgba(0,0,0,.12), 0 1px 4px rgba(0,0,0,.12);
+    max-height: 75vh;
+    -webkit-overflow-scrolling: auto;
+    &::-webkit-scrollbar {
+        -webkit-appearance: initial;
+        width: 7px;
+        height:7px;
+    }
+    &::-webkit-scrollbar-thumb {
+        border-radius: 4px;
+        background-color: darkgrey;
+        outline: 1px solid slategrey;
     }
   }
   .downloading {

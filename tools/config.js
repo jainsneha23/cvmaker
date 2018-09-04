@@ -45,7 +45,8 @@ const _config = {
   facebook: _facebook,
   linkedin: _linkedin,
   google: _google,
-  port: 80
+  port: 8080
 };
 
 export default _config;
+
