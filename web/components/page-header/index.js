@@ -23,7 +23,6 @@ class PageHeader extends React.Component {
       burgerState: false,
       displayLike: false
     };
-    this.displayLike = 'none';
     this.menuItemStyle = {color: props.muiTheme.palette.alternateTextColor, backgroundColor: props.muiTheme.palette.primary1Color};
     this.toggleBurger = this.toggleBurger.bind(this);
     this.handleWidth = this.handleWidth.bind(this);
@@ -113,7 +112,7 @@ class PageHeader extends React.Component {
                   <MenuItem style={(this.location === '/#contact' && this.menuItemStyle) || {}} onClick={this.toggleBurger}>
                     <Link className="menulink" to='/#contact'>Contact</Link>
                   </MenuItem>
-                  {this.state.displayLike && <MenuItem style={{display: this.displayLike}}>
+                  {this.state.displayLike && <MenuItem>
                     <p>Like Us:</p>
                     <ul className="social">
                       <li><div className="fb-like" data-href="https://www.facebook.com/instantCvMaker/" data-width="25" data-layout="box_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div></li>
