@@ -22,7 +22,7 @@ const AppRoutes = (app, express) => {
 
   router.get('/template/:id', bodyParser.json() , function(req, res){
     try{
-      const json = require('../mock/snehajain.json');
+      const json = require('../../mock/snehajain.json');
       let Comp = Templates[`Template${req.params.id}`];
       const html = app.locals.getComponentAsHTML(Comp, json);
       res.send(html);

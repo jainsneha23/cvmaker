@@ -20,8 +20,10 @@ class PageHeader extends React.Component {
   constructor(props) {
     super(props);
     this.state =  {
-      burgerState: false
+      burgerState: false,
+      displayLike: false
     };
+    this.displayLike = 'none';
     this.menuItemStyle = {color: props.muiTheme.palette.alternateTextColor, backgroundColor: props.muiTheme.palette.primary1Color};
     this.toggleBurger = this.toggleBurger.bind(this);
     this.handleWidth = this.handleWidth.bind(this);
@@ -31,8 +33,14 @@ class PageHeader extends React.Component {
     this.handleWidth();
     window.addEventListener('resize', this.handleWidth);
     /* global gapi FB*/
-    window.onGapiLoaded = () => gapi.follow.go();
-    window.onFbLoaded = () => FB.XFBML.parse();
+    window.onGapiLoaded = () => {
+      gapi.follow.go();
+      this.enableLike();
+    };
+    window.onFbLoaded = () => {
+      FB.XFBML.parse();
+      this.enableLike();
+    };
   }
 
   componentWillUnmount() {
@@ -47,6 +55,10 @@ class PageHeader extends React.Component {
 
   toggleBurger() {
     this.setState({burgerState: !this.state.burgerState});
+  }
+
+  enableLike() {
+    this.setState({displayLike: true});
   }
 
   render() {
@@ -101,14 +113,14 @@ class PageHeader extends React.Component {
                   <MenuItem style={(this.location === '/#contact' && this.menuItemStyle) || {}} onClick={this.toggleBurger}>
                     <Link className="menulink" to='/#contact'>Contact</Link>
                   </MenuItem>
-                  <MenuItem>
+                  {this.state.displayLike && <MenuItem style={{display: this.displayLike}}>
                     <p>Like Us:</p>
                     <ul className="social">
                       <li><div className="fb-like" data-href="https://www.facebook.com/instantCvMaker/" data-width="25" data-layout="box_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div></li>
                       <li><div className="g-follow" data-annotation="vertical-bubble" data-height="24" data-href="//plus.google.com/u/0/113575630639787427005" data-rel="author"></div></li>
                       <li><div className="g-plusone" data-annotation="standard" data-href="http://www.cvmaker.co.in"></div></li>
                     </ul>
-                  </MenuItem>
+                  </MenuItem>}
                 </Menu>
               </Drawer>
             </div>}
