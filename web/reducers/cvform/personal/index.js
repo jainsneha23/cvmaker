@@ -5,6 +5,9 @@ const personal = (state = initialState, action) => {
   const payload = action.payload;
   
   switch (action.type) {
+
+  case 'INIT_STATE':
+    return { ...initialState, ...state};
     
   case 'CHANGE_PERSONAL':
     return { ...state, [payload.type]: {value: payload.value, error: payload.error}};

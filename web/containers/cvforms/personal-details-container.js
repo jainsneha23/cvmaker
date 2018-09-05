@@ -5,14 +5,7 @@ import * as ACTIONS from '../../actions';
 import PersonalDetails from '../../components/cvforms/personal-details';
 
 const PersonalDetailsContainer = (props) => (
-  <PersonalDetails
-    fullname={props.fullname}
-    jobtitle={props.jobtitle}
-    experience={props.experience}
-    email={props.email}
-    mobile={props.mobile}
-    handleChange={props.handleChange}
-  />
+  <PersonalDetails {...props} />
 );
 
 const mapStateToProps = (state) => ({
@@ -20,7 +13,8 @@ const mapStateToProps = (state) => ({
   jobtitle: state.cvform.personal.jobtitle,
   experience: state.cvform.personal.experience,
   email: state.cvform.personal.email,
-  mobile: state.cvform.personal.mobile
+  mobile: state.cvform.personal.mobile,
+  altmobile: state.cvform.personal.altmobile
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -40,6 +34,7 @@ PersonalDetailsContainer.propTypes = {
   experience: PropTypes.shape({value: PropTypes.string, error: PropTypes.string}),
   email: PropTypes.shape({value: PropTypes.string, error: PropTypes.string}),
   mobile: PropTypes.shape({value: PropTypes.string, error: PropTypes.string}),
+  altmobile: PropTypes.shape({value: PropTypes.string, error: PropTypes.string}),
   handleChange: PropTypes.func.isRequired
 };
 

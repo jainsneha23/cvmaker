@@ -64,6 +64,18 @@ const PersonalDetails = (props) => (
         required
         name="mobile"
       />
+      <TextField
+        fullWidth={true}
+        hintText="Eg. 9876543210"
+        errorText={props.mobile.error}
+        errorStyle={{bottom: '-4px'}}
+        floatingLabelText="Enter your alternate mobile number"
+        value={props.altmobile.value}
+        onChange={(e) => props.handleChange(e, 'altmobile')}
+        onBlur={(e) => props.handleChange(e, 'altmobile')}
+        required
+        name="altmobile"
+      />
     </form>
   </div>
 );
@@ -74,6 +86,7 @@ PersonalDetails.propTypes = {
   experience: PropTypes.shape({value: PropTypes.string, error: PropTypes.string}),
   email: PropTypes.shape({value: PropTypes.string, error: PropTypes.string}),
   mobile: PropTypes.shape({value: PropTypes.string, error: PropTypes.string}),
+  altmobile: PropTypes.shape({value: PropTypes.string, error: PropTypes.string}),
   handleChange: PropTypes.func.isRequired
 };
 

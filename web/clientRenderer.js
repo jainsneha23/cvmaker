@@ -69,9 +69,9 @@ if (document) {
     /* eslint-enable no-alert */
   };
 
-  const render = (initialState) => {
+  const render = (preloadedState) => {
     ReactDOM.render(<MuiThemeProvider muiTheme={muiTheme}>
-      <Page initialState={initialState} />
+      <Page preloadedState={preloadedState} />
     </MuiThemeProvider>,
     document.getElementById('app'));
   };
@@ -79,28 +79,28 @@ if (document) {
   const main = () => {
     try {
       /* eslint-disable no-underscore-dangle */
-      const initialState = window.__REDUX_STATE__;
-      if (!initialState.user) {
+      const preloadedState = window.__REDUX_STATE__;
+      if (!preloadedState.user) {
         const user_id = UserService.get();
         if (user_id) {
-          initialState.user = {id: user_id};
+          preloadedState.user = {id: user_id};
         } else {
-          initialState.user = {id: new Date().getTime()};
-          UserService.add(initialState.user);
+          preloadedState.user = {id: new Date().getTime()};
+          UserService.add(preloadedState.user);
         }
-        initialState.user.isLoggedIn = false;
+        preloadedState.user.isLoggedIn = false;
       }
-      ResumeService.get(initialState.user).then(res => {
+      ResumeService.get(preloadedState.user).then(res => {
         if (res.errors) {
           throw `ResumeService get error: ${res.errors}`;
         }
         if (res.data.resumes.length === 0) {
-          initialState.user.isNew = true;
+          preloadedState.user.isNew = true;
         } else {
-          initialState.cvform = htmlToJson(res.data.resumes[0].cvdata);
-          initialState.templateList = JSON.parse(res.data.resumes[0].template);
+          preloadedState.cvform = htmlToJson(res.data.resumes[0].cvdata);
+          preloadedState.templateList = JSON.parse(res.data.resumes[0].template);
         }
-        render(initialState);
+        render(preloadedState);
       }).catch((e) => {
         window.sendErr(e.message);
         showError();

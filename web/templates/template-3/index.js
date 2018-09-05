@@ -22,7 +22,8 @@ const Template3 = (props) => (
           <span>{props.data.personal.jobtitle.value}</span>
           <ul>
             <li>email: <span>{props.data.personal.email.value}</span></li>
-            <li>phone: <span>{props.data.personal.mobile.value}</span></li>
+            <li>phone: <span>{props.data.personal.mobile.value}</span>,
+            &nbsp;<span>{props.data.personal.altmobile.value}</span></li>
           </ul>
         </div>
       </div>

@@ -5,11 +5,7 @@ import * as ACTIONS from '../../actions';
 import Profile from '../../components/cvforms/profile';
 
 const ProfileContainer = (props) => (
-  <Profile
-    objectives={props.objectives}
-    summary={props.summary}
-    handleChange={props.handleChange}
-  />
+  <Profile {...props}/>
 );
 
 const mapStateToProps = (state) => ({

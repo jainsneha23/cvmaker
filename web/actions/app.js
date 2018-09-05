@@ -3,4 +3,8 @@ const changeView = (view) => ({
   payload: view
 });
 
-export {changeView};
+const initState = () => ({
+  type: 'INIT_STATE'
+});
+
+export {changeView, initState};
