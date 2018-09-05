@@ -18,5 +18,9 @@ export default {
   mobile: {
     value: '',
     error: ''
+  },
+  altmobile: {
+    value: '',
+    error: ''
   }
 };

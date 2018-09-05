@@ -13,7 +13,8 @@ class Page extends React.Component {
 
   constructor(props) {
     super(props);
-    this.reduxStore = configureStore(props.initialState);
+    this.reduxStore = configureStore(props.preloadedState);
+    this.reduxStore.dispatch(ACTIONS.initState());
     const state = this.reduxStore.getState();
     if (state.user.isNew)
       ResumeService.add(state.user, 1, jsonToHtml(state.cvform), state.templateList.id, state.templateList.color);
@@ -46,7 +47,7 @@ class Page extends React.Component {
 }
 
 Page.propTypes = {
-  initialState: PropTypes.object.isRequired
+  preloadedState: PropTypes.object.isRequired
 };
 
 export default Page;
