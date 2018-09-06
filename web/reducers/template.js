@@ -3,7 +3,7 @@ const initialState = {
   color: '#40a7ba'
 };
 
-const templateList = (state = initialState, action) => {
+const template = (state = initialState, action) => {
 
   const payload = action.payload;
 
@@ -20,4 +20,4 @@ const templateList = (state = initialState, action) => {
   }
 };
 
-export default templateList;
+export default template;

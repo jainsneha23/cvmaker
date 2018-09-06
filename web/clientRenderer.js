@@ -98,7 +98,7 @@ if (document) {
           preloadedState.user.isNew = true;
         } else {
           preloadedState.cvform = htmlToJson(res.data.resumes[0].cvdata);
-          preloadedState.templateList = JSON.parse(res.data.resumes[0].template);
+          preloadedState.template = JSON.parse(res.data.resumes[0].template);
         }
         render(preloadedState);
       }).catch((e) => {
