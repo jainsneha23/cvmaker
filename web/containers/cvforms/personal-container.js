@@ -20,6 +20,9 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = dispatch => ({
   handleChange: (e, type) => {
     dispatch(ACTIONS.changePersonal(e, type));
+  },
+  handleExperienceChange: (e, type) => {
+    dispatch(ACTIONS.changePersonalExperience(e, type));
   }
 });
 
@@ -31,11 +34,12 @@ export default connect(
 PersonalContainer.propTypes = {
   fullname: PropTypes.shape({value: PropTypes.string, error: PropTypes.string}),
   jobtitle: PropTypes.shape({value: PropTypes.string, error: PropTypes.string}),
-  experience: PropTypes.shape({value: PropTypes.string, error: PropTypes.string}),
+  experience: PropTypes.shape({value: PropTypes.object, error: PropTypes.string}),
   email: PropTypes.shape({value: PropTypes.string, error: PropTypes.string}),
   mobile: PropTypes.shape({value: PropTypes.string, error: PropTypes.string}),
   altmobile: PropTypes.shape({value: PropTypes.string, error: PropTypes.string}),
-  handleChange: PropTypes.func.isRequired
+  handleChange: PropTypes.func.isRequired,
+  handleExperienceChange: PropTypes.func.isRequired
 };
 
 PersonalContainer.defaultProps = {};

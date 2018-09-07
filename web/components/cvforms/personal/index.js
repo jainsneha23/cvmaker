@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types'; 
 import TextField from 'material-ui/TextField';
+import SelectField from 'material-ui/SelectField';
+import MenuItem from 'material-ui/MenuItem';
 
 const Personal = (props) => (
   <div className="form-personal form-section" >
@@ -29,17 +31,24 @@ const Personal = (props) => (
         required
         name="jobtitle"
       />
-      <TextField
-        fullWidth={true}
-        hintText="Eg. 4.5"
+      <p style={{margin: '15px 0 -15px 0'}}>Enter your experience</p>
+      <SelectField
+        maxHeight={200}
+        value={props.experience.value.years}
+        floatingLabelText="Years"
         errorText={props.experience.error}
-        errorStyle={{bottom: '-4px'}}
-        floatingLabelText="Enter your experience in years"
-        value={props.experience.value}
-        onChange={(e) => props.handleChange(e, 'experience')}
-        onBlur={(e) => props.handleChange(e, 'experience')}
-        name="experience"
-      />
+        onChange={(e, i, v) => props.handleExperienceChange(v, 'years')}
+        onBlur={(e, i, v) => props.handleExperienceChange(v, 'years')}>
+        {Array.from({length: 50}).map((v, i) => <MenuItem value={i} key={i} primaryText={`${i} year${i > 2 ? 's' : ''}`} />)}
+      </SelectField>
+      <SelectField
+        maxHeight={200}
+        value={props.experience.value.months}
+        floatingLabelText="Months"
+        onChange={(e, i, v) => props.handleExperienceChange(v, 'months')}
+        onBlur={(e, i, v) => props.handleExperienceChange(v, 'months')}>
+        {Array.from({length: 11}).map((v, i) => <MenuItem value={i} key={i} primaryText={`${i} month${i > 2 ? 's' : ''}`} />)}
+      </SelectField>
       <TextField
         fullWidth={true}
         hintText="Eg. birdie.sneha@gmail.com"
@@ -83,11 +92,12 @@ const Personal = (props) => (
 Personal.propTypes = {
   fullname: PropTypes.shape({value: PropTypes.string, error: PropTypes.string}),
   jobtitle: PropTypes.shape({value: PropTypes.string, error: PropTypes.string}),
-  experience: PropTypes.shape({value: PropTypes.string, error: PropTypes.string}),
+  experience: PropTypes.shape({value: PropTypes.object, error: PropTypes.string}),
   email: PropTypes.shape({value: PropTypes.string, error: PropTypes.string}),
   mobile: PropTypes.shape({value: PropTypes.string, error: PropTypes.string}),
   altmobile: PropTypes.shape({value: PropTypes.string, error: PropTypes.string}),
-  handleChange: PropTypes.func.isRequired
+  handleChange: PropTypes.func.isRequired,
+  handleExperienceChange: PropTypes.func.isRequired
 };
 
 export default Personal;
