@@ -51,7 +51,7 @@ class Template extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  templateId: state.templateList.id,
+  templateId: state.template.id,
   user: state.user,
   mobileView: state.app.mobileView,
 });

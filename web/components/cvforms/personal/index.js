@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types'; 
 import TextField from 'material-ui/TextField';
 
-const PersonalDetails = (props) => (
+const Personal = (props) => (
   <div className="form-personal form-section" >
     <form>
       <TextField
@@ -80,7 +80,7 @@ const PersonalDetails = (props) => (
   </div>
 );
 
-PersonalDetails.propTypes = {
+Personal.propTypes = {
   fullname: PropTypes.shape({value: PropTypes.string, error: PropTypes.string}),
   jobtitle: PropTypes.shape({value: PropTypes.string, error: PropTypes.string}),
   experience: PropTypes.shape({value: PropTypes.string, error: PropTypes.string}),
@@ -90,4 +90,4 @@ PersonalDetails.propTypes = {
   handleChange: PropTypes.func.isRequired
 };
 
-export default PersonalDetails;
+export default Personal;

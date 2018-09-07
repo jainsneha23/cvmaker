@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import * as ACTIONS from '../../actions';
-import PersonalDetails from '../../components/cvforms/personal-details';
+import Personal from '../../components/cvforms/personal';
 
-const PersonalDetailsContainer = (props) => (
-  <PersonalDetails {...props} />
+const PersonalContainer = (props) => (
+  <Personal {...props} />
 );
 
 const mapStateToProps = (state) => ({
@@ -26,9 +26,9 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(PersonalDetailsContainer);
+)(PersonalContainer);
 
-PersonalDetailsContainer.propTypes = {
+PersonalContainer.propTypes = {
   fullname: PropTypes.shape({value: PropTypes.string, error: PropTypes.string}),
   jobtitle: PropTypes.shape({value: PropTypes.string, error: PropTypes.string}),
   experience: PropTypes.shape({value: PropTypes.string, error: PropTypes.string}),
@@ -38,4 +38,4 @@ PersonalDetailsContainer.propTypes = {
   handleChange: PropTypes.func.isRequired
 };
 
-PersonalDetailsContainer.defaultProps = {};
+PersonalContainer.defaultProps = {};
