@@ -12,9 +12,17 @@ const changePersonal = (e, type) => ({
   }
 });
 
+const changePersonalExperience = (value, type) => ({
+  type: 'CHANGE_PERSONAL_EXPERIENCE',
+  payload: {
+    type,
+    value: value
+  }
+});
+
 const changeProfile = (e, type) => ({
   type: 'CHANGE_PROFILE',
   payload: { type, value: e }
 });
 
-export { changePersonal, changeProfile };
+export { changePersonal, changePersonalExperience, changeProfile };

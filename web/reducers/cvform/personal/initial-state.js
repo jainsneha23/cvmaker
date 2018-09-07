@@ -8,7 +8,10 @@ export default {
     error: ''
   },
   experience: {
-    value: '',
+    value: {
+      years: 0,
+      months: 0
+    },
     error: ''
   },
   email: {

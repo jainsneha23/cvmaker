@@ -80,8 +80,8 @@ class Preview extends React.Component {
 const mapStateToProps = (state) => ({
   cvdata: jsonToHtml(state.cvform),
   user: state.user,
-  templateId: state.templateList.id,
-  templateColor: state.templateList.color,
+  templateId: state.template.id,
+  templateColor: state.template.color,
   mobileView: state.app.mobileView
 });
 

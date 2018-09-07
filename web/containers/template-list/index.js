@@ -16,7 +16,7 @@ const TemplateListContainer = (props) => (
 );
 
 const mapStateToProps = (state) => ({
-  templateId: state.templateList.id,
+  templateId: state.template.id,
   user: state.user
 });
 

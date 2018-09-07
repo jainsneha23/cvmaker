@@ -7,7 +7,6 @@ import muiThemeable from 'material-ui/styles/muiThemeable';
 import {Tabs, Tab} from 'material-ui/Tabs';
 import {Toolbar} from 'material-ui/Toolbar';
 import RaisedButton from 'material-ui/RaisedButton';
-import Avatar from 'material-ui/Avatar';
 import PreviewIcon from 'material-ui/svg-icons/action/visibility';
 
 import {jsonToHtml} from '../../utils/parse-cvform';
@@ -15,7 +14,7 @@ import {ResumeService} from '../../api';
 import * as ACTIONS from '../../actions';
 
 import PageHeaderContainer from '../../containers/page-header';
-import PersonalDetails from '../../containers/cvforms/personal-details-container';
+import PersonalContainer from '../../containers/cvforms/personal-container';
 import ProfileContainer from '../../containers/cvforms/profile-container';
 import SkillContainer from '../../containers/cvforms/skill-container';
 import JobContainer from '../../containers/cvforms/job-container';
@@ -84,7 +83,7 @@ class Editor extends React.Component {
           inkBarStyle={{height: '4px'}}
           contentContainerStyle={{margin: this.props.mobileView ? '170px 0px 60px' : '192px 0px 60px'}} >
           <Tab value={0} buttonStyle={{color: primaryColor}} icon={<PersonalIcon />} label={!this.props.mobileView && this.steps[0]} >
-            <PersonalDetails />
+            <PersonalContainer />
           </Tab>
           <Tab value={1} buttonStyle={{color: primaryColor}} icon={<ProfileIcon />} label={!this.props.mobileView && this.steps[1]}>
             <ProfileContainer />
