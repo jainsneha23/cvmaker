@@ -19,7 +19,7 @@ class ResumeService {
           if (data.errors) throw data.errors;
           else resolve({});
         }).catch((err) => {
-          window.sendErr(`ResumeService add err: ${JSON.stringify(err)}`);
+          window.sendErr('ResumeService add err', err);
           resolve({});
         });
     });
@@ -36,7 +36,7 @@ class ResumeService {
           if (data.errors) throw data.errors;
           else resolve(data);
         }).catch((err) => {
-          window.sendErr(`ResumeService get err: ${JSON.stringify(err)}`);
+          window.sendErr('ResumeService get err:', err);
           resolve({data: {resumes: []}});
         });
     });
@@ -53,7 +53,7 @@ class ResumeService {
           if (res.errors) throw res.errors;
           else resolve();
         }).catch((err) => {
-          window.sendErr(`ResumeService update err: ${JSON.stringify(err)}`);
+          window.sendErr('ResumeService update err:', err);
           resolve();
         });
     });
@@ -71,7 +71,7 @@ class ResumeService {
           if (res.errors) throw res.errors;
           else resolve();
         }).catch((err) => {
-          window.sendErr(`ResumeService update template err: ${JSON.stringify(err)}`);
+          window.sendErr('ResumeService update template err:', err);
           resolve();
         });
     });
@@ -90,11 +90,11 @@ class ResumeService {
           return res.json();
         else throw 'Error in fetching resume';
       }).then((response) => {
-        const blob = base64ToBlob(response.base64);
+        const blob = base64ToBlob(response.content);
         fileSaver.saveAs(blob, 'resume.pdf');
         resolve();
       }).catch((err) => {
-        window.sendErr(`ResumeService download err: ${JSON.stringify(err)}`);
+        window.sendErr('ResumeService download err:', err);
         reject(err);
       });
     });

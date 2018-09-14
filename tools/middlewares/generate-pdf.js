@@ -12,7 +12,7 @@ const getBase64String = (path) => {
   }
 };
 
-const generatePDF = ({html, filename, filePath}, promise) => {
+const generate = ({html, filename, filePath}, promise) => {
   module = promise;
   try {
     (async () => {
@@ -27,7 +27,7 @@ const generatePDF = ({html, filename, filePath}, promise) => {
         printBackground: true
       });
       browser.close();
-      module.resolve({ filename, base64: getBase64String(filePath) });
+      module.resolve({ filename, content: getBase64String(filePath) });
       fs.unlink(filePath);
     })();
   } catch (exception) {
@@ -35,8 +35,8 @@ const generatePDF = ({html, filename, filePath}, promise) => {
   }
 };
 
-export const generateComponentAsPDF = ({ html, filename, filePath }) => {
+export const generatePDF = ({ html, filename, filePath }) => {
   return new Promise((resolve, reject) => {
-    return generatePDF({ html, filename, filePath }, { resolve, reject });
+    return generate({ html, filename, filePath }, { resolve, reject });
   });
 };

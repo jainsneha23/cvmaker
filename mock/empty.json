@@ -13,7 +13,10 @@
     },
     "experience":
     {
-      "value": "",
+      "value": {
+        "years": 0,
+        "months": 0
+      },
       "error": ""
     },
     "email":
@@ -22,6 +25,11 @@
       "error": ""
     },
     "mobile":
+    {
+      "value": "",
+      "error": ""
+    },
+    "altmobile":
     {
       "value": "",
       "error": ""

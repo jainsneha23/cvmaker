@@ -1,1 +1,518 @@
-{"personal":{"fullname":{"value":"Sneha Jain","error":""},"jobtitle":{"value":"Principal Software Engineer","error":""},"experience":{"value":"66","error":""},"email":{"value":"birdie.sneha@gmail.com","error":""},"mobile":{"value":"8105266097","error":""}},"profile":{"summary":"<ul>\n <li>A core developer in Tesco's homepage development&nbsp;</li>\n <li>A core developer in Tesco's store locator development&nbsp;</li>\n <li>Rank 176 in Google code jam woman 2017. (Won free ticket to California for Google IO Event)&nbsp;</li>\n <li>Rank 167 in Google code jam woman 2016.&nbsp;</li>\n <li>Rank 6000 in Google code round 1 jam 2016.&nbsp;</li>\n <li>Hackerrank algorithm rank 3644&nbsp;</li>\n <li>Experience in end to end UI development in IRI analytics platform&nbsp;</li>\n <li>Experience in developing and managing mobile cordova apps for android and IOS which is ­ multi tenanted (themed and localized)&nbsp;</li>\n <li>Experience with Google APIs like maps, places, geolocation, reverse geocoding, voice recognition, directions, geolocation, etc&nbsp;</li>\n</ul>","objectives":"<p>With 5.5 years of experience, I have been learning more and more each day. Fast learning is my best capability, and the urge of problem solving keeps me running. I believe in writing code everyday. I am looking for a data extensive project where I can utilise my potential to its fullest, and can do more of algorithms, and core programming (less of libraries and frameworks).&nbsp;</p>"},"skill":{"list": [{"input":{"value":"","error":""},"skillCategory":{"value":"HTML/CSS","error":""},"skills": ["HTML5","CSS3","Progressive web apps","Responsive Web Design","Animations","Bootstrap","Geolocation"]},{"input":{"value":"","error":""},"skillCategory":{"value":"Javascript","error":""},"skills": ["Object Oriented Javascript","ReactJS","Redux","Jquery","AngularJS","AJAX","JSON"]},{"input":{"value":"","error":""},"skillCategory":{"value":"Task runner and bundling tools","error":""},"skills": ["Gulp","Webpack"]},{"input":{"value":"","error":""},"skillCategory":{"value":"Server side Programming & Database","error":""},"skills": ["NodeJS","Mysql"]},{"input":{"value":"","error":""},"skillCategory":{"value":"Testing","error":""},"skills": ["Galen Javascript API","Cucumber JS","WebdriverIO","Parallel automated testing integrated with cloud testing platform (i.e. Browserstack)"]},{"input":{"value":"","error":""},"skillCategory":{"value":"Infrastructure","error":""},"skills": ["AWS console","AWS Apis","Terraform","Jenkins"]},{"input":{"value":"","error":""},"skillCategory":{"value":"Tools and IDEs","error":""},"skills": ["Sublime Text","Eclipse","Chrome and dev tools"]},{"input":{"value":"","error":""},"skillCategory":{"value":"Miscellaneous","error":""},"skills": ["Cordova","Git","NPM","Jira","Nexus"]},{"input":{"value":"","error":""},"skillCategory":{"value":"Software Development","error":""},"skills": ["Agile Software development","Scrum","Kanban","Waterfall model"]}]},"education":{"list": [{"input":{"value":"","error":""},"school":{"value":"ITER, SOA University","error":""},"degree":{"value":"BTech","error":""},"field":{"value":"Computer Science","error":""},"location":{"value":"Bhubaneswar","error":""},"grade":{"value":"8.53 CGPA","error":""},"startdate":{"error":"This field is required"},"enddate":{"value":"2011-05-30T18:30:00.000Z","error":""},"description":{"value":"","error":""}},{"input":{"value":"","error":""},"school":{"value":"CHSE affiliated KIIT +2 SC College, Bhubaneswar","error":""},"degree":{"value":"+2 Science","error":""},"field":{"value":"Computer Science","error":""},"location":{"value":"Bhubaneswar","error":""},"grade":{"value":"96%","error":""},"startdate":{"value":"2005-05-31T18:30:00.000Z","error":""},"enddate":{"value":"2007-04-30T18:30:00.000Z","error":""},"description":{"value":"","error":""}},{"input":{"value":"","error":""},"school":{"value":"CBSE affiliated YBPS","error":""},"degree":{"value":"Matriculation","error":""},"field":{"value":"","error":"This field is required"},"location":{"value":"Kesinga","error":""},"grade":{"value":"88.2%","error":""},"startdate":{"value":"1993-03-31T18:30:00.000Z","error":""},"enddate":{"value":"2005-04-29T18:30:00.000Z","error":""},"description":{"value":"","error":""}}]},"job":{"list": [{"input":{"value":"","error":""},"company":{"value":"Tesco","error":""},"jobtitle":{"value":"Principal Software Engineer","error":""},"location":{"value":"Bengaluru","error":""},"startdate":{"error":"","value":"2015-09-06T18:30:00.000Z"},"enddate":{"error": null,"value":""},"currentjob":{"value": true,"error":""},"responsibilities":{"value":"<ul>\n <li>Development of sharable, UX compliant, responsive, nonJS supported React Components, which works cross browser and devices&nbsp;</li>\n <li>Set up of analytics module which works with the pagemap in an automated fashion</li>\n <li>Development of NodeJS server of web pages, including JS CSS linting, webpacking, loggers, exception handling, CSP rules, and proper configurations for all dev, test, preprod, prod environments.&nbsp;</li>\n <li><strong>­</strong>Set up of Testing frameworks for unit testing, coverage reports, visual responsive layout testing, and functional testing&nbsp;</li>\n <li>Use of CMS, Enterprise API's like TLS, and Google APIs for delivery of isomorphic pages</li>\n <li>Isomorphic pages for supporting both high end customers with SPA's and nonJS customers with server rendered multipage apps</li>\n <li>Optimisation of pages using caching, lazy and on­demand loading</li>\n <li>SEO, Accessibility, and website performance</li>\n <li>Writing pages in classic ASP, native Javascript for maintaining legacy websites</li>\n <li>Content modelling using XML, XSL, XPath, XQuery for maintaining legacy websites</li>\n <li>Contribution in sprint activities like refinement, tech backlogs, peer reviews and mentoring</li>\n</ul>","error":""}},{"input":{"value":"","error":""},"company":{"value":"Symphony Teleca","error":""},"jobtitle":{"value":"Software development Engineer","error":""},"location":{"value":"Bengaluru","error":""},"startdate":{"error":"","value":"2014-12-21T18:30:00.000Z"},"enddate":{"error":"","value":"2015-09-03T18:30:00.000Z"},"currentjob":{"value": false,"error":""},"responsibilities":{"value":"<ul>\n <li>Worked in Javascript heavy web application for retail analytics&nbsp;</li>\n <li><strong>­</strong>Developement of custom Angular services and directives&nbsp;</li>\n <li><strong>­</strong>Data visualisation through list, tables, graphs and maps&nbsp;</li>\n <li>Development of components for data manipulation like select all, accordion, custom dropdowns, search, grids, drag­drop, etc&nbsp;</li>\n <li><strong>­</strong>Use of local storage, caching techniques, to optimise speed</li>\n <li>Development of web enterprise application for retail market analysis using AngularJS, REST APIs,&nbsp;</li>\n <li>Javascript, HTML5, CSS3, JSON</li>\n <li>Use of Javascript libraries like Jquery, Infragistics, AM Charts, Bootstrap, CK Editor, Nicescroll <strong>­</strong></li>\n <li>Responsive and touch capable development supporting tablets</li>\n <li>Unit testing, bug fixing, fixing high priority defects&nbsp;</li>\n</ul>","error":""}},{"input":{"value":"","error":""},"company":{"value":"Onepoint Global","error":""},"jobtitle":{"value":"UI developer","error":""},"location":{"value":"Bengaluru","error":""},"startdate":{"error":"","value":"2013-12-22T18:30:00.000Z"},"enddate":{"error":"","value":"2014-12-16T18:30:00.000Z"},"currentjob":{"value": false,"error":""},"responsibilities":{"value":"<ul>\n <li>Hybrid app development using Cordova, for Android and Apple</li>\n <li>Development of web application to facilitate market research&nbsp;</li>\n <li>Development of custom plugins for Jquery mobile like date/time pickers, geolocation widgets, media widgets , etc &nbsp;</li>\n <li>A drag­drop questionnaire module with pagination, and highly interactive features&nbsp;</li>\n <li>Full responsive websites covering entire range of desktops and touch devices&nbsp;</li>\n</ul>","error":""}},{"input":{"value":"","error":""},"company":{"value":"Tata Consultancy Services","error":""},"jobtitle":{"value":"System Engineer","error":""},"location":{"value":"Kolkata","error":""},"startdate":{"error":"","value":"2017-09-24T18:30:00.000Z"},"enddate":{"error":"","value":"2013-12-19T18:30:00.000Z"},"currentjob":{"value": false,"error":""},"responsibilities":{"value":"<ul>\n <li>3 months of training in C++ and Unix</li>\n <li>Responsible for changing the rule of insurance in application</li>\n <li>Responsible for development and Unit testing</li>\n <li>Learned process lifecycle methods</li>\n <li>Also learned TCS excellent process which makes customers \"Experience Certainty\"&nbsp;</li>\n</ul>","error":""}}]},"misc":{"list": [{"input":{"value":"","error":""},"label":{"value":"OTHER ACHIEVEMENTS","error":""},"description":{"value":"<ul>\n <li>92 percentile CAT 2011</li>\n <li>98 percentile GATE 2011</li>\n <li>TCS Initial training program top performer</li>\n <li>+2 Science First in college</li>\n <li>National level Gold medalist in Jain Community for score in school level</li>\n <li>Gold Medal in National Science Olympiad in college level</li>\n <li>Winner of several debate competitions in school level&nbsp;</li>\n</ul>","error":""}},{"input":{"value":"","error":""},"label":{"value":"PERSONAL INFORMATION","error":""},"description":{"value":"<p>Gender: Female<br>\nMarital Status: Married</p>\n<p>Home town: Kesinga, Orissa</p>\n<p>Passport available: Yes</p>\n<p>Language: English, Hindi<br>\n&nbsp;</p>","error":""}}]}}
+{
+  "personal":
+  {
+    "fullname":
+    {
+      "value": "Sneha Jain",
+      "error": ""
+    },
+    "jobtitle":
+    {
+      "value": "Principal Software Engineer",
+      "error": ""
+    },
+    "experience":
+    {
+      "value": {
+        "years": 5,
+        "months": 2
+      },
+      "error": ""
+    },
+    "email":
+    {
+      "value": "birdie.sneha@gmail.com",
+      "error": ""
+    },
+    "mobile":
+    {
+      "value": "8105266097",
+      "error": ""
+    },
+    "altmobile":
+    {
+      "value": "9590716661",
+      "error": ""
+    }
+  },
+  "profile":
+  {
+    "summary": "<ul>\n <li>A core developer in Tesco's homepage development&nbsp;</li>\n <li>A core developer in Tesco's store locator development&nbsp;</li>\n <li>Rank 176 in Google code jam woman 2017. (Won free ticket to California for Google IO Event)&nbsp;</li>\n <li>Rank 167 in Google code jam woman 2016.&nbsp;</li>\n <li>Rank 6000 in Google code round 1 jam 2016.&nbsp;</li>\n <li>Hackerrank algorithm rank 3644&nbsp;</li>\n <li>Experience in end to end UI development in IRI analytics platform&nbsp;</li>\n <li>Experience in developing and managing mobile cordova apps for android and IOS which is ­ multi tenanted (themed and localized)&nbsp;</li>\n <li>Experience with Google APIs like maps, places, geolocation, reverse geocoding, voice recognition, directions, geolocation, etc&nbsp;</li>\n</ul>",
+    "objectives": "<p>With 5.5 years of experience, I have been learning more and more each day. Fast learning is my best capability, and the urge of problem solving keeps me running. I believe in writing code everyday. I am looking for a data extensive project where I can utilise my potential to its fullest, and can do more of algorithms, and core programming (less of libraries and frameworks).&nbsp;</p>"
+  },
+  "skill":
+  {
+    "list": [
+    {
+      "input":
+      {
+        "value": "",
+        "error": ""
+      },
+      "skillCategory":
+      {
+        "value": "HTML/CSS",
+        "error": ""
+      },
+      "skills": ["HTML5", "CSS3", "Progressive web apps", "Responsive Web Design", "Animations", "Bootstrap", "Geolocation"]
+    },
+    {
+      "input":
+      {
+        "value": "",
+        "error": ""
+      },
+      "skillCategory":
+      {
+        "value": "Javascript",
+        "error": ""
+      },
+      "skills": ["Object Oriented Javascript", "ReactJS", "Redux", "Jquery", "AngularJS", "AJAX", "JSON"]
+    },
+    {
+      "input":
+      {
+        "value": "",
+        "error": ""
+      },
+      "skillCategory":
+      {
+        "value": "Task runner and bundling tools",
+        "error": ""
+      },
+      "skills": ["Gulp", "Webpack"]
+    },
+    {
+      "input":
+      {
+        "value": "",
+        "error": ""
+      },
+      "skillCategory":
+      {
+        "value": "Server side Programming & Database",
+        "error": ""
+      },
+      "skills": ["NodeJS", "Mysql"]
+    },
+    {
+      "input":
+      {
+        "value": "",
+        "error": ""
+      },
+      "skillCategory":
+      {
+        "value": "Testing",
+        "error": ""
+      },
+      "skills": ["Galen Javascript API", "Cucumber JS", "WebdriverIO", "Parallel automated testing integrated with cloud testing platform (i.e. Browserstack)"]
+    },
+    {
+      "input":
+      {
+        "value": "",
+        "error": ""
+      },
+      "skillCategory":
+      {
+        "value": "Infrastructure",
+        "error": ""
+      },
+      "skills": ["AWS console", "AWS Apis", "Terraform", "Jenkins"]
+    },
+    {
+      "input":
+      {
+        "value": "",
+        "error": ""
+      },
+      "skillCategory":
+      {
+        "value": "Tools and IDEs",
+        "error": ""
+      },
+      "skills": ["Sublime Text", "Eclipse", "Chrome and dev tools"]
+    },
+    {
+      "input":
+      {
+        "value": "",
+        "error": ""
+      },
+      "skillCategory":
+      {
+        "value": "Miscellaneous",
+        "error": ""
+      },
+      "skills": ["Cordova", "Git", "NPM", "Jira", "Nexus"]
+    },
+    {
+      "input":
+      {
+        "value": "",
+        "error": ""
+      },
+      "skillCategory":
+      {
+        "value": "Software Development",
+        "error": ""
+      },
+      "skills": ["Agile Software development", "Scrum", "Kanban", "Waterfall model"]
+    }]
+  },
+  "education":
+  {
+    "list": [
+    {
+      "input":
+      {
+        "value": "",
+        "error": ""
+      },
+      "school":
+      {
+        "value": "ITER, SOA University",
+        "error": ""
+      },
+      "degree":
+      {
+        "value": "BTech",
+        "error": ""
+      },
+      "field":
+      {
+        "value": "Computer Science",
+        "error": ""
+      },
+      "location":
+      {
+        "value": "Bhubaneswar",
+        "error": ""
+      },
+      "grade":
+      {
+        "value": "8.53 CGPA",
+        "error": ""
+      },
+      "startdate":
+      {
+        "error": "This field is required"
+      },
+      "enddate":
+      {
+        "value": "2011-05-30T18:30:00.000Z",
+        "error": ""
+      },
+      "description":
+      {
+        "value": "",
+        "error": ""
+      }
+    },
+    {
+      "input":
+      {
+        "value": "",
+        "error": ""
+      },
+      "school":
+      {
+        "value": "CHSE affiliated KIIT +2 SC College, Bhubaneswar",
+        "error": ""
+      },
+      "degree":
+      {
+        "value": "+2 Science",
+        "error": ""
+      },
+      "field":
+      {
+        "value": "Computer Science",
+        "error": ""
+      },
+      "location":
+      {
+        "value": "Bhubaneswar",
+        "error": ""
+      },
+      "grade":
+      {
+        "value": "96%",
+        "error": ""
+      },
+      "startdate":
+      {
+        "value": "2005-05-31T18:30:00.000Z",
+        "error": ""
+      },
+      "enddate":
+      {
+        "value": "2007-04-30T18:30:00.000Z",
+        "error": ""
+      },
+      "description":
+      {
+        "value": "",
+        "error": ""
+      }
+    },
+    {
+      "input":
+      {
+        "value": "",
+        "error": ""
+      },
+      "school":
+      {
+        "value": "CBSE affiliated YBPS",
+        "error": ""
+      },
+      "degree":
+      {
+        "value": "Matriculation",
+        "error": ""
+      },
+      "field":
+      {
+        "value": "",
+        "error": "This field is required"
+      },
+      "location":
+      {
+        "value": "Kesinga",
+        "error": ""
+      },
+      "grade":
+      {
+        "value": "88.2%",
+        "error": ""
+      },
+      "startdate":
+      {
+        "value": "1993-03-31T18:30:00.000Z",
+        "error": ""
+      },
+      "enddate":
+      {
+        "value": "2005-04-29T18:30:00.000Z",
+        "error": ""
+      },
+      "description":
+      {
+        "value": "",
+        "error": ""
+      }
+    }]
+  },
+  "job":
+  {
+    "list": [
+    {
+      "input":
+      {
+        "value": "",
+        "error": ""
+      },
+      "company":
+      {
+        "value": "Tesco",
+        "error": ""
+      },
+      "jobtitle":
+      {
+        "value": "Principal Software Engineer",
+        "error": ""
+      },
+      "location":
+      {
+        "value": "Bengaluru",
+        "error": ""
+      },
+      "startdate":
+      {
+        "error": "",
+        "value": "2015-09-06T18:30:00.000Z"
+      },
+      "enddate":
+      {
+        "error": null,
+        "value": ""
+      },
+      "currentjob":
+      {
+        "value": true,
+        "error": ""
+      },
+      "responsibilities":
+      {
+        "value": "<ul>\n <li>Development of sharable, UX compliant, responsive, nonJS supported React Components, which works cross browser and devices&nbsp;</li>\n <li>Set up of analytics module which works with the pagemap in an automated fashion</li>\n <li>Development of NodeJS server of web pages, including JS CSS linting, webpacking, loggers, exception handling, CSP rules, and proper configurations for all dev, test, preprod, prod environments.&nbsp;</li>\n <li><strong>­</strong>Set up of Testing frameworks for unit testing, coverage reports, visual responsive layout testing, and functional testing&nbsp;</li>\n <li>Use of CMS, Enterprise API's like TLS, and Google APIs for delivery of isomorphic pages</li>\n <li>Isomorphic pages for supporting both high end customers with SPA's and nonJS customers with server rendered multipage apps</li>\n <li>Optimisation of pages using caching, lazy and on­demand loading</li>\n <li>SEO, Accessibility, and website performance</li>\n <li>Writing pages in classic ASP, native Javascript for maintaining legacy websites</li>\n <li>Content modelling using XML, XSL, XPath, XQuery for maintaining legacy websites</li>\n <li>Contribution in sprint activities like refinement, tech backlogs, peer reviews and mentoring</li>\n</ul>",
+        "error": ""
+      }
+    },
+    {
+      "input":
+      {
+        "value": "",
+        "error": ""
+      },
+      "company":
+      {
+        "value": "Symphony Teleca",
+        "error": ""
+      },
+      "jobtitle":
+      {
+        "value": "Software development Engineer",
+        "error": ""
+      },
+      "location":
+      {
+        "value": "Bengaluru",
+        "error": ""
+      },
+      "startdate":
+      {
+        "error": "",
+        "value": "2014-12-21T18:30:00.000Z"
+      },
+      "enddate":
+      {
+        "error": "",
+        "value": "2015-09-03T18:30:00.000Z"
+      },
+      "currentjob":
+      {
+        "value": false,
+        "error": ""
+      },
+      "responsibilities":
+      {
+        "value": "<ul>\n <li>Worked in Javascript heavy web application for retail analytics&nbsp;</li>\n <li><strong>­</strong>Developement of custom Angular services and directives&nbsp;</li>\n <li><strong>­</strong>Data visualisation through list, tables, graphs and maps&nbsp;</li>\n <li>Development of components for data manipulation like select all, accordion, custom dropdowns, search, grids, drag­drop, etc&nbsp;</li>\n <li><strong>­</strong>Use of local storage, caching techniques, to optimise speed</li>\n <li>Development of web enterprise application for retail market analysis using AngularJS, REST APIs,&nbsp;</li>\n <li>Javascript, HTML5, CSS3, JSON</li>\n <li>Use of Javascript libraries like Jquery, Infragistics, AM Charts, Bootstrap, CK Editor, Nicescroll <strong>­</strong></li>\n <li>Responsive and touch capable development supporting tablets</li>\n <li>Unit testing, bug fixing, fixing high priority defects&nbsp;</li>\n</ul>",
+        "error": ""
+      }
+    },
+    {
+      "input":
+      {
+        "value": "",
+        "error": ""
+      },
+      "company":
+      {
+        "value": "Onepoint Global",
+        "error": ""
+      },
+      "jobtitle":
+      {
+        "value": "UI developer",
+        "error": ""
+      },
+      "location":
+      {
+        "value": "Bengaluru",
+        "error": ""
+      },
+      "startdate":
+      {
+        "error": "",
+        "value": "2013-12-22T18:30:00.000Z"
+      },
+      "enddate":
+      {
+        "error": "",
+        "value": "2014-12-16T18:30:00.000Z"
+      },
+      "currentjob":
+      {
+        "value": false,
+        "error": ""
+      },
+      "responsibilities":
+      {
+        "value": "<ul>\n <li>Hybrid app development using Cordova, for Android and Apple</li>\n <li>Development of web application to facilitate market research&nbsp;</li>\n <li>Development of custom plugins for Jquery mobile like date/time pickers, geolocation widgets, media widgets , etc &nbsp;</li>\n <li>A drag­drop questionnaire module with pagination, and highly interactive features&nbsp;</li>\n <li>Full responsive websites covering entire range of desktops and touch devices&nbsp;</li>\n</ul>",
+        "error": ""
+      }
+    },
+    {
+      "input":
+      {
+        "value": "",
+        "error": ""
+      },
+      "company":
+      {
+        "value": "Tata Consultancy Services",
+        "error": ""
+      },
+      "jobtitle":
+      {
+        "value": "System Engineer",
+        "error": ""
+      },
+      "location":
+      {
+        "value": "Kolkata",
+        "error": ""
+      },
+      "startdate":
+      {
+        "error": "",
+        "value": "2017-09-24T18:30:00.000Z"
+      },
+      "enddate":
+      {
+        "error": "",
+        "value": "2013-12-19T18:30:00.000Z"
+      },
+      "currentjob":
+      {
+        "value": false,
+        "error": ""
+      },
+      "responsibilities":
+      {
+        "value": "<ul>\n <li>3 months of training in C++ and Unix</li>\n <li>Responsible for changing the rule of insurance in application</li>\n <li>Responsible for development and Unit testing</li>\n <li>Learned process lifecycle methods</li>\n <li>Also learned TCS excellent process which makes customers \"Experience Certainty\"&nbsp;</li>\n</ul>",
+        "error": ""
+      }
+    }]
+  },
+  "misc":
+  {
+    "list": [
+    {
+      "input":
+      {
+        "value": "",
+        "error": ""
+      },
+      "label":
+      {
+        "value": "OTHER ACHIEVEMENTS",
+        "error": ""
+      },
+      "description":
+      {
+        "value": "<ul>\n <li>92 percentile CAT 2011</li>\n <li>98 percentile GATE 2011</li>\n <li>TCS Initial training program top performer</li>\n <li>+2 Science First in college</li>\n <li>National level Gold medalist in Jain Community for score in school level</li>\n <li>Gold Medal in National Science Olympiad in college level</li>\n <li>Winner of several debate competitions in school level&nbsp;</li>\n</ul>",
+        "error": ""
+      }
+    },
+    {
+      "input":
+      {
+        "value": "",
+        "error": ""
+      },
+      "label":
+      {
+        "value": "PERSONAL INFORMATION",
+        "error": ""
+      },
+      "description":
+      {
+        "value": "<p>Gender: Female<br>\nMarital Status: Married</p>\n<p>Home town: Kesinga, Orissa</p>\n<p>Passport available: Yes</p>\n<p>Language: English, Hindi<br>\n&nbsp;</p>",
+        "error": ""
+      }
+    }]
+  }
+}
