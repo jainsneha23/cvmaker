@@ -58,6 +58,26 @@
   }
 }
 
+@media print {
+  .preview {
+    background: #fff;
+    .pageheader, .toolbar, .error{
+      display: none !important;
+    }
+    .preview-card {
+      width: 100%;
+      max-width: 100%;
+      margin: 0 auto;
+      border-radius: 0;
+      box-shadow: none;
+      max-height: 100%;
+      .cv_pdf {
+        width: 100%;
+      }
+    }
+  }
+}
+
 @keyframes download {
   0% {
     margin-top: -5px;

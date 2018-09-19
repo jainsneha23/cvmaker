@@ -29,10 +29,10 @@ const AppRoutes = (app, express) => {
     const filePath = path.join(__dirname,`../generated_files/${filename}.pdf`);
     generatePDF({html: app.locals.getComponentAsHTML(Comp, req.body.cvdata, req.body.templateColor), filename, filePath})
       .then(response => mailService.emailResume(req.body.email, response))
-      .then(() => res.send('Email sent successfully'))
+      .then(() => res.send({ok: true, statusText: 'Email sent successfully'}))
       .catch((error) => {
         console.error('Error emailing resume', error);
-        res.status(500).send('Error sending resume. Please try again after sometime');
+        res.status(500).send({ok: false, statusText: 'Error sending resume. Please try again after sometime'});
       });
   });
 

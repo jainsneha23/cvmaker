@@ -88,7 +88,7 @@ class ResumeService {
       }).then((res) => {
         if (res.ok)
           return res.json();
-        else throw 'Error in fetching resume';
+        else throw 'Error in downloading resume';
       }).then((response) => {
         const blob = base64ToBlob(response.content);
         fileSaver.saveAs(blob, 'resume.pdf');
@@ -96,6 +96,25 @@ class ResumeService {
       }).catch((err) => {
         window.sendErr('ResumeService download err:', err);
         reject(err);
+      });
+    });
+  }
+
+  static email(data) {
+    return new Promise((resolve, reject) => {
+      fetch('/email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: data
+      }).then((res) => {
+        if (res.ok)
+          resolve();
+        else throw res.statusText;
+      }).catch((err) => {
+        window.sendErr('ResumeService email err:', err);
+        reject({message: err});
       });
     });
   }
