@@ -19,7 +19,7 @@ class ResumeService {
           if (data.errors) throw data.errors;
           else resolve({});
         }).catch((err) => {
-          window.sendErr(`ResumeService add err: ${JSON.stringify(err)}`);
+          window.sendErr('ResumeService add err', err);
           resolve({});
         });
     });
@@ -36,7 +36,7 @@ class ResumeService {
           if (data.errors) throw data.errors;
           else resolve(data);
         }).catch((err) => {
-          window.sendErr(`ResumeService get err: ${JSON.stringify(err)}`);
+          window.sendErr('ResumeService get err:', err);
           resolve({data: {resumes: []}});
         });
     });
@@ -53,7 +53,7 @@ class ResumeService {
           if (res.errors) throw res.errors;
           else resolve();
         }).catch((err) => {
-          window.sendErr(`ResumeService update err: ${JSON.stringify(err)}`);
+          window.sendErr('ResumeService update err:', err);
           resolve();
         });
     });
@@ -71,7 +71,7 @@ class ResumeService {
           if (res.errors) throw res.errors;
           else resolve();
         }).catch((err) => {
-          window.sendErr(`ResumeService update template err: ${JSON.stringify(err)}`);
+          window.sendErr('ResumeService update template err:', err);
           resolve();
         });
     });
@@ -88,14 +88,33 @@ class ResumeService {
       }).then((res) => {
         if (res.ok)
           return res.json();
-        else throw 'Error in fetching resume';
+        else throw 'Error in downloading resume';
       }).then((response) => {
-        const blob = base64ToBlob(response.base64);
+        const blob = base64ToBlob(response.content);
         fileSaver.saveAs(blob, 'resume.pdf');
         resolve();
       }).catch((err) => {
-        window.sendErr(`ResumeService download err: ${JSON.stringify(err)}`);
+        window.sendErr('ResumeService download err:', err);
         reject(err);
+      });
+    });
+  }
+
+  static email(data) {
+    return new Promise((resolve, reject) => {
+      fetch('/email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: data
+      }).then((res) => {
+        if (res.ok)
+          resolve();
+        else throw res.statusText;
+      }).catch((err) => {
+        window.sendErr('ResumeService email err:', err);
+        reject({message: err});
       });
     });
   }

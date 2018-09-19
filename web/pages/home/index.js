@@ -43,7 +43,7 @@ class Home extends React.Component {
                   <li><TabletIcon />Tablet</li>
                   <li><MobileIcon/> Mobile</li>*/}
                   <li><PDFIcon/> PDF</li>
-                  {/*<li><EmailIcon/> Email</li>*/}
+                  <li><EmailIcon/> Email</li>
                   <li><PrintIcon/> Print</li>
                 </ul>
                 <Link to='/editor'>Create CV Now</Link>
