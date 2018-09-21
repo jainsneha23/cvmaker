@@ -24,6 +24,10 @@ class FormFeedback extends React.Component{
   }
   submitForm(event) {
     event.preventDefault();
+    ['fullname', 'email', 'message'].forEach((property) => {
+      if (!this.state[property].value)
+        this.handleChange({target: {value: '', required: true}}, property);
+    });
     if (this.state.fullname.error || this.state.email.error || this.state.message.error) return;
     var postData = {
       fullname: this.state.fullname.value,
@@ -95,7 +99,7 @@ class FormFeedback extends React.Component{
           label="Submit"
           primary={true}
           onClick={this.submitForm}
-          style={{marginTop: '12px'}}
+          style={{marginTop: '28px'}}
         />
       </form>
     );
