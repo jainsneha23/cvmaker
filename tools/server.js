@@ -46,9 +46,9 @@ app.locals.renderIndex = (res, data) => {
   }, res);
 };
 
-app.locals.getComponentAsHTML = (Component, cvdata, designColor) => {
+app.locals.getComponentAsHTML = (Component, cvdata, templateColor) => {
   try {
-    return ReactDOMServer.renderToStaticMarkup(<Component data={cvdata} designColor={designColor} />);
+    return ReactDOMServer.renderToStaticMarkup(<Component data={cvdata} templateColor={templateColor} />);
   } catch (e) {
     console.error(e);
     return '<div>Some Error Occured</div>';
