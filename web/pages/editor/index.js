@@ -30,6 +30,7 @@ class Editor extends React.Component {
     this.state =  {
       stepIndex: 0
     };
+    this.resumeService = new ResumeService();
     this.stepCount = 6;
     this.steps = ['Personal', 'Profile', 'Skill', 'Job', 'Education', 'Misc'];
     this.preview = this.preview.bind(this);
@@ -45,7 +46,7 @@ class Editor extends React.Component {
 
   preview() {
     this.props.trackPreview();
-    ResumeService.update(this.props.user, 1, jsonToHtml(this.props.cvdata))
+    this.resumeService.update(this.props.user, 1, jsonToHtml(this.props.cvdata))
       .then(() => browserHistory.push('/preview'))
       .catch(() => alert('Some error occured. Please try again'));
   }

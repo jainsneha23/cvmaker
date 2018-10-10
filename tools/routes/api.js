@@ -1,23 +1,25 @@
-import { graphql } from 'graphql';
 import graphqlHTTP from 'express-graphql';
 import bodyParser from 'body-parser';
 
-import ResumeSchema from '../../api/graphql';
+import {getSchema, graphqlQuery} from '../middlewares/graphql-query';
 
 const ApiRouter = (app, express) => {
   
   const router = express.Router();
-  const resumeSchema = new ResumeSchema().getSchema();
+  const resumeSchema = getSchema();
 
-  router.use('/graphql', graphqlHTTP(() => ({
-    resumeSchema,
-    pretty: true
-  })));
+  router.use('/graphql', graphqlHTTP({
+    schema: resumeSchema,
+    pretty: true,
+    graphiql: true
+  }));
 
   router.post('/resume', bodyParser.text(), (req, res) => {
-    graphql(resumeSchema, req.body).then( function(result) {
-      res.send(JSON.stringify(result,null,' '));
-    }).catch(e => res.send(e));
+    graphqlQuery(req.body).then( function(result) {
+      res.send({result: JSON.stringify(result) || {}});
+    }).catch(e => {
+      res.status(502).send({errors: e});
+    });
   });
 
   return router;
