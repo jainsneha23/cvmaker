@@ -6,7 +6,6 @@ import { connect } from 'react-redux';
 import muiThemeable from 'material-ui/styles/muiThemeable';
 import {Toolbar} from 'material-ui/Toolbar';
 import RaisedButton from 'material-ui/RaisedButton';
-import Avatar from 'material-ui/Avatar';
 import PreviewIcon from 'material-ui/svg-icons/action/visibility';
 
 import PageHeaderContainer from '../../containers/page-header';
@@ -22,13 +21,14 @@ class Template extends React.Component {
   constructor(props) {
     super(props);
     this.preview = this.preview.bind(this);
+    this.resumeService = new ResumeService();
   }
 
   preview() {
     this.props.trackPreview();
     const templateid = this.props.templateId;
     const templatecolor = tilesData[this.props.templateId - 1].templateColor;
-    ResumeService.updateTemplate(this.props.user, 1, templateid, templatecolor)
+    this.resumeService.updateTemplate(this.props.user, 1, templateid, templatecolor)
       .then(() => browserHistory.push('/preview'))
       .catch(() => alert('Some error occured. Please try again'));
   }

@@ -25,6 +25,7 @@ class EmailDialog extends React.Component{
       emailError: null,
       emailSucess: false
     };
+    this.resumeService = new ResumeService();
     this.email = this.email.bind(this);
     this.handleClose = this.handleClose.bind(this);
     this.handleFormChange = this.handleFormChange.bind(this);
@@ -38,7 +39,7 @@ class EmailDialog extends React.Component{
     if (this.state.fullname.error || this.state.email.error || this.state.message.error) {
       return;
     }
-    this.props.trackEmail();
+    this.props.fireButtonClick('email');
     this.setState({emailing: true});
     const data = JSON.stringify({
       cvdata: this.props.cvdata,
@@ -50,8 +51,8 @@ class EmailDialog extends React.Component{
         message: this.state.message.value
       }
     });
-    ResumeService.updateTemplate(this.props.user, 1, this.props.templateId, this.props.templateColor)
-      .then(() => ResumeService.email(data))
+    this.resumeService.updateTemplate(this.props.user, 1, this.props.templateId, this.props.templateColor)
+      .then(() => this.resumeService.email(data))
       .then(() => {
         this.setState({
           fullname: {value: '', error: ''},
@@ -171,11 +172,11 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  trackEmail: () => dispatch(ACTIONS.fireButtonClick('email'))
+  fireButtonClick: (buttonName) => dispatch(ACTIONS.fireButtonClick(buttonName))
 });
 
 EmailDialog.propTypes = {
-  trackEmail: PropTypes.func.isRequired,
+  fireButtonClick: PropTypes.func.isRequired,
   user: PropTypes.object.isRequired,
   cvdata: PropTypes.object.isRequired,
   templateId: PropTypes.number.isRequired,
