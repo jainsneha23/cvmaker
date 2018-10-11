@@ -28,25 +28,26 @@ class ResumeSchema {
 
     const ResumeType = new GraphQLObjectType({  
       name: 'resume',
-      fields: function () {
-        return {
-          id: {
-            type: GraphQLID
-          },
-          userid: {
-            type: GraphQLFloat
-          },
-          resumeid: {
-            type: GraphQLInt
-          },
-          cvdata: {
-            type: GraphQLString
-          },
-          template: {
-            type: GraphQLString
-          }
-        };
-      }
+      fields: () => ({
+        id: {
+          type: new GraphQLNonNull(GraphQLID)
+        },
+        userid: {
+          type: new GraphQLNonNull(GraphQLFloat)
+        },
+        resumeid: {
+          type: new GraphQLNonNull(GraphQLInt)
+        },
+        cvdata: {
+          type: GraphQLString
+        },
+        template: {
+          type: GraphQLString
+        },
+        share: {
+          type: GraphQLString
+        }
+      })
     });
 
     const MutationAdd = {
@@ -72,13 +73,17 @@ class ResumeSchema {
         template: {
           name: 'Resume template',
           type: new GraphQLNonNull(GraphQLString)
+        },
+        share: {
+          name: 'Resume share',
+          type: new GraphQLNonNull(GraphQLString)
         }
       },
-      resolve: (root, {id, userid, resumeid, cvdata, template}) => {
+      resolve: (root, {id, userid, resumeid, cvdata, template, share}) => {
         return new Promise((resolve, reject) => {
-          db.insert(dbName, {id, userid, resumeid, cvdata, template})
+          db.insert(dbName, {id, userid, resumeid, cvdata, template, share})
             .then(() => db.selectAll(dbName))
-            .then(resumes => resolve(resumes))
+            .then(() => resolve())
             .catch(err => reject(err));
         });
       }
@@ -97,7 +102,7 @@ class ResumeSchema {
         return new Promise((resolve, reject) => {
           db.delete(dbName, {id})
             .then(() => db.selectAll(dbName))
-            .then(resumes => resolve(resumes))
+            .then(() => resolve())
             .catch(err => reject(err));
         });
       }
@@ -108,7 +113,7 @@ class ResumeSchema {
       description: 'Update a Resume',
       args: {
         id: {
-          name: 'Id',
+          name: 'Resume Id',
           type: new GraphQLNonNull(GraphQLID)
         },
         cvdata: {
@@ -118,15 +123,20 @@ class ResumeSchema {
         template: {
           name: 'Resume template',
           type: GraphQLString
+        },
+        share: {
+          name: 'Resume share',
+          type: GraphQLString
         }
       },
-      resolve: (root, {id, cvdata, template}) => {
+      resolve: (root, {id, cvdata, template, share}) => {
         return new Promise((resolve, reject) => {
           const dataToUpdate = {};
           if(cvdata) dataToUpdate.cvdata = cvdata;
           if(template) dataToUpdate.template = template;
+          if(share) dataToUpdate.share = share;
           db.update(dbName, {id}, {$set:dataToUpdate})
-            .then(() => db.selectAll(dbName))
+            .then(() => db.find(dbName, {id}))
             .then(resumes => resolve(resumes))
             .catch(err => reject(err));
         });
@@ -143,12 +153,17 @@ class ResumeSchema {
             args: {
               userid: {
                 name: 'User ID',
-                type: new GraphQLNonNull(GraphQLFloat)
+                type: GraphQLFloat
+              },
+              id: {
+                name: 'Resume ID',
+                type: GraphQLID
               }
             },
-            resolve: (root, {userid}) => {
+            resolve: (root, {id, userid}) => {
               return new Promise((resolve, reject) => {
-                db.find(dbName, {userid})
+                const idToFind = id ? {id} : {userid};
+                db.find(dbName, idToFind)
                   .then(resumes => resolve(resumes))
                   .catch(err => reject(err));
               });

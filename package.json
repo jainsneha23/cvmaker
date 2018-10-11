@@ -42,7 +42,7 @@
     "draft-js-import-html": "0.3.2",
     "es6-promise": "4.1.1",
     "express": "4.14.1",
-    "express-graphql": "0.6.6",
+    "express-graphql": "0.6.12",
     "express-session": "1.15.3",
     "extract-text-webpack-plugin": "2.1.2",
     "file-loader": "0.9.0",
