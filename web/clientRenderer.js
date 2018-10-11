@@ -99,10 +99,7 @@ if (document) {
         preloadedState.share = JSON.parse(res.share);
       }
       render(preloadedState);
-    }).catch((e) => {
-      window.sendErr(`client renderer error: ${e.stack}`);
-      showError();
-    }); 
+    }).catch(() => showError()); 
   };
   main();
 }

@@ -16,7 +16,7 @@ const ApiRouter = (app, express) => {
 
   router.post('/resume', bodyParser.text(), (req, res) => {
     graphqlQuery(req.body).then( function(result) {
-      res.send({result: JSON.stringify(result) || {}});
+      res.send({result});
     }).catch(e => {
       res.status(502).send({errors: e});
     });

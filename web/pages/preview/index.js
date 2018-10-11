@@ -6,11 +6,14 @@ import { browserHistory } from 'react-router';
 import muiThemeable from 'material-ui/styles/muiThemeable';
 import RaisedButton from 'material-ui/RaisedButton';
 import {Toolbar} from 'material-ui/Toolbar';
+import IconMenu from 'material-ui/IconMenu';
+import MenuItem from 'material-ui/MenuItem';
 import DownloadIcon from 'material-ui/svg-icons/file/cloud-download';
 import EmailIcon from 'material-ui/svg-icons/communication/email';
 import ChevronLeft from 'material-ui/svg-icons/navigation/chevron-left';
 import PrintIcon from 'material-ui/svg-icons/action/print';
 import ShareIcon from 'material-ui/svg-icons/social/share';
+import LinkIcon from 'material-ui/svg-icons/content/link';
 import ColorLens from 'material-ui/svg-icons/image/color-lens';
 
 import {ResumeService} from '../../api';
@@ -83,7 +86,7 @@ class Preview extends React.Component {
       minWidth: '48px',
       marginLeft: '8px'
     };
-    const labelStyle = {};
+    const labelStyle = {paddingRight: 8};
     const buttonStyle = {};
     const allStyles = {style, labelStyle, buttonStyle};
     return (
@@ -92,14 +95,20 @@ class Preview extends React.Component {
         <Toolbar className="toolbar fixed">
           <div>
             <div>
-              <RaisedButton {...allStyles} label={this.props.mobileView ? '' : 'Editor'} onClick={this.edit} icon={<ChevronLeft />}/>
-              <RaisedButton {...allStyles} label={this.props.mobileView ? '' : 'Select Color'} icon={<input type="color" value={this.props.templateColor} onChange={this.props.changeTemplateColor} className="colorpicker" />}/>
+              <RaisedButton {...allStyles} labelStyle={{paddingLeft: 0, paddingRight: 8}} label={this.props.mobileView ? '' : 'Editor'} onClick={this.edit} icon={<ChevronLeft style={{marginLeft: 0}} />}/>
+              <RaisedButton {...allStyles} icon={<input type="color" value={this.props.templateColor} onChange={this.props.changeTemplateColor} className="colorpicker" />}/>
               <RaisedButton {...allStyles} label={this.props.mobileView ? '' : 'Select Template'} onClick={this.choose} icon={<ColorLens />} />
             </div>
             <div>
-              <RaisedButton {...allStyles} label={this.props.mobileView ? '' : 'Share'} onClick={this.toggleShareDialog} icon={<ShareIcon />} />
-              <RaisedButton {...allStyles} label={this.props.mobileView ? '' : 'Print'} onClick={this.print} icon={<PrintIcon />} />
-              <RaisedButton {...allStyles} label={this.props.mobileView ? '' : 'Email'} onClick={this.toggleEmailDialog} icon={<EmailIcon />} />
+              <IconMenu
+                iconButtonElement={<RaisedButton {...allStyles} label={this.props.mobileView ? '' : 'Share'} icon={<ShareIcon />} />}
+                open={this.state.openMenu}
+                onRequestChange={this.handleOnRequestChange}
+              >
+                <MenuItem value="2" primaryText="Print" onClick={this.print} icon={<PrintIcon />} />
+                <MenuItem value="3" primaryText="Email PDF" onClick={this.toggleEmailDialog} icon={<EmailIcon />}/>
+                <MenuItem value="4" primaryText="Share Link" onClick={this.toggleShareDialog} icon={<LinkIcon />}/>
+              </IconMenu>
               <RaisedButton {...allStyles} label={this.props.mobileView ? '' : (this.state.downloading ? 'Downloading...' : 'Download')} onClick={this.download} icon={<DownloadIcon className={this.state.downloading && 'downloading'} />} />
             </div>
           </div>

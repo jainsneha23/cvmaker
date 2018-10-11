@@ -44,7 +44,7 @@ const AppRoutes = (app, express) => {
     const share = JSON.stringify(JSON.stringify({link}));
     var query = `mutation { update (id: "${req.body.id}", share: ${share}) { id } }`;
     graphqlQuery(query).then(() => {
-      res.send({result: link});
+      res.send({result: {link}});
     }).catch((error) => {
       console.error('Error sharing resume', error);
       res.status(502).send({errors: 'Error sharing resume. Please try again after sometime'});

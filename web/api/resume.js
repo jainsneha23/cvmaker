@@ -41,7 +41,7 @@ class ResumeService {
         method: 'POST',
         body: query
       }).then(this.handleResponse)
-        .then((data) => resolve(JSON.parse(data)))
+        .then((data) => resolve(data))
         .catch((err) => {
           window.sendErr(`ResumeService get err: ${JSON.stringify(err)}`);
           reject();
@@ -129,7 +129,7 @@ class ResumeService {
         },
         body: data
       }).then(this.handleResponse)
-        .then(link => resolve(link))
+        .then(({link}) => resolve(link))
         .catch((err) => {
           window.sendErr(`ResumeService share err: ${JSON.stringify(err)}`);
           reject();
