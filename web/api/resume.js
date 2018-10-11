@@ -7,77 +7,80 @@ promise.polyfill();
 
 class ResumeService {
 
-  static add(user, resumeid, cvdata, templateid, templatecolor) {
+  handleResponse(res) {
+    return new Promise((resolve, reject) => {
+      if (res.ok || res.status === 502) {
+        res.json().then(data => {
+          if (data.errors) reject(data.errors);
+          else resolve(data.result);
+        });
+      } else reject(res.statusText);
+    });
+  }
+
+  add(user, resumeid, cvdata, templateid, templatecolor, share) {
     const template = JSON.stringify(JSON.stringify({id: templateid, color: templatecolor}));
-    var query = `mutation { add (id: "${user.id}_${resumeid}", userid: ${user.id}, resumeid: ${resumeid}, cvdata: ${JSON.stringify(JSON.stringify(cvdata))}, template: ${template}) { id } }`;
-    return new Promise((resolve) => {
+    var query = `mutation { add (id: "${user.id}_${resumeid}", userid: ${user.id}, resumeid: ${resumeid}, cvdata: ${JSON.stringify(JSON.stringify(cvdata))}, template: ${template}, share: ${JSON.stringify(JSON.stringify(share))}) { id } }`;
+    return new Promise((resolve, reject) => {
       fetch('/api/resume', {
         method: 'POST',
         body: query
-      }).then(data => data.json())
-        .then((data) => {
-          if (data.errors) throw data.errors;
-          else resolve({});
-        }).catch((err) => {
-          window.sendErr('ResumeService add err', err);
-          resolve({});
+      }).then(this.handleResponse)
+        .then(() => resolve())
+        .catch((err) => {
+          window.sendErr(`ResumeService add err: ${JSON.stringify(err)}`);
+          reject();
         });
     });
   }
 
-  static get(user) {
-    var query = `query { resumes (userid: ${user.id}) { id, resumeid, cvdata, template } }`;
-    return new Promise((resolve) => {
+  get(user) {
+    var query = `query { resumes (userid: ${user.id}) { id, resumeid, cvdata, template, share } }`;
+    return new Promise((resolve, reject) => {
       fetch('/api/resume', {
         method: 'POST',
         body: query
-      }).then(data => data.json())
-        .then((data) => {
-          if (data.errors) throw data.errors;
-          else resolve(data);
-        }).catch((err) => {
-          window.sendErr('ResumeService get err:', err);
-          resolve({data: {resumes: []}});
+      }).then(this.handleResponse)
+        .then((data) => resolve(data))
+        .catch((err) => {
+          window.sendErr(`ResumeService get err: ${JSON.stringify(err)}`);
+          reject();
         });
     });
   }
 
-  static update(user, resumeid, cvdata) {
-    return new Promise((resolve) => {
+  update(user, resumeid, cvdata) {
+    return new Promise((resolve, reject) => {
       var query = `mutation { update (id: "${user.id}_${resumeid}", cvdata: ${JSON.stringify(JSON.stringify(cvdata))}) { id } }`;
       fetch('/api/resume', {
         method: 'POST',
         body: query
-      }).then(data => data.json())
-        .then((res) => {
-          if (res.errors) throw res.errors;
-          else resolve();
-        }).catch((err) => {
-          window.sendErr('ResumeService update err:', err);
-          resolve();
+      }).then(this.handleResponse)
+        .then(() => resolve())
+        .catch((err) => {
+          window.sendErr(`ResumeService update err: ${JSON.stringify(err)}`);
+          reject();
         });
     });
   }
 
-  static updateTemplate(user, resumeid, templateid, templatecolor) {
+  updateTemplate(user, resumeid, templateid, templatecolor) {
     const template = JSON.stringify(JSON.stringify({id: templateid, color: templatecolor}));
-    return new Promise((resolve) => {
+    return new Promise((resolve, reject) => {
       var query = `mutation { update (id: "${user.id}_${resumeid}", template: ${template}) { id } }`;
       fetch('/api/resume', {
         method: 'POST',
         body: query
-      }).then(data => data.json())
-        .then((res) => {
-          if (res.errors) throw res.errors;
-          else resolve();
-        }).catch((err) => {
-          window.sendErr('ResumeService update template err:', err);
-          resolve();
+      }).then(this.handleResponse)
+        .then(() => resolve())
+        .catch((err) => {
+          window.sendErr(`ResumeService updateTemplate err: ${JSON.stringify(err)}`);
+          reject();
         });
     });
   }
 
-  static download(data) {
+  download(data) {
     return new Promise((resolve, reject) => {
       fetch('/download', {
         method: 'POST',
@@ -94,13 +97,13 @@ class ResumeService {
         fileSaver.saveAs(blob, 'resume.pdf');
         resolve();
       }).catch((err) => {
-        window.sendErr('ResumeService download err:', err);
+        window.sendErr(`ResumeService download err: ${JSON.stringify(err)}`);
         reject(err);
       });
     });
   }
 
-  static email(data) {
+  email(data) {
     return new Promise((resolve, reject) => {
       fetch('/email', {
         method: 'POST',
@@ -108,14 +111,29 @@ class ResumeService {
           'Content-Type': 'application/json'
         },
         body: data
-      }).then((res) => {
-        if (res.ok)
-          resolve();
-        else throw res.statusText;
-      }).catch((err) => {
-        window.sendErr('ResumeService email err:', err);
-        reject({message: err});
-      });
+      }).then(this.handleResponse)
+        .then(() => resolve())
+        .catch((err) => {
+          window.sendErr(`ResumeService email err: ${JSON.stringify(err)}`);
+          reject();
+        });
+    });
+  }
+
+  share(data) {
+    return new Promise((resolve, reject) => {
+      fetch('/share', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: data
+      }).then(this.handleResponse)
+        .then(({link}) => resolve(link))
+        .catch((err) => {
+          window.sendErr(`ResumeService share err: ${JSON.stringify(err)}`);
+          reject();
+        });
     });
   }
 }

@@ -77,38 +77,29 @@ if (document) {
   };
 
   const main = () => {
-    try {
-      /* eslint-disable no-underscore-dangle */
-      const preloadedState = window.__REDUX_STATE__;
-      if (!preloadedState.user) {
-        const user_id = UserService.get();
-        if (user_id) {
-          preloadedState.user = {id: user_id};
-        } else {
-          preloadedState.user = {id: new Date().getTime()};
-          UserService.add(preloadedState.user);
-        }
-        preloadedState.user.isLoggedIn = false;
+    /* eslint-disable no-underscore-dangle */
+    const preloadedState = window.__REDUX_STATE__;
+    const resumeService = new ResumeService();
+    if (!preloadedState.user) {
+      const user_id = UserService.get();
+      if (user_id) {
+        preloadedState.user = {id: user_id};
+      } else {
+        preloadedState.user = {id: new Date().getTime()};
+        UserService.add(preloadedState.user);
       }
-      ResumeService.get(preloadedState.user).then(res => {
-        if (res.errors) {
-          throw `ResumeService get error: ${res.errors}`;
-        }
-        if (res.data.resumes.length === 0) {
-          preloadedState.user.isNew = true;
-        } else {
-          preloadedState.cvform = htmlToJson(res.data.resumes[0].cvdata);
-          preloadedState.template = JSON.parse(res.data.resumes[0].template);
-        }
-        render(preloadedState);
-      }).catch((e) => {
-        window.sendErr(e.message);
-        showError();
-      });
-    } catch (err) {
-      window.sendErr(err.stack);
-      showError();
+      preloadedState.user.isLoggedIn = false;
     }
+    resumeService.get(preloadedState.user).then(res => {
+      if (!res) {
+        preloadedState.user.isNew = true;
+      } else {
+        preloadedState.cvform = htmlToJson(res.cvdata);
+        preloadedState.template = JSON.parse(res.template);
+        preloadedState.share = JSON.parse(res.share);
+      }
+      render(preloadedState);
+    }).catch(() => showError()); 
   };
   main();
 }

@@ -49,7 +49,7 @@ class PageHeader extends React.Component {
 
   handleWidth() {
     this.props.changeView({
-      mobileView: window.innerWidth <= 604
+      mobileView: window.innerWidth <= 768
     });
   }
 

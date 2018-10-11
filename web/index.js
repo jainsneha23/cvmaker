@@ -13,11 +13,12 @@ class Page extends React.Component {
 
   constructor(props) {
     super(props);
+    this.resumeService = new ResumeService();
     this.reduxStore = configureStore(props.preloadedState);
     this.reduxStore.dispatch(ACTIONS.initState());
     const state = this.reduxStore.getState();
     if (state.user.isNew)
-      ResumeService.add(state.user, 1, jsonToHtml(state.cvform), state.template.id, state.template.color);
+      this.resumeService.add(state.user, 1, jsonToHtml(state.cvform), state.template.id, state.template.color, state.share).catch(e => console.log(e));
   }
 
   componentDidMount() {
