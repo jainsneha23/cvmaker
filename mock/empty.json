@@ -37,8 +37,8 @@
   },
   "profile":
   {
-    "summary": "",
-    "objectives": ""
+    "summary": {"value": ""},
+    "objectives": {"value": ""}
   },
   "skill":
   {

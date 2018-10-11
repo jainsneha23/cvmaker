@@ -18,10 +18,12 @@ class ShareDialog extends React.Component{
     super(props);
     this.state = {
       sharing: false,
+      stop_sharing: false,
       shareError: null,
       emailSucess: false
     };
     this.share = this.share.bind(this);
+    this.stopShare = this.stopShare.bind(this);
     this.resumeService = new ResumeService();
   }
 
@@ -46,6 +48,22 @@ class ShareDialog extends React.Component{
       });
   }
 
+  stopShare() {
+    this.props.fireButtonClick('stop_share');
+    this.setState({stop_sharing: true});
+    this.resumeService.updateTemplate(this.props.user, 1, this.props.templateId, this.props.templateColor)
+      .then(() => this.resumeService.stopShare(JSON.stringify({id: `${this.props.user.id}_1`})))
+      .then((link) => {
+        this.setState({
+          stop_sharing: false
+        });
+        this.props.updateLink(link);
+        this.props.toggle();
+      }).catch(() => {
+        this.setState({stop_sharing: false, shareError: 'An error occured. please try again'});
+      });
+  }
+
   render() {
     return (
       <div>
@@ -55,8 +73,13 @@ class ShareDialog extends React.Component{
           contentStyle={{width: '90%'}}
           actionsContainerStyle={{marginTop: 0}}
           titleClassName="title"
-          actions={[<RaisedButton
-            label="Close"
+          actions={[this.props.share.link ? <RaisedButton
+            label="Stop Sharing"
+            primary={true}
+            onTouchTap={this.stopShare}
+          /> : null, <RaisedButton
+            style={{marginLeft: 16}}
+            label={this.props.share.link ? 'Copy & Close' : 'Close'}
             primary={false}
             onTouchTap={this.props.toggle}
           />]}
@@ -66,6 +89,7 @@ class ShareDialog extends React.Component{
           <div>
             <p className="error">{this.state.shareError}</p>
             {this.state.sharing ? 'Generating link...' : <a href={`${this.props.share.link}`} target="_blank">{this.props.share.link}</a>}
+            {this.state.stop_sharing && 'Deleting the link...'}
           </div>
         </Dialog>
       </div>

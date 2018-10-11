@@ -136,6 +136,23 @@ class ResumeService {
         });
     });
   }
+
+  stopShare(data) {
+    return new Promise((resolve, reject) => {
+      fetch('/stopshare', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: data
+      }).then(this.handleResponse)
+        .then(({link}) => resolve(link))
+        .catch((err) => {
+          window.sendErr(`ResumeService stop share err: ${JSON.stringify(err)}`);
+          reject();
+        });
+    });
+  }
 }
 
 export default ResumeService;
