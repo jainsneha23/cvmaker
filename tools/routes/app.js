@@ -51,16 +51,32 @@ const AppRoutes = (app, express) => {
     });
   });
 
+  router.post('/stopshare', bodyParser.json() , (req, res) => {
+    const share = JSON.stringify(JSON.stringify({link: null}));
+    var query = `mutation { update (id: "${req.body.id}", share: ${share}) { id } }`;
+    graphqlQuery(query).then(() => {
+      res.send({result: {link: null}});
+    }).catch((error) => {
+      console.error('Error stopping sharing resume', error);
+      res.status(502).send({errors: 'Error stopping sharing resume. Please try again after sometime'});
+    });
+  });
+
   router.get('/resume/:id', (req, res) => {
     const decryptedId = decrypt(req.params.id);
-    var query = `query { resumes (id: "${decryptedId}") { id, resumeid, cvdata, template } }`;
+    var query = `query { resumes (id: "${decryptedId}") { id, resumeid, cvdata, template, share } }`;
     graphqlQuery(query).then((result) => {
+      const share = JSON.parse(result.share);
+      if (!share.link) {
+        res.status(200).send('Sorry. This link is no longer shared');
+        return;
+      }
       let Comp = Templates[`Template${JSON.parse(result.template).id}`];
       const html = app.locals.getComponentAsHTML(Comp, JSON.parse(result.cvdata), JSON.parse(result.template).color);
       res.send(html);
     }).catch((error) => {
       console.error('Error getting resume', error);
-      res.status(502).send({errors: 'Error getting resume. Please try again after sometime'});
+      res.status(502).send('Error getting resume. Please try again after sometime');
     });
   });
 
